@@ -20,6 +20,6 @@ Front End: Sydney
 Back End: Roberto  
 
 
-QA Tester: Brandon  
+QA Tester: Brandon  brandonbecerra@mail.fresnostate.edu
 
 
