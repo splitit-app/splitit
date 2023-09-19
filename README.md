@@ -17,7 +17,7 @@ UI/UX: Zheng Wei Ng, loadedwei@mail.fresnostate.edu
 Front End: Sydney Khiev, sidthekid76@mail.fresnostate.edu  
 
 
-Back End: Roberto  
+Back End: Roberto  robertoaltamirano@mail.fresnostate.edu
 
 
 QA Tester: Brandon  brandonbecerra@mail.fresnostate.edu
