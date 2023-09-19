@@ -14,7 +14,7 @@ PM: Ren Hao Wong,
 UI/UX: Zheng Wei Ng, loadedwei@mail.fresnostate.edu  
 
 
-Front End: Sydney  
+Front End: Sydney Khiev, sidthekid76@mail.fresnostate.edu  
 
 
 Back End: Roberto  
