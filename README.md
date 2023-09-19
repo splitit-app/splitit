@@ -8,7 +8,7 @@ This was a project assigned in the class "CSCI 150: Introduction to Software Eng
 team:  
 
 
-PM: Ren Hao Wong,
+PM: Ren Hao Wong, renhao@mail.fresnostate.edu
 
 
 UI/UX: Zheng Wei Ng, loadedwei@mail.fresnostate.edu  
