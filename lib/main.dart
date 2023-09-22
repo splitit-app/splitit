@@ -74,6 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  int _currentPage = 0;  // Keeps track of the Current Page Index.
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -126,6 +128,41 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      bottomNavigationBar: NavigationBar(
+         backgroundColor: Theme.of(context).colorScheme.primaryContainer,  // Theme of the App (line 32) defines the background color
+         indicatorColor: Theme.of(context).colorScheme.secondary,
+         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected, // Only shows the label of the selected icon
+        //  animationDuration: const Duration(milliseconds: 1250),
+         height: 70.0,
+         
+         destinations: const [    // Lists of Destinations
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home_outlined),
+            label: 'Home',
+            tooltip: 'Return Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.attach_money),
+            selectedIcon: Icon(Icons.money_off),
+            label: 'Bills',
+            tooltip: 'Bill Splitting',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            selectedIcon: Icon(Icons.person_outlined),
+            label: 'People',
+            tooltip: 'People',
+          ),
+         ],
+         onDestinationSelected: (int value){  // On Navigation Selected, update the index
+            setState(() {   // Updates the State of the Current Page
+            _currentPage = value;
+            });
+         },
+         selectedIndex: _currentPage,  // Selected Index is updated (Displays the indicator for the selected Icon)
+      ),
     );
   }
 }
