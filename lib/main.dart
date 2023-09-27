@@ -1,13 +1,16 @@
-import 'package:flutter/material.dart';
-import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'firebase_options.dart';
+import 'screens/test_figma_login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  runApp(const FigmaToCodeApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -43,8 +46,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -56,23 +57,14 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+  const MyHomePage({super.key, required this.title});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 222222; //Change to huge number from origin of 0.
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter--;
-    });
-  }
 
   int _currentPage = 0;  // Keeps track of the Current Page Index.
 
@@ -164,5 +156,16 @@ class _MyHomePageState extends State<MyHomePage> {
          selectedIndex: _currentPage,  // Selected Index is updated (Displays the indicator for the selected Icon)
       ),
     );
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter--;
+    });
   }
 }
