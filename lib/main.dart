@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import '%E4%B8%80experiments/test_firebase.dart';
 
 import 'firebase_options.dart';
 import 'screens/test_figma_login_page.dart';
@@ -9,6 +10,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+//Experiment----
+  TestDatabase testDatabase = TestDatabase();
+  //testDatabase.Foo0();
+  //testDatabase.Foo1();
+  testDatabase.Bar0();
+//--------------
+
   //runApp(const MyApp());
   runApp(const FigmaToCodeApp());
 }
@@ -66,7 +75,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 222222; //Change to huge number from origin of 0.
 
-  int _currentPage = 0;  // Keeps track of the Current Page Index.
+  int _currentPage = 0; // Keeps track of the Current Page Index.
 
   @override
   Widget build(BuildContext context) {
@@ -122,13 +131,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
 
       bottomNavigationBar: NavigationBar(
-         backgroundColor: Theme.of(context).colorScheme.primaryContainer,  // Theme of the App (line 32) defines the background color
-         indicatorColor: Theme.of(context).colorScheme.secondary,
-         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected, // Only shows the label of the selected icon
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .primaryContainer, // Theme of the App (line 32) defines the background color
+        indicatorColor: Theme.of(context).colorScheme.secondary,
+        labelBehavior: NavigationDestinationLabelBehavior
+            .onlyShowSelected, // Only shows the label of the selected icon
         //  animationDuration: const Duration(milliseconds: 1250),
-         height: 70.0,
-         
-         destinations: const [    // Lists of Destinations
+        height: 70.0,
+
+        destinations: const [
+          // Lists of Destinations
           NavigationDestination(
             icon: Icon(Icons.home),
             selectedIcon: Icon(Icons.home_outlined),
@@ -147,13 +160,16 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'People',
             tooltip: 'People',
           ),
-         ],
-         onDestinationSelected: (int value){  // On Navigation Selected, update the index
-            setState(() {   // Updates the State of the Current Page
+        ],
+        onDestinationSelected: (int value) {
+          // On Navigation Selected, update the index
+          setState(() {
+            // Updates the State of the Current Page
             _currentPage = value;
-            });
-         },
-         selectedIndex: _currentPage,  // Selected Index is updated (Displays the indicator for the selected Icon)
+          });
+        },
+        selectedIndex:
+            _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
       ),
     );
   }
