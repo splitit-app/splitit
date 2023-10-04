@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-BillData _$BillDataFromJson(Map<String, dynamic> json) {
-  return _BillData.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BillData {
   DateTime get dateTime => throw _privateConstructorUsedError;
@@ -26,21 +22,23 @@ mixin _$BillData {
   set name(String value) => throw _privateConstructorUsedError;
   double get totalSpent => throw _privateConstructorUsedError;
   set totalSpent(double value) => throw _privateConstructorUsedError;
-  Friend get payer => throw _privateConstructorUsedError;
-  set payer(Friend value) => throw _privateConstructorUsedError;
-  List<Friend> get primarySplits => throw _privateConstructorUsedError;
-  set primarySplits(List<Friend> value) => throw _privateConstructorUsedError;
-  List<Friend> get secondarySplits => throw _privateConstructorUsedError;
-  set secondarySplits(List<Friend> value) => throw _privateConstructorUsedError;
-  List<bool> get splitRules => throw _privateConstructorUsedError;
-  set splitRules(List<bool> value) =>
+  Friend? get payer => throw _privateConstructorUsedError;
+  set payer(Friend? value) =>
+      throw _privateConstructorUsedError; //TODO: Annotate default to current user?
+  List<Friend>? get primarySplits =>
+      throw _privateConstructorUsedError; //TODO: Annotate default to current user?
+  set primarySplits(List<Friend>? value) => throw _privateConstructorUsedError;
+  List<Friend>? get secondarySplits => throw _privateConstructorUsedError;
+  set secondarySplits(List<Friend>? value) =>
+      throw _privateConstructorUsedError;
+  List<bool>? get splitRules => throw _privateConstructorUsedError;
+  set splitRules(List<bool>? value) =>
       throw _privateConstructorUsedError; //TODO: Replace placeholder type bool
-  List<(Friend, bool)> get paymentResolveStatuses =>
+  List<(Friend, bool)>? get paymentResolveStatuses =>
       throw _privateConstructorUsedError; //TODO: Replace placeholder type bool
-  set paymentResolveStatuses(List<(Friend, bool)> value) =>
+  set paymentResolveStatuses(List<(Friend, bool)>? value) =>
       throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BillDataCopyWith<BillData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -55,13 +53,13 @@ abstract class $BillDataCopyWith<$Res> {
       {DateTime dateTime,
       String name,
       double totalSpent,
-      Friend payer,
-      List<Friend> primarySplits,
-      List<Friend> secondarySplits,
-      List<bool> splitRules,
-      List<(Friend, bool)> paymentResolveStatuses});
+      Friend? payer,
+      List<Friend>? primarySplits,
+      List<Friend>? secondarySplits,
+      List<bool>? splitRules,
+      List<(Friend, bool)>? paymentResolveStatuses});
 
-  $FriendCopyWith<$Res> get payer;
+  $FriendCopyWith<$Res>? get payer;
 }
 
 /// @nodoc
@@ -80,11 +78,11 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
-    Object? payer = null,
-    Object? primarySplits = null,
-    Object? secondarySplits = null,
-    Object? splitRules = null,
-    Object? paymentResolveStatuses = null,
+    Object? payer = freezed,
+    Object? primarySplits = freezed,
+    Object? secondarySplits = freezed,
+    Object? splitRules = freezed,
+    Object? paymentResolveStatuses = freezed,
   }) {
     return _then(_value.copyWith(
       dateTime: null == dateTime
@@ -99,33 +97,37 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.totalSpent
           : totalSpent // ignore: cast_nullable_to_non_nullable
               as double,
-      payer: null == payer
+      payer: freezed == payer
           ? _value.payer
           : payer // ignore: cast_nullable_to_non_nullable
-              as Friend,
-      primarySplits: null == primarySplits
+              as Friend?,
+      primarySplits: freezed == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>,
-      secondarySplits: null == secondarySplits
+              as List<Friend>?,
+      secondarySplits: freezed == secondarySplits
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>,
-      splitRules: null == splitRules
+              as List<Friend>?,
+      splitRules: freezed == splitRules
           ? _value.splitRules
           : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<bool>,
-      paymentResolveStatuses: null == paymentResolveStatuses
+              as List<bool>?,
+      paymentResolveStatuses: freezed == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(Friend, bool)>,
+              as List<(Friend, bool)>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FriendCopyWith<$Res> get payer {
-    return $FriendCopyWith<$Res>(_value.payer, (value) {
+  $FriendCopyWith<$Res>? get payer {
+    if (_value.payer == null) {
+      return null;
+    }
+
+    return $FriendCopyWith<$Res>(_value.payer!, (value) {
       return _then(_value.copyWith(payer: value) as $Val);
     });
   }
@@ -142,14 +144,14 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
       {DateTime dateTime,
       String name,
       double totalSpent,
-      Friend payer,
-      List<Friend> primarySplits,
-      List<Friend> secondarySplits,
-      List<bool> splitRules,
-      List<(Friend, bool)> paymentResolveStatuses});
+      Friend? payer,
+      List<Friend>? primarySplits,
+      List<Friend>? secondarySplits,
+      List<bool>? splitRules,
+      List<(Friend, bool)>? paymentResolveStatuses});
 
   @override
-  $FriendCopyWith<$Res> get payer;
+  $FriendCopyWith<$Res>? get payer;
 }
 
 /// @nodoc
@@ -166,11 +168,11 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
-    Object? payer = null,
-    Object? primarySplits = null,
-    Object? secondarySplits = null,
-    Object? splitRules = null,
-    Object? paymentResolveStatuses = null,
+    Object? payer = freezed,
+    Object? primarySplits = freezed,
+    Object? secondarySplits = freezed,
+    Object? splitRules = freezed,
+    Object? paymentResolveStatuses = freezed,
   }) {
     return _then(_$_BillData(
       dateTime: null == dateTime
@@ -185,63 +187,64 @@ class __$$_BillDataCopyWithImpl<$Res>
           ? _value.totalSpent
           : totalSpent // ignore: cast_nullable_to_non_nullable
               as double,
-      payer: null == payer
+      payer: freezed == payer
           ? _value.payer
           : payer // ignore: cast_nullable_to_non_nullable
-              as Friend,
-      primarySplits: null == primarySplits
+              as Friend?,
+      primarySplits: freezed == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>,
-      secondarySplits: null == secondarySplits
+              as List<Friend>?,
+      secondarySplits: freezed == secondarySplits
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>,
-      splitRules: null == splitRules
+              as List<Friend>?,
+      splitRules: freezed == splitRules
           ? _value.splitRules
           : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<bool>,
-      paymentResolveStatuses: null == paymentResolveStatuses
+              as List<bool>?,
+      paymentResolveStatuses: freezed == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(Friend, bool)>,
+              as List<(Friend, bool)>?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_BillData implements _BillData {
+
+class _$_BillData extends _BillData {
   _$_BillData(
       {required this.dateTime,
-      required this.name,
-      required this.totalSpent,
-      required this.payer,
-      required this.primarySplits,
-      required this.secondarySplits,
-      required this.splitRules,
-      required this.paymentResolveStatuses});
-
-  factory _$_BillData.fromJson(Map<String, dynamic> json) =>
-      _$$_BillDataFromJson(json);
+      this.name = "New Bill",
+      this.totalSpent = 0,
+      this.payer,
+      this.primarySplits,
+      this.secondarySplits,
+      this.splitRules,
+      this.paymentResolveStatuses})
+      : super._();
 
   @override
   DateTime dateTime;
   @override
+  @JsonKey()
   String name;
   @override
+  @JsonKey()
   double totalSpent;
   @override
-  Friend payer;
+  Friend? payer;
+//TODO: Annotate default to current user?
   @override
-  List<Friend> primarySplits;
+  List<Friend>? primarySplits;
   @override
-  List<Friend> secondarySplits;
+  List<Friend>? secondarySplits;
   @override
-  List<bool> splitRules;
+  List<bool>? splitRules;
 //TODO: Replace placeholder type bool
   @override
-  List<(Friend, bool)> paymentResolveStatuses;
+  List<(Friend, bool)>? paymentResolveStatuses;
 
   @override
   String toString() {
@@ -253,27 +256,19 @@ class _$_BillData implements _BillData {
   @pragma('vm:prefer-inline')
   _$$_BillDataCopyWith<_$_BillData> get copyWith =>
       __$$_BillDataCopyWithImpl<_$_BillData>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_BillDataToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BillData implements BillData {
+abstract class _BillData extends BillData {
   factory _BillData(
       {required DateTime dateTime,
-      required String name,
-      required double totalSpent,
-      required Friend payer,
-      required List<Friend> primarySplits,
-      required List<Friend> secondarySplits,
-      required List<bool> splitRules,
-      required List<(Friend, bool)> paymentResolveStatuses}) = _$_BillData;
-
-  factory _BillData.fromJson(Map<String, dynamic> json) = _$_BillData.fromJson;
+      String name,
+      double totalSpent,
+      Friend? payer,
+      List<Friend>? primarySplits,
+      List<Friend>? secondarySplits,
+      List<bool>? splitRules,
+      List<(Friend, bool)>? paymentResolveStatuses}) = _$_BillData;
+  _BillData._() : super._();
 
   @override
   DateTime get dateTime;
@@ -285,21 +280,21 @@ abstract class _BillData implements BillData {
   double get totalSpent;
   set totalSpent(double value);
   @override
-  Friend get payer;
-  set payer(Friend value);
+  Friend? get payer;
+  set payer(Friend? value);
+  @override //TODO: Annotate default to current user?
+  List<Friend>? get primarySplits; //TODO: Annotate default to current user?
+  set primarySplits(List<Friend>? value);
   @override
-  List<Friend> get primarySplits;
-  set primarySplits(List<Friend> value);
+  List<Friend>? get secondarySplits;
+  set secondarySplits(List<Friend>? value);
   @override
-  List<Friend> get secondarySplits;
-  set secondarySplits(List<Friend> value);
-  @override
-  List<bool> get splitRules;
-  set splitRules(List<bool> value);
+  List<bool>? get splitRules;
+  set splitRules(List<bool>? value);
   @override //TODO: Replace placeholder type bool
-  List<(Friend, bool)>
+  List<(Friend, bool)>?
       get paymentResolveStatuses; //TODO: Replace placeholder type bool
-  set paymentResolveStatuses(List<(Friend, bool)> value);
+  set paymentResolveStatuses(List<(Friend, bool)>? value);
   @override
   @JsonKey(ignore: true)
   _$$_BillDataCopyWith<_$_BillData> get copyWith =>
