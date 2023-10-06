@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:project_bs/%E4%B8%80experiments/cat.dart';
 import 'package:project_bs/runtime_models/bill/bill_data.dart';
 
 part 'bill_data_dto.freezed.dart';
@@ -16,7 +17,7 @@ class BillDataDTO with _$BillDataDTO {
 
   factory BillDataDTO.fromJson(Map<String, dynamic> json) =>
       _$BillDataDTOFromJson(json);
-
+  
   BillDataDTO._();
 
   BillData toRuntimeObj() => BillData(
