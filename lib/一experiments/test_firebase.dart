@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_bs/net_models/bill/bill_data_dto.dart';
 
 import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/bill/modules/bill_module_tax.dart';
+import '../runtime_models/bill/modules/bill_module_tip.dart';
 import '../runtime_models/friend/friend.dart';
 
 class TestDatabase {
@@ -30,6 +32,8 @@ class TestDatabase {
       secondarySplits: List.empty(),
       splitRules: List.empty(),
       paymentResolveStatuses: List.empty(),
+      taxModule: BillModule_Tax(),
+      tipModule: BillModule_Tip(),
     );
 
     await db
@@ -63,6 +67,27 @@ class TestDatabase {
     var db = FirebaseFirestore.instance;
 
     var snapshots = db.collection('bills').snapshots();
+
+    try {
+      return snapshots.map((snapshot) => snapshot.docs
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj())
+          .toList());
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Stream<List<BillData>> get billsFromDay1 {
+    var db = FirebaseFirestore.instance;
+
+    var snapshots = db
+        .collection('bills')
+        .where(
+          'dateTime',
+          isGreaterThanOrEqualTo: DateTime(2023, 10, 4).toString(),
+          isLessThan: DateTime(2023, 10, 5).toString(),
+        )
+        .snapshots();
 
     try {
       return snapshots.map((snapshot) => snapshot.docs

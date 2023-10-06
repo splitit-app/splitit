@@ -119,8 +119,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
                 // action in the IDE, or press "p" in the console), to see the
                 // wireframe for each widget.
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                   StreamBuilder<List<BillData>>(
+                     stream: testDatabase.billsFromDay1,
+                     builder: (context, snapshot2) {
+                       return snapshot2.hasData
+                          ? ListView.builder(
+                              padding: const EdgeInsets.only(left: 20, right: 20),
+                              shrinkWrap: true,
+                              itemCount: snapshot2.data!.length,
+                              itemBuilder: (context2, index2) {
+                                BillData bill = snapshot2.data![index2];
+                                return Text(
+                                    '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
+                              },
+                            )
+                          : const SizedBox.shrink();
+                     }
+                   ),
                   const Text(
                     'You have pushed the button this many times:',
                   ),

@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:project_bs/runtime_models/bill/bill_data.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
 
 part 'bill_data_dto.freezed.dart';
 part 'bill_data_dto.g.dart';
@@ -23,5 +25,7 @@ class BillDataDTO with _$BillDataDTO {
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
+        taxModule: BillModule_Tax(),
+        tipModule: BillModule_Tip(),
       );
 }

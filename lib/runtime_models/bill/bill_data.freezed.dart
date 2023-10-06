@@ -37,7 +37,11 @@ mixin _$BillData {
   List<(Friend, bool)>? get paymentResolveStatuses =>
       throw _privateConstructorUsedError; //TODO: Replace placeholder type bool
   set paymentResolveStatuses(List<(Friend, bool)>? value) =>
-      throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; //
+  BillModule_Tax get taxModule => throw _privateConstructorUsedError; //
+  set taxModule(BillModule_Tax value) => throw _privateConstructorUsedError;
+  BillModule_Tip get tipModule => throw _privateConstructorUsedError;
+  set tipModule(BillModule_Tip value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BillDataCopyWith<BillData> get copyWith =>
@@ -57,9 +61,13 @@ abstract class $BillDataCopyWith<$Res> {
       List<Friend>? primarySplits,
       List<Friend>? secondarySplits,
       List<bool>? splitRules,
-      List<(Friend, bool)>? paymentResolveStatuses});
+      List<(Friend, bool)>? paymentResolveStatuses,
+      BillModule_Tax taxModule,
+      BillModule_Tip tipModule});
 
   $FriendCopyWith<$Res>? get payer;
+  $BillModule_TaxCopyWith<$Res> get taxModule;
+  $BillModule_TipCopyWith<$Res> get tipModule;
 }
 
 /// @nodoc
@@ -83,6 +91,8 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? secondarySplits = freezed,
     Object? splitRules = freezed,
     Object? paymentResolveStatuses = freezed,
+    Object? taxModule = null,
+    Object? tipModule = null,
   }) {
     return _then(_value.copyWith(
       dateTime: null == dateTime
@@ -117,6 +127,14 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
               as List<(Friend, bool)>?,
+      taxModule: null == taxModule
+          ? _value.taxModule
+          : taxModule // ignore: cast_nullable_to_non_nullable
+              as BillModule_Tax,
+      tipModule: null == tipModule
+          ? _value.tipModule
+          : tipModule // ignore: cast_nullable_to_non_nullable
+              as BillModule_Tip,
     ) as $Val);
   }
 
@@ -129,6 +147,22 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
 
     return $FriendCopyWith<$Res>(_value.payer!, (value) {
       return _then(_value.copyWith(payer: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BillModule_TaxCopyWith<$Res> get taxModule {
+    return $BillModule_TaxCopyWith<$Res>(_value.taxModule, (value) {
+      return _then(_value.copyWith(taxModule: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BillModule_TipCopyWith<$Res> get tipModule {
+    return $BillModule_TipCopyWith<$Res>(_value.tipModule, (value) {
+      return _then(_value.copyWith(tipModule: value) as $Val);
     });
   }
 }
@@ -148,10 +182,16 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
       List<Friend>? primarySplits,
       List<Friend>? secondarySplits,
       List<bool>? splitRules,
-      List<(Friend, bool)>? paymentResolveStatuses});
+      List<(Friend, bool)>? paymentResolveStatuses,
+      BillModule_Tax taxModule,
+      BillModule_Tip tipModule});
 
   @override
   $FriendCopyWith<$Res>? get payer;
+  @override
+  $BillModule_TaxCopyWith<$Res> get taxModule;
+  @override
+  $BillModule_TipCopyWith<$Res> get tipModule;
 }
 
 /// @nodoc
@@ -173,6 +213,8 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? secondarySplits = freezed,
     Object? splitRules = freezed,
     Object? paymentResolveStatuses = freezed,
+    Object? taxModule = null,
+    Object? tipModule = null,
   }) {
     return _then(_$_BillData(
       dateTime: null == dateTime
@@ -207,6 +249,14 @@ class __$$_BillDataCopyWithImpl<$Res>
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
               as List<(Friend, bool)>?,
+      taxModule: null == taxModule
+          ? _value.taxModule
+          : taxModule // ignore: cast_nullable_to_non_nullable
+              as BillModule_Tax,
+      tipModule: null == tipModule
+          ? _value.tipModule
+          : tipModule // ignore: cast_nullable_to_non_nullable
+              as BillModule_Tip,
     ));
   }
 }
@@ -222,7 +272,9 @@ class _$_BillData extends _BillData {
       this.primarySplits,
       this.secondarySplits,
       this.splitRules,
-      this.paymentResolveStatuses})
+      this.paymentResolveStatuses,
+      required this.taxModule,
+      required this.tipModule})
       : super._();
 
   @override
@@ -245,10 +297,15 @@ class _$_BillData extends _BillData {
 //TODO: Replace placeholder type bool
   @override
   List<(Friend, bool)>? paymentResolveStatuses;
+//
+  @override
+  BillModule_Tax taxModule;
+  @override
+  BillModule_Tip tipModule;
 
   @override
   String toString() {
-    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitRules: $splitRules, paymentResolveStatuses: $paymentResolveStatuses)';
+    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitRules: $splitRules, paymentResolveStatuses: $paymentResolveStatuses, taxModule: $taxModule, tipModule: $tipModule)';
   }
 
   @JsonKey(ignore: true)
@@ -267,7 +324,9 @@ abstract class _BillData extends BillData {
       List<Friend>? primarySplits,
       List<Friend>? secondarySplits,
       List<bool>? splitRules,
-      List<(Friend, bool)>? paymentResolveStatuses}) = _$_BillData;
+      List<(Friend, bool)>? paymentResolveStatuses,
+      required BillModule_Tax taxModule,
+      required BillModule_Tip tipModule}) = _$_BillData;
   _BillData._() : super._();
 
   @override
@@ -295,6 +354,12 @@ abstract class _BillData extends BillData {
   List<(Friend, bool)>?
       get paymentResolveStatuses; //TODO: Replace placeholder type bool
   set paymentResolveStatuses(List<(Friend, bool)>? value);
+  @override //
+  BillModule_Tax get taxModule; //
+  set taxModule(BillModule_Tax value);
+  @override
+  BillModule_Tip get tipModule;
+  set tipModule(BillModule_Tip value);
   @override
   @JsonKey(ignore: true)
   _$$_BillDataCopyWith<_$_BillData> get copyWith =>
