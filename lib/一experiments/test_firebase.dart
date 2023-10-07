@@ -1,7 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:project_bs/net_models/bill/bill_data_dto.dart';
+import 'package:project_bs/runtime_models/user/public_profile.dart';
+
+import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/bill/modules/bill_module_tax.dart';
+import '../runtime_models/bill/modules/bill_module_tip.dart';
 
 class TestDatabase {
-  void Foo0() async {
+  void foo0() async {
     var db = FirebaseFirestore.instance;
 
     final user = <String, dynamic>{
@@ -14,20 +20,30 @@ class TestDatabase {
         print('DocumentSnapshot added with ID: ${documentReference.id}'));
   }
 
-  void Foo1() async {
+  void uploadBill() async {
     var db = FirebaseFirestore.instance;
 
-    final user = <String, dynamic>{
-      "first": "Alan",
-      "last": "Mathison",
-      "born": 1912
-    };
+    final BillData billData = BillData(
+      dateTime: DateTime.now(),
+      name: 'FooMart',
+      totalSpent: 100,
+      payer: PublicProfile(name: 'John Cena'),
+      primarySplits: List.empty(),
+      secondarySplits: List.empty(),
+      paymentResolveStatuses: List.empty(),
+      itemGroups: List.empty(),
+      taxModule: BillModule_Tax(),
+      tipModule: BillModule_Tip(),
+    );
 
-    await db.collection('users').add(user).then((documentReference) =>
-        print('DocumentSnapshot added with ID: ${documentReference.id}'));
+    await db
+        .collection('bills')
+        .add(billData.toDataTransferObj.toJson())
+        .then((documentReference) =>
+            print('DocumentSnapshot added with ID: ${documentReference.id}'));
   }
 
-  void Bar0() async {
+  void bar0() async {
     var db = FirebaseFirestore.instance;
 
     await db.collection('users').get().then((querySnapshot) {
@@ -35,5 +51,50 @@ class TestDatabase {
         print('${queryDocumentSnapshot.id} => ${queryDocumentSnapshot.data()}');
       }
     });
+  }
+
+  void barBill0() async {
+    var db = FirebaseFirestore.instance;
+
+    await db.collection('bills').get().then((querySnapshot) {
+      for (var queryDocumentSnapshot in querySnapshot.docs) {
+        print('${queryDocumentSnapshot.id} => ${queryDocumentSnapshot.data()}');
+      }
+    });
+  }
+
+  Stream<List<BillData>> get bills {
+    var db = FirebaseFirestore.instance;
+
+    var snapshots = db.collection('bills').snapshots();
+
+    try {
+      return snapshots.map((snapshot) => snapshot.docs
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj)
+          .toList());
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Stream<List<BillData>> get billsFromDay1 {
+    var db = FirebaseFirestore.instance;
+
+    var snapshots = db
+        .collection('bills')
+        .where(
+          'dateTime',
+          isGreaterThanOrEqualTo: DateTime(2023, 10, 4).toString(),
+          isLessThan: DateTime(2023, 10, 5).toString(),
+        )
+        .snapshots();
+
+    try {
+      return snapshots.map((snapshot) => snapshot.docs
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj)
+          .toList());
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }
