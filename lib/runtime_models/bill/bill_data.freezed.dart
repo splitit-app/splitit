@@ -22,23 +22,22 @@ mixin _$BillData {
   set name(String value) => throw _privateConstructorUsedError;
   double get totalSpent => throw _privateConstructorUsedError;
   set totalSpent(double value) => throw _privateConstructorUsedError;
-  Friend? get payer => throw _privateConstructorUsedError;
-  set payer(Friend? value) =>
-      throw _privateConstructorUsedError; //TODO: Annotate default to current user?
-  List<Friend>? get primarySplits =>
-      throw _privateConstructorUsedError; //TODO: Annotate default to current user?
-  set primarySplits(List<Friend>? value) => throw _privateConstructorUsedError;
-  List<Friend>? get secondarySplits => throw _privateConstructorUsedError;
-  set secondarySplits(List<Friend>? value) =>
+  PublicProfile? get payer => throw _privateConstructorUsedError;
+  set payer(PublicProfile? value) => throw _privateConstructorUsedError;
+  List<PublicProfile>? get primarySplits => throw _privateConstructorUsedError;
+  set primarySplits(List<PublicProfile>? value) =>
       throw _privateConstructorUsedError;
-  List<bool>? get splitRules => throw _privateConstructorUsedError;
-  set splitRules(List<bool>? value) =>
-      throw _privateConstructorUsedError; //TODO: Replace placeholder type bool
-  List<(Friend, bool)>? get paymentResolveStatuses =>
-      throw _privateConstructorUsedError; //TODO: Replace placeholder type bool
-  set paymentResolveStatuses(List<(Friend, bool)>? value) =>
+  List<PublicProfile>? get secondarySplits =>
+      throw _privateConstructorUsedError;
+  set secondarySplits(List<PublicProfile>? value) =>
+      throw _privateConstructorUsedError;
+  List<(PublicProfile, bool)>? get paymentResolveStatuses =>
+      throw _privateConstructorUsedError;
+  set paymentResolveStatuses(List<(PublicProfile, bool)>? value) =>
       throw _privateConstructorUsedError; //
-  BillModule_Tax get taxModule => throw _privateConstructorUsedError; //
+  List<ItemGroup> get itemGroups => throw _privateConstructorUsedError; //
+  set itemGroups(List<ItemGroup> value) => throw _privateConstructorUsedError;
+  BillModule_Tax get taxModule => throw _privateConstructorUsedError;
   set taxModule(BillModule_Tax value) => throw _privateConstructorUsedError;
   BillModule_Tip get tipModule => throw _privateConstructorUsedError;
   set tipModule(BillModule_Tip value) => throw _privateConstructorUsedError;
@@ -57,15 +56,15 @@ abstract class $BillDataCopyWith<$Res> {
       {DateTime dateTime,
       String name,
       double totalSpent,
-      Friend? payer,
-      List<Friend>? primarySplits,
-      List<Friend>? secondarySplits,
-      List<bool>? splitRules,
-      List<(Friend, bool)>? paymentResolveStatuses,
+      PublicProfile? payer,
+      List<PublicProfile>? primarySplits,
+      List<PublicProfile>? secondarySplits,
+      List<(PublicProfile, bool)>? paymentResolveStatuses,
+      List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
       BillModule_Tip tipModule});
 
-  $FriendCopyWith<$Res>? get payer;
+  $PublicProfileCopyWith<$Res>? get payer;
   $BillModule_TaxCopyWith<$Res> get taxModule;
   $BillModule_TipCopyWith<$Res> get tipModule;
 }
@@ -89,8 +88,8 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? payer = freezed,
     Object? primarySplits = freezed,
     Object? secondarySplits = freezed,
-    Object? splitRules = freezed,
     Object? paymentResolveStatuses = freezed,
+    Object? itemGroups = null,
     Object? taxModule = null,
     Object? tipModule = null,
   }) {
@@ -110,23 +109,23 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
       payer: freezed == payer
           ? _value.payer
           : payer // ignore: cast_nullable_to_non_nullable
-              as Friend?,
+              as PublicProfile?,
       primarySplits: freezed == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>?,
+              as List<PublicProfile>?,
       secondarySplits: freezed == secondarySplits
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>?,
-      splitRules: freezed == splitRules
-          ? _value.splitRules
-          : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<bool>?,
+              as List<PublicProfile>?,
       paymentResolveStatuses: freezed == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(Friend, bool)>?,
+              as List<(PublicProfile, bool)>?,
+      itemGroups: null == itemGroups
+          ? _value.itemGroups
+          : itemGroups // ignore: cast_nullable_to_non_nullable
+              as List<ItemGroup>,
       taxModule: null == taxModule
           ? _value.taxModule
           : taxModule // ignore: cast_nullable_to_non_nullable
@@ -140,12 +139,12 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
 
   @override
   @pragma('vm:prefer-inline')
-  $FriendCopyWith<$Res>? get payer {
+  $PublicProfileCopyWith<$Res>? get payer {
     if (_value.payer == null) {
       return null;
     }
 
-    return $FriendCopyWith<$Res>(_value.payer!, (value) {
+    return $PublicProfileCopyWith<$Res>(_value.payer!, (value) {
       return _then(_value.copyWith(payer: value) as $Val);
     });
   }
@@ -178,16 +177,16 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
       {DateTime dateTime,
       String name,
       double totalSpent,
-      Friend? payer,
-      List<Friend>? primarySplits,
-      List<Friend>? secondarySplits,
-      List<bool>? splitRules,
-      List<(Friend, bool)>? paymentResolveStatuses,
+      PublicProfile? payer,
+      List<PublicProfile>? primarySplits,
+      List<PublicProfile>? secondarySplits,
+      List<(PublicProfile, bool)>? paymentResolveStatuses,
+      List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
       BillModule_Tip tipModule});
 
   @override
-  $FriendCopyWith<$Res>? get payer;
+  $PublicProfileCopyWith<$Res>? get payer;
   @override
   $BillModule_TaxCopyWith<$Res> get taxModule;
   @override
@@ -211,8 +210,8 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? payer = freezed,
     Object? primarySplits = freezed,
     Object? secondarySplits = freezed,
-    Object? splitRules = freezed,
     Object? paymentResolveStatuses = freezed,
+    Object? itemGroups = null,
     Object? taxModule = null,
     Object? tipModule = null,
   }) {
@@ -232,23 +231,23 @@ class __$$_BillDataCopyWithImpl<$Res>
       payer: freezed == payer
           ? _value.payer
           : payer // ignore: cast_nullable_to_non_nullable
-              as Friend?,
+              as PublicProfile?,
       primarySplits: freezed == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>?,
+              as List<PublicProfile>?,
       secondarySplits: freezed == secondarySplits
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
-              as List<Friend>?,
-      splitRules: freezed == splitRules
-          ? _value.splitRules
-          : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<bool>?,
+              as List<PublicProfile>?,
       paymentResolveStatuses: freezed == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(Friend, bool)>?,
+              as List<(PublicProfile, bool)>?,
+      itemGroups: null == itemGroups
+          ? _value.itemGroups
+          : itemGroups // ignore: cast_nullable_to_non_nullable
+              as List<ItemGroup>,
       taxModule: null == taxModule
           ? _value.taxModule
           : taxModule // ignore: cast_nullable_to_non_nullable
@@ -271,11 +270,12 @@ class _$_BillData extends _BillData {
       this.payer,
       this.primarySplits,
       this.secondarySplits,
-      this.splitRules,
       this.paymentResolveStatuses,
+      required this.itemGroups,
       required this.taxModule,
       required this.tipModule})
-      : super._();
+      : assert(totalSpent >= 0),
+        super._();
 
   @override
   DateTime dateTime;
@@ -286,18 +286,16 @@ class _$_BillData extends _BillData {
   @JsonKey()
   double totalSpent;
   @override
-  Friend? payer;
-//TODO: Annotate default to current user?
+  PublicProfile? payer;
   @override
-  List<Friend>? primarySplits;
+  List<PublicProfile>? primarySplits;
   @override
-  List<Friend>? secondarySplits;
+  List<PublicProfile>? secondarySplits;
   @override
-  List<bool>? splitRules;
-//TODO: Replace placeholder type bool
-  @override
-  List<(Friend, bool)>? paymentResolveStatuses;
+  List<(PublicProfile, bool)>? paymentResolveStatuses;
 //
+  @override
+  List<ItemGroup> itemGroups;
   @override
   BillModule_Tax taxModule;
   @override
@@ -305,7 +303,7 @@ class _$_BillData extends _BillData {
 
   @override
   String toString() {
-    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitRules: $splitRules, paymentResolveStatuses: $paymentResolveStatuses, taxModule: $taxModule, tipModule: $tipModule)';
+    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule)';
   }
 
   @JsonKey(ignore: true)
@@ -320,11 +318,11 @@ abstract class _BillData extends BillData {
       {required DateTime dateTime,
       String name,
       double totalSpent,
-      Friend? payer,
-      List<Friend>? primarySplits,
-      List<Friend>? secondarySplits,
-      List<bool>? splitRules,
-      List<(Friend, bool)>? paymentResolveStatuses,
+      PublicProfile? payer,
+      List<PublicProfile>? primarySplits,
+      List<PublicProfile>? secondarySplits,
+      List<(PublicProfile, bool)>? paymentResolveStatuses,
+      required List<ItemGroup> itemGroups,
       required BillModule_Tax taxModule,
       required BillModule_Tip tipModule}) = _$_BillData;
   _BillData._() : super._();
@@ -339,23 +337,22 @@ abstract class _BillData extends BillData {
   double get totalSpent;
   set totalSpent(double value);
   @override
-  Friend? get payer;
-  set payer(Friend? value);
-  @override //TODO: Annotate default to current user?
-  List<Friend>? get primarySplits; //TODO: Annotate default to current user?
-  set primarySplits(List<Friend>? value);
+  PublicProfile? get payer;
+  set payer(PublicProfile? value);
   @override
-  List<Friend>? get secondarySplits;
-  set secondarySplits(List<Friend>? value);
+  List<PublicProfile>? get primarySplits;
+  set primarySplits(List<PublicProfile>? value);
   @override
-  List<bool>? get splitRules;
-  set splitRules(List<bool>? value);
-  @override //TODO: Replace placeholder type bool
-  List<(Friend, bool)>?
-      get paymentResolveStatuses; //TODO: Replace placeholder type bool
-  set paymentResolveStatuses(List<(Friend, bool)>? value);
+  List<PublicProfile>? get secondarySplits;
+  set secondarySplits(List<PublicProfile>? value);
+  @override
+  List<(PublicProfile, bool)>? get paymentResolveStatuses;
+  set paymentResolveStatuses(List<(PublicProfile, bool)>? value);
   @override //
-  BillModule_Tax get taxModule; //
+  List<ItemGroup> get itemGroups; //
+  set itemGroups(List<ItemGroup> value);
+  @override
+  BillModule_Tax get taxModule;
   set taxModule(BillModule_Tax value);
   @override
   BillModule_Tip get tipModule;

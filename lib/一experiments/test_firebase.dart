@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_bs/net_models/bill/bill_data_dto.dart';
+import 'package:project_bs/runtime_models/user/public_profile.dart';
 
 import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/bill/modules/bill_module_tax.dart';
 import '../runtime_models/bill/modules/bill_module_tip.dart';
-import '../runtime_models/friend/friend.dart';
 
 class TestDatabase {
   void foo0() async {
@@ -27,18 +27,18 @@ class TestDatabase {
       dateTime: DateTime.now(),
       name: 'FooMart',
       totalSpent: 100,
-      payer: Friend(name: 'John Cena'),
+      payer: PublicProfile(name: 'John Cena'),
       primarySplits: List.empty(),
       secondarySplits: List.empty(),
-      splitRules: List.empty(),
       paymentResolveStatuses: List.empty(),
+      itemGroups: List.empty(),
       taxModule: BillModule_Tax(),
       tipModule: BillModule_Tip(),
     );
 
     await db
         .collection('bills')
-        .add(billData.toDataTransferObj().toJson())
+        .add(billData.toDataTransferObj.toJson())
         .then((documentReference) =>
             print('DocumentSnapshot added with ID: ${documentReference.id}'));
   }
@@ -70,7 +70,7 @@ class TestDatabase {
 
     try {
       return snapshots.map((snapshot) => snapshot.docs
-          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj())
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj)
           .toList());
     } catch (e) {
       throw Exception(e);
@@ -91,7 +91,7 @@ class TestDatabase {
 
     try {
       return snapshots.map((snapshot) => snapshot.docs
-          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj())
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj)
           .toList());
     } catch (e) {
       throw Exception(e);

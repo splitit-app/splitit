@@ -21,10 +21,11 @@ class BillDataDTO with _$BillDataDTO {
 
   BillDataDTO._();
 
-  BillData toRuntimeObj() => BillData(
+  BillData get toRuntimeObj => BillData(
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
+        itemGroups: List.empty(),
         taxModule: BillModule_Tax(),
         tipModule: BillModule_Tip(),
       );
