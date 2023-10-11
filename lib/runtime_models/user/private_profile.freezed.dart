@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PrivateProfile {
-  Theme get theme => throw _privateConstructorUsedError;
+  ThemeData get themeData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PrivateProfileCopyWith<PrivateProfile> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $PrivateProfileCopyWith<$Res> {
           PrivateProfile value, $Res Function(PrivateProfile) then) =
       _$PrivateProfileCopyWithImpl<$Res, PrivateProfile>;
   @useResult
-  $Res call({Theme theme});
+  $Res call({ThemeData themeData});
 }
 
 /// @nodoc
@@ -45,13 +45,13 @@ class _$PrivateProfileCopyWithImpl<$Res, $Val extends PrivateProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = null,
+    Object? themeData = null,
   }) {
     return _then(_value.copyWith(
-      theme: null == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as Theme,
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$_PrivateProfileCopyWith<$Res>
       __$$_PrivateProfileCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Theme theme});
+  $Res call({ThemeData themeData});
 }
 
 /// @nodoc
@@ -78,13 +78,13 @@ class __$$_PrivateProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = null,
+    Object? themeData = null,
   }) {
     return _then(_$_PrivateProfile(
-      theme: null == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as Theme,
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
     ));
   }
 }
@@ -92,14 +92,14 @@ class __$$_PrivateProfileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PrivateProfile implements _PrivateProfile {
-  _$_PrivateProfile({required this.theme});
+  _$_PrivateProfile({required this.themeData});
 
   @override
-  final Theme theme;
+  final ThemeData themeData;
 
   @override
   String toString() {
-    return 'PrivateProfile(theme: $theme)';
+    return 'PrivateProfile(themeData: $themeData)';
   }
 
   @override
@@ -107,11 +107,12 @@ class _$_PrivateProfile implements _PrivateProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PrivateProfile &&
-            (identical(other.theme, theme) || other.theme == theme));
+            (identical(other.themeData, themeData) ||
+                other.themeData == themeData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, theme);
+  int get hashCode => Object.hash(runtimeType, themeData);
 
   @JsonKey(ignore: true)
   @override
@@ -121,10 +122,11 @@ class _$_PrivateProfile implements _PrivateProfile {
 }
 
 abstract class _PrivateProfile implements PrivateProfile {
-  factory _PrivateProfile({required final Theme theme}) = _$_PrivateProfile;
+  factory _PrivateProfile({required final ThemeData themeData}) =
+      _$_PrivateProfile;
 
   @override
-  Theme get theme;
+  ThemeData get themeData;
   @override
   @JsonKey(ignore: true)
   _$$_PrivateProfileCopyWith<_$_PrivateProfile> get copyWith =>

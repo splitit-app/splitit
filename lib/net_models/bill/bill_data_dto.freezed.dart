@@ -22,7 +22,8 @@ BillDataDTO _$BillDataDTOFromJson(Map<String, dynamic> json) {
 mixin _$BillDataDTO {
   DateTime get dateTime => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  double get totalSpent => throw _privateConstructorUsedError;
+  double get totalSpent => throw _privateConstructorUsedError; //
+  PublicProfile get payer => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,10 @@ abstract class $BillDataDTOCopyWith<$Res> {
           BillDataDTO value, $Res Function(BillDataDTO) then) =
       _$BillDataDTOCopyWithImpl<$Res, BillDataDTO>;
   @useResult
-  $Res call({DateTime dateTime, String name, double totalSpent});
+  $Res call(
+      {DateTime dateTime, String name, double totalSpent, PublicProfile payer});
+
+  $PublicProfileCopyWith<$Res> get payer;
 }
 
 /// @nodoc
@@ -55,6 +59,7 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
+    Object? payer = null,
   }) {
     return _then(_value.copyWith(
       dateTime: null == dateTime
@@ -69,7 +74,19 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
           ? _value.totalSpent
           : totalSpent // ignore: cast_nullable_to_non_nullable
               as double,
+      payer: null == payer
+          ? _value.payer
+          : payer // ignore: cast_nullable_to_non_nullable
+              as PublicProfile,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PublicProfileCopyWith<$Res> get payer {
+    return $PublicProfileCopyWith<$Res>(_value.payer, (value) {
+      return _then(_value.copyWith(payer: value) as $Val);
+    });
   }
 }
 
@@ -81,7 +98,11 @@ abstract class _$$_BillDataDTOCopyWith<$Res>
       __$$_BillDataDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime dateTime, String name, double totalSpent});
+  $Res call(
+      {DateTime dateTime, String name, double totalSpent, PublicProfile payer});
+
+  @override
+  $PublicProfileCopyWith<$Res> get payer;
 }
 
 /// @nodoc
@@ -98,6 +119,7 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
+    Object? payer = null,
   }) {
     return _then(_$_BillDataDTO(
       dateTime: null == dateTime
@@ -112,6 +134,10 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
           ? _value.totalSpent
           : totalSpent // ignore: cast_nullable_to_non_nullable
               as double,
+      payer: null == payer
+          ? _value.payer
+          : payer // ignore: cast_nullable_to_non_nullable
+              as PublicProfile,
     ));
   }
 }
@@ -121,7 +147,10 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_BillDataDTO extends _BillDataDTO {
   _$_BillDataDTO(
-      {required this.dateTime, required this.name, required this.totalSpent})
+      {required this.dateTime,
+      required this.name,
+      required this.totalSpent,
+      required this.payer})
       : super._();
 
   factory _$_BillDataDTO.fromJson(Map<String, dynamic> json) =>
@@ -133,10 +162,13 @@ class _$_BillDataDTO extends _BillDataDTO {
   final String name;
   @override
   final double totalSpent;
+//
+  @override
+  final PublicProfile payer;
 
   @override
   String toString() {
-    return 'BillDataDTO(dateTime: $dateTime, name: $name, totalSpent: $totalSpent)';
+    return 'BillDataDTO(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer)';
   }
 
   @override
@@ -148,12 +180,14 @@ class _$_BillDataDTO extends _BillDataDTO {
                 other.dateTime == dateTime) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.totalSpent, totalSpent) ||
-                other.totalSpent == totalSpent));
+                other.totalSpent == totalSpent) &&
+            (identical(other.payer, payer) || other.payer == payer));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dateTime, name, totalSpent);
+  int get hashCode =>
+      Object.hash(runtimeType, dateTime, name, totalSpent, payer);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +207,8 @@ abstract class _BillDataDTO extends BillDataDTO {
   factory _BillDataDTO(
       {required final DateTime dateTime,
       required final String name,
-      required final double totalSpent}) = _$_BillDataDTO;
+      required final double totalSpent,
+      required final PublicProfile payer}) = _$_BillDataDTO;
   _BillDataDTO._() : super._();
 
   factory _BillDataDTO.fromJson(Map<String, dynamic> json) =
@@ -185,6 +220,8 @@ abstract class _BillDataDTO extends BillDataDTO {
   String get name;
   @override
   double get totalSpent;
+  @override //
+  PublicProfile get payer;
   @override
   @JsonKey(ignore: true)
   _$$_BillDataDTOCopyWith<_$_BillDataDTO> get copyWith =>

@@ -6,6 +6,6 @@ part 'private_profile.freezed.dart';
 @freezed
 class PrivateProfile with _$PrivateProfile {
   factory PrivateProfile({
-    required Theme theme,
+    required ThemeData themeData,
   }) = _PrivateProfile;
 }

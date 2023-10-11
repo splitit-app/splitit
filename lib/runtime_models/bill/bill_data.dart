@@ -31,6 +31,7 @@ class BillData with _$BillData {
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
+        payer: payer!,
       );
 }
 //TODO: when a new item is added, initialized its tax list with the current number of taxes
