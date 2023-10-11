@@ -25,9 +25,11 @@ class SplitItApp extends StatelessWidget {
   const SplitItApp({super.key});
 
   @override
-  Widget build(BuildContext context) => StreamProvider.value(
-        value: AuthenticationService().hahaha,
-        initialData: null,
-        child: const AuthenticationController(),
+  Widget build(BuildContext context) => MaterialApp(
+        home: StreamProvider.value(
+          value: AuthenticationService().hahaha,
+          initialData: null,
+          child: const AuthenticationController(),
+        ),
       );
 }
