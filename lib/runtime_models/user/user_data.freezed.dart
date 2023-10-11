@@ -16,9 +16,17 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserData {
-  String get name => throw _privateConstructorUsedError;
-  PublicProfile get publicProfile => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  set uid(String value) =>
+      throw _privateConstructorUsedError; //required String name,
+  PublicProfile get publicProfile =>
+      throw _privateConstructorUsedError; //required String name,
+  set publicProfile(PublicProfile value) => throw _privateConstructorUsedError;
   PrivateProfile get privateProfile => throw _privateConstructorUsedError;
+  set privateProfile(PrivateProfile value) =>
+      throw _privateConstructorUsedError;
+  List<PublicProfile> get friends => throw _privateConstructorUsedError;
+  set friends(List<PublicProfile> value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserDataCopyWith<UserData> get copyWith =>
@@ -31,9 +39,10 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {String name,
+      {String uid,
       PublicProfile publicProfile,
-      PrivateProfile privateProfile});
+      PrivateProfile privateProfile,
+      List<PublicProfile> friends});
 
   $PublicProfileCopyWith<$Res> get publicProfile;
   $PrivateProfileCopyWith<$Res> get privateProfile;
@@ -52,14 +61,15 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? uid = null,
     Object? publicProfile = null,
     Object? privateProfile = null,
+    Object? friends = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       publicProfile: null == publicProfile
           ? _value.publicProfile
@@ -69,6 +79,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.privateProfile
           : privateProfile // ignore: cast_nullable_to_non_nullable
               as PrivateProfile,
+      friends: null == friends
+          ? _value.friends
+          : friends // ignore: cast_nullable_to_non_nullable
+              as List<PublicProfile>,
     ) as $Val);
   }
 
@@ -97,9 +111,10 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
+      {String uid,
       PublicProfile publicProfile,
-      PrivateProfile privateProfile});
+      PrivateProfile privateProfile,
+      List<PublicProfile> friends});
 
   @override
   $PublicProfileCopyWith<$Res> get publicProfile;
@@ -118,14 +133,15 @@ class __$$_UserDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? uid = null,
     Object? publicProfile = null,
     Object? privateProfile = null,
+    Object? friends = null,
   }) {
     return _then(_$_UserData(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       publicProfile: null == publicProfile
           ? _value.publicProfile
@@ -135,28 +151,37 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.privateProfile
           : privateProfile // ignore: cast_nullable_to_non_nullable
               as PrivateProfile,
+      friends: null == friends
+          ? _value.friends
+          : friends // ignore: cast_nullable_to_non_nullable
+              as List<PublicProfile>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_UserData with DiagnosticableTreeMixin implements _UserData {
-  const _$_UserData(
-      {required this.name,
+class _$_UserData extends _UserData with DiagnosticableTreeMixin {
+  _$_UserData(
+      {required this.uid,
       required this.publicProfile,
-      required this.privateProfile});
+      required this.privateProfile,
+      required this.friends})
+      : super._();
 
   @override
-  final String name;
+  String uid;
+//required String name,
   @override
-  final PublicProfile publicProfile;
+  PublicProfile publicProfile;
   @override
-  final PrivateProfile privateProfile;
+  PrivateProfile privateProfile;
+  @override
+  List<PublicProfile> friends;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(name: $name, publicProfile: $publicProfile, privateProfile: $privateProfile)';
+    return 'UserData(uid: $uid, publicProfile: $publicProfile, privateProfile: $privateProfile, friends: $friends)';
   }
 
   @override
@@ -164,26 +189,11 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'UserData'))
-      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('publicProfile', publicProfile))
-      ..add(DiagnosticsProperty('privateProfile', privateProfile));
+      ..add(DiagnosticsProperty('privateProfile', privateProfile))
+      ..add(DiagnosticsProperty('friends', friends));
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UserData &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.publicProfile, publicProfile) ||
-                other.publicProfile == publicProfile) &&
-            (identical(other.privateProfile, privateProfile) ||
-                other.privateProfile == privateProfile));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, publicProfile, privateProfile);
 
   @JsonKey(ignore: true)
   @override
@@ -192,18 +202,26 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
       __$$_UserDataCopyWithImpl<_$_UserData>(this, _$identity);
 }
 
-abstract class _UserData implements UserData {
-  const factory _UserData(
-      {required final String name,
-      required final PublicProfile publicProfile,
-      required final PrivateProfile privateProfile}) = _$_UserData;
+abstract class _UserData extends UserData {
+  factory _UserData(
+      {required String uid,
+      required PublicProfile publicProfile,
+      required PrivateProfile privateProfile,
+      required List<PublicProfile> friends}) = _$_UserData;
+  _UserData._() : super._();
 
   @override
-  String get name;
-  @override
-  PublicProfile get publicProfile;
+  String get uid;
+  set uid(String value);
+  @override //required String name,
+  PublicProfile get publicProfile; //required String name,
+  set publicProfile(PublicProfile value);
   @override
   PrivateProfile get privateProfile;
+  set privateProfile(PrivateProfile value);
+  @override
+  List<PublicProfile> get friends;
+  set friends(List<PublicProfile> value);
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

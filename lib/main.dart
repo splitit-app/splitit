@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:project_bs/screens/authentication_controller.dart';
+import 'package:project_bs/services/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
-import 'screens/test_experiment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,18 @@ void main() async {
   //testDatabase.barBill0();
 //--------------
 
-  runApp(const MyApp());
-  //runApp(const FigmaToCodeApp());
+  runApp(const SplitItApp());
+}
+
+class SplitItApp extends StatelessWidget {
+  const SplitItApp({super.key});
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        home: StreamProvider.value(
+          value: AuthenticationService().hahaha,
+          initialData: null,
+          child: const AuthenticationController(),
+        ),
+      );
 }
