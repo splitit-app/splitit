@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PublicProfile _$PublicProfileFromJson(Map<String, dynamic> json) {
+  return _PublicProfile.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PublicProfile {
   String? get userId => throw _privateConstructorUsedError;
@@ -22,9 +26,8 @@ mixin _$PublicProfile {
   set profileId(String? value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
-  Image? get profileImage => throw _privateConstructorUsedError;
-  set profileImage(Image? value) => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PublicProfileCopyWith<PublicProfile> get copyWith =>
       throw _privateConstructorUsedError;
@@ -36,8 +39,7 @@ abstract class $PublicProfileCopyWith<$Res> {
           PublicProfile value, $Res Function(PublicProfile) then) =
       _$PublicProfileCopyWithImpl<$Res, PublicProfile>;
   @useResult
-  $Res call(
-      {String? userId, String? profileId, String name, Image? profileImage});
+  $Res call({String? userId, String? profileId, String name});
 }
 
 /// @nodoc
@@ -56,7 +58,6 @@ class _$PublicProfileCopyWithImpl<$Res, $Val extends PublicProfile>
     Object? userId = freezed,
     Object? profileId = freezed,
     Object? name = null,
-    Object? profileImage = freezed,
   }) {
     return _then(_value.copyWith(
       userId: freezed == userId
@@ -71,10 +72,6 @@ class _$PublicProfileCopyWithImpl<$Res, $Val extends PublicProfile>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      profileImage: freezed == profileImage
-          ? _value.profileImage
-          : profileImage // ignore: cast_nullable_to_non_nullable
-              as Image?,
     ) as $Val);
   }
 }
@@ -87,8 +84,7 @@ abstract class _$$_PublicProfileCopyWith<$Res>
       __$$_PublicProfileCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? userId, String? profileId, String name, Image? profileImage});
+  $Res call({String? userId, String? profileId, String name});
 }
 
 /// @nodoc
@@ -105,7 +101,6 @@ class __$$_PublicProfileCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? profileId = freezed,
     Object? name = null,
-    Object? profileImage = freezed,
   }) {
     return _then(_$_PublicProfile(
       userId: freezed == userId
@@ -120,20 +115,18 @@ class __$$_PublicProfileCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      profileImage: freezed == profileImage
-          ? _value.profileImage
-          : profileImage // ignore: cast_nullable_to_non_nullable
-              as Image?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_PublicProfile extends _PublicProfile {
-  _$_PublicProfile(
-      {this.userId, this.profileId, required this.name, this.profileImage})
+  _$_PublicProfile({this.userId, this.profileId, required this.name})
       : super._();
+
+  factory _$_PublicProfile.fromJson(Map<String, dynamic> json) =>
+      _$$_PublicProfileFromJson(json);
 
   @override
   String? userId;
@@ -141,12 +134,10 @@ class _$_PublicProfile extends _PublicProfile {
   String? profileId;
   @override
   String name;
-  @override
-  Image? profileImage;
 
   @override
   String toString() {
-    return 'PublicProfile(userId: $userId, profileId: $profileId, name: $name, profileImage: $profileImage)';
+    return 'PublicProfile(userId: $userId, profileId: $profileId, name: $name)';
   }
 
   @JsonKey(ignore: true)
@@ -154,15 +145,24 @@ class _$_PublicProfile extends _PublicProfile {
   @pragma('vm:prefer-inline')
   _$$_PublicProfileCopyWith<_$_PublicProfile> get copyWith =>
       __$$_PublicProfileCopyWithImpl<_$_PublicProfile>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PublicProfileToJson(
+      this,
+    );
+  }
 }
 
 abstract class _PublicProfile extends PublicProfile {
   factory _PublicProfile(
       {String? userId,
       String? profileId,
-      required String name,
-      Image? profileImage}) = _$_PublicProfile;
+      required String name}) = _$_PublicProfile;
   _PublicProfile._() : super._();
+
+  factory _PublicProfile.fromJson(Map<String, dynamic> json) =
+      _$_PublicProfile.fromJson;
 
   @override
   String? get userId;
@@ -173,9 +173,6 @@ abstract class _PublicProfile extends PublicProfile {
   @override
   String get name;
   set name(String value);
-  @override
-  Image? get profileImage;
-  set profileImage(Image? value);
   @override
   @JsonKey(ignore: true)
   _$$_PublicProfileCopyWith<_$_PublicProfile> get copyWith =>

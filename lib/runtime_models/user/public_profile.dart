@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'public_profile.freezed.dart';
+part 'public_profile.g.dart';
 
 @unfreezed
 class PublicProfile with _$PublicProfile {
@@ -9,8 +9,10 @@ class PublicProfile with _$PublicProfile {
     String? userId,
     String? profileId,
     required String name,
-    Image? profileImage,
+    //Image? profileImage,
   }) = _PublicProfile;
+
+  factory PublicProfile.fromJson(Map<String, dynamic> json) => _$PublicProfileFromJson(json);
 
   PublicProfile._();
 

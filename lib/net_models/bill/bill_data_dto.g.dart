@@ -11,6 +11,7 @@ _$_BillDataDTO _$$_BillDataDTOFromJson(Map<String, dynamic> json) =>
       dateTime: DateTime.parse(json['dateTime'] as String),
       name: json['name'] as String,
       totalSpent: (json['totalSpent'] as num).toDouble(),
+      payer: PublicProfile.fromJson(json['payer'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_BillDataDTOToJson(_$_BillDataDTO instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_BillDataDTOToJson(_$_BillDataDTO instance) =>
       'dateTime': instance.dateTime.toIso8601String(),
       'name': instance.name,
       'totalSpent': instance.totalSpent,
+      'payer': instance.payer.toJson(),
     };
