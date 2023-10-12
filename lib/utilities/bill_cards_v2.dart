@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/utilities/person_icon.dart';
+
+import '../utilities/person_icon.dart';
 
 class BillCardsV2 extends StatelessWidget {
   // Parameters:
@@ -7,15 +8,15 @@ class BillCardsV2 extends StatelessWidget {
   final double billTotal;
   final String billDate;
 
+  // Information Text Color
+  final Color textColors = const Color(0xFF0F1013);
+
   const BillCardsV2({
     super.key,
     required this.billName,
     required this.billTotal,
     required this.billDate,
   });
-
-  // Information Text Color
-  final Color textColors = const Color(0xFF0F1013);
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,11 @@ class BillCardsV2 extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Spaces each of the Components in the First Row
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // Spaces each of the Components in the First Row
                 children: [
-                  Row(    // Grouping (Wrapping) the Container and Column in a row to better separate between the arrow icon
+                  Row(
+                    // Grouping (Wrapping) the Container and Column in a row to better separate between the arrow icon
                     children: [
                       Container(
                         width: 50,
@@ -147,11 +150,10 @@ class BillCardsV2 extends StatelessWidget {
                                 const PersonIcon(),
                                 const PersonIcon(),
                                 const PersonIcon(),
-                                
                                 IconButton(
                                   splashColor: const Color(0xFF2C2E30),
                                   onPressed: () {
-                                      print("Icon Button Pressed!");
+                                    print("Icon Button Pressed!");
                                   },
                                   icon: const Icon(
                                     Icons.keyboard_control,
@@ -217,7 +219,8 @@ class BillCardsV2 extends StatelessWidget {
                                 // Bill Total Row
                                 Row(
                                   // mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
                                       "Total",
@@ -275,7 +278,8 @@ class BillCardsV2 extends StatelessWidget {
                                       // "\$100.00",
 
                                       // The bill total subtracted by the amount resolved. Currently the settled amount is hardcoded.
-                                      (billTotal - 5.45).toStringAsFixed(2), // Rounding the Number to the tenths
+                                      (billTotal - 5.45).toStringAsFixed(
+                                          2), // Rounding the Number to the tenths
                                       style: const TextStyle(
                                         color: Color(0xFFA11919),
                                         fontSize: 16.0,

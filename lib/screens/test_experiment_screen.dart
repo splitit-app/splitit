@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
-import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
-import 'package:project_bs/services/bill_data_repository.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/bill/modules/bill_module_tax.dart';
+import '../runtime_models/bill/modules/bill_module_tip.dart';
 import '../runtime_models/user/public_profile.dart';
-import 'package:material_symbols_icons/symbols.dart';
-
-import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
+import '../services/bill_data_repository.dart';
 import '../utilities/bill_cards.dart';
 import '../utilities/bill_cards_v2.dart';
-import '../一experiments/test_firebase.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -40,10 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _currentPage = 0; // Keeps track of the Current Page Index.
 
-  //Experiment----
-  TestDatabase testDatabase = TestDatabase();
-  //--------------
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -60,9 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
 
-        backgroundColor:
-            Theme.of(context).colorScheme.surfaceVariant,
-            
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+
         title: userData != null
             ? Text(userData.publicProfile.name)
             : const SizedBox.shrink(), //Text(widget.title)
@@ -197,8 +189,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 20)),
 
             // Data from Database:
-            StreamBuilder<List<BillData>>(
-                stream: testDatabase.bills,
+            StreamBuilder<List<BillData>?>(
+                stream: BillDataRepository().billDataStream,
                 builder: (context, snapshot) {
                   return snapshot.hasData
                       ? Expanded(
@@ -209,11 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               shrinkWrap: true,
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index) {
-                                // BillData bill = snapshot.data![index];
-                                BillData bill = snapshot.data![snapshot
-                                        .data!.length -
-                                    1 -
-                                    index]; // Displays in Reverse (Most Recent on top)
+                                BillData bill = snapshot.data![index];
                                 // return Text(
                                 //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
 
@@ -247,8 +235,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-        //onPressed: _incrementCounter,
-        onPressed: testDatabase.uploadBill,
+        onPressed: () {
+          BillDataRepository().uploadBill(BillData(
+            dateTime: DateTime.now(),
+            itemGroups: List.empty(),
+            taxModule: BillModule_Tax(),
+            tipModule: BillModule_Tip(),
+            payer: PublicProfile(
+                userId: context.read<UserData>().uid, name: 'bruh'),
+            lastUpdatedSession: DateTime.now(),
+          ));
+        },
         tooltip: 'Increment',
         label: const Text('Actions'),
         icon: const Icon(Symbols.view_cozy),

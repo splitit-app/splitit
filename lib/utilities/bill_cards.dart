@@ -4,8 +4,9 @@ class BillCards extends StatefulWidget {
   // Parameters:
   final String billName; // Bill Name Value
   final double billTotal; // Bill Total Value
-  final String billDate;  // Bill Date Value
-  final int countIteration;  // Different Colors for the cards depending on selection
+  final String billDate; // Bill Date Value
+  final int
+      countIteration; // Different Colors for the cards depending on selection
 
   const BillCards({
     super.key,
@@ -24,8 +25,9 @@ class _BillCardsState extends State<BillCards> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.countIteration % 2 == 0){  // Every even card will be blue.
-        cardColor = Colors.blue;
+    if (widget.countIteration % 2 == 0) {
+      // Every even card will be blue.
+      cardColor = Colors.blue;
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -61,10 +63,10 @@ class _BillCardsState extends State<BillCards> {
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                            // "https://static.wikia.nocookie.net/evade-nextbot/images/9/9a/Therock.png/revision/latest/thumbnail/width/360/height/360?cb=20220825084340",
-                            // "https://media.tenor.com/k4TgrD7WDaUAAAAC/the-rock-face.gif",
-                            "https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png",
-                            ),
+                          // "https://static.wikia.nocookie.net/evade-nextbot/images/9/9a/Therock.png/revision/latest/thumbnail/width/360/height/360?cb=20220825084340",
+                          // "https://media.tenor.com/k4TgrD7WDaUAAAAC/the-rock-face.gif",
+                          "https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png",
+                        ),
                       ),
                       borderRadius: BorderRadius.circular(25.0)),
                 ),
@@ -77,7 +79,8 @@ class _BillCardsState extends State<BillCards> {
                   // Bill Name
                   Text(
                     widget.billName,
-                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   // const SizedBox(height: 5.0),
                   // Bill Date
