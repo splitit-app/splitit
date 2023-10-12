@@ -7,7 +7,15 @@ part of 'user_data_dto.dart';
 // **************************************************************************
 
 _$_UserDataDTO _$$_UserDataDTOFromJson(Map<String, dynamic> json) =>
-    _$_UserDataDTO();
+    _$_UserDataDTO(
+      friendUids: (json['friendUids'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      lastUpdatedSession: DateTime.parse(json['lastUpdatedSession'] as String),
+    );
 
 Map<String, dynamic> _$$_UserDataDTOToJson(_$_UserDataDTO instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'friendUids': instance.friendUids,
+      'lastUpdatedSession': instance.lastUpdatedSession.toIso8601String(),
+    };

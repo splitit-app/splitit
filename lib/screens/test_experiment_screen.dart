@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
+import 'package:project_bs/runtime_models/user/user_data.dart';
+import 'package:project_bs/services/bill_data_repository.dart';
+import 'package:provider/provider.dart';
+
+import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/user/public_profile.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../runtime_models/bill/bill_data.dart';
@@ -44,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    UserData? userData = context.watch<UserData?>();
 
     return Scaffold(
       appBar: AppBar(
@@ -51,12 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
 
-        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        // backgroundColor: const Color(0xFF85DCB0),
+        backgroundColor:
+            Theme.of(context).colorScheme.surfaceVariant,
+            
+        title: userData != null
+            ? Text(userData.publicProfile.name)
+            : const SizedBox.shrink(), //Text(widget.title)
 
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
         actions: [
           ElevatedButton(
             onPressed: AuthenticationService().signOut,

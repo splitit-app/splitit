@@ -9,7 +9,10 @@ part 'user_data_dto.g.dart';
 
 @freezed
 class UserDataDTO with _$UserDataDTO {
-  factory UserDataDTO() = _UserDataDTO;
+  factory UserDataDTO({
+    required List<String> friendUids,
+    required DateTime lastUpdatedSession,
+  }) = _UserDataDTO;
 
   factory UserDataDTO.fromJson(Map<String, dynamic> json) =>
       _$UserDataDTOFromJson(json);

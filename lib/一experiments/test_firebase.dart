@@ -34,6 +34,7 @@ class TestDatabase {
       itemGroups: List.empty(),
       taxModule: BillModule_Tax(),
       tipModule: BillModule_Tip(),
+      lastUpdatedSession: DateTime.now()
     );
 
     await db

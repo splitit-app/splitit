@@ -18,11 +18,12 @@ class BillData with _$BillData {
     PublicProfile? payer,
     List<PublicProfile>? primarySplits,
     List<PublicProfile>? secondarySplits,
-    List<(PublicProfile, bool)>? paymentResolveStatuses,
+    List<(PublicProfile, double)>? paymentResolveStatuses,
     //
     required List<ItemGroup> itemGroups,
     required BillModule_Tax taxModule,
     required BillModule_Tip tipModule,
+    required DateTime lastUpdatedSession,
   }) = _BillData;
 
   BillData._();
@@ -31,7 +32,8 @@ class BillData with _$BillData {
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
-        payer: payer!,
+        payerUid: payer!.userId!,
+        lastUpdatedSession: lastUpdatedSession,
       );
 }
 //TODO: when a new item is added, initialized its tax list with the current number of taxes

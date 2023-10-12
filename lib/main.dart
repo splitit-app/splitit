@@ -34,7 +34,7 @@ class SplitItApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: StreamProvider.value(
-          value: AuthenticationService().hahaha,
+          value: AuthenticationService().userAuthState,
           initialData: null,
           child: const AuthenticationController(),
         ),

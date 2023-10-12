@@ -20,7 +20,13 @@ UserDataDTO _$UserDataDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDataDTO {
+  List<String> get friendUids => throw _privateConstructorUsedError;
+  DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserDataDTOCopyWith<UserDataDTO> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -28,6 +34,8 @@ abstract class $UserDataDTOCopyWith<$Res> {
   factory $UserDataDTOCopyWith(
           UserDataDTO value, $Res Function(UserDataDTO) then) =
       _$UserDataDTOCopyWithImpl<$Res, UserDataDTO>;
+  @useResult
+  $Res call({List<String> friendUids, DateTime lastUpdatedSession});
 }
 
 /// @nodoc
@@ -39,13 +47,35 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? friendUids = null,
+    Object? lastUpdatedSession = null,
+  }) {
+    return _then(_value.copyWith(
+      friendUids: null == friendUids
+          ? _value.friendUids
+          : friendUids // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      lastUpdatedSession: null == lastUpdatedSession
+          ? _value.lastUpdatedSession
+          : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_UserDataDTOCopyWith<$Res> {
+abstract class _$$_UserDataDTOCopyWith<$Res>
+    implements $UserDataDTOCopyWith<$Res> {
   factory _$$_UserDataDTOCopyWith(
           _$_UserDataDTO value, $Res Function(_$_UserDataDTO) then) =
       __$$_UserDataDTOCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<String> friendUids, DateTime lastUpdatedSession});
 }
 
 /// @nodoc
@@ -55,30 +85,75 @@ class __$$_UserDataDTOCopyWithImpl<$Res>
   __$$_UserDataDTOCopyWithImpl(
       _$_UserDataDTO _value, $Res Function(_$_UserDataDTO) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? friendUids = null,
+    Object? lastUpdatedSession = null,
+  }) {
+    return _then(_$_UserDataDTO(
+      friendUids: null == friendUids
+          ? _value._friendUids
+          : friendUids // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      lastUpdatedSession: null == lastUpdatedSession
+          ? _value.lastUpdatedSession
+          : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_UserDataDTO extends _UserDataDTO {
-  _$_UserDataDTO() : super._();
+  _$_UserDataDTO(
+      {required final List<String> friendUids,
+      required this.lastUpdatedSession})
+      : _friendUids = friendUids,
+        super._();
 
   factory _$_UserDataDTO.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataDTOFromJson(json);
 
+  final List<String> _friendUids;
+  @override
+  List<String> get friendUids {
+    if (_friendUids is EqualUnmodifiableListView) return _friendUids;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_friendUids);
+  }
+
+  @override
+  final DateTime lastUpdatedSession;
+
   @override
   String toString() {
-    return 'UserDataDTO()';
+    return 'UserDataDTO(friendUids: $friendUids, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UserDataDTO);
+        (other.runtimeType == runtimeType &&
+            other is _$_UserDataDTO &&
+            const DeepCollectionEquality()
+                .equals(other._friendUids, _friendUids) &&
+            (identical(other.lastUpdatedSession, lastUpdatedSession) ||
+                other.lastUpdatedSession == lastUpdatedSession));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_friendUids), lastUpdatedSession);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserDataDTOCopyWith<_$_UserDataDTO> get copyWith =>
+      __$$_UserDataDTOCopyWithImpl<_$_UserDataDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -89,9 +164,20 @@ class _$_UserDataDTO extends _UserDataDTO {
 }
 
 abstract class _UserDataDTO extends UserDataDTO {
-  factory _UserDataDTO() = _$_UserDataDTO;
+  factory _UserDataDTO(
+      {required final List<String> friendUids,
+      required final DateTime lastUpdatedSession}) = _$_UserDataDTO;
   _UserDataDTO._() : super._();
 
   factory _UserDataDTO.fromJson(Map<String, dynamic> json) =
       _$_UserDataDTO.fromJson;
+
+  @override
+  List<String> get friendUids;
+  @override
+  DateTime get lastUpdatedSession;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserDataDTOCopyWith<_$_UserDataDTO> get copyWith =>
+      throw _privateConstructorUsedError;
 }

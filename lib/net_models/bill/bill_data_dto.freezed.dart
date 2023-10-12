@@ -23,7 +23,8 @@ mixin _$BillDataDTO {
   DateTime get dateTime => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get totalSpent => throw _privateConstructorUsedError; //
-  PublicProfile get payer => throw _privateConstructorUsedError;
+  String get payerUid => throw _privateConstructorUsedError;
+  DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +39,11 @@ abstract class $BillDataDTOCopyWith<$Res> {
       _$BillDataDTOCopyWithImpl<$Res, BillDataDTO>;
   @useResult
   $Res call(
-      {DateTime dateTime, String name, double totalSpent, PublicProfile payer});
-
-  $PublicProfileCopyWith<$Res> get payer;
+      {DateTime dateTime,
+      String name,
+      double totalSpent,
+      String payerUid,
+      DateTime lastUpdatedSession});
 }
 
 /// @nodoc
@@ -59,7 +62,8 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
-    Object? payer = null,
+    Object? payerUid = null,
+    Object? lastUpdatedSession = null,
   }) {
     return _then(_value.copyWith(
       dateTime: null == dateTime
@@ -74,19 +78,15 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
           ? _value.totalSpent
           : totalSpent // ignore: cast_nullable_to_non_nullable
               as double,
-      payer: null == payer
-          ? _value.payer
-          : payer // ignore: cast_nullable_to_non_nullable
-              as PublicProfile,
+      payerUid: null == payerUid
+          ? _value.payerUid
+          : payerUid // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastUpdatedSession: null == lastUpdatedSession
+          ? _value.lastUpdatedSession
+          : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PublicProfileCopyWith<$Res> get payer {
-    return $PublicProfileCopyWith<$Res>(_value.payer, (value) {
-      return _then(_value.copyWith(payer: value) as $Val);
-    });
   }
 }
 
@@ -99,10 +99,11 @@ abstract class _$$_BillDataDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime dateTime, String name, double totalSpent, PublicProfile payer});
-
-  @override
-  $PublicProfileCopyWith<$Res> get payer;
+      {DateTime dateTime,
+      String name,
+      double totalSpent,
+      String payerUid,
+      DateTime lastUpdatedSession});
 }
 
 /// @nodoc
@@ -119,7 +120,8 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
-    Object? payer = null,
+    Object? payerUid = null,
+    Object? lastUpdatedSession = null,
   }) {
     return _then(_$_BillDataDTO(
       dateTime: null == dateTime
@@ -134,10 +136,14 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
           ? _value.totalSpent
           : totalSpent // ignore: cast_nullable_to_non_nullable
               as double,
-      payer: null == payer
-          ? _value.payer
-          : payer // ignore: cast_nullable_to_non_nullable
-              as PublicProfile,
+      payerUid: null == payerUid
+          ? _value.payerUid
+          : payerUid // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastUpdatedSession: null == lastUpdatedSession
+          ? _value.lastUpdatedSession
+          : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -150,7 +156,8 @@ class _$_BillDataDTO extends _BillDataDTO {
       {required this.dateTime,
       required this.name,
       required this.totalSpent,
-      required this.payer})
+      required this.payerUid,
+      required this.lastUpdatedSession})
       : super._();
 
   factory _$_BillDataDTO.fromJson(Map<String, dynamic> json) =>
@@ -164,11 +171,13 @@ class _$_BillDataDTO extends _BillDataDTO {
   final double totalSpent;
 //
   @override
-  final PublicProfile payer;
+  final String payerUid;
+  @override
+  final DateTime lastUpdatedSession;
 
   @override
   String toString() {
-    return 'BillDataDTO(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer)';
+    return 'BillDataDTO(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payerUid: $payerUid, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @override
@@ -181,13 +190,16 @@ class _$_BillDataDTO extends _BillDataDTO {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.totalSpent, totalSpent) ||
                 other.totalSpent == totalSpent) &&
-            (identical(other.payer, payer) || other.payer == payer));
+            (identical(other.payerUid, payerUid) ||
+                other.payerUid == payerUid) &&
+            (identical(other.lastUpdatedSession, lastUpdatedSession) ||
+                other.lastUpdatedSession == lastUpdatedSession));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, dateTime, name, totalSpent, payer);
+  int get hashCode => Object.hash(
+      runtimeType, dateTime, name, totalSpent, payerUid, lastUpdatedSession);
 
   @JsonKey(ignore: true)
   @override
@@ -208,7 +220,8 @@ abstract class _BillDataDTO extends BillDataDTO {
       {required final DateTime dateTime,
       required final String name,
       required final double totalSpent,
-      required final PublicProfile payer}) = _$_BillDataDTO;
+      required final String payerUid,
+      required final DateTime lastUpdatedSession}) = _$_BillDataDTO;
   _BillDataDTO._() : super._();
 
   factory _BillDataDTO.fromJson(Map<String, dynamic> json) =
@@ -221,7 +234,9 @@ abstract class _BillDataDTO extends BillDataDTO {
   @override
   double get totalSpent;
   @override //
-  PublicProfile get payer;
+  String get payerUid;
+  @override
+  DateTime get lastUpdatedSession;
   @override
   @JsonKey(ignore: true)
   _$$_BillDataDTOCopyWith<_$_BillDataDTO> get copyWith =>

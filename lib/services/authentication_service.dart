@@ -8,11 +8,10 @@ import 'package:project_bs/services/user_data_repository.dart';
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Stream<User?> get hahaha => _firebaseAuth.authStateChanges();
+  Stream<User?> get userAuthState => _firebaseAuth.authStateChanges();
 
   // ignore: non_constant_identifier_names
-  Future<UserData?> createUserWith_EmailAndPassword(
-      String email, String password) async {
+  Future createUserWith_EmailAndPassword(String email, String password) async {
     try {
       User? user = (await _firebaseAuth.createUserWithEmailAndPassword(
               email: email, password: password))
@@ -21,7 +20,7 @@ class AuthenticationService {
       if (user == null) return null;
 
       //Construct new user
-      return UserData(
+      UserData(
         uid: user.uid,
         publicProfile: PublicProfile(name: 'New User'),
         privateProfile: PrivateProfile(themeData: ThemeData.light()),
@@ -36,8 +35,7 @@ class AuthenticationService {
   }
 
   // ignore: non_constant_identifier_names
-  Future<UserData?> signInWith_EmailAndPassword(
-      String email, String password) async {
+  Future signInWith_EmailAndPassword(String email, String password) async {
     try {
       User? user = (await _firebaseAuth.signInWithEmailAndPassword(
               email: email, password: password))
@@ -45,18 +43,18 @@ class AuthenticationService {
 
       if (user == null) return null;
 
-      return UserDataRepository(uid: user.uid).currentUserData;
+      //return UserDataRepository(uid: user.uid).currentUserData;
     } catch (e) {
       //print(e.toString());
-      return null;
+      //return null;
     }
   }
 
-  Future signOut() async {
+  Future signOut() {
     try {
-      return await _firebaseAuth.signOut();
+      return _firebaseAuth.signOut();
     } catch (e) {
-      return null;
+      throw Exception(e);
     }
   }
 }
