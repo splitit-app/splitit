@@ -2,45 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
 import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
-import 'package:project_bs/services/authentication_service.dart';
 import 'package:project_bs/services/bill_data_repository.dart';
 import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/user/public_profile.dart';
+import 'package:material_symbols_icons/symbols.dart';
+
+import '../runtime_models/bill/bill_data.dart';
+import '../services/authentication_service.dart';
+import '../utilities/bill_cards.dart';
+import '../utilities/bill_cards_v2.dart';
 import '../一experiments/test_firebase.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -61,7 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 222222; //Change to huge number from origin of 0.
+  // int _counter = 222222; //Change to huge number from origin of 0.
+
+  final _formKey = GlobalKey<FormState>();
 
   int _currentPage = 0; // Keeps track of the Current Page Index.
 
@@ -84,13 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
+
         backgroundColor:
-            Colors.black, //Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+            Theme.of(context).colorScheme.surfaceVariant,
+            
         title: userData != null
             ? Text(userData.publicProfile.name)
             : const SizedBox.shrink(), //Text(widget.title)
+
         actions: [
           ElevatedButton(
             onPressed: AuthenticationService().signOut,
@@ -117,68 +93,171 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            // User Inputs:
+
+            // Bill Name:
+            ExpansionTile(
+              // Expansion List Tile
+              title: const Center(child: Text("Inputs")),
+              subtitle: const Text("Click to Expand"),
+              initiallyExpanded: true,
+              // backgroundColor: Colors.red,
+              // collapsedBackgroundColor: Colors.black,
+
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billNameValue) {
+                            // Return value variable (The information entered).
+                            if (billNameValue == null ||
+                                billNameValue.isEmpty) {
+                              return "Please the Bill Name";
+                            }
+                            // return null;
+                            return billNameValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Name",
+                              hintText: "Mickie Deez Nuts",
+                              prefixIcon: Icon(Icons.edit)),
+                        ),
+
+                        // Bill Total:
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billTotalValue) {
+                            // Return value variable (The information entered).
+                            if (billTotalValue == null ||
+                                billTotalValue.isEmpty) {
+                              return "Please enter the Bill Total";
+                            }
+                            // return null;
+                            return billTotalValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Total",
+                              hintText: "5 Smackers",
+                              prefixIcon: Icon(Icons.attach_money)),
+                        ),
+
+                        // Bill Date:
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billDateValue) {
+                            // Return value variable (The information entered).
+                            if (billDateValue == null ||
+                                billDateValue.isEmpty) {
+                              return "Please enter the Bill Date";
+                            }
+                            // return null;
+                            return billDateValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Date",
+                              hintText: "October 45th, 1945",
+                              prefixIcon: Icon(Icons.date_range)),
+                        ),
+                        const SizedBox(height: 15.0),
+                        // Submit Button
+                        ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              // If validate is true, then trigger snackbar.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Center(
+                                    child: Text("Submitted"),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  closeIconColor: Colors.black,
+                                  showCloseIcon: true,
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text("Enter",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            Text("Transaction History",
+                style: Theme.of(context).textTheme.headlineMedium),
+            const Text("Displaying Most Recent",
+                style: TextStyle(fontSize: 20)),
+
+            // Data from Database:
             StreamBuilder<List<BillData>>(
-                stream: testDatabase.billsFromDay1,
+                stream: testDatabase.bills,
                 builder: (context, snapshot) {
                   return snapshot.hasData
-                      ? ListView.builder(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          shrinkWrap: true,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context2, index2) {
-                            BillData bill = snapshot.data![index2];
-                            return Text(
-                                '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
-                          },
+                      ? Expanded(
+                          // Makes the ListView scrollable.
+                          child: ListView.separated(
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 20),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                // BillData bill = snapshot.data![index];
+                                BillData bill = snapshot.data![snapshot
+                                        .data!.length -
+                                    1 -
+                                    index]; // Displays in Reverse (Most Recent on top)
+                                // return Text(
+                                //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
+
+                                // return BillCards(
+                                //   billName:
+                                //       "${bill.name} ${snapshot.data!.length - 1 - index}",
+                                //   billTotal: bill.totalSpent,
+                                //   billDate: bill.dateTime.toString(),
+                                //   // billDate: bill.dateTime.toString().substring(0, 10),    // substring keeps only the date
+                                //   countIteration: index,
+                                // );
+
+                                return BillCardsV2(
+                                  billName:
+                                      "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                  billTotal: bill.totalSpent,
+                                  billDate: bill.dateTime.toString(),
+
+                                  // billTotal: 250.00,
+                                );
+                              },
+                              separatorBuilder: (BuildContext context,
+                                      int index) =>
+                                  const Divider() // Separator Elements between each of the items
+                              ),
                         )
                       : const SizedBox.shrink();
                 }),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            StreamBuilder<List<BillData>?>(
-              stream: BillDataRepository().billDataStream,
-              builder: (context, snapshot) => snapshot.hasData
-                  ? ListView.builder(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        BillData bill = snapshot.data![index];
-                        return Text(
-                            '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
-                      },
-                    )
-                  : const SizedBox.shrink(),
-            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
         //onPressed: _incrementCounter,
-        onPressed: () {
-          BillDataRepository().uploadBill(BillData(
-            dateTime: DateTime.now(),
-            itemGroups: List.empty(),
-            taxModule: BillModule_Tax(),
-            tipModule: BillModule_Tip(),
-            payer: PublicProfile(
-                userId: context.read<UserData>().uid, name: 'bruh'),
-            lastUpdatedSession: DateTime.now(),
-          ));
-        },
+        onPressed: testDatabase.uploadBill,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        label: const Text('Actions'),
+        icon: const Icon(Symbols.view_cozy),
       ), // This trailing comma makes auto-formatting nicer for build methods.
 
       bottomNavigationBar: NavigationBar(
         backgroundColor: Theme.of(context)
             .colorScheme
-            .primaryContainer, // Theme of the App (line 32) defines the background color
+            .surfaceVariant, // Theme of the App (line 32) defines the background color
         indicatorColor: Theme.of(context).colorScheme.secondary,
         labelBehavior: NavigationDestinationLabelBehavior
             .onlyShowSelected, // Only shows the label of the selected icon
@@ -217,16 +296,5 @@ class _MyHomePageState extends State<MyHomePage> {
             _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
       ),
     );
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter--;
-    });
   }
 }

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
+import 'package:project_bs/screens/mockup_page.dart';
+
 import 'package:project_bs/screens/test_experiment_screen.dart';
 import 'package:project_bs/services/user_data_repository.dart';
 import 'package:provider/provider.dart';
@@ -15,11 +17,13 @@ class AuthenticationController extends StatelessWidget {
     User? user = context.watch<User?>();
 
     return user == null
-        ? const LoginScreen()
+        ? const LoginScreen()      
+
         : StreamProvider<UserData?>.value(
             value: UserDataRepository(uid: user.uid).userDataStream,
             initialData: null,
             child: const MyHomePage(title: 'BS Test Home Page'),
-          );
+          );        
+        //: const MockUpPage();
   }
 }
