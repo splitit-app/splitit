@@ -6,23 +6,26 @@ class UserDataRepository {
   UserDataRepository({required this.uid});
 
   final String uid;
-  DocumentReference<Map<String, dynamic>> get _userDocument =>
-      FirebaseFirestore.instance.collection('users').doc(uid);
-  //final _userCollection = FirebaseFirestore.instance.collection('users');
 
-  Stream<UserData?> get userDataStream => _userDocument
+  DocumentReference<Map<String, dynamic>> get userDocumentReference =>
+      FirebaseFirestore.instance.collection('users').doc(uid);
+
+  // Future<DocumentSnapshot<Map<String, dynamic>>> get userDocumentSnapshot =>
+  //     FirestoreCache.getDocument(userDocumentReference, source: Source.server);
+
+  UserData? snapshotToRuntimeObj(
+          DocumentSnapshot<Map<String, dynamic>> snapshot) =>
+      snapshot.exists
+          ? UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid)
+          : null;
+
+  Stream<UserData?> get userDataStream => userDocumentReference
       .snapshots()
       .where((snapshot) => snapshot.exists)
-      .map((snapshot) =>
-          UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid));
-
-  Future<UserData?> get currentUserData async =>
-      _userDocument.get().then((snapshot) => snapshot.exists
-          ? UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid)
-          : null);
+      .map((snapshot) => snapshotToRuntimeObj(snapshot));
 
   Future pushUserData(UserData userData) async =>
-      _userDocument.set(userData.toDataTransferObj.toJson());
+      userDocumentReference.set(userData.toDataTransferObj.toJson());
 
   //TODO: query for friends?
 }

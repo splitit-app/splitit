@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
+import 'package:project_bs/runtime_models/user/user_data.dart';
 import 'package:project_bs/services/authentication_service.dart';
+import 'package:project_bs/services/bill_data_repository.dart';
+import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/user/public_profile.dart';
 import '../一experiments/test_firebase.dart';
 
 class MyApp extends StatelessWidget {
@@ -71,133 +77,146 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return StreamBuilder<List<BillData>>(
-        stream: testDatabase.bills,
-        builder: (context, snapshot) {
-          return Scaffold(
-            appBar: AppBar(
-              // TRY THIS: Try changing the color here to a specific color (to
-              // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-              // change color while the other colors stay the same.
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              // Here we take the value from the MyHomePage object that was created by
-              // the App.build method, and use it to set our appbar title.
-              title: Text(widget.title),
-              actions: [
-                ElevatedButton(
-                  onPressed: AuthenticationService().signOut,
-                  child: const Text('Log out'),
-                )
-              ],
-            ),
-            body: Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
-              child: Column(
-                // Column is also a layout widget. It takes a list of children and
-                // arranges them vertically. By default, it sizes itself to fit its
-                // children horizontally, and tries to be as tall as its parent.
-                //
-                // Column has various properties to control how it sizes itself and
-                // how it positions its children. Here we use mainAxisAlignment to
-                // center the children vertically; the main axis here is the vertical
-                // axis because Columns are vertical (the cross axis would be
-                // horizontal).
-                //
-                // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-                // action in the IDE, or press "p" in the console), to see the
-                // wireframe for each widget.
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  StreamBuilder<List<BillData>>(
-                      stream: testDatabase.billsFromDay1,
-                      builder: (context, snapshot2) {
-                        return snapshot2.hasData
-                            ? ListView.builder(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 20),
-                                shrinkWrap: true,
-                                itemCount: snapshot2.data!.length,
-                                itemBuilder: (context2, index2) {
-                                  BillData bill = snapshot2.data![index2];
-                                  return Text(
-                                      '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
-                                },
-                              )
-                            : const SizedBox.shrink();
-                      }),
-                  const Text(
-                    'You have pushed the button this many times:',
-                  ),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  snapshot.hasData
+    UserData? userData = context.watch<UserData?>();
+
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor:
+            Colors.black, //Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: userData != null
+            ? Text(userData.publicProfile.name)
+            : const SizedBox.shrink(), //Text(widget.title)
+        actions: [
+          ElevatedButton(
+            onPressed: AuthenticationService().signOut,
+            child: const Text('Log out'),
+          )
+        ],
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            StreamBuilder<List<BillData>>(
+                stream: testDatabase.billsFromDay1,
+                builder: (context, snapshot) {
+                  return snapshot.hasData
                       ? ListView.builder(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           shrinkWrap: true,
                           itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            BillData bill = snapshot.data![index];
+                          itemBuilder: (context2, index2) {
+                            BillData bill = snapshot.data![index2];
                             return Text(
                                 '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
                           },
                         )
-                      : const SizedBox.shrink(),
-                ],
-              ),
+                      : const SizedBox.shrink();
+                }),
+            const Text(
+              'You have pushed the button this many times:',
             ),
-            floatingActionButton: FloatingActionButton(
-              //onPressed: _incrementCounter,
-              onPressed: testDatabase.uploadBill,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ), // This trailing comma makes auto-formatting nicer for build methods.
-
-            bottomNavigationBar: NavigationBar(
-              backgroundColor: Theme.of(context)
-                  .colorScheme
-                  .primaryContainer, // Theme of the App (line 32) defines the background color
-              indicatorColor: Theme.of(context).colorScheme.secondary,
-              labelBehavior: NavigationDestinationLabelBehavior
-                  .onlyShowSelected, // Only shows the label of the selected icon
-              //  animationDuration: const Duration(milliseconds: 1250),
-              height: 70.0,
-
-              destinations: const [
-                // Lists of Destinations
-                NavigationDestination(
-                  icon: Icon(Icons.home),
-                  selectedIcon: Icon(Icons.home_outlined),
-                  label: 'Home',
-                  tooltip: 'Return Home',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.attach_money),
-                  selectedIcon: Icon(Icons.money_off),
-                  label: 'Bills',
-                  tooltip: 'Bill Splitting',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.person),
-                  selectedIcon: Icon(Icons.person_outlined),
-                  label: 'People',
-                  tooltip: 'People',
-                ),
-              ],
-              onDestinationSelected: (int value) {
-                // On Navigation Selected, update the index
-                setState(() {
-                  // Updates the State of the Current Page
-                  _currentPage = value;
-                });
-              },
-              selectedIndex:
-                  _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
-          );
-        });
+            StreamBuilder<List<BillData>?>(
+              stream: BillDataRepository().billDataStream,
+              builder: (context, snapshot) => snapshot.hasData
+                  ? ListView.builder(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        BillData bill = snapshot.data![index];
+                        return Text(
+                            '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
+                      },
+                    )
+                  : const SizedBox.shrink(),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        //onPressed: _incrementCounter,
+        onPressed: () {
+          BillDataRepository().uploadBill(BillData(
+            dateTime: DateTime.now(),
+            itemGroups: List.empty(),
+            taxModule: BillModule_Tax(),
+            tipModule: BillModule_Tip(),
+            payer: PublicProfile(
+                userId: context.read<UserData>().uid, name: 'bruh'),
+            lastUpdatedSession: DateTime.now(),
+          ));
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .primaryContainer, // Theme of the App (line 32) defines the background color
+        indicatorColor: Theme.of(context).colorScheme.secondary,
+        labelBehavior: NavigationDestinationLabelBehavior
+            .onlyShowSelected, // Only shows the label of the selected icon
+        //  animationDuration: const Duration(milliseconds: 1250),
+        height: 70.0,
+
+        destinations: const [
+          // Lists of Destinations
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home_outlined),
+            label: 'Home',
+            tooltip: 'Return Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.attach_money),
+            selectedIcon: Icon(Icons.money_off),
+            label: 'Bills',
+            tooltip: 'Bill Splitting',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            selectedIcon: Icon(Icons.person_outlined),
+            label: 'People',
+            tooltip: 'People',
+          ),
+        ],
+        onDestinationSelected: (int value) {
+          // On Navigation Selected, update the index
+          setState(() {
+            // Updates the State of the Current Page
+            _currentPage = value;
+          });
+        },
+        selectedIndex:
+            _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
+      ),
+    );
   }
 
   void _incrementCounter() {

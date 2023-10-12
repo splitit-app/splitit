@@ -31,9 +31,9 @@ mixin _$BillData {
       throw _privateConstructorUsedError;
   set secondarySplits(List<PublicProfile>? value) =>
       throw _privateConstructorUsedError;
-  List<(PublicProfile, bool)>? get paymentResolveStatuses =>
+  List<(PublicProfile, double)>? get paymentResolveStatuses =>
       throw _privateConstructorUsedError;
-  set paymentResolveStatuses(List<(PublicProfile, bool)>? value) =>
+  set paymentResolveStatuses(List<(PublicProfile, double)>? value) =>
       throw _privateConstructorUsedError; //
   List<ItemGroup> get itemGroups => throw _privateConstructorUsedError; //
   set itemGroups(List<ItemGroup> value) => throw _privateConstructorUsedError;
@@ -41,6 +41,8 @@ mixin _$BillData {
   set taxModule(BillModule_Tax value) => throw _privateConstructorUsedError;
   BillModule_Tip get tipModule => throw _privateConstructorUsedError;
   set tipModule(BillModule_Tip value) => throw _privateConstructorUsedError;
+  DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
+  set lastUpdatedSession(DateTime value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BillDataCopyWith<BillData> get copyWith =>
@@ -59,10 +61,11 @@ abstract class $BillDataCopyWith<$Res> {
       PublicProfile? payer,
       List<PublicProfile>? primarySplits,
       List<PublicProfile>? secondarySplits,
-      List<(PublicProfile, bool)>? paymentResolveStatuses,
+      List<(PublicProfile, double)>? paymentResolveStatuses,
       List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
-      BillModule_Tip tipModule});
+      BillModule_Tip tipModule,
+      DateTime lastUpdatedSession});
 
   $PublicProfileCopyWith<$Res>? get payer;
   $BillModule_TaxCopyWith<$Res> get taxModule;
@@ -92,6 +95,7 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? itemGroups = null,
     Object? taxModule = null,
     Object? tipModule = null,
+    Object? lastUpdatedSession = null,
   }) {
     return _then(_value.copyWith(
       dateTime: null == dateTime
@@ -121,7 +125,7 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
       paymentResolveStatuses: freezed == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(PublicProfile, bool)>?,
+              as List<(PublicProfile, double)>?,
       itemGroups: null == itemGroups
           ? _value.itemGroups
           : itemGroups // ignore: cast_nullable_to_non_nullable
@@ -134,6 +138,10 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.tipModule
           : tipModule // ignore: cast_nullable_to_non_nullable
               as BillModule_Tip,
+      lastUpdatedSession: null == lastUpdatedSession
+          ? _value.lastUpdatedSession
+          : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 
@@ -180,10 +188,11 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
       PublicProfile? payer,
       List<PublicProfile>? primarySplits,
       List<PublicProfile>? secondarySplits,
-      List<(PublicProfile, bool)>? paymentResolveStatuses,
+      List<(PublicProfile, double)>? paymentResolveStatuses,
       List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
-      BillModule_Tip tipModule});
+      BillModule_Tip tipModule,
+      DateTime lastUpdatedSession});
 
   @override
   $PublicProfileCopyWith<$Res>? get payer;
@@ -214,6 +223,7 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? itemGroups = null,
     Object? taxModule = null,
     Object? tipModule = null,
+    Object? lastUpdatedSession = null,
   }) {
     return _then(_$_BillData(
       dateTime: null == dateTime
@@ -243,7 +253,7 @@ class __$$_BillDataCopyWithImpl<$Res>
       paymentResolveStatuses: freezed == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(PublicProfile, bool)>?,
+              as List<(PublicProfile, double)>?,
       itemGroups: null == itemGroups
           ? _value.itemGroups
           : itemGroups // ignore: cast_nullable_to_non_nullable
@@ -256,6 +266,10 @@ class __$$_BillDataCopyWithImpl<$Res>
           ? _value.tipModule
           : tipModule // ignore: cast_nullable_to_non_nullable
               as BillModule_Tip,
+      lastUpdatedSession: null == lastUpdatedSession
+          ? _value.lastUpdatedSession
+          : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -273,7 +287,8 @@ class _$_BillData extends _BillData {
       this.paymentResolveStatuses,
       required this.itemGroups,
       required this.taxModule,
-      required this.tipModule})
+      required this.tipModule,
+      required this.lastUpdatedSession})
       : assert(totalSpent >= 0),
         super._();
 
@@ -292,7 +307,7 @@ class _$_BillData extends _BillData {
   @override
   List<PublicProfile>? secondarySplits;
   @override
-  List<(PublicProfile, bool)>? paymentResolveStatuses;
+  List<(PublicProfile, double)>? paymentResolveStatuses;
 //
   @override
   List<ItemGroup> itemGroups;
@@ -300,10 +315,12 @@ class _$_BillData extends _BillData {
   BillModule_Tax taxModule;
   @override
   BillModule_Tip tipModule;
+  @override
+  DateTime lastUpdatedSession;
 
   @override
   String toString() {
-    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule)';
+    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @JsonKey(ignore: true)
@@ -321,10 +338,11 @@ abstract class _BillData extends BillData {
       PublicProfile? payer,
       List<PublicProfile>? primarySplits,
       List<PublicProfile>? secondarySplits,
-      List<(PublicProfile, bool)>? paymentResolveStatuses,
+      List<(PublicProfile, double)>? paymentResolveStatuses,
       required List<ItemGroup> itemGroups,
       required BillModule_Tax taxModule,
-      required BillModule_Tip tipModule}) = _$_BillData;
+      required BillModule_Tip tipModule,
+      required DateTime lastUpdatedSession}) = _$_BillData;
   _BillData._() : super._();
 
   @override
@@ -346,8 +364,8 @@ abstract class _BillData extends BillData {
   List<PublicProfile>? get secondarySplits;
   set secondarySplits(List<PublicProfile>? value);
   @override
-  List<(PublicProfile, bool)>? get paymentResolveStatuses;
-  set paymentResolveStatuses(List<(PublicProfile, bool)>? value);
+  List<(PublicProfile, double)>? get paymentResolveStatuses;
+  set paymentResolveStatuses(List<(PublicProfile, double)>? value);
   @override //
   List<ItemGroup> get itemGroups; //
   set itemGroups(List<ItemGroup> value);
@@ -357,6 +375,9 @@ abstract class _BillData extends BillData {
   @override
   BillModule_Tip get tipModule;
   set tipModule(BillModule_Tip value);
+  @override
+  DateTime get lastUpdatedSession;
+  set lastUpdatedSession(DateTime value);
   @override
   @JsonKey(ignore: true)
   _$$_BillDataCopyWith<_$_BillData> get copyWith =>

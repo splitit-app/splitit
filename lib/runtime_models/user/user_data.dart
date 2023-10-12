@@ -18,5 +18,10 @@ class UserData with _$UserData {
 
   UserData._();
 
-  UserDataDTO get toDataTransferObj => UserDataDTO();
+  UserDataDTO get toDataTransferObj => UserDataDTO(
+      friendUids: friends
+          .where((friend) => friend.hasUserId)
+          .map((friend) => friend.userId!)
+          .toList(),
+      lastUpdatedSession: DateTime.now());
 }
