@@ -38,8 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF26B645)),
                       onPressed: () => AuthenticationService()
                           .signInWith_EmailAndPassword(_email, _password),
                       child: const Text('Login'),
