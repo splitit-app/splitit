@@ -1,8 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:project_bs/screens/mockup_page.dart';
+import 'package:project_bs/screens/test_figma_login_page.dart';
 
 import 'firebase_options.dart';
 import 'screens/test_experiment_screen.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +20,7 @@ void main() async {
   //testDatabase.barBill0();
 //--------------
 
+  // runApp(const MockUpPage());
   runApp(const MyApp());
-  //runApp(const FigmaToCodeApp());
+  // runApp(const FigmaToCodeApp());
 }

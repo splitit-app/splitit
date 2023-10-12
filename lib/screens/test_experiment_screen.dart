@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_bs/utilities/bill_cards.dart';
+import 'package:project_bs/utilities/bill_cards_v2.dart';
+
 
 import '../runtime_models/bill/bill_data.dart';
 import '../一experiments/test_firebase.dart';
@@ -54,7 +57,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 222222; //Change to huge number from origin of 0.
+  // int _counter = 222222; //Change to huge number from origin of 0.
+
+  final _formKey = GlobalKey<FormState>();
 
   int _currentPage = 0; // Keeps track of the Current Page Index.
 
@@ -70,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
     return StreamBuilder<List<BillData>>(
         stream: testDatabase.bills,
         builder: (context, snapshot) {
@@ -78,7 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
               // TRY THIS: Try changing the color here to a specific color (to
               // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
               // change color while the other colors stay the same.
+
               backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              // backgroundColor: const Color(0xFF85DCB0),
+
               // Here we take the value from the MyHomePage object that was created by
               // the App.build method, and use it to set our appbar title.
               title: Text(widget.title),
@@ -102,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // wireframe for each widget.
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  /*
                   StreamBuilder<List<BillData>>(
                       stream: testDatabase.billsFromDay1,
                       builder: (context, snapshot2) {
@@ -126,16 +136,149 @@ class _MyHomePageState extends State<MyHomePage> {
                     '$_counter',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
+                  */
+
+                  // User Inputs:
+
+                  // Bill Name:
+                  ExpansionTile(
+                    // Expansion List Tile
+                    title: const Center(child: Text("Inputs")),
+                    subtitle: const Text("Click to Expand"),
+                    initiallyExpanded: true,
+                    // backgroundColor: Colors.red,
+                    // collapsedBackgroundColor: Colors.black,
+
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                // Validator receives the user input
+                                validator: (billNameValue) {
+                                  // Return value variable (The information entered).
+                                  if (billNameValue == null ||
+                                      billNameValue.isEmpty) {
+                                    return "Please the Bill Name";
+                                  }
+                                  // return null;
+                                  return billNameValue;
+                                },
+                                decoration: const InputDecoration(
+                                    labelText: "Bill Name",
+                                    hintText: "Mickie Deez Nuts",
+                                    prefixIcon: Icon(Icons.edit)),
+                              ),
+
+                              // Bill Total:
+                              TextFormField(
+                                // Validator receives the user input
+                                validator: (billTotalValue) {
+                                  // Return value variable (The information entered).
+                                  if (billTotalValue == null ||
+                                      billTotalValue.isEmpty) {
+                                    return "Please enter the Bill Total";
+                                  }
+                                  // return null;
+                                  return billTotalValue;
+                                },
+                                decoration: const InputDecoration(
+                                    labelText: "Bill Total",
+                                    hintText: "5 Smackers",
+                                    prefixIcon: Icon(Icons.attach_money)),
+                              ),
+
+                              // Bill Date:
+                              TextFormField(
+                                // Validator receives the user input
+                                validator: (billDateValue) {
+                                  // Return value variable (The information entered).
+                                  if (billDateValue == null ||
+                                      billDateValue.isEmpty) {
+                                    return "Please enter the Bill Date";
+                                  }
+                                  // return null;
+                                  return billDateValue;
+                                },
+                                decoration: const InputDecoration(
+                                    labelText: "Bill Date",
+                                    hintText: "October 45th, 1945",
+                                    prefixIcon: Icon(Icons.date_range)),
+                              ),
+                              const SizedBox(height: 15.0),
+                              // Submit Button
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    // If validate is true, then trigger snackbar.
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Center(
+                                          child: Text("Submitted"),
+                                        ),
+                                        backgroundColor: Colors.red,
+                                        closeIconColor: Colors.black,
+                                        showCloseIcon: true,
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: const Text("Enter",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Text("Transaction History",
+                      style: Theme.of(context).textTheme.headlineMedium),
+                  const Text("Displaying Most Recent",
+                      style: TextStyle(fontSize: 20)),
+
+                  // Data from Database:
                   snapshot.hasData
-                      ? ListView.builder(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          shrinkWrap: true,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            BillData bill = snapshot.data![index];
-                            return Text(
-                                '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
-                          },
+                      ? Expanded(
+                          // Makes the ListView scrollable.
+                          child: ListView.separated(
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 20),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                // BillData bill = snapshot.data![index];
+                                BillData bill = snapshot.data![snapshot.data!.length - 1 - index]; // Displays in Reverse (Most Recent on top)
+                                // return Text(
+                                //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
+
+                                // return BillCards(
+                                //   billName:
+                                //       "${bill.name} ${snapshot.data!.length - 1 - index}",
+                                //   billTotal: bill.totalSpent,
+                                //   billDate: bill.dateTime.toString(),
+                                //   // billDate: bill.dateTime.toString().substring(0, 10),    // substring keeps only the date
+                                //   countIteration: index,
+                                // );
+                                
+                                return BillCardsV2(
+                                  billName: "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                  billTotal: bill.totalSpent,
+                                  billDate: bill.dateTime.toString(),
+
+                                  // billTotal: 250.00,
+                                );
+
+                              },
+                              separatorBuilder: (BuildContext context,
+                                      int index) =>
+                                  const Divider() // Separator Elements between each of the items
+                              ),
                         )
                       : const SizedBox.shrink(),
                 ],
@@ -200,7 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter--;
+      // _counter--;
     });
   }
 }
