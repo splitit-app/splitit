@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_bs/runtime_models/user/private_profile.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
-import 'package:project_bs/services/user_data_repository.dart';
+
+import '../runtime_models/user/private_profile.dart';
+import '../runtime_models/user/public_profile.dart';
+import '../runtime_models/user/user_data.dart';
+import '../services/user_data_repository.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
