@@ -1,14 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_bs/screens/mockup_page.dart';
-import 'package:project_bs/screens/test_figma_login_page.dart';
-import 'package:project_bs/screens/authentication_controller.dart';
-import 'package:project_bs/services/authentication_service.dart';
 import 'package:provider/provider.dart';
 
+import '../screens/authentication_controller.dart';
+import '../services/authentication_service.dart';
 import 'firebase_options.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +28,11 @@ class SplitItApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        title: 'SplitIt',
+        theme: ThemeData(
+          colorSchemeSeed: const Color(0xFF26B645),
+          useMaterial3: true,
+        ),
         home: StreamProvider.value(
           value: AuthenticationService().hahaha,
           initialData: null,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/utilities/bill_cards.dart';
-import 'package:project_bs/utilities/bill_cards_v2.dart';
+
+import '../utilities/bill_cards.dart';
+import '../utilities/bill_cards_v2.dart';
 
 class MockUpPage extends StatelessWidget {
   const MockUpPage({super.key});
@@ -20,8 +21,6 @@ class MockUpPage extends StatelessWidget {
 }
 
 class PageTest extends StatelessWidget {
-  PageTest({super.key});
-
   final List _billName = [
     "McRonalds",
     "Barbie Movie",
@@ -30,6 +29,7 @@ class PageTest extends StatelessWidget {
     "Nose Hair Museum",
     "My Little Pony Convention",
   ];
+
   final List _billDate = [
     "September 1st, 2023",
     "September 25th, 2023",
@@ -39,6 +39,7 @@ class PageTest extends StatelessWidget {
     "October 10th, 2023",
   ];
   final List _billTotal = [152.32, 175.23, 14.21, 15.61, 25.61, 58.61];
+  PageTest({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,43 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/utilities/bill_cards.dart';
-import 'package:project_bs/utilities/bill_cards_v2.dart';
-
-import 'package:project_bs/services/authentication_service.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../runtime_models/bill/bill_data.dart';
+import '../services/authentication_service.dart';
+import '../utilities/bill_cards.dart';
+import '../utilities/bill_cards_v2.dart';
 import '../一experiments/test_firebase.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -77,180 +45,152 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    return StreamBuilder<List<BillData>>(
-        stream: testDatabase.bills,
-        builder: (context, snapshot) {
-          return Scaffold(
-            appBar: AppBar(
-              // TRY THIS: Try changing the color here to a specific color (to
-              // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-              // change color while the other colors stay the same.
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
 
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              // backgroundColor: const Color(0xFF85DCB0),
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+        // backgroundColor: const Color(0xFF85DCB0),
 
-              // Here we take the value from the MyHomePage object that was created by
-              // the App.build method, and use it to set our appbar title.
-              title: Text(widget.title),
-              actions: [
-                ElevatedButton(
-                  onPressed: AuthenticationService().signOut,
-                  child: const Text('Log out'),
-                )
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+        actions: [
+          ElevatedButton(
+            onPressed: AuthenticationService().signOut,
+            child: const Text('Log out'),
+          )
+        ],
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // User Inputs:
+
+            // Bill Name:
+            ExpansionTile(
+              // Expansion List Tile
+              title: const Center(child: Text("Inputs")),
+              subtitle: const Text("Click to Expand"),
+              initiallyExpanded: true,
+              // backgroundColor: Colors.red,
+              // collapsedBackgroundColor: Colors.black,
+
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billNameValue) {
+                            // Return value variable (The information entered).
+                            if (billNameValue == null ||
+                                billNameValue.isEmpty) {
+                              return "Please the Bill Name";
+                            }
+                            // return null;
+                            return billNameValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Name",
+                              hintText: "Mickie Deez Nuts",
+                              prefixIcon: Icon(Icons.edit)),
+                        ),
+
+                        // Bill Total:
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billTotalValue) {
+                            // Return value variable (The information entered).
+                            if (billTotalValue == null ||
+                                billTotalValue.isEmpty) {
+                              return "Please enter the Bill Total";
+                            }
+                            // return null;
+                            return billTotalValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Total",
+                              hintText: "5 Smackers",
+                              prefixIcon: Icon(Icons.attach_money)),
+                        ),
+
+                        // Bill Date:
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billDateValue) {
+                            // Return value variable (The information entered).
+                            if (billDateValue == null ||
+                                billDateValue.isEmpty) {
+                              return "Please enter the Bill Date";
+                            }
+                            // return null;
+                            return billDateValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Date",
+                              hintText: "October 45th, 1945",
+                              prefixIcon: Icon(Icons.date_range)),
+                        ),
+                        const SizedBox(height: 15.0),
+                        // Submit Button
+                        ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              // If validate is true, then trigger snackbar.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Center(
+                                    child: Text("Submitted"),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  closeIconColor: Colors.black,
+                                  showCloseIcon: true,
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text("Enter",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-            body: Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
-              child: Column(
-                // Column is also a layout widget. It takes a list of children and
-                // arranges them vertically. By default, it sizes itself to fit its
-                // children horizontally, and tries to be as tall as its parent.
-                //
-                // Column has various properties to control how it sizes itself and
-                // how it positions its children. Here we use mainAxisAlignment to
-                // center the children vertically; the main axis here is the vertical
-                // axis because Columns are vertical (the cross axis would be
-                // horizontal).
-                //
-                // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-                // action in the IDE, or press "p" in the console), to see the
-                // wireframe for each widget.
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  /*
-                  StreamBuilder<List<BillData>>(
-                      stream: testDatabase.billsFromDay1,
-                      builder: (context, snapshot2) {
-                        return snapshot2.hasData
-                            ? ListView.builder(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 20),
-                                shrinkWrap: true,
-                                itemCount: snapshot2.data!.length,
-                                itemBuilder: (context2, index2) {
-                                  BillData bill = snapshot2.data![index2];
-                                  return Text(
-                                      '${bill.dateTime.toString()} ${bill.name} ${bill.totalSpent}');
-                                },
-                              )
-                            : const SizedBox.shrink();
-                      }),
-                  const Text(
-                    'You have pushed the button this many times:',
-                  ),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  */
 
-                  // User Inputs:
+            Text("Transaction History",
+                style: Theme.of(context).textTheme.headlineMedium),
+            const Text("Displaying Most Recent",
+                style: TextStyle(fontSize: 20)),
 
-                  // Bill Name:
-                  ExpansionTile(
-                    // Expansion List Tile
-                    title: const Center(child: Text("Inputs")),
-                    subtitle: const Text("Click to Expand"),
-                    initiallyExpanded: true,
-                    // backgroundColor: Colors.red,
-                    // collapsedBackgroundColor: Colors.black,
-
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                // Validator receives the user input
-                                validator: (billNameValue) {
-                                  // Return value variable (The information entered).
-                                  if (billNameValue == null ||
-                                      billNameValue.isEmpty) {
-                                    return "Please the Bill Name";
-                                  }
-                                  // return null;
-                                  return billNameValue;
-                                },
-                                decoration: const InputDecoration(
-                                    labelText: "Bill Name",
-                                    hintText: "Mickie Deez Nuts",
-                                    prefixIcon: Icon(Icons.edit)),
-                              ),
-
-                              // Bill Total:
-                              TextFormField(
-                                // Validator receives the user input
-                                validator: (billTotalValue) {
-                                  // Return value variable (The information entered).
-                                  if (billTotalValue == null ||
-                                      billTotalValue.isEmpty) {
-                                    return "Please enter the Bill Total";
-                                  }
-                                  // return null;
-                                  return billTotalValue;
-                                },
-                                decoration: const InputDecoration(
-                                    labelText: "Bill Total",
-                                    hintText: "5 Smackers",
-                                    prefixIcon: Icon(Icons.attach_money)),
-                              ),
-
-                              // Bill Date:
-                              TextFormField(
-                                // Validator receives the user input
-                                validator: (billDateValue) {
-                                  // Return value variable (The information entered).
-                                  if (billDateValue == null ||
-                                      billDateValue.isEmpty) {
-                                    return "Please enter the Bill Date";
-                                  }
-                                  // return null;
-                                  return billDateValue;
-                                },
-                                decoration: const InputDecoration(
-                                    labelText: "Bill Date",
-                                    hintText: "October 45th, 1945",
-                                    prefixIcon: Icon(Icons.date_range)),
-                              ),
-                              const SizedBox(height: 15.0),
-                              // Submit Button
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    // If validate is true, then trigger snackbar.
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Center(
-                                          child: Text("Submitted"),
-                                        ),
-                                        backgroundColor: Colors.red,
-                                        closeIconColor: Colors.black,
-                                        showCloseIcon: true,
-                                      ),
-                                    );
-                                  }
-                                },
-                                child: const Text("Enter",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  Text("Transaction History",
-                      style: Theme.of(context).textTheme.headlineMedium),
-                  const Text("Displaying Most Recent",
-                      style: TextStyle(fontSize: 20)),
-
-                  // Data from Database:
-                  snapshot.hasData
+            // Data from Database:
+            StreamBuilder<List<BillData>>(
+                stream: testDatabase.bills,
+                builder: (context, snapshot) {
+                  return snapshot.hasData
                       ? Expanded(
                           // Makes the ListView scrollable.
                           child: ListView.separated(
@@ -260,7 +200,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index) {
                                 // BillData bill = snapshot.data![index];
-                                BillData bill = snapshot.data![snapshot.data!.length - 1 - index]; // Displays in Reverse (Most Recent on top)
+                                BillData bill = snapshot.data![snapshot
+                                        .data!.length -
+                                    1 -
+                                    index]; // Displays in Reverse (Most Recent on top)
                                 // return Text(
                                 //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
 
@@ -272,85 +215,76 @@ class _MyHomePageState extends State<MyHomePage> {
                                 //   // billDate: bill.dateTime.toString().substring(0, 10),    // substring keeps only the date
                                 //   countIteration: index,
                                 // );
-                                
+
                                 return BillCardsV2(
-                                  billName: "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                  billName:
+                                      "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
                                   billTotal: bill.totalSpent,
                                   billDate: bill.dateTime.toString(),
 
                                   // billTotal: 250.00,
                                 );
-
                               },
                               separatorBuilder: (BuildContext context,
                                       int index) =>
                                   const Divider() // Separator Elements between each of the items
                               ),
                         )
-                      : const SizedBox.shrink(),
-                ],
-              ),
-            ),
-            floatingActionButton: FloatingActionButton(
-              //onPressed: _incrementCounter,
-              onPressed: testDatabase.uploadBill,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ), // This trailing comma makes auto-formatting nicer for build methods.
+                      : const SizedBox.shrink();
+                }),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+        //onPressed: _incrementCounter,
+        onPressed: testDatabase.uploadBill,
+        tooltip: 'Increment',
+        label: const Text('Actions'),
+        icon: const Icon(Symbols.view_cozy),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
 
-            bottomNavigationBar: NavigationBar(
-              backgroundColor: Theme.of(context)
-                  .colorScheme
-                  .primaryContainer, // Theme of the App (line 32) defines the background color
-              indicatorColor: Theme.of(context).colorScheme.secondary,
-              labelBehavior: NavigationDestinationLabelBehavior
-                  .onlyShowSelected, // Only shows the label of the selected icon
-              //  animationDuration: const Duration(milliseconds: 1250),
-              height: 70.0,
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .surfaceVariant, // Theme of the App (line 32) defines the background color
+        indicatorColor: Theme.of(context).colorScheme.secondary,
+        labelBehavior: NavigationDestinationLabelBehavior
+            .onlyShowSelected, // Only shows the label of the selected icon
+        //  animationDuration: const Duration(milliseconds: 1250),
+        height: 70.0,
 
-              destinations: const [
-                // Lists of Destinations
-                NavigationDestination(
-                  icon: Icon(Icons.home),
-                  selectedIcon: Icon(Icons.home_outlined),
-                  label: 'Home',
-                  tooltip: 'Return Home',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.attach_money),
-                  selectedIcon: Icon(Icons.money_off),
-                  label: 'Bills',
-                  tooltip: 'Bill Splitting',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.person),
-                  selectedIcon: Icon(Icons.person_outlined),
-                  label: 'People',
-                  tooltip: 'People',
-                ),
-              ],
-              onDestinationSelected: (int value) {
-                // On Navigation Selected, update the index
-                setState(() {
-                  // Updates the State of the Current Page
-                  _currentPage = value;
-                });
-              },
-              selectedIndex:
-                  _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
-            ),
-          );
-        });
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      // _counter--;
-    });
+        destinations: const [
+          // Lists of Destinations
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home_outlined),
+            label: 'Home',
+            tooltip: 'Return Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.attach_money),
+            selectedIcon: Icon(Icons.money_off),
+            label: 'Bills',
+            tooltip: 'Bill Splitting',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            selectedIcon: Icon(Icons.person_outlined),
+            label: 'People',
+            tooltip: 'People',
+          ),
+        ],
+        onDestinationSelected: (int value) {
+          // On Navigation Selected, update the index
+          setState(() {
+            // Updates the State of the Current Page
+            _currentPage = value;
+          });
+        },
+        selectedIndex:
+            _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
+      ),
+    );
   }
 }
