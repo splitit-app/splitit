@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
 
+import '../user/public_profile.dart';
 import 'item.dart';
 import 'split_rules/split_rule.dart';
 

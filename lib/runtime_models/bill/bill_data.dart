@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/runtime_models/bill/item_group.dart';
-import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
-import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
 
 import '../../net_models/bill/bill_data_dto.dart';
+import '../user/public_profile.dart';
+import 'item_group.dart';
+import 'modules/bill_module_tax.dart';
+import 'modules/bill_module_tip.dart';
 
 part 'bill_data.freezed.dart';
 

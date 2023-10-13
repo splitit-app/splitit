@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
+
+import '../../runtime_models/user/public_profile.dart';
 
 part 'public_profile_dto.freezed.dart';
 part 'public_profile_dto.g.dart';

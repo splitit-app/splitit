@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/net_models/user/public_profile_dto.dart';
+
+import '../../net_models/user/public_profile_dto.dart';
 
 part 'public_profile.freezed.dart';
 part 'public_profile.g.dart';
@@ -18,9 +19,9 @@ class PublicProfile with _$PublicProfile {
 
   PublicProfile._();
 
-  PublicProfileDTO get toDataTransferObj => PublicProfileDTO(name: name);
-
   bool get hasUserId => userId != null && userId!.isNotEmpty;
+
+  PublicProfileDTO get toDataTransferObj => PublicProfileDTO(name: name);
 
   void syncToActiveAccount(PublicProfile activeProfile) {
     if (hasUserId) return;
