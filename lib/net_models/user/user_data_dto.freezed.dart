@@ -20,6 +20,7 @@ UserDataDTO _$UserDataDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDataDTO {
+  PublicProfileDTO get publicProfile => throw _privateConstructorUsedError;
   List<String> get friendUids => throw _privateConstructorUsedError;
   DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
 
@@ -35,7 +36,12 @@ abstract class $UserDataDTOCopyWith<$Res> {
           UserDataDTO value, $Res Function(UserDataDTO) then) =
       _$UserDataDTOCopyWithImpl<$Res, UserDataDTO>;
   @useResult
-  $Res call({List<String> friendUids, DateTime lastUpdatedSession});
+  $Res call(
+      {PublicProfileDTO publicProfile,
+      List<String> friendUids,
+      DateTime lastUpdatedSession});
+
+  $PublicProfileDTOCopyWith<$Res> get publicProfile;
 }
 
 /// @nodoc
@@ -51,10 +57,15 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? publicProfile = null,
     Object? friendUids = null,
     Object? lastUpdatedSession = null,
   }) {
     return _then(_value.copyWith(
+      publicProfile: null == publicProfile
+          ? _value.publicProfile
+          : publicProfile // ignore: cast_nullable_to_non_nullable
+              as PublicProfileDTO,
       friendUids: null == friendUids
           ? _value.friendUids
           : friendUids // ignore: cast_nullable_to_non_nullable
@@ -64,6 +75,14 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
           : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PublicProfileDTOCopyWith<$Res> get publicProfile {
+    return $PublicProfileDTOCopyWith<$Res>(_value.publicProfile, (value) {
+      return _then(_value.copyWith(publicProfile: value) as $Val);
+    });
   }
 }
 
@@ -75,7 +94,13 @@ abstract class _$$_UserDataDTOCopyWith<$Res>
       __$$_UserDataDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> friendUids, DateTime lastUpdatedSession});
+  $Res call(
+      {PublicProfileDTO publicProfile,
+      List<String> friendUids,
+      DateTime lastUpdatedSession});
+
+  @override
+  $PublicProfileDTOCopyWith<$Res> get publicProfile;
 }
 
 /// @nodoc
@@ -89,10 +114,15 @@ class __$$_UserDataDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? publicProfile = null,
     Object? friendUids = null,
     Object? lastUpdatedSession = null,
   }) {
     return _then(_$_UserDataDTO(
+      publicProfile: null == publicProfile
+          ? _value.publicProfile
+          : publicProfile // ignore: cast_nullable_to_non_nullable
+              as PublicProfileDTO,
       friendUids: null == friendUids
           ? _value._friendUids
           : friendUids // ignore: cast_nullable_to_non_nullable
@@ -106,10 +136,12 @@ class __$$_UserDataDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_UserDataDTO extends _UserDataDTO {
   _$_UserDataDTO(
-      {required final List<String> friendUids,
+      {required this.publicProfile,
+      required final List<String> friendUids,
       required this.lastUpdatedSession})
       : _friendUids = friendUids,
         super._();
@@ -117,6 +149,8 @@ class _$_UserDataDTO extends _UserDataDTO {
   factory _$_UserDataDTO.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataDTOFromJson(json);
 
+  @override
+  final PublicProfileDTO publicProfile;
   final List<String> _friendUids;
   @override
   List<String> get friendUids {
@@ -130,7 +164,7 @@ class _$_UserDataDTO extends _UserDataDTO {
 
   @override
   String toString() {
-    return 'UserDataDTO(friendUids: $friendUids, lastUpdatedSession: $lastUpdatedSession)';
+    return 'UserDataDTO(publicProfile: $publicProfile, friendUids: $friendUids, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @override
@@ -138,6 +172,8 @@ class _$_UserDataDTO extends _UserDataDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserDataDTO &&
+            (identical(other.publicProfile, publicProfile) ||
+                other.publicProfile == publicProfile) &&
             const DeepCollectionEquality()
                 .equals(other._friendUids, _friendUids) &&
             (identical(other.lastUpdatedSession, lastUpdatedSession) ||
@@ -146,7 +182,7 @@ class _$_UserDataDTO extends _UserDataDTO {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
+  int get hashCode => Object.hash(runtimeType, publicProfile,
       const DeepCollectionEquality().hash(_friendUids), lastUpdatedSession);
 
   @JsonKey(ignore: true)
@@ -165,13 +201,16 @@ class _$_UserDataDTO extends _UserDataDTO {
 
 abstract class _UserDataDTO extends UserDataDTO {
   factory _UserDataDTO(
-      {required final List<String> friendUids,
+      {required final PublicProfileDTO publicProfile,
+      required final List<String> friendUids,
       required final DateTime lastUpdatedSession}) = _$_UserDataDTO;
   _UserDataDTO._() : super._();
 
   factory _UserDataDTO.fromJson(Map<String, dynamic> json) =
       _$_UserDataDTO.fromJson;
 
+  @override
+  PublicProfileDTO get publicProfile;
   @override
   List<String> get friendUids;
   @override
