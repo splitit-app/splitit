@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/net_models/user/user_data_dto.dart';
-import 'package:project_bs/runtime_models/user/private_profile.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
+
+import '../../net_models/user/user_data_dto.dart';
+import 'private_profile.dart';
+import 'public_profile.dart';
 
 part 'user_data.freezed.dart';
 
@@ -19,6 +20,7 @@ class UserData with _$UserData {
   UserData._();
 
   UserDataDTO get toDataTransferObj => UserDataDTO(
+      publicProfile: publicProfile.toDataTransferObj,
       friendUids: friends
           .where((friend) => friend.hasUserId)
           .map((friend) => friend.userId!)

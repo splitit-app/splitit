@@ -21,15 +21,12 @@ class AuthenticationService {
       if (user == null) return null;
 
       //Construct new user
-      UserData(
+      UserDataRepository(uid: user.uid).pushUserData(UserData(
         uid: user.uid,
-        publicProfile: PublicProfile(name: 'New User'),
+        publicProfile: PublicProfile(name: 'New User #${user.uid}'),
         privateProfile: PrivateProfile(themeData: ThemeData.light()),
         friends: List.empty(),
-      );
-
-      //TODO: save new UserData to database
-      //await DatabaseService(uid: user!.uid).updateUserData(Brew());
+      ));
     } catch (e) {
       return null;
     }
