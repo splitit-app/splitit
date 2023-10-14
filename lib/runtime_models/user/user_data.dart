@@ -14,16 +14,22 @@ class UserData with _$UserData {
     //required String name,
     required PublicProfile publicProfile,
     required PrivateProfile privateProfile,
-    required List<PublicProfile> friends,
+    required List<PublicProfile> registeredFriends,
+    required List<PublicProfile> nonRegisteredFriends,
   }) = _UserData;
+
+  static const int nonRegisteredFriendLimit = 30;
 
   UserData._();
 
   UserDataDTO get toDataTransferObj => UserDataDTO(
       publicProfile: publicProfile.toDataTransferObj,
-      friendUids: friends
+      registeredFriendUids: registeredFriends
           .where((friend) => friend.hasUserId)
           .map((friend) => friend.userId!)
+          .toList(),
+      nonRegisteredFriends: nonRegisteredFriends
+          .map((friend) => friend.toDataTransferObj)
           .toList(),
       lastUpdatedSession: DateTime.now());
 }

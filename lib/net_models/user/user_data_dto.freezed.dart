@@ -21,7 +21,9 @@ UserDataDTO _$UserDataDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserDataDTO {
   PublicProfileDTO get publicProfile => throw _privateConstructorUsedError;
-  List<String> get friendUids => throw _privateConstructorUsedError;
+  List<String> get registeredFriendUids => throw _privateConstructorUsedError;
+  List<PublicProfileDTO> get nonRegisteredFriends =>
+      throw _privateConstructorUsedError;
   DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +40,8 @@ abstract class $UserDataDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {PublicProfileDTO publicProfile,
-      List<String> friendUids,
+      List<String> registeredFriendUids,
+      List<PublicProfileDTO> nonRegisteredFriends,
       DateTime lastUpdatedSession});
 
   $PublicProfileDTOCopyWith<$Res> get publicProfile;
@@ -58,7 +61,8 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
   @override
   $Res call({
     Object? publicProfile = null,
-    Object? friendUids = null,
+    Object? registeredFriendUids = null,
+    Object? nonRegisteredFriends = null,
     Object? lastUpdatedSession = null,
   }) {
     return _then(_value.copyWith(
@@ -66,10 +70,14 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
           ? _value.publicProfile
           : publicProfile // ignore: cast_nullable_to_non_nullable
               as PublicProfileDTO,
-      friendUids: null == friendUids
-          ? _value.friendUids
-          : friendUids // ignore: cast_nullable_to_non_nullable
+      registeredFriendUids: null == registeredFriendUids
+          ? _value.registeredFriendUids
+          : registeredFriendUids // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      nonRegisteredFriends: null == nonRegisteredFriends
+          ? _value.nonRegisteredFriends
+          : nonRegisteredFriends // ignore: cast_nullable_to_non_nullable
+              as List<PublicProfileDTO>,
       lastUpdatedSession: null == lastUpdatedSession
           ? _value.lastUpdatedSession
           : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
@@ -96,7 +104,8 @@ abstract class _$$_UserDataDTOCopyWith<$Res>
   @useResult
   $Res call(
       {PublicProfileDTO publicProfile,
-      List<String> friendUids,
+      List<String> registeredFriendUids,
+      List<PublicProfileDTO> nonRegisteredFriends,
       DateTime lastUpdatedSession});
 
   @override
@@ -115,7 +124,8 @@ class __$$_UserDataDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? publicProfile = null,
-    Object? friendUids = null,
+    Object? registeredFriendUids = null,
+    Object? nonRegisteredFriends = null,
     Object? lastUpdatedSession = null,
   }) {
     return _then(_$_UserDataDTO(
@@ -123,10 +133,14 @@ class __$$_UserDataDTOCopyWithImpl<$Res>
           ? _value.publicProfile
           : publicProfile // ignore: cast_nullable_to_non_nullable
               as PublicProfileDTO,
-      friendUids: null == friendUids
-          ? _value._friendUids
-          : friendUids // ignore: cast_nullable_to_non_nullable
+      registeredFriendUids: null == registeredFriendUids
+          ? _value._registeredFriendUids
+          : registeredFriendUids // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      nonRegisteredFriends: null == nonRegisteredFriends
+          ? _value._nonRegisteredFriends
+          : nonRegisteredFriends // ignore: cast_nullable_to_non_nullable
+              as List<PublicProfileDTO>,
       lastUpdatedSession: null == lastUpdatedSession
           ? _value.lastUpdatedSession
           : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
@@ -141,9 +155,11 @@ class __$$_UserDataDTOCopyWithImpl<$Res>
 class _$_UserDataDTO extends _UserDataDTO {
   _$_UserDataDTO(
       {required this.publicProfile,
-      required final List<String> friendUids,
+      required final List<String> registeredFriendUids,
+      required final List<PublicProfileDTO> nonRegisteredFriends,
       required this.lastUpdatedSession})
-      : _friendUids = friendUids,
+      : _registeredFriendUids = registeredFriendUids,
+        _nonRegisteredFriends = nonRegisteredFriends,
         super._();
 
   factory _$_UserDataDTO.fromJson(Map<String, dynamic> json) =>
@@ -151,12 +167,22 @@ class _$_UserDataDTO extends _UserDataDTO {
 
   @override
   final PublicProfileDTO publicProfile;
-  final List<String> _friendUids;
+  final List<String> _registeredFriendUids;
   @override
-  List<String> get friendUids {
-    if (_friendUids is EqualUnmodifiableListView) return _friendUids;
+  List<String> get registeredFriendUids {
+    if (_registeredFriendUids is EqualUnmodifiableListView)
+      return _registeredFriendUids;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_friendUids);
+    return EqualUnmodifiableListView(_registeredFriendUids);
+  }
+
+  final List<PublicProfileDTO> _nonRegisteredFriends;
+  @override
+  List<PublicProfileDTO> get nonRegisteredFriends {
+    if (_nonRegisteredFriends is EqualUnmodifiableListView)
+      return _nonRegisteredFriends;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_nonRegisteredFriends);
   }
 
   @override
@@ -164,7 +190,7 @@ class _$_UserDataDTO extends _UserDataDTO {
 
   @override
   String toString() {
-    return 'UserDataDTO(publicProfile: $publicProfile, friendUids: $friendUids, lastUpdatedSession: $lastUpdatedSession)';
+    return 'UserDataDTO(publicProfile: $publicProfile, registeredFriendUids: $registeredFriendUids, nonRegisteredFriends: $nonRegisteredFriends, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @override
@@ -175,15 +201,21 @@ class _$_UserDataDTO extends _UserDataDTO {
             (identical(other.publicProfile, publicProfile) ||
                 other.publicProfile == publicProfile) &&
             const DeepCollectionEquality()
-                .equals(other._friendUids, _friendUids) &&
+                .equals(other._registeredFriendUids, _registeredFriendUids) &&
+            const DeepCollectionEquality()
+                .equals(other._nonRegisteredFriends, _nonRegisteredFriends) &&
             (identical(other.lastUpdatedSession, lastUpdatedSession) ||
                 other.lastUpdatedSession == lastUpdatedSession));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, publicProfile,
-      const DeepCollectionEquality().hash(_friendUids), lastUpdatedSession);
+  int get hashCode => Object.hash(
+      runtimeType,
+      publicProfile,
+      const DeepCollectionEquality().hash(_registeredFriendUids),
+      const DeepCollectionEquality().hash(_nonRegisteredFriends),
+      lastUpdatedSession);
 
   @JsonKey(ignore: true)
   @override
@@ -202,7 +234,8 @@ class _$_UserDataDTO extends _UserDataDTO {
 abstract class _UserDataDTO extends UserDataDTO {
   factory _UserDataDTO(
       {required final PublicProfileDTO publicProfile,
-      required final List<String> friendUids,
+      required final List<String> registeredFriendUids,
+      required final List<PublicProfileDTO> nonRegisteredFriends,
       required final DateTime lastUpdatedSession}) = _$_UserDataDTO;
   _UserDataDTO._() : super._();
 
@@ -212,7 +245,9 @@ abstract class _UserDataDTO extends UserDataDTO {
   @override
   PublicProfileDTO get publicProfile;
   @override
-  List<String> get friendUids;
+  List<String> get registeredFriendUids;
+  @override
+  List<PublicProfileDTO> get nonRegisteredFriends;
   @override
   DateTime get lastUpdatedSession;
   @override

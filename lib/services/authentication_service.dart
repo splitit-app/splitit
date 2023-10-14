@@ -25,7 +25,8 @@ class AuthenticationService {
         uid: user.uid,
         publicProfile: PublicProfile(name: 'New User #${user.uid}'),
         privateProfile: PrivateProfile(themeData: ThemeData.light()),
-        friends: List.empty(),
+        registeredFriends: List.empty(),
+        nonRegisteredFriends: List.empty(),
       ));
     } catch (e) {
       return null;

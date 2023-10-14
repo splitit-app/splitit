@@ -236,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
         onPressed: () {
-          BillDataRepository().uploadBill(BillData(
+          BillDataRepository().pushBillData(BillData(
             dateTime: DateTime.now(),
             itemGroups: List.empty(),
             taxModule: BillModule_Tax(),
