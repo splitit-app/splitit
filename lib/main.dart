@@ -6,6 +6,9 @@ import '../screens/authentication_controller.dart';
 import '../services/authentication_service.dart';
 import 'firebase_options.dart';
 
+
+import 'package:project_bs/screens/mockup_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -18,9 +21,9 @@ void main() async {
   //testDatabase.barBill0();
 //--------------
 
-  // runApp(const MockUpPage());
+  runApp(const MockUpPage());
   // runApp(const FigmaToCodeApp());
-  runApp(const SplitItApp());
+  // runApp(const SplitItApp());
 }
 
 class SplitItApp extends StatelessWidget {
