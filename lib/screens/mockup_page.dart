@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_bs/screens/friends_page.dart';
 
-import '../utilities/bill_cards.dart';
 import '../utilities/bill_cards_v2.dart';
 
 class MockUpPage extends StatelessWidget {
@@ -15,7 +15,8 @@ class MockUpPage extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      home: PageTest(),
+      // home: PageTest(),
+      home: const FriendsPage(),
     );
   }
 }
