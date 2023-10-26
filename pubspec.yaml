@@ -46,6 +46,7 @@ dependencies:
   firestore_cache: ^2.3.1
   material_symbols_icons: ^4.2671.0
   intl: ^0.18.1
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
