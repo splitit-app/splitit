@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../screens/authentication_controller.dart';
+import 'screens/authentication/authentication_controller.dart';
 import '../services/authentication_service.dart';
 import 'firebase_options.dart';
+
+import 'package:project_bs/screens/mockup_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,14 +14,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-//Experiment----
-  //TestDatabase testDatabase = TestDatabase();
-  //testDatabase.FooBill0();
-  //testDatabase.barBill0();
-//--------------
-
-  // runApp(const MockUpPage());
-  // runApp(const FigmaToCodeApp());
+  //runApp(const MockUpPage());
   runApp(const SplitItApp());
 }
 
@@ -36,7 +31,7 @@ class SplitItApp extends StatelessWidget {
         home: StreamProvider.value(
           value: AuthenticationService().userAuthState,
           initialData: null,
-          child: const AuthenticationController(),
+          child: AuthenticationController(),
         ),
       );
 }
