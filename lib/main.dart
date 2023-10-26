@@ -6,7 +6,6 @@ import 'screens/authentication/authentication_controller.dart';
 import '../services/authentication_service.dart';
 import 'firebase_options.dart';
 
-
 import 'package:project_bs/screens/mockup_page.dart';
 
 void main() async {
@@ -15,15 +14,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-//Experiment----
-  //TestDatabase testDatabase = TestDatabase();
-  //testDatabase.FooBill0();
-  //testDatabase.barBill0();
-//--------------
-
-  runApp(const MockUpPage());
-  // runApp(const FigmaToCodeApp());
-  // runApp(const SplitItApp());
+  //runApp(const MockUpPage());
+  runApp(const SplitItApp());
 }
 
 class SplitItApp extends StatelessWidget {
