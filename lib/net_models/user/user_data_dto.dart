@@ -14,7 +14,8 @@ class UserDataDTO with _$UserDataDTO {
   @JsonSerializable(explicitToJson: true)
   factory UserDataDTO({
     required PublicProfileDTO publicProfile,
-    required List<String> friendUids,
+    required List<String> registeredFriendUids,
+    required List<PublicProfileDTO> nonRegisteredFriends,
     required DateTime lastUpdatedSession,
   }) = _UserDataDTO;
 
@@ -27,6 +28,8 @@ class UserDataDTO with _$UserDataDTO {
         uid: uid,
         publicProfile: publicProfile.toRuntimeObj,
         privateProfile: PrivateProfile(themeData: ThemeData.light()),
-        friends: List.empty(),
+        registeredFriends: List.empty(),
+        nonRegisteredFriends:
+            nonRegisteredFriends.map((friend) => friend.toRuntimeObj).toList(),
       );
 }

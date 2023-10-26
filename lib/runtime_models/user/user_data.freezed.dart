@@ -25,8 +25,14 @@ mixin _$UserData {
   PrivateProfile get privateProfile => throw _privateConstructorUsedError;
   set privateProfile(PrivateProfile value) =>
       throw _privateConstructorUsedError;
-  List<PublicProfile> get friends => throw _privateConstructorUsedError;
-  set friends(List<PublicProfile> value) => throw _privateConstructorUsedError;
+  List<PublicProfile> get registeredFriends =>
+      throw _privateConstructorUsedError;
+  set registeredFriends(List<PublicProfile> value) =>
+      throw _privateConstructorUsedError;
+  List<PublicProfile> get nonRegisteredFriends =>
+      throw _privateConstructorUsedError;
+  set nonRegisteredFriends(List<PublicProfile> value) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserDataCopyWith<UserData> get copyWith =>
@@ -42,7 +48,8 @@ abstract class $UserDataCopyWith<$Res> {
       {String uid,
       PublicProfile publicProfile,
       PrivateProfile privateProfile,
-      List<PublicProfile> friends});
+      List<PublicProfile> registeredFriends,
+      List<PublicProfile> nonRegisteredFriends});
 
   $PublicProfileCopyWith<$Res> get publicProfile;
   $PrivateProfileCopyWith<$Res> get privateProfile;
@@ -64,7 +71,8 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? uid = null,
     Object? publicProfile = null,
     Object? privateProfile = null,
-    Object? friends = null,
+    Object? registeredFriends = null,
+    Object? nonRegisteredFriends = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -79,9 +87,13 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.privateProfile
           : privateProfile // ignore: cast_nullable_to_non_nullable
               as PrivateProfile,
-      friends: null == friends
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
+      registeredFriends: null == registeredFriends
+          ? _value.registeredFriends
+          : registeredFriends // ignore: cast_nullable_to_non_nullable
+              as List<PublicProfile>,
+      nonRegisteredFriends: null == nonRegisteredFriends
+          ? _value.nonRegisteredFriends
+          : nonRegisteredFriends // ignore: cast_nullable_to_non_nullable
               as List<PublicProfile>,
     ) as $Val);
   }
@@ -114,7 +126,8 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       {String uid,
       PublicProfile publicProfile,
       PrivateProfile privateProfile,
-      List<PublicProfile> friends});
+      List<PublicProfile> registeredFriends,
+      List<PublicProfile> nonRegisteredFriends});
 
   @override
   $PublicProfileCopyWith<$Res> get publicProfile;
@@ -136,7 +149,8 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? uid = null,
     Object? publicProfile = null,
     Object? privateProfile = null,
-    Object? friends = null,
+    Object? registeredFriends = null,
+    Object? nonRegisteredFriends = null,
   }) {
     return _then(_$_UserData(
       uid: null == uid
@@ -151,9 +165,13 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.privateProfile
           : privateProfile // ignore: cast_nullable_to_non_nullable
               as PrivateProfile,
-      friends: null == friends
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
+      registeredFriends: null == registeredFriends
+          ? _value.registeredFriends
+          : registeredFriends // ignore: cast_nullable_to_non_nullable
+              as List<PublicProfile>,
+      nonRegisteredFriends: null == nonRegisteredFriends
+          ? _value.nonRegisteredFriends
+          : nonRegisteredFriends // ignore: cast_nullable_to_non_nullable
               as List<PublicProfile>,
     ));
   }
@@ -166,7 +184,8 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
       {required this.uid,
       required this.publicProfile,
       required this.privateProfile,
-      required this.friends})
+      required this.registeredFriends,
+      required this.nonRegisteredFriends})
       : super._();
 
   @override
@@ -177,11 +196,13 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
   @override
   PrivateProfile privateProfile;
   @override
-  List<PublicProfile> friends;
+  List<PublicProfile> registeredFriends;
+  @override
+  List<PublicProfile> nonRegisteredFriends;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(uid: $uid, publicProfile: $publicProfile, privateProfile: $privateProfile, friends: $friends)';
+    return 'UserData(uid: $uid, publicProfile: $publicProfile, privateProfile: $privateProfile, registeredFriends: $registeredFriends, nonRegisteredFriends: $nonRegisteredFriends)';
   }
 
   @override
@@ -192,7 +213,8 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('publicProfile', publicProfile))
       ..add(DiagnosticsProperty('privateProfile', privateProfile))
-      ..add(DiagnosticsProperty('friends', friends));
+      ..add(DiagnosticsProperty('registeredFriends', registeredFriends))
+      ..add(DiagnosticsProperty('nonRegisteredFriends', nonRegisteredFriends));
   }
 
   @JsonKey(ignore: true)
@@ -207,7 +229,8 @@ abstract class _UserData extends UserData {
       {required String uid,
       required PublicProfile publicProfile,
       required PrivateProfile privateProfile,
-      required List<PublicProfile> friends}) = _$_UserData;
+      required List<PublicProfile> registeredFriends,
+      required List<PublicProfile> nonRegisteredFriends}) = _$_UserData;
   _UserData._() : super._();
 
   @override
@@ -220,8 +243,11 @@ abstract class _UserData extends UserData {
   PrivateProfile get privateProfile;
   set privateProfile(PrivateProfile value);
   @override
-  List<PublicProfile> get friends;
-  set friends(List<PublicProfile> value);
+  List<PublicProfile> get registeredFriends;
+  set registeredFriends(List<PublicProfile> value);
+  @override
+  List<PublicProfile> get nonRegisteredFriends;
+  set nonRegisteredFriends(List<PublicProfile> value);
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

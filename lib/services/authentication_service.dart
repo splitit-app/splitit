@@ -12,32 +12,46 @@ class AuthenticationService {
   Stream<User?> get userAuthState => _firebaseAuth.authStateChanges();
 
   // ignore: non_constant_identifier_names
-  Future createUserWith_EmailAndPassword(String email, String password) async {
+  Future<bool> isValid_Email(String email) async {
     try {
-      User? user = (await _firebaseAuth.createUserWithEmailAndPassword(
-              email: email, password: password))
-          .user;
+      List<String> signInMethods = await _firebaseAuth.fetchSignInMethodsForEmail(email);
+      return signInMethods.isEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
 
-      if (user == null) return null;
+  // ignore: non_constant_identifier_names
+  Future<void> createUserWith_EmailAndPassword({
+    required String email,
+    required String password,
+    required PublicProfile publicProfile,
+  }) async {
+    try {
+      User? user =
+          (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password))
+              .user;
+
+      if (user == null) return;
 
       //Construct new user
-      UserDataRepository(uid: user.uid).pushUserData(UserData(
+      await UserDataRepository(uid: user.uid).pushUserData(UserData(
         uid: user.uid,
-        publicProfile: PublicProfile(name: 'New User #${user.uid}'),
+        publicProfile: publicProfile,
         privateProfile: PrivateProfile(themeData: ThemeData.light()),
-        friends: List.empty(),
+        registeredFriends: List.empty(),
+        nonRegisteredFriends: List.empty(),
       ));
     } catch (e) {
-      return null;
+      return;
     }
   }
 
   // ignore: non_constant_identifier_names
   Future signInWith_EmailAndPassword(String email, String password) async {
     try {
-      User? user = (await _firebaseAuth.signInWithEmailAndPassword(
-              email: email, password: password))
-          .user;
+      User? user =
+          (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).user;
 
       if (user == null) return null;
 

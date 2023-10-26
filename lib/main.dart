@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../screens/authentication_controller.dart';
+import 'screens/authentication/authentication_controller.dart';
 import '../services/authentication_service.dart';
 import 'firebase_options.dart';
 
@@ -39,7 +39,7 @@ class SplitItApp extends StatelessWidget {
         home: StreamProvider.value(
           value: AuthenticationService().userAuthState,
           initialData: null,
-          child: const AuthenticationController(),
+          child: AuthenticationController(),
         ),
       );
 }
