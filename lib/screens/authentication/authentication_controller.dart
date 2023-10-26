@@ -4,7 +4,6 @@ import 'package:project_bs/screens/authentication/registration/registration_scre
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/user/user_data.dart';
-import '../mockup_page.dart';
 import '../test_experiment_screen.dart';
 import '../../services/user_data_repository.dart';
 import 'login_screen.dart';
@@ -12,7 +11,6 @@ import 'login_screen.dart';
 class AuthenticationController extends StatelessWidget {
   AuthenticationController({super.key});
   final PageController _pageController = PageController();
-  //bool _showLogInScreen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +30,5 @@ class AuthenticationController extends StatelessWidget {
             initialData: null,
             child: const MyHomePage(title: 'BS Test Home Page'),
           );
-    //: const MockUpPage();
   }
 }
