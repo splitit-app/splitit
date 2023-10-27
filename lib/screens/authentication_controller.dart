@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_bs/screens/home_page.dart';
 import 'package:project_bs/screens/mockup_page.dart';
 import 'package:project_bs/screens/test_experiment_screen.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ class AuthenticationController extends StatelessWidget {
   @override
   Widget build(BuildContext context) => context.watch<User?>() == null
       ? const LoginScreen()
-      : const MyHomePage(title: 'BS Test Home Page');
+      // : const MyHomePage(title: 'BS Test Home Page');
+      : const MainHomePage(title: "Home");
       //: const MockUpPage();
 }

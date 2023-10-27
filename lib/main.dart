@@ -6,7 +6,6 @@ import '../screens/authentication_controller.dart';
 import '../services/authentication_service.dart';
 import 'firebase_options.dart';
 
-
 import 'package:project_bs/screens/mockup_page.dart';
 
 void main() async {
@@ -21,9 +20,9 @@ void main() async {
   //testDatabase.barBill0();
 //--------------
 
-  runApp(const MockUpPage());
+  // runApp(const MockUpPage());
   // runApp(const FigmaToCodeApp());
-  // runApp(const SplitItApp());
+  runApp(const SplitItApp());
 }
 
 class SplitItApp extends StatelessWidget {
@@ -32,6 +31,7 @@ class SplitItApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'SplitIt',
+        debugShowCheckedModeBanner: false,  // Hides the Debug Banner
         theme: ThemeData(
           colorSchemeSeed: const Color(0xFF26B645),
           useMaterial3: true,

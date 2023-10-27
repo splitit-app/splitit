@@ -150,9 +150,7 @@ class BillCardsV2 extends StatelessWidget {
                                 
                                 IconButton(
                                   splashColor: const Color(0xFF2C2E30),
-                                  onPressed: () {
-                                      print("Icon Button Pressed!");
-                                  },
+                                  onPressed: () {},
                                   icon: const Icon(
                                     Icons.keyboard_control,
                                     size: 20,

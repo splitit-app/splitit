@@ -3,7 +3,6 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../runtime_models/bill/bill_data.dart';
 import '../services/authentication_service.dart';
-import '../utilities/bill_cards.dart';
 import '../utilities/bill_cards_v2.dart';
 import '../一experiments/test_firebase.dart';
 
@@ -18,7 +17,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-
   const MyHomePage({super.key, required this.title});
 
   @override
@@ -29,8 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // int _counter = 222222; //Change to huge number from origin of 0.
 
   final _formKey = GlobalKey<FormState>();
-
-  int _currentPage = 0; // Keeps track of the Current Page Index.
+  int currentPage = 0; // Keeps track of the Current Page Index.
 
   //Experiment----
   TestDatabase testDatabase = TestDatabase();
@@ -114,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           decoration: const InputDecoration(
                               labelText: "Bill Name",
-                              hintText: "Mickie Deez Nuts",
+                              hintText: "Blockbuster",
                               prefixIcon: Icon(Icons.edit)),
                         ),
 
@@ -132,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           decoration: const InputDecoration(
                               labelText: "Bill Total",
-                              hintText: "5 Smackers",
+                              hintText: "4.78 Ringgit",
                               prefixIcon: Icon(Icons.attach_money)),
                         ),
 
@@ -150,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           decoration: const InputDecoration(
                               labelText: "Bill Date",
-                              hintText: "October 45th, 1945",
+                              hintText: "19 BBY",
                               prefixIcon: Icon(Icons.date_range)),
                         ),
                         const SizedBox(height: 15.0),
@@ -221,8 +218,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
                                   billTotal: bill.totalSpent,
                                   billDate: bill.dateTime.toString(),
-
-                                  // billTotal: 250.00,
                                 );
                               },
                               separatorBuilder: (BuildContext context,
@@ -235,56 +230,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+
+
+      //* If you want this FAB accessible in any page, move to home_page.dart
+
+      // FAB:
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-        //onPressed: _incrementCounter,
         onPressed: testDatabase.uploadBill,
         tooltip: 'Increment',
         label: const Text('Actions'),
         icon: const Icon(Symbols.view_cozy),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-
-      bottomNavigationBar: NavigationBar(
-        backgroundColor: Theme.of(context)
-            .colorScheme
-            .surfaceVariant, // Theme of the App (line 32) defines the background color
-        indicatorColor: Theme.of(context).colorScheme.secondary,
-        labelBehavior: NavigationDestinationLabelBehavior
-            .onlyShowSelected, // Only shows the label of the selected icon
-        //  animationDuration: const Duration(milliseconds: 1250),
-        height: 70.0,
-
-        destinations: const [
-          // Lists of Destinations
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            selectedIcon: Icon(Icons.home_outlined),
-            label: 'Home',
-            tooltip: 'Return Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.attach_money),
-            selectedIcon: Icon(Icons.money_off),
-            label: 'Bills',
-            tooltip: 'Bill Splitting',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            selectedIcon: Icon(Icons.person_outlined),
-            label: 'People',
-            tooltip: 'People',
-          ),
-        ],
-        onDestinationSelected: (int value) {
-          // On Navigation Selected, update the index
-          setState(() {
-            // Updates the State of the Current Page
-            _currentPage = value;
-          });
-        },
-        selectedIndex:
-            _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
       ),
+
     );
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/screens/friends_page.dart';
+import 'package:project_bs/screens/friends_screen/friends_page.dart';
 
 import '../utilities/bill_cards_v2.dart';
+
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MockUpPage extends StatelessWidget {
   const MockUpPage({super.key});
@@ -15,8 +18,9 @@ class MockUpPage extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      // home: PageTest(),
-      home: const FriendsPage(),
+      // home: const SlideAbleTest(),
+      home: PageTest(),
+      // home: const FriendsPage(),
     );
   }
 }
@@ -53,7 +57,7 @@ class PageTest extends StatelessWidget {
               color: themeColor.surface,
             )),
         centerTitle: true,
-        backgroundColor: themeColor.primary,
+        backgroundColor: themeColor.surfaceVariant,
       ),
       body: SafeArea(
         child: Column(
@@ -101,4 +105,88 @@ class PageTest extends StatelessWidget {
       ),
     );
   }
+}
+
+class SlideAbleTest extends StatelessWidget {
+  const SlideAbleTest({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Slidable(
+            // Slide from the Left (or Top)
+            startActionPane: ActionPane(
+              // Controls how the Pane animates
+              // motion: const ScrollMotion(),
+              motion: const StretchMotion(),
+
+              dismissible: DismissiblePane(onDismissed: () {}),
+
+              // All Actions:
+              children: [
+                SlidableAction(
+                  // flex: 2,
+                  onPressed: ((context) {
+                    // action
+                  }),
+                  backgroundColor: const Color(0xFF31D42B),
+                  foregroundColor: Colors.white,
+                  icon: Symbols.phone,
+                  label: "Call'em up",
+                ),
+                SlidableAction(
+                  onPressed: ((context) {
+                    // action
+                  }),
+                  backgroundColor: const Color(0xFFD42B2B),
+                  foregroundColor: Colors.white,
+                  icon: Symbols.delete,
+                  label: "Delete",
+                ),
+              ],
+            ),
+
+            // Slide from the Right (or Bottom)
+            endActionPane: ActionPane(
+              motion: const StretchMotion(),
+
+              // All Actions:
+              children: [
+                SlidableAction(
+                  // flex: 2,
+                  onPressed: ((context) {
+                    // action
+                  }),
+                  backgroundColor: const Color(0xFF2B82D4),
+                  foregroundColor: Colors.white,
+                  icon: Symbols.chat,
+                  label: "Chat'em up",
+                ),
+              ],
+            ),
+            child: builtUserListTile(),
+          );
+        },
+      ),
+    );
+  }
+
+  Container builtUserListTile() {
+    return Container(
+      color: Colors.grey[300],
+      child: const ListTile(
+        title: Text("Sid"),
+        subtitle: Text("Bobba"),
+        leading: CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage(
+              "https://i.pinimg.com/originals/14/2f/a7/142fa7f209297073e4648f11ed842a6a.jpg"),
+        ),
+      ),
+    );
+  }
+  
 }
