@@ -20,10 +20,11 @@ class _MainHomePageState extends State<MainHomePage> {
   // List of Pages accessed through currentPage indexing
   final screens = [
     const MyHomePage(title: "BS Home Page"),
+    PageTest(), // hardcoded-placeholder for now
+    const FriendsPage(),
+
     // const Center(child: Text("Bills, WIP", style:  TextStyle(fontSize: 65.0))),
     // const MockUpPage(),
-    PageTest(),
-    const FriendsPage(),
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
