@@ -4,6 +4,7 @@ import 'package:project_bs/utilities/friends_page_view.dart';
 import 'package:project_bs/utilities/group_container.dart';
 import 'package:project_bs/utilities/person_icon.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({super.key});
@@ -18,19 +19,6 @@ class _FriendsPageState extends State<FriendsPage> {
 
   // Page Controller for Page Indicator
   final _controller = PageController(initialPage: 0);
-
-  final List _names = [
-    "Sydney",
-    "Brandon",
-    "Roberto",
-    "Ren",
-    "Wei",
-    "Max",
-    "Bob",
-    "Stallin",
-    "Hit'La",
-    "Mussolono",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -112,40 +100,6 @@ class _FriendsPageState extends State<FriendsPage> {
               ),
             ),
 
-            // Friend Profile View using Instagram Stories like UI with ListView Builder
-            /*
-            Container(
-              height: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              decoration: BoxDecoration(
-                  color: Colors.grey, borderRadius: BorderRadius.circular(15.0)),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _names.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Row(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            PersonIcon(
-                              personName: _names[index],
-                            ),
-                            Text(_names[index],
-                                style: const TextStyle(fontSize: 16.0)),
-                          ],
-                        ),
-                        const SizedBox(width: 25.0),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            */
-
             // Contains Friend Profiles
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -209,61 +163,64 @@ class _FriendsPageState extends State<FriendsPage> {
                 expansionFactor: 2.5,
               ),
             ),
-            // effect: const JumpingDotEffect(
-            //   verticalOffset: 10.0,
-            //   activeDotColor: Colors.red,
-            //   radius: 4.0,
-            //   spacing: 8.0,
-            // ),
-
             const SizedBox(height: 25.0),
 
-            // Group Containers
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  // Groups - Title Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Groups", style: TextStyle(fontSize: 24.0)),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            // Symbols.manage_accounts,
-                            Symbols.manage_search,
-                            size: 30.0,
-                          )),
-                    ],
-                  ),
-
-                  Row(
-                    // ListView throws a Render Box error if not contained within an Expanded and SizedBox/Container Widget
-                    children: [
-                      Expanded(
-                        //To inform of the maximum available horizontal size for the ListView
-                        child: SizedBox(
-                          height: 150.0, // To set the height for the ListView
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 4,
-                            itemBuilder: (BuildContext context, int index) {
-                              return const Row(
-                                children: [
-                                  GroupContainer(),
-                                  SizedBox(width: 25.0),
-                                ],
+            if (true) // Displays on True. False to Hide.
+              // Group Containers
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    // Groups - Title Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Groups", style: TextStyle(fontSize: 24.0)),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                // Pushes the GroupPageOverview onto the Route Stack
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const GroupPageOverview(), // Navigates the GroupPageOverview Page
+                                ),
                               );
                             },
+                            icon: const Icon(
+                              // Symbols.manage_accounts,
+                              Symbols.manage_search,
+                              size: 30.0,
+                            )),
+                      ],
+                    ),
+
+                    Row(
+                      // ListView throws a Render Box error if not contained within an Expanded and SizedBox/Container Widget
+                      children: [
+                        Expanded(
+                          //To inform of the maximum available horizontal size for the ListView
+                          child: SizedBox(
+                            height: 150.0, // To set the height for the ListView
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 4,
+                              itemBuilder: (BuildContext context, int index) {
+                                return const Row(
+                                  children: [
+                                    GroupContainer(),
+                                    SizedBox(width: 25.0),
+                                  ],
+                                );
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ), // End
+                      ],
+                    ),
+                  ],
+                ),
+              ), // End
           ],
         ),
       ), // End of Main Column (Wrapped in SingleChildScrollView)
@@ -278,15 +235,17 @@ class FriendsPageOverview extends StatelessWidget {
 
   final List _names = [
     "Sydney",
+    "Ronald",
     "Brandon",
+    "Trumpy",
     "Roberto",
+    "RFP",
     "Ren",
+    "Browny",
     "Wei",
+    "SDLC",
     "Max",
-    "Bob",
-    "Stallin",
-    "Hit'La",
-    "Mussolono",
+    "Spiderman",
   ];
 
   @override
@@ -369,15 +328,18 @@ class FriendsPageOverview extends StatelessWidget {
             // Friend Profile View using Instagram Stories like UI with ListView Builder
             const Row(
               children: [
-                Text("Recent Victims"),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Text(
+                    "Recent Victims",
+                    style: TextStyle(fontSize: 20.0),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
               ],
             ),
-            Container(
+            SizedBox(
               height: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(15.0)),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: _names.length,
@@ -403,9 +365,196 @@ class FriendsPageOverview extends StatelessWidget {
                 },
               ),
             ),
+            const Divider(),
+            const SizedBox(height: 10.0),
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Text(
+                    "Friends",
+                    style: TextStyle(fontSize: 20.0),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                // Displays Friend Total
+                Container(
+                  height: 25.0,
+                  width: 65.0,
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.center, // Centering Text
+                    children: [
+                      Text(
+                        // "0",
+                        '${_names.length}',
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(
+              height: 600,
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemCount: _names.length,
+                itemBuilder: (context, index) {
+                  return Slidable(
+                      // Slide from the Left (or Top)
+                      startActionPane: ActionPane(
+                        // Controls how the Pane animates
+                        motion: const StretchMotion(),
+                        // dismissible: DismissiblePane(onDismissed: () {}),
+
+                        // All Actions:
+                        children: [
+                          SlidableAction(
+                            onPressed: ((context) {
+
+
+                              // action
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text('No. No no no no.'),
+                                  action: SnackBarAction(
+                                    label: 'Yeeeeaaah',
+                                    onPressed: () {
+                                      // Code to execute.
+                                    },
+                                  ),
+                                ),
+                              );
+
+
+                            }),
+                            backgroundColor: const Color(0xFFD42B2B),
+                            foregroundColor: Colors.white,
+                            borderRadius:  const BorderRadius.only(bottomLeft: Radius.circular(25.0)),
+                            icon: Symbols.delete,
+                            label: "Delete",
+                          ),
+                        ],
+                      ),
+
+                      // Slide from the Right (or Bottom)
+                      endActionPane: ActionPane(
+                        motion: const StretchMotion(),
+
+                        // All Actions:
+                        children: [
+                          SlidableAction(
+                            // flex: 2,
+                            onPressed: ((context) {
+                              // action
+                            }),
+                            backgroundColor: const Color(0xFF2B82D4),
+                            foregroundColor: Colors.white,
+                            borderRadius:  const BorderRadius.only(bottomRight: Radius.circular(25.0)),
+                            icon: Symbols.chat,
+                            label: "Chat'em up",
+                          ),
+                        ],
+                      ),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF1EFEF),
+                          // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25.0), bottomRight: Radius.circular(25.0)),
+                          ),
+                        child: ListTile(
+                          title: Text('${_names[index]}'),
+                          subtitle: const Text("Subtitles Subtitles Subtitles"),
+                          leading: PersonIcon(personName: _names[index]),
+                          trailing: const Icon(Symbols.drag_handle),
+                          // leading: const CircleAvatar(
+                          //   radius: 30,
+                          //   backgroundImage: NetworkImage(
+                          //       "https://i.pinimg.com/originals/14/2f/a7/142fa7f209297073e4648f11ed842a6a.jpg"),
+                          // ),
+                        ),
+                      ));
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+              ),
+            ),
           ],
         ),
       ), // End of Main Column (Wrapped in SingleChildScrollView)
     );
+  }
+}
+
+class GroupPageOverview extends StatelessWidget {
+  const GroupPageOverview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+          title: const Text("Groups"),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(
+                  context); // Pops the Route, returns back to the previous page.
+            },
+            icon: const Icon(Symbols.arrow_back),
+            iconSize: 30.0,
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Symbols.settings),
+              iconSize: 30.0,
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            const SizedBox(height: 10.0),
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Text(
+                    "Groups",
+                    style: TextStyle(fontSize: 20.0),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                // Displays Friend Total
+                Container(
+                  height: 25.0,
+                  width: 65.0,
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.center, // Centering Text
+                    children: [
+                      Text(
+                        "0",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        )));
   }
 }

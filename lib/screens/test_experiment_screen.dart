@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/screens/friends_page.dart';
+import 'package:project_bs/screens/friends_screen/friends_page.dart';
 import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
@@ -10,7 +10,6 @@ import '../runtime_models/user/public_profile.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
 import '../services/bill_data_repository.dart';
-import '../utilities/bill_cards.dart';
 import '../utilities/bill_cards_v2.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -24,7 +23,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-
   const MyHomePage({super.key, required this.title});
 
   @override
@@ -35,8 +33,11 @@ class _MyHomePageState extends State<MyHomePage> {
   // int _counter = 222222; //Change to huge number from origin of 0.
 
   final _formKey = GlobalKey<FormState>();
+  int currentPage = 0; // Keeps track of the Current Page Index.
 
-  int _currentPage = 0; // Keeps track of the Current Page Index.
+  //Experiment----
+  // TestDatabase testDatabase = TestDatabase();
+  //--------------
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
     UserData? userData = context.watch<UserData?>();
 
-    return switch (_currentPage) {
-      2 => const FriendsPage(),
-      0 || 1 => Scaffold(
+    // return switch (_currentPage) {
+    //   2 => const FriendsPage(),
+    //   0 || 1 => Scaffold(
+
+      return Scaffold(
           appBar: AppBar(
             // TRY THIS: Try changing the color here to a specific color (to
             // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
@@ -99,89 +103,91 @@ class _MyHomePageState extends State<MyHomePage> {
                   // backgroundColor: Colors.red,
                   // collapsedBackgroundColor: Colors.black,
 
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              // Validator receives the user input
-                              validator: (billNameValue) {
-                                // Return value variable (The information entered).
-                                if (billNameValue == null || billNameValue.isEmpty) {
-                                  return "Please the Bill Name";
-                                }
-                                // return null;
-                                return billNameValue;
-                              },
-                              decoration: const InputDecoration(
-                                  labelText: "Bill Name",
-                                  hintText: "Mickie Deez Nuts",
-                                  prefixIcon: Icon(Icons.edit)),
-                            ),
-
-                            // Bill Total:
-                            TextFormField(
-                              // Validator receives the user input
-                              validator: (billTotalValue) {
-                                // Return value variable (The information entered).
-                                if (billTotalValue == null || billTotalValue.isEmpty) {
-                                  return "Please enter the Bill Total";
-                                }
-                                // return null;
-                                return billTotalValue;
-                              },
-                              decoration: const InputDecoration(
-                                  labelText: "Bill Total",
-                                  hintText: "5 Smackers",
-                                  prefixIcon: Icon(Icons.attach_money)),
-                            ),
-
-                            // Bill Date:
-                            TextFormField(
-                              // Validator receives the user input
-                              validator: (billDateValue) {
-                                // Return value variable (The information entered).
-                                if (billDateValue == null || billDateValue.isEmpty) {
-                                  return "Please enter the Bill Date";
-                                }
-                                // return null;
-                                return billDateValue;
-                              },
-                              decoration: const InputDecoration(
-                                  labelText: "Bill Date",
-                                  hintText: "October 45th, 1945",
-                                  prefixIcon: Icon(Icons.date_range)),
-                            ),
-                            const SizedBox(height: 15.0),
-                            // Submit Button
-                            ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  // If validate is true, then trigger snackbar.
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Center(
-                                        child: Text("Submitted"),
-                                      ),
-                                      backgroundColor: Colors.red,
-                                      closeIconColor: Colors.black,
-                                      showCloseIcon: true,
-                                    ),
-                                  );
-                                }
-                              },
-                              child: const Text("Enter",
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
-                            ),
-                          ],
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billNameValue) {
+                            // Return value variable (The information entered).
+                            if (billNameValue == null ||
+                                billNameValue.isEmpty) {
+                              return "Please the Bill Name";
+                            }
+                            // return null;
+                            return billNameValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Name",
+                              hintText: "Blockbuster",
+                              prefixIcon: Icon(Icons.edit)),
                         ),
-                      ),
+
+                        // Bill Total:
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billTotalValue) {
+                            // Return value variable (The information entered).
+                            if (billTotalValue == null ||
+                                billTotalValue.isEmpty) {
+                              return "Please enter the Bill Total";
+                            }
+                            // return null;
+                            return billTotalValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Total",
+                              hintText: "4.78 Ringgit",
+                              prefixIcon: Icon(Icons.attach_money)),
+                        ),
+
+                        // Bill Date:
+                        TextFormField(
+                          // Validator receives the user input
+                          validator: (billDateValue) {
+                            // Return value variable (The information entered).
+                            if (billDateValue == null || billDateValue.isEmpty) {
+                              return "Please enter the Bill Date";
+                            }
+                            // return null;
+                            return billDateValue;
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Bill Date",
+                              hintText: "19 BBY",
+                              prefixIcon: Icon(Icons.date_range)),
+                        ),
+                        const SizedBox(height: 15.0),
+                        // Submit Button
+                        ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              // If validate is true, then trigger snackbar.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Center(
+                                    child: Text("Submitted"),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  closeIconColor: Colors.black,
+                                  showCloseIcon: true,
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text("Enter",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
+              ],
+            ),
 
                 Text("Transaction History", style: Theme.of(context).textTheme.headlineMedium),
                 const Text("Displaying Most Recent", style: TextStyle(fontSize: 20)),
@@ -211,25 +217,29 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //   countIteration: index,
                                     // );
 
-                                    return BillCardsV2(
-                                      billName:
-                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                      billTotal: bill.totalSpent,
-                                      billDate: bill.dateTime.toString(),
+                                return BillCardsV2(
+                                  billName:
+                                      "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                  billTotal: bill.totalSpent,
+                                  billDate: bill.dateTime.toString(),
+                                );
+                              },
+                              separatorBuilder: (BuildContext context,
+                                      int index) =>
+                                  const Divider() // Separator Elements between each of the items
+                              ),
+                        )
+                      : const SizedBox.shrink();
+                }),
+          ],
+        ),
+      ),
 
-                                      // billTotal: 250.00,
-                                    );
-                                  },
-                                  separatorBuilder: (BuildContext context, int index) =>
-                                      const Divider() // Separator Elements between each of the items
-                                  ),
-                            )
-                          : const SizedBox.shrink();
-                    }),
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton.extended(
+
+      //* If you want this FAB accessible in any page, move to home_page.dart
+
+      // FAB:
+     floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
             onPressed: () {
               BillDataRepository().pushBillData(BillData(
@@ -244,51 +254,8 @@ class _MyHomePageState extends State<MyHomePage> {
             tooltip: 'Increment',
             label: const Text('Actions'),
             icon: const Icon(Symbols.view_cozy),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
+          ), // This traili
 
-          bottomNavigationBar: NavigationBar(
-            backgroundColor: Theme.of(context)
-                .colorScheme
-                .surfaceVariant, // Theme of the App (line 32) defines the background color
-            indicatorColor: Theme.of(context).colorScheme.secondary,
-            labelBehavior: NavigationDestinationLabelBehavior
-                .onlyShowSelected, // Only shows the label of the selected icon
-            //  animationDuration: const Duration(milliseconds: 1250),
-            height: 70.0,
-
-            destinations: const [
-              // Lists of Destinations
-              NavigationDestination(
-                icon: Icon(Icons.home),
-                selectedIcon: Icon(Icons.home_outlined),
-                label: 'Home',
-                tooltip: 'Return Home',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.attach_money),
-                selectedIcon: Icon(Icons.money_off),
-                label: 'Bills',
-                tooltip: 'Bill Splitting',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.person),
-                selectedIcon: Icon(Icons.person_outlined),
-                label: 'People',
-                tooltip: 'People',
-              ),
-            ],
-            onDestinationSelected: (int value) {
-              // On Navigation Selected, update the index
-              setState(() {
-                // Updates the State of the Current Page
-                _currentPage = value;
-              });
-            },
-            selectedIndex:
-                _currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
-          ),
-        ),
-      _ => const Placeholder(),
-    };
+    );
   }
 }

@@ -24,6 +24,7 @@ class SplitItApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'SplitIt',
+        debugShowCheckedModeBanner: false,  // Hides the Debug Banner
         theme: ThemeData(
           colorSchemeSeed: const Color(0xFF26B645),
           useMaterial3: true,
