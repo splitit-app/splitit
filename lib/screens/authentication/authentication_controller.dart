@@ -5,7 +5,6 @@ import 'package:project_bs/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/user/user_data.dart';
-import '../test_experiment_screen.dart';
 import '../../services/user_data_repository.dart';
 import 'login_screen.dart';
 

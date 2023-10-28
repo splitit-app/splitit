@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:project_bs/runtime_models/user/public_profile.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/bill/modules/bill_module_tax.dart';
@@ -20,8 +21,7 @@ class BillDataDTO with _$BillDataDTO {
     required DateTime lastUpdatedSession,
   }) = _BillDataDTO;
 
-  factory BillDataDTO.fromJson(Map<String, dynamic> json) =>
-      _$BillDataDTOFromJson(json);
+  factory BillDataDTO.fromJson(Map<String, dynamic> json) => _$BillDataDTOFromJson(json);
 
   BillDataDTO._();
 
@@ -29,6 +29,7 @@ class BillDataDTO with _$BillDataDTO {
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
+        payer: null,
         itemGroups: List.empty(),
         taxModule: BillModule_Tax(),
         tipModule: BillModule_Tip(),

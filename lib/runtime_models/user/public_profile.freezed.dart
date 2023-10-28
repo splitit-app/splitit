@@ -20,10 +20,10 @@ PublicProfile _$PublicProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PublicProfile {
-  String? get userId => throw _privateConstructorUsedError;
-  set userId(String? value) => throw _privateConstructorUsedError;
-  String? get profileId => throw _privateConstructorUsedError;
-  set profileId(String? value) => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  set uid(String value) => throw _privateConstructorUsedError;
+  PublicProfile? get createdBy => throw _privateConstructorUsedError;
+  set createdBy(PublicProfile? value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
 
@@ -39,7 +39,9 @@ abstract class $PublicProfileCopyWith<$Res> {
           PublicProfile value, $Res Function(PublicProfile) then) =
       _$PublicProfileCopyWithImpl<$Res, PublicProfile>;
   @useResult
-  $Res call({String? userId, String? profileId, String name});
+  $Res call({String uid, PublicProfile? createdBy, String name});
+
+  $PublicProfileCopyWith<$Res>? get createdBy;
 }
 
 /// @nodoc
@@ -55,24 +57,36 @@ class _$PublicProfileCopyWithImpl<$Res, $Val extends PublicProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? profileId = freezed,
+    Object? uid = null,
+    Object? createdBy = freezed,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profileId: freezed == profileId
-          ? _value.profileId
-          : profileId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as PublicProfile?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PublicProfileCopyWith<$Res>? get createdBy {
+    if (_value.createdBy == null) {
+      return null;
+    }
+
+    return $PublicProfileCopyWith<$Res>(_value.createdBy!, (value) {
+      return _then(_value.copyWith(createdBy: value) as $Val);
+    });
   }
 }
 
@@ -84,7 +98,10 @@ abstract class _$$_PublicProfileCopyWith<$Res>
       __$$_PublicProfileCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? userId, String? profileId, String name});
+  $Res call({String uid, PublicProfile? createdBy, String name});
+
+  @override
+  $PublicProfileCopyWith<$Res>? get createdBy;
 }
 
 /// @nodoc
@@ -98,19 +115,19 @@ class __$$_PublicProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? profileId = freezed,
+    Object? uid = null,
+    Object? createdBy = freezed,
     Object? name = null,
   }) {
     return _then(_$_PublicProfile(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profileId: freezed == profileId
-          ? _value.profileId
-          : profileId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as PublicProfile?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -122,22 +139,22 @@ class __$$_PublicProfileCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PublicProfile extends _PublicProfile {
-  _$_PublicProfile({this.userId, this.profileId, required this.name})
+  _$_PublicProfile({required this.uid, this.createdBy, required this.name})
       : super._();
 
   factory _$_PublicProfile.fromJson(Map<String, dynamic> json) =>
       _$$_PublicProfileFromJson(json);
 
   @override
-  String? userId;
+  String uid;
   @override
-  String? profileId;
+  PublicProfile? createdBy;
   @override
   String name;
 
   @override
   String toString() {
-    return 'PublicProfile(userId: $userId, profileId: $profileId, name: $name)';
+    return 'PublicProfile(uid: $uid, createdBy: $createdBy, name: $name)';
   }
 
   @JsonKey(ignore: true)
@@ -156,8 +173,8 @@ class _$_PublicProfile extends _PublicProfile {
 
 abstract class _PublicProfile extends PublicProfile {
   factory _PublicProfile(
-      {String? userId,
-      String? profileId,
+      {required String uid,
+      PublicProfile? createdBy,
       required String name}) = _$_PublicProfile;
   _PublicProfile._() : super._();
 
@@ -165,11 +182,11 @@ abstract class _PublicProfile extends PublicProfile {
       _$_PublicProfile.fromJson;
 
   @override
-  String? get userId;
-  set userId(String? value);
+  String get uid;
+  set uid(String value);
   @override
-  String? get profileId;
-  set profileId(String? value);
+  PublicProfile? get createdBy;
+  set createdBy(PublicProfile? value);
   @override
   String get name;
   set name(String value);

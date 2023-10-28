@@ -8,23 +8,26 @@ part 'public_profile.g.dart';
 @unfreezed
 class PublicProfile with _$PublicProfile {
   factory PublicProfile({
-    String? userId,
-    String? profileId,
+    required String uid,
+    PublicProfile? createdBy,
     required String name,
     //Image? profileImage,
   }) = _PublicProfile;
 
-  factory PublicProfile.fromJson(Map<String, dynamic> json) =>
-      _$PublicProfileFromJson(json);
+  factory PublicProfile.fromJson(Map<String, dynamic> json) => _$PublicProfileFromJson(json);
 
   PublicProfile._();
 
-  bool get hasUserId => userId != null && userId!.isNotEmpty;
+  bool get isRegistered => createdBy == null;
 
-  PublicProfileDTO get toDataTransferObj => PublicProfileDTO(name: name);
+  PublicProfileDTO get toDataTransferObj => PublicProfileDTO(
+        uid: uid,
+        createdBy: createdBy?.uid,
+        name: name,
+      );
 
   void syncToActiveAccount(PublicProfile activeProfile) {
-    if (hasUserId) return;
+    if (isRegistered) return;
 
     //userId = activeProfile.userId;
     //name = activeProfile.name;

@@ -8,15 +8,18 @@ part 'public_profile_dto.g.dart';
 @freezed
 class PublicProfileDTO with _$PublicProfileDTO {
   factory PublicProfileDTO({
+    required String uid,
+    String? createdBy,
     required String name,
   }) = _PublicProfileDTO;
 
-  factory PublicProfileDTO.fromJson(Map<String, dynamic> json) =>
-      _$PublicProfileDTOFromJson(json);
+  factory PublicProfileDTO.fromJson(Map<String, dynamic> json) => _$PublicProfileDTOFromJson(json);
 
   PublicProfileDTO._();
 
-  PublicProfile get toRuntimeObj => PublicProfile(
+  PublicProfile toRuntimeObj(String uid, {PublicProfile? createdBy}) => PublicProfile(
+        uid: uid,
+        createdBy: createdBy,
         name: name,
       );
 }

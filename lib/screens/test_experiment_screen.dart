@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/screens/friends_screen/friends_page.dart';
 import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/bill/modules/bill_module_tax.dart';
 import '../runtime_models/bill/modules/bill_module_tip.dart';
-import '../runtime_models/user/public_profile.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
 import '../services/bill_data_repository.dart';
@@ -54,54 +52,52 @@ class _MyHomePageState extends State<MyHomePage> {
     //   2 => const FriendsPage(),
     //   0 || 1 => Scaffold(
 
-      return Scaffold(
-          appBar: AppBar(
-            // TRY THIS: Try changing the color here to a specific color (to
-            // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-            // change color while the other colors stay the same.
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
 
-            backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
 
-            title: userData != null
-                ? Text(userData.publicProfile.name)
-                : const SizedBox.shrink(), //Text(widget.title)
+        title: userData == null ? const SizedBox.shrink() : Text(userData.publicProfile.name),
 
-            actions: [
-              ElevatedButton(
-                onPressed: AuthenticationService().signOut,
-                child: const Text('Log out'),
-              )
-            ],
-          ),
-          body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: Column(
-              // Column is also a layout widget. It takes a list of children and
-              // arranges them vertically. By default, it sizes itself to fit its
-              // children horizontally, and tries to be as tall as its parent.
-              //
-              // Column has various properties to control how it sizes itself and
-              // how it positions its children. Here we use mainAxisAlignment to
-              // center the children vertically; the main axis here is the vertical
-              // axis because Columns are vertical (the cross axis would be
-              // horizontal).
-              //
-              // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-              // action in the IDE, or press "p" in the console), to see the
-              // wireframe for each widget.
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                // User Inputs:
+        actions: [
+          ElevatedButton(
+            onPressed: AuthenticationService().signOut,
+            child: const Text('Log out'),
+          )
+        ],
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // User Inputs:
 
-                // Bill Name:
-                ExpansionTile(
-                  // Expansion List Tile
-                  title: const Center(child: Text("Inputs")),
-                  subtitle: const Text("Click to Expand"),
-                  initiallyExpanded: true,
-                  // backgroundColor: Colors.red,
-                  // collapsedBackgroundColor: Colors.black,
+            // Bill Name:
+            ExpansionTile(
+              // Expansion List Tile
+              title: const Center(child: Text("Inputs")),
+              subtitle: const Text("Click to Expand"),
+              initiallyExpanded: true,
+              // backgroundColor: Colors.red,
+              // collapsedBackgroundColor: Colors.black,
 
               children: [
                 Padding(
@@ -114,8 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Validator receives the user input
                           validator: (billNameValue) {
                             // Return value variable (The information entered).
-                            if (billNameValue == null ||
-                                billNameValue.isEmpty) {
+                            if (billNameValue == null || billNameValue.isEmpty) {
                               return "Please the Bill Name";
                             }
                             // return null;
@@ -132,8 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Validator receives the user input
                           validator: (billTotalValue) {
                             // Return value variable (The information entered).
-                            if (billTotalValue == null ||
-                                billTotalValue.isEmpty) {
+                            if (billTotalValue == null || billTotalValue.isEmpty) {
                               return "Please enter the Bill Total";
                             }
                             // return null;
@@ -179,8 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               );
                             }
                           },
-                          child: const Text("Enter",
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          child: const Text("Enter", style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),
@@ -189,12 +182,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
 
-                Text("Transaction History", style: Theme.of(context).textTheme.headlineMedium),
-                const Text("Displaying Most Recent", style: TextStyle(fontSize: 20)),
+            Text("Transaction History", style: Theme.of(context).textTheme.headlineMedium),
+            const Text("Displaying Most Recent", style: TextStyle(fontSize: 20)),
 
+            userData == null
+                ? const SizedBox.shrink()
+                :
                 // Data from Database:
                 StreamBuilder<List<BillData>?>(
-                    stream: BillDataRepository().billDataStream,
+                    stream: BillDataRepository(uid: userData.uid).billDataStream,
                     builder: (context, snapshot) {
                       return snapshot.hasData
                           ? Expanded(
@@ -217,45 +213,46 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //   countIteration: index,
                                     // );
 
-                                return BillCardsV2(
-                                  billName:
-                                      "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                  billTotal: bill.totalSpent,
-                                  billDate: bill.dateTime.toString(),
-                                );
-                              },
-                              separatorBuilder: (BuildContext context,
-                                      int index) =>
-                                  const Divider() // Separator Elements between each of the items
-                              ),
-                        )
-                      : const SizedBox.shrink();
-                }),
+                                    return BillCardsV2(
+                                      billName:
+                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                      billTotal: bill.totalSpent,
+                                      billDate: bill.dateTime.toString(),
+                                    );
+                                  },
+                                  separatorBuilder: (BuildContext context, int index) =>
+                                      const Divider() // Separator Elements between each of the items
+                                  ),
+                            )
+                          : const SizedBox.shrink();
+                    }),
           ],
         ),
       ),
 
-
       //* If you want this FAB accessible in any page, move to home_page.dart
 
       // FAB:
-     floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-            onPressed: () {
-              BillDataRepository().pushBillData(BillData(
-                dateTime: DateTime.now(),
-                itemGroups: List.empty(),
-                taxModule: BillModule_Tax(),
-                tipModule: BillModule_Tip(),
-                payer: PublicProfile(userId: context.read<UserData>().uid, name: 'bruh'),
-                lastUpdatedSession: DateTime.now(),
-              ));
-            },
-            tooltip: 'Increment',
-            label: const Text('Actions'),
-            icon: const Icon(Symbols.view_cozy),
-          ), // This traili
 
+      floatingActionButton: userData == null
+          ? const SizedBox.shrink()
+          : FloatingActionButton.extended(
+              backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+              onPressed: () {
+                //TODO: Fix single declaration of billdatarepo
+                BillDataRepository(uid: userData.uid).pushBillData(BillData(
+                  dateTime: DateTime.now(),
+                  itemGroups: List.empty(),
+                  taxModule: BillModule_Tax(),
+                  tipModule: BillModule_Tip(),
+                  payer: userData.publicProfile,
+                  lastUpdatedSession: DateTime.now(),
+                ));
+              },
+              tooltip: 'Increment',
+              label: const Text('Actions'),
+              icon: const Icon(Symbols.view_cozy),
+            ), // This traili
     );
   }
 }

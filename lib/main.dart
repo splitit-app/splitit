@@ -26,8 +26,9 @@ class SplitItApp extends StatelessWidget {
         title: 'SplitIt',
         debugShowCheckedModeBanner: false,  // Hides the Debug Banner
         theme: ThemeData(
-          colorSchemeSeed: const Color(0xFF26B645),
           useMaterial3: true,
+          colorSchemeSeed: const Color(0xFF26B645),
+          brightness: Brightness.light,
         ),
         home: StreamProvider.value(
           value: AuthenticationService().userAuthState,

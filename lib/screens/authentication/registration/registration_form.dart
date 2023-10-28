@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_bs/utilities/scroll_animations.dart';
 
-import '../../../runtime_models/user/public_profile.dart';
 import '../../../services/authentication_service.dart';
 
 class RegistrationForm {
@@ -23,7 +22,7 @@ class RegistrationForm {
     _authenticationService.createUserWith_EmailAndPassword(
       email: emailFieldController.text,
       password: passwordFieldController.text,
-      publicProfile: PublicProfile(name: nameFieldController.text),
+      username: nameFieldController.text,
     );
   }
 

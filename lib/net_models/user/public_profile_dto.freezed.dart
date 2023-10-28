@@ -20,6 +20,8 @@ PublicProfileDTO _$PublicProfileDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PublicProfileDTO {
+  String get uid => throw _privateConstructorUsedError;
+  String? get createdBy => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,7 @@ abstract class $PublicProfileDTOCopyWith<$Res> {
           PublicProfileDTO value, $Res Function(PublicProfileDTO) then) =
       _$PublicProfileDTOCopyWithImpl<$Res, PublicProfileDTO>;
   @useResult
-  $Res call({String name});
+  $Res call({String uid, String? createdBy, String name});
 }
 
 /// @nodoc
@@ -50,9 +52,19 @@ class _$PublicProfileDTOCopyWithImpl<$Res, $Val extends PublicProfileDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
+    Object? createdBy = freezed,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -69,7 +81,7 @@ abstract class _$$_PublicProfileDTOCopyWith<$Res>
       __$$_PublicProfileDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call({String uid, String? createdBy, String name});
 }
 
 /// @nodoc
@@ -83,9 +95,19 @@ class __$$_PublicProfileDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
+    Object? createdBy = freezed,
     Object? name = null,
   }) {
     return _then(_$_PublicProfileDTO(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -97,17 +119,22 @@ class __$$_PublicProfileDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PublicProfileDTO extends _PublicProfileDTO {
-  _$_PublicProfileDTO({required this.name}) : super._();
+  _$_PublicProfileDTO({required this.uid, this.createdBy, required this.name})
+      : super._();
 
   factory _$_PublicProfileDTO.fromJson(Map<String, dynamic> json) =>
       _$$_PublicProfileDTOFromJson(json);
 
   @override
+  final String uid;
+  @override
+  final String? createdBy;
+  @override
   final String name;
 
   @override
   String toString() {
-    return 'PublicProfileDTO(name: $name)';
+    return 'PublicProfileDTO(uid: $uid, createdBy: $createdBy, name: $name)';
   }
 
   @override
@@ -115,12 +142,15 @@ class _$_PublicProfileDTO extends _PublicProfileDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PublicProfileDTO &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, uid, createdBy, name);
 
   @JsonKey(ignore: true)
   @override
@@ -137,12 +167,19 @@ class _$_PublicProfileDTO extends _PublicProfileDTO {
 }
 
 abstract class _PublicProfileDTO extends PublicProfileDTO {
-  factory _PublicProfileDTO({required final String name}) = _$_PublicProfileDTO;
+  factory _PublicProfileDTO(
+      {required final String uid,
+      final String? createdBy,
+      required final String name}) = _$_PublicProfileDTO;
   _PublicProfileDTO._() : super._();
 
   factory _PublicProfileDTO.fromJson(Map<String, dynamic> json) =
       _$_PublicProfileDTO.fromJson;
 
+  @override
+  String get uid;
+  @override
+  String? get createdBy;
   @override
   String get name;
   @override

@@ -25,7 +25,7 @@ class AuthenticationService {
   Future<void> createUserWith_EmailAndPassword({
     required String email,
     required String password,
-    required PublicProfile publicProfile,
+    required String username,
   }) async {
     try {
       User? user =
@@ -37,7 +37,7 @@ class AuthenticationService {
       //Construct new user
       await UserDataRepository(uid: user.uid).pushUserData(UserData(
         uid: user.uid,
-        publicProfile: publicProfile,
+        publicProfile: PublicProfile(uid: user.uid, name: username),
         privateProfile: PrivateProfile(themeData: ThemeData.light()),
         registeredFriends: List.empty(),
         nonRegisteredFriends: List.empty(),

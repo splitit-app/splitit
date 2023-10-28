@@ -8,14 +8,16 @@ part of 'public_profile.dart';
 
 _$_PublicProfile _$$_PublicProfileFromJson(Map<String, dynamic> json) =>
     _$_PublicProfile(
-      userId: json['userId'] as String?,
-      profileId: json['profileId'] as String?,
+      uid: json['uid'] as String,
+      createdBy: json['createdBy'] == null
+          ? null
+          : PublicProfile.fromJson(json['createdBy'] as Map<String, dynamic>),
       name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$_PublicProfileToJson(_$_PublicProfile instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
-      'profileId': instance.profileId,
+      'uid': instance.uid,
+      'createdBy': instance.createdBy,
       'name': instance.name,
     };

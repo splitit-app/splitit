@@ -32,7 +32,7 @@ class BillData with _$BillData {
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
-        payerUid: payer!.userId!,
+        payerUid: payer!.uid,
         lastUpdatedSession: lastUpdatedSession,
       );
 }

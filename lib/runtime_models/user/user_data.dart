@@ -9,6 +9,8 @@ part 'user_data.freezed.dart';
 
 @unfreezed
 class UserData with _$UserData {
+  static const int nonRegisteredFriendLimit = 30;
+
   factory UserData({
     required String uid,
     //required String name,
@@ -18,18 +20,16 @@ class UserData with _$UserData {
     required List<PublicProfile> nonRegisteredFriends,
   }) = _UserData;
 
-  static const int nonRegisteredFriendLimit = 30;
-
   UserData._();
 
   UserDataDTO get toDataTransferObj => UserDataDTO(
-      publicProfile: publicProfile.toDataTransferObj,
-      registeredFriendUids: registeredFriends
-          .where((friend) => friend.hasUserId)
-          .map((friend) => friend.userId!)
-          .toList(),
-      nonRegisteredFriends: nonRegisteredFriends
-          .map((friend) => friend.toDataTransferObj)
-          .toList(),
-      lastUpdatedSession: DateTime.now());
+        publicProfile: publicProfile.toDataTransferObj,
+        registeredFriendUids: registeredFriends
+            .where((friend) => friend.isRegistered)
+            .map((friend) => friend.uid)
+            .toList(),
+        nonRegisteredFriends:
+            nonRegisteredFriends.map((friend) => friend.toDataTransferObj).toList(),
+        lastUpdatedSession: DateTime.now(),
+      );
 }
