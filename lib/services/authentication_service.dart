@@ -35,7 +35,7 @@ class AuthenticationService {
       if (user == null) return;
 
       //Construct new user
-      await UserDataRepository(uid: user.uid).pushUserData(UserData(
+      await UserDataRepository.user(uid: user.uid).pushUserData(UserData(
         uid: user.uid,
         publicProfile: PublicProfile(uid: user.uid, name: username),
         privateProfile: PrivateProfile(themeData: ThemeData.light()),

@@ -4,9 +4,10 @@ import '../net_models/user/user_data_dto.dart';
 import '../runtime_models/user/user_data.dart';
 
 class UserDataRepository {
-  UserDataRepository({required this.uid});
+  UserDataRepository();
+  UserDataRepository.user({required this.uid});
 
-  final String uid;
+  late String uid;
 
   DocumentReference<Map<String, dynamic>> get userDocumentReference =>
       FirebaseFirestore.instance.collection('users').doc(uid);
@@ -20,7 +21,7 @@ class UserDataRepository {
   //     FirestoreCache.getDocument(userDocumentReference, source: Source.server);
 
   UserData? snapshotToRuntimeObj(DocumentSnapshot<Map<String, dynamic>> snapshot) =>
-      snapshot.exists ? UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid) : null;
+      snapshot.exists ? UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid!) : null;
 
   Future<void> pushUserData(UserData userData) async =>
       await userDocumentReference.set(userData.toDataTransferObj.toJson());

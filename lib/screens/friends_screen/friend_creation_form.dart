@@ -20,6 +20,6 @@ class FriendCreationForm {
       name: nameFieldController.text,
     ));
 
-    UserDataRepository(uid: userData.uid).pushUserData(userData);
+    UserDataRepository.user(uid: userData.uid).pushUserData(userData);
   }
 }
