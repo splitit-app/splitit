@@ -6,7 +6,6 @@ import 'screens/authentication/authentication_controller.dart';
 import '../services/authentication_service.dart';
 import 'firebase_options.dart';
 
-import 'package:project_bs/screens/mockup_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +25,8 @@ class SplitItApp extends StatelessWidget {
         title: 'SplitIt',
         debugShowCheckedModeBanner: false,  // Hides the Debug Banner
         theme: ThemeData(
-          useMaterial3: true,
           colorSchemeSeed: const Color(0xFF26B645),
-          brightness: Brightness.light,
+          useMaterial3: true,
         ),
         home: StreamProvider.value(
           value: AuthenticationService().userAuthState,

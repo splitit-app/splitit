@@ -5,8 +5,7 @@ import 'package:project_bs/screens/test_experiment_screen.dart';
 import '../一experiments/test_firebase.dart';
 
 class MainHomePage extends StatefulWidget {
-  final String title;
-  const MainHomePage({super.key, required this.title});
+  const MainHomePage({super.key});
 
   @override
   State<MainHomePage> createState() => _MainHomePageState();
@@ -19,12 +18,11 @@ class _MainHomePageState extends State<MainHomePage> {
 
   // List of Pages accessed through currentPage indexing
   final screens = [
-    const MyHomePage(title: "BS Home Page"),
-    PageTest(), // hardcoded-placeholder for now
-    const FriendsPage(),
-
-    // const Center(child: Text("Bills, WIP", style:  TextStyle(fontSize: 65.0))),
     // const MockUpPage(),
+    const MyHomePageV2(),
+    const MyHomePage(),
+    PageTest(),
+    const FriendsPage(),
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
@@ -39,20 +37,27 @@ class _MainHomePageState extends State<MainHomePage> {
       bottomNavigationBar: NavigationBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant, // Theme of the App (line 32) defines the background color
         indicatorColor: Theme.of(context).colorScheme.tertiary,
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected, // Only shows the label of the selected icon
-        // height: 70.0,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow, // Only shows the label of the selected icon
+        animationDuration: const Duration(milliseconds: 1500),
+        height: 70.0,
 
         destinations: const [
           // Lists of Destinations
           NavigationDestination(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_sharp),
+            selectedIcon: Icon(Icons.home_outlined),
+            label: 'Home (Exp)',
+            tooltip: 'Return Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.home_sharp),
             selectedIcon: Icon(Icons.home_outlined),
             label: 'Home',
             tooltip: 'Return Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.attach_money),
-            selectedIcon: Icon(Icons.money_off),
+            icon: Icon(Icons.payments),
+            selectedIcon: Icon(Icons.payments_outlined),
             label: 'Bills',
             tooltip: 'Bill Splitting',
           ),

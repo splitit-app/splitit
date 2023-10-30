@@ -8,7 +8,7 @@ import '../runtime_models/bill/modules/bill_module_tip.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
 import '../services/bill_data_repository.dart';
-import '../utilities/bill_cards_v2.dart';
+import '../utilities/bill_cards.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -20,8 +20,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -213,19 +212,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //   countIteration: index,
                                     // );
 
-                                    return BillCardsV2(
-                                      billName:
-                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                      billTotal: bill.totalSpent,
-                                      billDate: bill.dateTime.toString(),
-                                    );
-                                  },
-                                  separatorBuilder: (BuildContext context, int index) =>
-                                      const Divider() // Separator Elements between each of the items
-                                  ),
-                            )
-                          : const SizedBox.shrink();
-                    }),
+                                return BillCards(
+                                  billName:
+                                      "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                  billTotal: bill.totalSpent,
+                                  billDate: bill.dateTime.toString(),
+                                );
+                              },
+                              separatorBuilder: (BuildContext context,int index) => const Divider() // Separator Elements between each of the items
+                              ),
+                        )
+                      : const SizedBox.shrink();
+                }),
           ],
         ),
       ),

@@ -15,7 +15,7 @@ class FriendsPage extends StatefulWidget {
 
 class _FriendsPageState extends State<FriendsPage> {
   // The controller keeps track on the user input from the Search Bar.
-  final _textController = TextEditingController();
+  final _searchBarController = TextEditingController();
 
   // Page Controller for Page Indicator
   final _controller = PageController(initialPage: 0);
@@ -44,61 +44,78 @@ class _FriendsPageState extends State<FriendsPage> {
         // Fixes the RenderFlex Overflow on SearchBar Focus
         child: Column(
           children: [
+
             // Search Bar:
-            // Using TextField as Search Bar to get User Input
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: TextField(
-                controller: _textController,
-                decoration: InputDecoration(
-                  filled: true,
-                  // fillColor: Theme.of(context).colorScheme.onSurface,   // surface_container_high
-                  fillColor: Colors.grey[500],
-
-                  // Prefix and Suffix Icon Styling
-                  prefixIconColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceVariant, // on_surface_variant
-                  suffixIconColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceVariant, // on_surface_variant
-                  prefixStyle: const TextStyle(fontSize: 24.0),
-                  suffixStyle: const TextStyle(fontSize: 24.0),
-
-                  // Padding and Border Radius
-                  contentPadding: const EdgeInsets.all(20.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20.0),
+              child: SearchBar(
+                controller: _searchBarController,
+                leading: const Icon(Symbols.menu),
+                trailing: const <Widget>[
+                  Tooltip(
+                    message: "Search",
+                    child: Icon(Symbols.search),
                   ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-
-                  prefixIcon: IconButton(
-                    // Menu icon Button
-                    onPressed: () {},
-                    icon: const Icon(Symbols.menu),
-                  ),
-                  border: const OutlineInputBorder(),
-                  hintText: "Search Friends & Groups",
-                  suffixIcon: IconButton(
-                    // Search icon Button
-                    onPressed: () {},
-                    icon: const Icon(Symbols.search),
-                  ),
-
-                  // suffixIcon: IconButton(
-                  //   // Clear Search Input
-                  //   onPressed: () {
-                  //     _textController.clear(); // Clears the Search Input
-                  //   },
-                  //   icon: const Icon(Symbols.close),
-                  // ),
-                ),
+                ],
+                padding: const MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(horizontal: 15.0)),
               ),
             ),
+
+
+            // Using TextField as Search Bar to get User Input
+            // Padding(
+            //   padding: const EdgeInsets.all(15.0),
+            //   child: TextField(
+            //     controller: _textController,
+            //     decoration: InputDecoration(
+            //       filled: true,
+            //       // fillColor: Theme.of(context).colorScheme.onSurface,   // surface_container_high
+            //       fillColor: Colors.grey[500],
+
+            //       // Prefix and Suffix Icon Styling
+            //       prefixIconColor: Theme.of(context)
+            //           .colorScheme
+            //           .surfaceVariant, // on_surface_variant
+            //       suffixIconColor: Theme.of(context)
+            //           .colorScheme
+            //           .surfaceVariant, // on_surface_variant
+            //       prefixStyle: const TextStyle(fontSize: 24.0),
+            //       suffixStyle: const TextStyle(fontSize: 24.0),
+
+            //       // Padding and Border Radius
+            //       contentPadding: const EdgeInsets.all(20.0),
+            //       focusedBorder: OutlineInputBorder(
+            //         borderSide: const BorderSide(color: Colors.white),
+            //         borderRadius: BorderRadius.circular(20.0),
+            //       ),
+            //       enabledBorder: UnderlineInputBorder(
+            //         borderSide: const BorderSide(color: Colors.white),
+            //         borderRadius: BorderRadius.circular(20.0),
+            //       ),
+
+            //       prefixIcon: IconButton(
+            //         // Menu icon Button
+            //         onPressed: () {},
+            //         icon: const Icon(Symbols.menu),
+            //       ),
+            //       border: const OutlineInputBorder(),
+            //       hintText: "Search Friends & Groups",
+            //       suffixIcon: IconButton(
+            //         // Search icon Button
+            //         onPressed: () {},
+            //         icon: const Icon(Symbols.search),
+            //       ),
+
+            //       // suffixIcon: IconButton(
+            //       //   // Clear Search Input
+            //       //   onPressed: () {
+            //       //     _textController.clear(); // Clears the Search Input
+            //       //   },
+            //       //   icon: const Icon(Symbols.close),
+            //       // ),
+            //     ),
+            // ),
+            // ),
 
             // Contains Friend Profiles
             Padding(
@@ -119,7 +136,7 @@ class _FriendsPageState extends State<FriendsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    FriendsPageOverview(), // Navigates the FriendsPageOverview Page
+                                    const FriendsPageOverview(), // Navigates the FriendsPageOverview Page
                               ),
                             );
                           },
@@ -228,11 +245,14 @@ class _FriendsPageState extends State<FriendsPage> {
   }
 }
 
-class FriendsPageOverview extends StatelessWidget {
-  FriendsPageOverview({super.key});
+class FriendsPageOverview extends StatefulWidget {
+  const FriendsPageOverview({super.key});
 
-  final _textController = TextEditingController();
+  @override
+  State<FriendsPageOverview> createState() => _FriendsPageOverviewState();
+}
 
+class _FriendsPageOverviewState extends State<FriendsPageOverview> {
   final List _names = [
     "Sydney",
     "Ronald",
@@ -247,6 +267,51 @@ class FriendsPageOverview extends StatelessWidget {
     "Max",
     "Spiderman",
   ];
+
+  final _searchBarController = TextEditingController();
+  final addFriendTextController = TextEditingController(); // Keeps track of user input in Add-Friend Textfield
+  final friendNameList = [];
+
+  // Add Friend Method
+  void _addFriendDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Add Friend"),
+        content: TextFormField(
+          controller: addFriendTextController,
+          autofocus:
+              true, // Auto-focuses on the text to allow for the keyboard to automatically display
+          decoration: InputDecoration(
+            labelText: "Name: ",
+            hintText: "Roberto Cruz",
+            border: const OutlineInputBorder(),
+            suffixIcon: IconButton(
+              onPressed: () {
+                addFriendTextController.clear(); // Clears the input
+              },
+              icon: const Icon(Symbols.close),
+            ),
+          ),
+        ),
+        actions: [
+          // Add Button
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                friendNameList.add(
+                    addFriendTextController.text); // Adds user inputs into list
+              });
+              addFriendTextController.clear(); // Clears the input
+              Navigator.of(context).pop(); // Exits out of the Dialog
+            },
+            color: Theme.of(context).colorScheme.tertiaryContainer,
+            child: const Text("Add"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -271,222 +336,188 @@ class FriendsPageOverview extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        // Fixes the RenderFlex Overflow on SearchBar Focus
-        child: Column(
-          children: [
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
             // Search Bar:
-            // Using TextField as Search Bar to get User Input
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: TextField(
-                controller: _textController,
-                decoration: InputDecoration(
-                  filled: true,
-                  // fillColor: Theme.of(context).colorScheme.onSurface,   // surface_container_high
-                  fillColor: Colors.grey[500],
-
-                  // Prefix and Suffix Icon Styling
-                  prefixIconColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceVariant, // on_surface_variant
-                  suffixIconColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceVariant, // on_surface_variant
-                  prefixStyle: const TextStyle(fontSize: 24.0),
-                  suffixStyle: const TextStyle(fontSize: 24.0),
-
-                  // Padding and Border Radius
-                  contentPadding: const EdgeInsets.all(20.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20.0),
+              child: SearchBar(
+                controller: _searchBarController,
+                leading: const Icon(Symbols.menu),
+                trailing: const <Widget>[
+                  Tooltip(
+                    message: "Search",
+                    child: Icon(Symbols.search),
                   ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-
-                  prefixIcon: IconButton(
-                    // Menu icon Button
-                    onPressed: () {},
-                    icon: const Icon(Symbols.menu),
-                  ),
-                  border: const OutlineInputBorder(),
-                  hintText: "Search Friends",
-                  suffixIcon: IconButton(
-                    // Clear Search Input
-                    onPressed: () {
-                      _textController.clear(); // Clears the Search Input
-                    },
-                    icon: const Icon(Symbols.close),
-                  ),
-                ),
+                ],
+                padding: const MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(horizontal: 15.0)),
               ),
             ),
 
-            // Friend Profile View using Instagram Stories like UI with ListView Builder
-            const Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text(
-                    "Recent Victims",
-                    style: TextStyle(fontSize: 20.0),
-                    textAlign: TextAlign.right,
-                  ),
+          // Friend Profile View using Instagram Stories like UI with ListView Builder
+          const Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
+                child: Text(
+                  "Recent Victims",
+                  style: TextStyle(fontSize: 20.0),
+                  textAlign: TextAlign.right,
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _names.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Row(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            PersonIcon(
-                              personName: _names[index],
-                            ),
-                            Text(_names[index],
-                                style: const TextStyle(fontSize: 16.0)),
-                          ],
-                        ),
-                        const SizedBox(width: 25.0),
-                      ],
-                    ),
-                  );
-                },
               ),
-            ),
-            const Divider(),
-            const SizedBox(height: 10.0),
-            Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text(
-                    "Friends",
-                    style: TextStyle(fontSize: 20.0),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-                // Displays Friend Total
-                Container(
-                  height: 25.0,
-                  width: 65.0,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
+            ],
+          ),
+          SizedBox(
+            height: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _names.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(5.0),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.center, // Centering Text
                     children: [
-                      Text(
-                        // "0",
-                        '${_names.length}',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          PersonIcon(
+                            personName: _names[index],
+                          ),
+                          Text(_names[index],
+                              style: const TextStyle(fontSize: 16.0)),
+                        ],
                       ),
+                      const SizedBox(width: 25.0),
                     ],
                   ),
-                ),
-              ],
+                );
+              },
             ),
-
-            SizedBox(
-              height: 600,
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: _names.length,
-                itemBuilder: (context, index) {
-                  return Slidable(
-                      // Slide from the Left (or Top)
-                      startActionPane: ActionPane(
-                        // Controls how the Pane animates
-                        motion: const StretchMotion(),
-                        // dismissible: DismissiblePane(onDismissed: () {}),
-
-                        // All Actions:
-                        children: [
-                          SlidableAction(
-                            onPressed: ((context) {
-
-
-                              // action
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('No. No no no no.'),
-                                  action: SnackBarAction(
-                                    label: 'Yeeeeaaah',
-                                    onPressed: () {
-                                      // Code to execute.
-                                    },
-                                  ),
-                                ),
-                              );
-
-
-                            }),
-                            backgroundColor: const Color(0xFFD42B2B),
-                            foregroundColor: Colors.white,
-                            borderRadius:  const BorderRadius.only(bottomLeft: Radius.circular(25.0)),
-                            icon: Symbols.delete,
-                            label: "Delete",
-                          ),
-                        ],
-                      ),
-
-                      // Slide from the Right (or Bottom)
-                      endActionPane: ActionPane(
-                        motion: const StretchMotion(),
-
-                        // All Actions:
-                        children: [
-                          SlidableAction(
-                            // flex: 2,
-                            onPressed: ((context) {
-                              // action
-                            }),
-                            backgroundColor: const Color(0xFF2B82D4),
-                            foregroundColor: Colors.white,
-                            borderRadius:  const BorderRadius.only(bottomRight: Radius.circular(25.0)),
-                            icon: Symbols.chat,
-                            label: "Chat'em up",
-                          ),
-                        ],
-                      ),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFF1EFEF),
-                          // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25.0), bottomRight: Radius.circular(25.0)),
-                          ),
-                        child: ListTile(
-                          title: Text('${_names[index]}'),
-                          subtitle: const Text("Subtitles Subtitles Subtitles"),
-                          leading: PersonIcon(personName: _names[index]),
-                          trailing: const Icon(Symbols.drag_handle),
-                          // leading: const CircleAvatar(
-                          //   radius: 30,
-                          //   backgroundImage: NetworkImage(
-                          //       "https://i.pinimg.com/originals/14/2f/a7/142fa7f209297073e4648f11ed842a6a.jpg"),
-                          // ),
+          ),
+          const Divider(),
+          const SizedBox(height: 10.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Text(
+                      "Friends",
+                      style: TextStyle(fontSize: 20.0),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                  // Displays Friend Total
+                  Container(
+                    height: 25.0,
+                    width: 65.0,
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.center, // Centering Text
+                      children: [
+                        Text(
+                          '${friendNameList.length}',
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w500),
                         ),
-                      ));
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
+                      ],
+                    ),
+                  ),
+                ],
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: GestureDetector(
+                  onTap: _addFriendDialog, // Show Dialog Method
+                  // onTap: _showDialog, // Show Dialog Method
+                  child: const Text(
+                    "Add Friend",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 15.0),
+
+          // Friend List (Slidable Tiles)
+          Expanded(
+            child: ListView.separated(
+              itemCount: friendNameList.length,
+              itemBuilder: (context, index) {
+                return Slidable(
+                    // Slide from the Left (or Top)
+                    startActionPane: ActionPane(
+                      // Controls how the Pane animates
+                      motion: const StretchMotion(),
+
+                      // All Actions:
+                      children: [
+                        SlidableAction(
+                          onPressed: ((context) {
+                            // Snackbar Message on action:
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                    'You\'ve abandoned your friend!'),
+                                action: SnackBarAction(
+                                  label: 'Adios',
+                                  onPressed: () {
+                                    // (Delete) Removing Friend
+                                  },
+                                ),
+                              ),
+                            );
+                          }),
+                          backgroundColor: const Color(0xFFD42B2B),
+                          foregroundColor: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(25.0)),
+                          icon: Symbols.delete,
+                          label: "Abandon",
+                        ),
+                      ],
+                    ),
+                    // Slide from the Right (or Bottom)
+                    endActionPane: ActionPane(
+                      motion: const StretchMotion(),
+                      // All Actions:
+                      children: [
+                        SlidableAction(
+                          onPressed: ((context) {}),
+                          backgroundColor: const Color(0xFF2B82D4),
+                          foregroundColor: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(25.0)),
+                          icon: Symbols.chat,
+                          label: "Nothing",
+                        ),
+                      ],
+                    ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF1EFEF),
+                      ),
+                      child: ListTile(
+                        title: Text('${friendNameList[index]}'),
+                        subtitle: const Text("Subtitles Subtitles Subtitles"),
+                        leading: PersonIcon(personName: friendNameList[index]),
+                        trailing: const Icon(Symbols.drag_handle),
+                      ),
+                    ));
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
             ),
-          ],
-        ),
+          ),
+        ],
       ), // End of Main Column (Wrapped in SingleChildScrollView)
     );
   }

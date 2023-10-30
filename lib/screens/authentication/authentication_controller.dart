@@ -29,7 +29,7 @@ class AuthenticationController extends StatelessWidget {
             value: UserDataRepository(uid: user.uid).userDataStream,
             initialData: null,
             // child: const MyHomePage(title: 'BS Test Home Page'),
-            child: const MainHomePage(title: "Home of BS"),
+            child: const MainHomePage(),
           );
   }
 }
