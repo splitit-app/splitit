@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
@@ -146,11 +148,9 @@ class _FriendsPageState extends State<FriendsPage> {
                                         final userDataRepository =
                                             context.read<UserDataRepository>();
 
-                                        print(userDataRepository.uid);
-
                                         return StreamProvider.value(
                                           value: userDataRepository.userDataStream,
-                                          initialData: null,
+                                          initialData: userData,
                                           child: const FriendsPageOverview(),
                                         );
                                       },
@@ -173,27 +173,28 @@ class _FriendsPageState extends State<FriendsPage> {
                               scrollDirection: Axis.horizontal,
                               controller: _controller, // Sets the controller for the Page View
                               // itemCount: ((_names.length / 6).ceil()),
-                              itemCount: 3,
+                              itemCount: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
                               itemBuilder: (context, index) {
-                                return const FriendsPageView();
+                                userData.uid;
+                                return FriendsPageView(startingIndex: index * 6);
                               }),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  // Animated Page indicator for the PageView (package: https://pub.dev/packages/smooth_page_indicator)
-                  SmoothPageIndicator(
-                    controller: _controller,
-                    // Set the number of Pages in the PageView
-                    // count: ((_names.length / 6).ceil()), // Determines the page count by taking the number of elements in the list, divided by the number displayed in each page and rounds up.
-                    count: 3,
+                        const SizedBox(height: 5.0),
+                        // Animated Page indicator for the PageView (package: https://pub.dev/packages/smooth_page_indicator)
+                        SmoothPageIndicator(
+                          controller: _controller,
+                          // Set the number of Pages in the PageView
+                          // count: ((_names.length / 6).ceil()), // Determines the page count by taking the number of elements in the list, divided by the number displayed in each page and rounds up.
+                          count: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
 
-                    effect: const ExpandingDotsEffect(
-                      activeDotColor: Colors.black54,
-                      dotHeight: 12.0,
-                      dotWidth: 15.0,
-                      expansionFactor: 2.5,
+                          effect: const ExpandingDotsEffect(
+                            activeDotColor: Colors.black54,
+                            dotHeight: 12.0,
+                            dotWidth: 15.0,
+                            expansionFactor: 2.5,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 25.0),

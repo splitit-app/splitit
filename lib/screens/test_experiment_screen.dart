@@ -94,7 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
               // Expansion List Tile
               title: const Center(child: Text("Inputs")),
               subtitle: const Text("Click to Expand"),
-              initiallyExpanded: true,
               // backgroundColor: Colors.red,
               // collapsedBackgroundColor: Colors.black,
 
