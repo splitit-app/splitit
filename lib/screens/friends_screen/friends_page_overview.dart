@@ -99,7 +99,8 @@ class _FriendsPageOverviewState extends State<FriendsPageOverview> {
                   height: 100,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: _names.length,
+                    // itemCount: _names.length,
+                    itemCount: userData.nonRegisteredFriends.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -108,10 +109,20 @@ class _FriendsPageOverviewState extends State<FriendsPageOverview> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                PersonIcon(
-                                  personName: _names[index],
-                                ),
-                                Text(_names[index], style: const TextStyle(fontSize: 16.0)),
+                                // PersonIcon(personName: _names[index]),
+                                PersonIcon(personName: userData.nonRegisteredFriends[index].name),
+
+                                 // Truncating Long Text
+                                SizedBox(
+                                    width: 60.0,
+                                    child: Text(
+                                      userData.nonRegisteredFriends[index].name,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      textAlign: TextAlign.center,
+                                    )),
+                                // Text(_names[index], style: const TextStyle(fontSize: 16.0)),
                               ],
                             ),
                             const SizedBox(width: 25.0),
@@ -148,7 +159,7 @@ class _FriendsPageOverviewState extends State<FriendsPageOverview> {
                             mainAxisAlignment: MainAxisAlignment.center, // Centering Text
                             children: [
                               Text(
-                                userData!.nonRegisteredFriends.length.toString(),
+                                userData.nonRegisteredFriends.length.toString(),
                                 //userData!.nonRegisteredFriends.length.toString(),
                                 style: const TextStyle(
                                     color: Colors.white, fontWeight: FontWeight.w500),
@@ -174,7 +185,7 @@ class _FriendsPageOverviewState extends State<FriendsPageOverview> {
                 // Friend List (Slidable Tiles)
                 Expanded(
                   child: ListView.separated(
-                    itemCount: userData!.nonRegisteredFriends.length,
+                    itemCount: userData.nonRegisteredFriends.length,
                     itemBuilder: (context, index) {
                       return Slidable(
                           // Slide from the Left (or Top)
@@ -259,8 +270,7 @@ class _FriendsPageOverviewState extends State<FriendsPageOverview> {
             title: const Text("Add Friend"),
             content: TextFormField(
               controller: friendCreationForm.nameFieldController,
-              autofocus:
-                  true, // Auto-focuses on the text to allow for the keyboard to automatically display
+              autofocus: true, // Auto-focuses on the text to allow for the keyboard to automatically display
               decoration: InputDecoration(
                 labelText: "Name: ",
                 hintText: "Roberto Cruz",
