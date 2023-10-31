@@ -49,6 +49,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_slidable: ^3.0.0
   uuid: ^4.1.0
+  flutter_expandable_fab: ^2.0.0
   
 
 dev_dependencies:

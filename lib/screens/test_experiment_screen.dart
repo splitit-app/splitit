@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -46,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     UserData? userData = context.watch<UserData?>();
+    final _key = GlobalKey<ExpandableFabState>();
 
     // return switch (_currentPage) {
     //   2 => const FriendsPage(),
@@ -211,18 +213,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //   countIteration: index,
                                     // );
 
-                                return BillCards(
-                                  billName:
-                                      "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                  billTotal: bill.totalSpent,
-                                  billDate: bill.dateTime.toString(),
-                                );
-                              },
-                              separatorBuilder: (BuildContext context,int index) => const Divider() // Separator Elements between each of the items
-                              ),
-                        )
-                      : const SizedBox.shrink();
-                }),
+                                    return BillCards(
+                                      billName:
+                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                      billTotal: bill.totalSpent,
+                                      billDate: bill.dateTime.toString(),
+                                    );
+                                  },
+                                  separatorBuilder: (BuildContext context, int index) =>
+                                      const Divider() // Separator Elements between each of the items
+                                  ),
+                            )
+                          : const SizedBox.shrink();
+                    }),
           ],
         ),
       ),
@@ -230,26 +233,50 @@ class _MyHomePageState extends State<MyHomePage> {
       //* If you want this FAB accessible in any page, move to home_page.dart
 
       // FAB:
-
+      floatingActionButtonLocation: ExpandableFab.location,
       floatingActionButton: userData == null
           ? const SizedBox.shrink()
-          : FloatingActionButton.extended(
-              backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-              onPressed: () {
-                //TODO: Fix single declaration of billdatarepo
-                BillDataRepository(uid: userData.uid).pushBillData(BillData(
-                  dateTime: DateTime.now(),
-                  itemGroups: List.empty(),
-                  taxModule: BillModule_Tax(),
-                  tipModule: BillModule_Tip(),
-                  payer: userData.publicProfile,
-                  lastUpdatedSession: DateTime.now(),
-                ));
-              },
-              tooltip: 'Increment',
-              label: const Text('Actions'),
-              icon: const Icon(Symbols.view_cozy),
-            ), // This traili
+          : true
+              ? ExpandableFab(
+                  key: _key,
+                  distance: 80,
+                  overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
+                  type: ExpandableFabType.up,
+                  children: [
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        //TODO: Fix single declaration of billdatarepo
+                        BillDataRepository(uid: userData.uid).pushBillData(BillData(
+                          dateTime: DateTime.now(),
+                          itemGroups: List.empty(),
+                          taxModule: BillModule_Tax(),
+                          tipModule: BillModule_Tip(),
+                          payer: userData.publicProfile,
+                          lastUpdatedSession: DateTime.now(),
+                        ));
+
+                        final state = _key.currentState;
+                        if (state != null && state.isOpen) state.toggle();
+                      },
+                      label: const Text('Create Bill'),
+                      icon: const Icon(Symbols.file_copy),
+                    ),
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        final state = _key.currentState;
+                        if (state != null && state.isOpen) state.toggle();
+                      },
+                      label: const Text('Quick Split'),
+                      icon: const Icon(Symbols.bolt),
+                    ),
+                  ],
+                )
+              : FloatingActionButton.extended(
+                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                  onPressed: () {},
+                  label: const Text('Actions'),
+                  icon: const Icon(Symbols.view_cozy),
+                ), // This traili
     );
   }
 }
