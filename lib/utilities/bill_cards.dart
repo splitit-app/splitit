@@ -137,17 +137,17 @@ class BillCards extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             // The First Separate Person Icon
-                            const PersonIcon(),
+                            const PersonIcon(personName: "Sydney"),
 
                             // The Rest of the Person(s) Icons/Containers
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const PersonIcon(),
-                                const PersonIcon(),
-                                const PersonIcon(),
-                                const PersonIcon(),
+                                const PersonIcon(personName: "Ren"),
+                                const PersonIcon(personName: "Brandon"),
+                                const PersonIcon(personName: "Wei"),
+                                const PersonIcon(personName: "Roberto"),
                                 IconButton(
                                   splashColor: const Color(0xFF2C2E30),
                                   onPressed: () {},

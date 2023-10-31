@@ -71,61 +71,6 @@ class _FriendsPageState extends State<FriendsPage> {
                     ),
                   ),
 
-                  // Using TextField as Search Bar to get User Input
-                  // Padding(
-                  //   padding: const EdgeInsets.all(15.0),
-                  //   child: TextField(
-                  //     controller: _textController,
-                  //     decoration: InputDecoration(
-                  //       filled: true,
-                  //       // fillColor: Theme.of(context).colorScheme.onSurface,   // surface_container_high
-                  //       fillColor: Colors.grey[500],
-
-                  //       // Prefix and Suffix Icon Styling
-                  //       prefixIconColor: Theme.of(context)
-                  //           .colorScheme
-                  //           .surfaceVariant, // on_surface_variant
-                  //       suffixIconColor: Theme.of(context)
-                  //           .colorScheme
-                  //           .surfaceVariant, // on_surface_variant
-                  //       prefixStyle: const TextStyle(fontSize: 24.0),
-                  //       suffixStyle: const TextStyle(fontSize: 24.0),
-
-                  //       // Padding and Border Radius
-                  //       contentPadding: const EdgeInsets.all(20.0),
-                  //       focusedBorder: OutlineInputBorder(
-                  //         borderSide: const BorderSide(color: Colors.white),
-                  //         borderRadius: BorderRadius.circular(20.0),
-                  //       ),
-                  //       enabledBorder: UnderlineInputBorder(
-                  //         borderSide: const BorderSide(color: Colors.white),
-                  //         borderRadius: BorderRadius.circular(20.0),
-                  //       ),
-
-                  //       prefixIcon: IconButton(
-                  //         // Menu icon Button
-                  //         onPressed: () {},
-                  //         icon: const Icon(Symbols.menu),
-                  //       ),
-                  //       border: const OutlineInputBorder(),
-                  //       hintText: "Search Friends & Groups",
-                  //       suffixIcon: IconButton(
-                  //         // Search icon Button
-                  //         onPressed: () {},
-                  //         icon: const Icon(Symbols.search),
-                  //       ),
-
-                  //       // suffixIcon: IconButton(
-                  //       //   // Clear Search Input
-                  //       //   onPressed: () {
-                  //       //     _textController.clear(); // Clears the Search Input
-                  //       //   },
-                  //       //   icon: const Icon(Symbols.close),
-                  //       // ),
-                  //     ),
-                  // ),
-                  // ),
-
                   // Contains Friend Profiles
                   Padding(
                     padding: const EdgeInsets.all(15.0),
