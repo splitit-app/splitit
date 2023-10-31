@@ -20,9 +20,9 @@ class RegistrationForm {
     //TODO: Check values not null
 
     _authenticationService.createUserWith_EmailAndPassword(
-      email: emailFieldController.text,
+      email: emailFieldController.text.trim().toLowerCase(),
       password: passwordFieldController.text,
-      username: nameFieldController.text,
+      username: nameFieldController.text.trim(),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
 import 'package:project_bs/screens/friends_screen/friends_page.dart';
@@ -194,8 +196,6 @@ class SlideAbleTest extends StatelessWidget {
   }
 }
 
-
-
 class MyHomePageV2 extends StatelessWidget {
   const MyHomePageV2({super.key});
 
@@ -221,193 +221,202 @@ class MyHomePageV2 extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-        child: Column(
-          children: [
-            // Profile Icon and Welcoming Text
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Welcome Back, ", style: TextStyle(fontSize: 25.0)),
-                    Text("Max!",
-                        style: TextStyle(
-                            fontSize: 25.0, fontWeight: FontWeight.w500)),
-                  ],
-                ),
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage("https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png"),
-                ),
-              ],
-            ),
-            // Container Box for Something
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Container(
-                height: 150,
-                padding: const EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Theme.of(context).colorScheme.surfaceVariant),
-                child: const Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Something"),
-                        Text("Yeah"),
-                      ],
+      body: userData == null
+          ? const Center(child: Text("No User Error"))
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              child: Column(
+                children: [
+                  // Profile Icon and Welcoming Text
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('Welcome Back, ', style: TextStyle(fontSize: 25.0)),
+                          Text('${userData.publicProfile.name}!',
+                              style: const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
+                        ],
+                      ),
+                      const CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                            "https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png"),
+                      ),
+                    ],
+                  ),
+                  // Container Box for Something
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Container(
+                      height: 150,
+                      padding: const EdgeInsets.all(15.0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Theme.of(context).colorScheme.surfaceVariant),
+                      child: const Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Something"),
+                              Text("Yeah"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+
+                  const SizedBox(height: 15.0),
+
+                  // Quick Start Buttons:
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Quick Start",
+                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Add Friend Home Button:
+                      Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primaryContainer,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: const Icon(
+                              Symbols.person_add,
+                              size: 45.0,
+                            ),
+                          ),
+                          const SizedBox(height: 5.0),
+                          Text(
+                            "Add Friend",
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      // Bill Split Home Button:
+                      Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.tertiaryContainer,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: const Icon(
+                              Symbols.money,
+                              size: 45.0,
+                            ),
+                          ),
+                          const SizedBox(height: 5.0),
+                          Text(
+                            "Split Bill",
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      // Group Add Home Button:
+                      Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondaryContainer,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: const Icon(
+                              Symbols.group_add,
+                              size: 45.0,
+                            ),
+                          ),
+                          const SizedBox(height: 5.0),
+                          Text(
+                            "Add Group",
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ), // End of Home Button Row
+
+                  const SizedBox(height: 20.0),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Text("Transaction History",style: Theme.of(context).textTheme.bodyLarge),
+                      // Text("See All",style: Theme.of(context).textTheme.bodyLarge),
+                      const Text("Recent Transactions",
+                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                      GestureDetector(
+                          // Navigates to MyHomePage (Temporary for Bill Viewing) on Gesture Detection fo the text
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => PageTest()),
+                            );
+                          },
+                          child: const Text("See All",
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700))),
+                    ],
+                  ),
+
+                  // Data from Database:
+                  StreamBuilder<List<BillData>?>(
+                      stream: BillDataRepository(uid: userData.uid).billDataStream,
+                      builder: (context, snapshot) {
+                        return snapshot.hasData
+                            ? Expanded(
+                                // Makes the ListView scrollable.
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  // itemCount: snapshot.data!.length,
+                                  itemCount:
+                                      min(snapshot.data!.length, 10), // Shows the first 10 or less
+                                  itemBuilder: (context, index) {
+                                    BillData bill = snapshot.data![index];
+                                    return BillCardsCompact(
+                                      billName:
+                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                      billTotal: bill.totalSpent,
+                                      billDate: bill.dateTime.toString(),
+                                    );
+                                  },
+                                ),
+                              )
+                            : const SizedBox.shrink();
+                      }),
+                ],
               ),
             ),
-
-            const SizedBox(height: 15.0),
-
-            // Quick Start Buttons:
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Quick Start",
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Add Friend Home Button:
-                Column(
-                  children: [
-                    Container(
-                      height: 80,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const Icon(Symbols.person_add, size: 45.0,),
-                    ),
-                    const SizedBox(height: 5.0),
-                    Text(
-                      "Add Friend",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
-
-                // Bill Split Home Button:
-                Column(
-                  children: [
-                    Container(
-                      height: 80,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.tertiaryContainer,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const Icon(Symbols.money, size: 45.0,),
-                    ),
-                    const SizedBox(height: 5.0),
-                    Text(
-                      "Split Bill",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
-
-                // Group Add Home Button:
-                Column(
-                  children: [
-                    Container(
-                      height: 80,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryContainer,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const Icon(Symbols.group_add, size: 45.0,),
-                    ),
-                    const SizedBox(height: 5.0),
-                    Text(
-                      "Add Group",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
-
-              ],
-            ), // End of Home Button Row
-
-            const SizedBox(height: 20.0),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Text("Transaction History",style: Theme.of(context).textTheme.bodyLarge),
-                // Text("See All",style: Theme.of(context).textTheme.bodyLarge),
-                const Text("Recent Transactions",
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-                GestureDetector(  // Navigates to MyHomePage (Temporary for Bill Viewing) on Gesture Detection fo the text
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => PageTest()),
-                      );
-                    },
-                    child: const Text("See All", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700))),
-              ],
-            ),
-
-            userData == null
-                ? const SizedBox.shrink()
-                :
-                // Data from Database:
-                StreamBuilder<List<BillData>?>(
-                    stream:
-                        BillDataRepository(uid: userData.uid).billDataStream,
-                    builder: (context, snapshot) {
-                      return snapshot.hasData
-                          ? Expanded(
-                              // Makes the ListView scrollable.
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                // itemCount: snapshot.data!.length,
-                                itemCount: 10, // Shows the first 10
-                                itemBuilder: (context, index) {
-                                  BillData bill = snapshot.data![index];
-                                  return BillCardsCompact(
-                                    billName:
-                                        "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                    billTotal: bill.totalSpent,
-                                    billDate: bill.dateTime.toString(),
-                                  );
-                                },
-                              ),
-                            )
-                          : const SizedBox.shrink();
-                    }),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_bs/screens/friends_screen/friends_page.dart';
 import 'package:project_bs/screens/mockup_page.dart';
 import 'package:project_bs/screens/test_experiment_screen.dart';
+import 'package:provider/provider.dart';
+import '../runtime_models/user/user_data.dart';
 import '../一experiments/test_firebase.dart';
 
 class MainHomePage extends StatefulWidget {
