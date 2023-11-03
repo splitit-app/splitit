@@ -393,25 +393,25 @@ class MyHomePageV2 extends StatelessWidget {
 
                     // Data from Database:
                     StreamBuilder<List<BillData>?>(
-                        stream: BillDataRepository(uid: userData.uid).billDataStream,
+                        stream: context.read<BillDataRepository>().billDataStream,
                         builder: (context, snapshot) {
                           return snapshot.hasData
                               ? ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                // itemCount: snapshot.data!.length,
-                                itemCount: min(
-                                    snapshot.data!.length, 5), // Shows the first 5 or less
-                                itemBuilder: (context, index) {
-                                  BillData bill = snapshot.data![index];
-                                  return BillCardsCompact(
-                                    billName:
-                                        "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                    billTotal: bill.totalSpent,
-                                    billDate: bill.dateTime.toString(),
-                                  );
-                                },
-                              )
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  // itemCount: snapshot.data!.length,
+                                  itemCount:
+                                      min(snapshot.data!.length, 5), // Shows the first 5 or less
+                                  itemBuilder: (context, index) {
+                                    BillData bill = snapshot.data![index];
+                                    return BillCardsCompact(
+                                      billName:
+                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                      billTotal: bill.totalSpent,
+                                      billDate: bill.dateTime.toString(),
+                                    );
+                                  },
+                                )
                               : const SizedBox.shrink();
                         }),
                   ],

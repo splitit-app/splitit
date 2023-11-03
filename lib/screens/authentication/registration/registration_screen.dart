@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../utilities/fields.dart';
 import '../../../utilities/scroll_animations.dart';
@@ -11,7 +12,7 @@ class RegistrationFormForEmailAndPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final registrationFormProvider = context.read<RegistrationForm>();
+    final RegistrationForm registrationForm = context.read();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
@@ -27,23 +28,23 @@ class RegistrationFormForEmailAndPassword extends StatelessWidget {
             ),
             TextFormField(
               decoration: textFieldDecoration.copyWith(labelText: 'Email'),
-              controller: registrationFormProvider.emailFieldController,
+              controller: registrationForm.emailFieldController,
             ),
             const SizedBox(height: 20),
             TextFormField(
               decoration: textFieldDecoration.copyWith(labelText: 'Password'),
               obscureText: true,
-              controller: registrationFormProvider.passwordFieldController,
+              controller: registrationForm.passwordFieldController,
             ),
             const SizedBox(height: 20),
             TextFormField(
               decoration: textFieldDecoration.copyWith(labelText: 'Confirm Password'),
               obscureText: true,
-              controller: registrationFormProvider.confirmPasswordController,
+              controller: registrationForm.confirmPasswordController,
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: registrationFormProvider.submitEmailAndPassword,
+              onPressed: registrationForm.submitEmailAndPassword,
               child: const Text('Next'),
             ),
           ]),
@@ -105,8 +106,8 @@ class RegistrationFormForUserData extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: BackButton(
-              onPressed: () =>
-                  registrationFormProvider.pageController.animateToPageWithDefaults(0)),
+              onPressed: () async =>
+                  await registrationFormProvider.pageController.animateToPageWithDefaults(0)),
         ),
       ]),
     );
@@ -114,53 +115,51 @@ class RegistrationFormForUserData extends StatelessWidget {
 }
 
 class RegistrationScreen extends StatelessWidget {
-  final PageController _pageController;
+  RegistrationScreen({super.key});
 
   final _formKey = GlobalKey<FormState>();
 
-  final registrationForm = RegistrationForm();
-
-  RegistrationScreen({super.key, required PageController pageController})
-      : _pageController = pageController;
-
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Form(
-          key: _formKey,
-          child: Provider<RegistrationForm>(
-            create: (context) => registrationForm,
-            builder: (context, child) => DefaultTabController(
-              length: 2,
-              child: Builder(
-                builder: (context) => Column(
-                  children: [
-                    Expanded(
-                      child: PageView(
-                        onPageChanged: (index) => DefaultTabController.of(context).index = index,
-                        controller: registrationForm.pageController,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const [
-                          RegistrationFormForEmailAndPassword(),
-                          RegistrationFormForUserData(),
-                        ],
-                      ),
-                    ),
-                    const TabPageSelector(),
+  Widget build(BuildContext context) {
+    final registrationForm = RegistrationForm(read: context.read);
+
+    return Scaffold(
+      body: Form(
+        key: _formKey,
+        child: Provider<RegistrationForm>(
+          create: (context) => registrationForm,
+          builder: (context, child) => Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  controller: registrationForm.pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: const [
+                    RegistrationFormForEmailAndPassword(),
+                    RegistrationFormForUserData(),
                   ],
                 ),
               ),
-            ),
+              SmoothPageIndicator(
+                controller: registrationForm.pageController,
+                count: 2,
+                effect: expandingDotsEffect,
+              ),
+            ],
           ),
         ),
-        bottomNavigationBar: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Already have an account?'),
-            TextButton(
-              onPressed: () => _pageController.animateToPageWithDefaults(0),
-              child: const Text('Log In'),
-            ),
-          ],
-        ),
-      );
+      ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Already have an account?'),
+          TextButton(
+            onPressed: () async =>
+                await context.read<PageController>().animateToPageWithDefaults(0),
+            child: const Text('Log In'),
+          ),
+        ],
+      ),
+    );
+  }
 }

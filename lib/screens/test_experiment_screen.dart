@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         actions: [
           ElevatedButton(
-            onPressed: AuthenticationService().signOut,
+            onPressed: context.read<AuthenticationService>().signOut,
             child: const Text('Log out'),
           )
         ],
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 :
                 // Data from Database:
                 StreamBuilder<List<BillData>?>(
-                    stream: BillDataRepository(uid: userData.uid).billDataStream,
+                    stream: context.read<BillDataRepository>().billDataStream,
                     builder: (context, snapshot) {
                       return snapshot.hasData
                           ? Expanded(
@@ -245,15 +245,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     FloatingActionButton.extended(
                       onPressed: () {
-                        //TODO: Fix single declaration of billdatarepo
-                        BillDataRepository(uid: userData.uid).pushBillData(BillData(
-                          dateTime: DateTime.now(),
-                          itemGroups: List.empty(),
-                          taxModule: BillModule_Tax(),
-                          tipModule: BillModule_Tip(),
-                          payer: userData.publicProfile,
-                          lastUpdatedSession: DateTime.now(),
-                        ));
+                        context.read<BillDataRepository>().pushBillData(BillData(
+                              dateTime: DateTime.now(),
+                              itemGroups: List.empty(),
+                              taxModule: BillModule_Tax(),
+                              tipModule: BillModule_Tip(),
+                              payer: userData.publicProfile,
+                              lastUpdatedSession: DateTime.now(),
+                            ));
 
                         final state = _key.currentState;
                         if (state != null && state.isOpen) state.toggle();

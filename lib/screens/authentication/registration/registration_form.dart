@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:project_bs/utilities/scroll_animations.dart';
+import 'package:provider/provider.dart';
 
 import '../../../services/authentication_service.dart';
 
 class RegistrationForm {
+  RegistrationForm({required this.read});
+
+  final Locator read;
+
   final pageController = PageController();
 
   final emailFieldController = TextEditingController();
@@ -14,23 +19,22 @@ class RegistrationForm {
   final birthdayFieldController = TextEditingController();
   final quoteFieldController = TextEditingController();
 
-  final _authenticationService = AuthenticationService();
-
   Future<void> createUser() async {
     //TODO: Check values not null
 
-    _authenticationService.createUserWith_EmailAndPassword(
+    read<AuthenticationService>().createUserWith_EmailAndPassword(
       email: emailFieldController.text.trim().toLowerCase(),
       password: passwordFieldController.text,
       username: nameFieldController.text.trim(),
     );
+    print('hello');
   }
 
   Future<void> submitEmailAndPassword() async {
     print(emailFieldController.text);
 
     // if (await AuthenticationService().isValid_Email(_emailController.text)) {
-    pageController.animateToPageWithDefaults(1);
+    await pageController.animateToPageWithDefaults(1);
     // }
   }
 }

@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_cache/firestore_cache.dart';
+import 'package:provider/provider.dart';
 
 import '../net_models/bill/bill_data_dto.dart';
 import '../runtime_models/bill/bill_data.dart';
 
 class BillDataRepository {
-  final String uid;
+  BillDataRepository({required this.read});
 
-  BillDataRepository({required this.uid});
-
+  final Locator read;
+  String? get uid => read<User?>()?.uid;
   final _billCollection = FirebaseFirestore.instance.collection('bills');
 
   Stream<List<BillData>?> get billDataStream {

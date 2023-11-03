@@ -3,8 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
+import 'package:project_bs/services/authentication_service.dart';
 import 'package:project_bs/utilities/friends_page_view.dart';
 import 'package:project_bs/utilities/group_container.dart';
+import 'package:project_bs/utilities/scroll_animations.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -28,10 +30,10 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserData? userData = context.read<UserData?>();
+    final UserData? userData = context.watch();
 
     return userData == null
-        ? const SizedBox.shrink()
+        ? const Placeholder()
         : Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
@@ -87,18 +89,14 @@ class _FriendsPageState extends State<FriendsPage> {
                                 onPressed: () {
                                   // Pushes the FriendsPageOverview onto the Route Stack
                                   Navigator.of(context).push(
+                                    
                                     // Navigates the FriendsPageOverview Page
                                     MaterialPageRoute(
-                                      builder: (context) {
-                                        final userDataRepository =
-                                            context.read<UserDataRepository>();
-
-                                        return StreamProvider.value(
-                                          value: userDataRepository.userDataStream,
-                                          initialData: userData,
-                                          child: const FriendsPageOverview(),
-                                        );
-                                      },
+                                      builder: (context) => StreamProvider.value(
+                                        value: context.watch<AuthenticationService>().userAuthState,
+                                        initialData: null,
+                                        child: FriendsPageOverview(),
+                                      ),
                                     ),
                                   );
                                 },
@@ -119,10 +117,8 @@ class _FriendsPageState extends State<FriendsPage> {
                               controller: _controller, // Sets the controller for the Page View
                               // itemCount: ((_names.length / 6).ceil()),
                               itemCount: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-                              itemBuilder: (context, index) {
-                                userData.uid;
-                                return FriendsPageView(startingIndex: index * 6);
-                              }),
+                              itemBuilder: (context, index) =>
+                                  FriendsPageView(startingIndex: index * 6)),
                         ),
                         const SizedBox(height: 5.0),
                         // Animated Page indicator for the PageView (package: https://pub.dev/packages/smooth_page_indicator)
@@ -131,13 +127,7 @@ class _FriendsPageState extends State<FriendsPage> {
                           // Set the number of Pages in the PageView
                           // count: ((_names.length / 6).ceil()), // Determines the page count by taking the number of elements in the list, divided by the number displayed in each page and rounds up.
                           count: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-
-                          effect: const ExpandingDotsEffect(
-                            activeDotColor: Colors.black54,
-                            dotHeight: 12.0,
-                            dotWidth: 15.0,
-                            expansionFactor: 2.5,
-                          ),
+                          effect: expandingDotsEffect,
                         ),
                       ],
                     ),

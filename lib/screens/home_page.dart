@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/screens/friends_screen/friends_page.dart';
-import 'package:project_bs/screens/mockup_page.dart';
-import 'package:project_bs/screens/test_experiment_screen.dart';
-import 'package:provider/provider.dart';
-import '../runtime_models/user/user_data.dart';
-import '../一experiments/test_firebase.dart';
+
+import 'friends_screen/friends_page.dart';
+import 'mockup_page.dart';
+import 'test_experiment_screen.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -15,9 +13,7 @@ class MainHomePage extends StatefulWidget {
 
 // Main Home Page
 
-
 class _MainHomePageState extends State<MainHomePage> {
-
   // List of Pages accessed through currentPage indexing
   final screens = [
     // const MockUpPage(),
@@ -28,8 +24,7 @@ class _MainHomePageState extends State<MainHomePage> {
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
-  TestDatabase testDatabase = TestDatabase();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +32,12 @@ class _MainHomePageState extends State<MainHomePage> {
 
       // Bottom Navigation Bar:
       bottomNavigationBar: NavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceVariant, // Theme of the App (line 32) defines the background color
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .surfaceVariant, // Theme of the App (line 32) defines the background color
         indicatorColor: Theme.of(context).colorScheme.tertiary,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow, // Only shows the label of the selected icon
+        labelBehavior: NavigationDestinationLabelBehavior
+            .alwaysShow, // Only shows the label of the selected icon
         animationDuration: const Duration(milliseconds: 1500),
         height: 70.0,
 
@@ -72,12 +70,10 @@ class _MainHomePageState extends State<MainHomePage> {
         ],
         onDestinationSelected: (int value) {
           // On Navigation Selected, update the index
-          setState(() {
-            // Updates the State of the Current Page
-            currentPage = value;
-          });
+          setState(() => currentPage = value);
         },
-        selectedIndex: currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
+        selectedIndex:
+            currentPage, // Selected Index is updated (Displays the indicator for the selected Icon)
       ),
     );
   }

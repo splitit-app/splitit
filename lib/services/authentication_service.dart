@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../runtime_models/user/private_profile.dart';
 import '../runtime_models/user/public_profile.dart';
@@ -35,13 +36,13 @@ class AuthenticationService {
       if (user == null) return;
 
       //Construct new user
-      await UserDataRepository.user(uid: user.uid).pushUserData(UserData(
-        uid: user.uid,
-        publicProfile: PublicProfile(uid: user.uid, name: username),
-        privateProfile: PrivateProfile(themeData: ThemeData.light()),
-        registeredFriends: List.empty(),
-        nonRegisteredFriends: List.empty(),
-      ));
+      // await read<UserDataRepository>().pushUserData(UserData(
+      //   uid: user.uid,
+      //   publicProfile: PublicProfile(uid: user.uid, name: username),
+      //   privateProfile: PrivateProfile(themeData: ThemeData.light()),
+      //   registeredFriends: List.empty(),
+      //   nonRegisteredFriends: List.empty(),
+      // ));
     } catch (e) {
       return;
     }
