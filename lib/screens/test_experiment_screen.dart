@@ -10,6 +10,7 @@ import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
 import '../services/bill_data_repository.dart';
 import '../utilities/bill_cards.dart';
+import 'bill/quick_split_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -262,6 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     FloatingActionButton.extended(
                       onPressed: () {
+                        quickSplitDialog(context);
                         final state = expandableFabStateKey.currentState;
                         if (state != null && state.isOpen) state.toggle();
                       },

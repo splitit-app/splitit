@@ -27,18 +27,18 @@ class RegistrationFormForEmailAndPassword extends StatelessWidget {
                   Theme.of(context).textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.bold),
             ),
             TextFormField(
-              decoration: textFieldDecoration.copyWith(labelText: 'Email'),
+              decoration: textFieldDecoration_filled.copyWith(labelText: 'Email'),
               controller: registrationForm.emailFieldController,
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration: textFieldDecoration.copyWith(labelText: 'Password'),
+              decoration: textFieldDecoration_filled.copyWith(labelText: 'Password'),
               obscureText: true,
               controller: registrationForm.passwordFieldController,
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration: textFieldDecoration.copyWith(labelText: 'Confirm Password'),
+              decoration: textFieldDecoration_filled.copyWith(labelText: 'Confirm Password'),
               obscureText: true,
               controller: registrationForm.confirmPasswordController,
             ),
@@ -82,7 +82,7 @@ class RegistrationFormForUserData extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.bold),
               ),
               TextFormField(
-                decoration: textFieldDecoration.copyWith(labelText: 'Name*'),
+                decoration: textFieldDecoration_filled.copyWith(labelText: 'Name*'),
                 controller: registrationFormProvider.nameFieldController,
               ),
               const SizedBox(height: 20),
@@ -92,7 +92,7 @@ class RegistrationFormForUserData extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextFormField(
-                decoration: textFieldDecoration.copyWith(labelText: 'Quote'),
+                decoration: textFieldDecoration_filled.copyWith(labelText: 'Quote'),
                 controller: registrationFormProvider.quoteFieldController,
               ),
               const SizedBox(height: 20),
