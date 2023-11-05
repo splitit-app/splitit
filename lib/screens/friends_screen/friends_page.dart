@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../runtime_models/user/user_data.dart';
-import '../../utilities/friends_page_view.dart';
+import 'friends_page_view.dart';
 import '../../utilities/group_container.dart';
 import '../../utilities/scroll_animations.dart';
 import 'friends_page_overview.dart';
