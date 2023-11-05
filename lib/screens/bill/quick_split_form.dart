@@ -7,6 +7,8 @@ import '../../runtime_models/user/public_profile.dart';
 
 class QuickSplitForm {
   QuickSplitForm();
-  final billDateFieldController = TextEditingController();
+  final nameFieldController = TextEditingController();
+  final dateFieldController = TextEditingController();
+  final totalFieldController = TextEditingController();
 //TODO quicksplit form stuff
 }
