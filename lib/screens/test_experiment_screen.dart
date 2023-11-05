@@ -215,6 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     // );
 
                                     return BillCards(
+                                      uid: bill.uid,
                                       billName:
                                           "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
                                       billTotal: bill.totalSpent,
@@ -246,14 +247,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     FloatingActionButton.extended(
                       onPressed: () {
-                        context.read<BillDataRepository>().pushBillData(BillData(
+                        // context.read<BillDataRepository>().pushBillData(BillData(
+                        //       dateTime: DateTime.now(),
+                        //       itemGroups: List.empty(),
+                        //       taxModule: BillModule_Tax(),
+                        //       tipModule: BillModule_Tip(),
+                        //       payer: userData.publicProfile,
+                        //       lastUpdatedSession: DateTime.now(),
+                        //     ));
+                        context.read<BillDataRepository>().createBill(
                               dateTime: DateTime.now(),
-                              itemGroups: List.empty(),
-                              taxModule: BillModule_Tax(),
-                              tipModule: BillModule_Tip(),
+                              name: "New Bill",
+                              totalSpent: 0,
                               payer: userData.publicProfile,
-                              lastUpdatedSession: DateTime.now(),
-                            ));
+                            );
 
                         final state = expandableFabStateKey.currentState;
                         if (state != null && state.isOpen) state.toggle();

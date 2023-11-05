@@ -10,8 +10,9 @@ class TestDatabase {
     var snapshots = db.collection('bills').snapshots();
 
     try {
-      return snapshots.map((snapshot) =>
-          snapshot.docs.map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj).toList());
+      return snapshots.map((snapshot) => snapshot.docs
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj(doc.id))
+          .toList());
     } catch (e) {
       throw Exception(e);
     }
@@ -30,8 +31,9 @@ class TestDatabase {
         .snapshots();
 
     try {
-      return snapshots.map((snapshot) =>
-          snapshot.docs.map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj).toList());
+      return snapshots.map((snapshot) => snapshot.docs
+          .map((doc) => BillDataDTO.fromJson(doc.data()).toRuntimeObj(doc.id))
+          .toList());
     } catch (e) {
       throw Exception(e);
     }

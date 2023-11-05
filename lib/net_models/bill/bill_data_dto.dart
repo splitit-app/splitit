@@ -25,7 +25,8 @@ class BillDataDTO with _$BillDataDTO {
 
   BillDataDTO._();
 
-  BillData get toRuntimeObj => BillData(
+  BillData toRuntimeObj(String uid) => BillData(
+        uid: uid,
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,

@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BillData {
+  String get uid => throw _privateConstructorUsedError;
+  set uid(String value) => throw _privateConstructorUsedError;
   DateTime get dateTime => throw _privateConstructorUsedError;
   set dateTime(DateTime value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -55,7 +57,8 @@ abstract class $BillDataCopyWith<$Res> {
       _$BillDataCopyWithImpl<$Res, BillData>;
   @useResult
   $Res call(
-      {DateTime dateTime,
+      {String uid,
+      DateTime dateTime,
       String name,
       double totalSpent,
       PublicProfile? payer,
@@ -85,6 +88,7 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
@@ -98,6 +102,10 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? lastUpdatedSession = null,
   }) {
     return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -182,7 +190,8 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {DateTime dateTime,
+      {String uid,
+      DateTime dateTime,
       String name,
       double totalSpent,
       PublicProfile? payer,
@@ -213,6 +222,7 @@ class __$$_BillDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? dateTime = null,
     Object? name = null,
     Object? totalSpent = null,
@@ -226,6 +236,10 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? lastUpdatedSession = null,
   }) {
     return _then(_$_BillData(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -278,7 +292,8 @@ class __$$_BillDataCopyWithImpl<$Res>
 
 class _$_BillData extends _BillData {
   _$_BillData(
-      {required this.dateTime,
+      {required this.uid,
+      required this.dateTime,
       this.name = "New Bill",
       this.totalSpent = 0,
       this.payer,
@@ -292,6 +307,8 @@ class _$_BillData extends _BillData {
       : assert(totalSpent >= 0),
         super._();
 
+  @override
+  String uid;
   @override
   DateTime dateTime;
   @override
@@ -320,7 +337,7 @@ class _$_BillData extends _BillData {
 
   @override
   String toString() {
-    return 'BillData(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
+    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @JsonKey(ignore: true)
@@ -332,7 +349,8 @@ class _$_BillData extends _BillData {
 
 abstract class _BillData extends BillData {
   factory _BillData(
-      {required DateTime dateTime,
+      {required String uid,
+      required DateTime dateTime,
       String name,
       double totalSpent,
       PublicProfile? payer,
@@ -345,6 +363,9 @@ abstract class _BillData extends BillData {
       required DateTime lastUpdatedSession}) = _$_BillData;
   _BillData._() : super._();
 
+  @override
+  String get uid;
+  set uid(String value);
   @override
   DateTime get dateTime;
   set dateTime(DateTime value);
