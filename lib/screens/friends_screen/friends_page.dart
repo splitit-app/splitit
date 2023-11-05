@@ -2,24 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
-import 'package:project_bs/utilities/friends_page_view.dart';
-import 'package:project_bs/utilities/group_container.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../services/user_data_repository.dart';
+import '../../runtime_models/user/user_data.dart';
+import 'friends_page_view.dart';
+import '../../utilities/group_container.dart';
+import '../../utilities/scroll_animations.dart';
 import 'friends_page_overview.dart';
 import 'group_page_overview.dart';
 
-class FriendsPage extends StatefulWidget {
-  const FriendsPage({super.key});
+class FriendsPage extends StatelessWidget {
+  FriendsPage({super.key});
 
-  @override
-  State<FriendsPage> createState() => _FriendsPageState();
-}
-
-class _FriendsPageState extends State<FriendsPage> {
   // The controller keeps track on the user input from the Search Bar.
   final _searchBarController = TextEditingController();
 
@@ -28,10 +23,10 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserData? userData = context.read<UserData?>();
+    final UserData? userData = context.watch();
 
     return userData == null
-        ? const SizedBox.shrink()
+        ? const Placeholder()
         : Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
@@ -88,18 +83,7 @@ class _FriendsPageState extends State<FriendsPage> {
                                   // Pushes the FriendsPageOverview onto the Route Stack
                                   Navigator.of(context).push(
                                     // Navigates the FriendsPageOverview Page
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        final userDataRepository =
-                                            context.read<UserDataRepository>();
-
-                                        return StreamProvider.value(
-                                          value: userDataRepository.userDataStream,
-                                          initialData: userData,
-                                          child: const FriendsPageOverview(),
-                                        );
-                                      },
-                                    ),
+                                    MaterialPageRoute(builder: (context) => FriendsPageOverview()),
                                   );
                                 },
                                 icon: const Icon(
@@ -119,10 +103,8 @@ class _FriendsPageState extends State<FriendsPage> {
                               controller: _controller, // Sets the controller for the Page View
                               // itemCount: ((_names.length / 6).ceil()),
                               itemCount: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-                              itemBuilder: (context, index) {
-                                userData.uid;
-                                return FriendsPageView(startingIndex: index * 6);
-                              }),
+                              itemBuilder: (context, index) =>
+                                  FriendsPageView(startingIndex: index * 6)),
                         ),
                         const SizedBox(height: 5.0),
                         // Animated Page indicator for the PageView (package: https://pub.dev/packages/smooth_page_indicator)
@@ -131,13 +113,7 @@ class _FriendsPageState extends State<FriendsPage> {
                           // Set the number of Pages in the PageView
                           // count: ((_names.length / 6).ceil()), // Determines the page count by taking the number of elements in the list, divided by the number displayed in each page and rounds up.
                           count: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-
-                          effect: const ExpandingDotsEffect(
-                            activeDotColor: Colors.black54,
-                            dotHeight: 12.0,
-                            dotWidth: 15.0,
-                            expansionFactor: 2.5,
-                          ),
+                          effect: expandingDotsEffect,
                         ),
                       ],
                     ),

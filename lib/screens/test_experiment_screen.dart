@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     UserData? userData = context.watch<UserData?>();
-    final _key = GlobalKey<ExpandableFabState>();
+    final expandableFabStateKey = GlobalKey<ExpandableFabState>();
 
     // return switch (_currentPage) {
     //   2 => const FriendsPage(),
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         actions: [
           ElevatedButton(
-            onPressed: AuthenticationService().signOut,
+            onPressed: context.read<AuthenticationService>().signOut,
             child: const Text('Log out'),
           )
         ],
@@ -191,7 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 :
                 // Data from Database:
                 StreamBuilder<List<BillData>?>(
-                    stream: BillDataRepository(uid: userData.uid).billDataStream,
+                    stream: context.read<BillDataRepository>().billDataStream,
                     builder: (context, snapshot) {
                       return snapshot.hasData
                           ? Expanded(
@@ -239,24 +239,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ? const SizedBox.shrink()
           : true
               ? ExpandableFab(
-                  key: _key,
+                  key: expandableFabStateKey,
                   distance: 80,
                   overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
                   type: ExpandableFabType.up,
                   children: [
                     FloatingActionButton.extended(
                       onPressed: () {
-                        //TODO: Fix single declaration of billdatarepo
-                        BillDataRepository(uid: userData.uid).pushBillData(BillData(
-                          dateTime: DateTime.now(),
-                          itemGroups: List.empty(),
-                          taxModule: BillModule_Tax(),
-                          tipModule: BillModule_Tip(),
-                          payer: userData.publicProfile,
-                          lastUpdatedSession: DateTime.now(),
-                        ));
+                        context.read<BillDataRepository>().pushBillData(BillData(
+                              dateTime: DateTime.now(),
+                              itemGroups: List.empty(),
+                              taxModule: BillModule_Tax(),
+                              tipModule: BillModule_Tip(),
+                              payer: userData.publicProfile,
+                              lastUpdatedSession: DateTime.now(),
+                            ));
 
-                        final state = _key.currentState;
+                        final state = expandableFabStateKey.currentState;
                         if (state != null && state.isOpen) state.toggle();
                       },
                       label: const Text('Create Bill'),
@@ -264,10 +263,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     FloatingActionButton.extended(
                       onPressed: () {
-                        quickSplitDialog(context,);
-                        final state = _key.currentState;
+                        quickSplitDialog(context);
+                        final state = expandableFabStateKey.currentState;
                         if (state != null && state.isOpen) state.toggle();
-                        
                       },
                       label: const Text('Quick Split'),
                       icon: const Icon(Symbols.bolt),

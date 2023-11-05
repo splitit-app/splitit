@@ -1,36 +1,40 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_bs/screens/authentication/registration/registration_screen.dart';
-import 'package:project_bs/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
-import '../runtime_models/user/user_data.dart';
+import '../services/bill_data_repository.dart';
 import '../services/user_data_repository.dart';
-import 'authentication/login_screen.dart';
+import 'authentication/login/login_screen.dart';
+import 'authentication/registration/registration_screen.dart';
+import 'home_page.dart';
 
 class AuthenticationSwitcher extends StatelessWidget {
-  AuthenticationSwitcher({super.key});
-  final PageController _pageController = PageController();
+  const AuthenticationSwitcher({super.key});
 
   @override
   Widget build(BuildContext context) {
-    User? user = context.watch<User?>();
+    if (context.watch<User?>() == null) {
+      final pageController = PageController();
 
-    if (user == null) {
-      return PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        children: [
-          LoginScreen(pageController: _pageController),
-          RegistrationScreen(pageController: _pageController),
-        ],
+      return ListenableProvider.value(
+        value: pageController,
+        child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: [
+            LoginScreen(),
+            RegistrationScreen(),
+          ],
+        ),
       );
     } else {
-      final userDataRepository = context.read<UserDataRepository>();
-      userDataRepository.uid = user.uid;
-      return StreamProvider<UserData?>.value(
-        value: userDataRepository.userDataStream,
-        initialData: null,
+      return MultiProvider(
+        providers: [
+          StreamProvider.value(
+              value: context.read<UserDataRepository>().userDataStream, initialData: null),
+          StreamProvider.value(
+              value: context.read<BillDataRepository>().billDataStream, initialData: null),
+        ],
         child: const MainHomePage(),
       );
     }
