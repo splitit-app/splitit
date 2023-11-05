@@ -36,12 +36,12 @@ class LoginScreen extends StatelessWidget {
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     TextFormField(
-                      decoration: textFieldDecoration.copyWith(labelText: 'Email'),
+                      decoration: textFieldDecoration_filled.copyWith(labelText: 'Email'),
                       controller: _emailController,
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      decoration: textFieldDecoration.copyWith(labelText: 'Password'),
+                      decoration: textFieldDecoration_filled.copyWith(labelText: 'Password'),
                       obscureText: true,
                       controller: _passwordController,
                     ),
