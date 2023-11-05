@@ -156,6 +156,7 @@ class FriendsPageOverview extends StatelessWidget {
 
                   // Friend List (Slidable Tiles)
                   ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: userData.nonRegisteredFriends.length,
                     itemBuilder: (context, index) =>

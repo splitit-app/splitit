@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../runtime_models/user/user_data.dart';
-import 'person_icon.dart';
+import '../../runtime_models/user/user_data.dart';
+import '../../utilities/person_icon.dart';
 
 class FriendsPageView extends StatelessWidget {
   final int startingIndex;
