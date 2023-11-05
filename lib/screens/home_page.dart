@@ -20,7 +20,7 @@ class _MainHomePageState extends State<MainHomePage> {
     const MyHomePageV2(),
     const MyHomePage(),
     PageTest(),
-    const FriendsPage(),
+    FriendsPage(),
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.

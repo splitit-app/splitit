@@ -1,11 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../runtime_models/user/private_profile.dart';
-import '../runtime_models/user/public_profile.dart';
-import '../runtime_models/user/user_data.dart';
-import '../services/user_data_repository.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -23,28 +16,15 @@ class AuthenticationService {
   }
 
   // ignore: non_constant_identifier_names
-  Future<void> createUserWith_EmailAndPassword({
+  Future<User?> createUserWith_EmailAndPassword({
     required String email,
     required String password,
-    required String username,
   }) async {
     try {
-      User? user =
-          (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password))
-              .user;
-
-      if (user == null) return;
-
-      //Construct new user
-      // await read<UserDataRepository>().pushUserData(UserData(
-      //   uid: user.uid,
-      //   publicProfile: PublicProfile(uid: user.uid, name: username),
-      //   privateProfile: PrivateProfile(themeData: ThemeData.light()),
-      //   registeredFriends: List.empty(),
-      //   nonRegisteredFriends: List.empty(),
-      // ));
+      return (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password))
+          .user;
     } catch (e) {
-      return;
+      return null;
     }
   }
 

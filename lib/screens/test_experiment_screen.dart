@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     UserData? userData = context.watch<UserData?>();
-    final _key = GlobalKey<ExpandableFabState>();
+    final expandableFabStateKey = GlobalKey<ExpandableFabState>();
 
     // return switch (_currentPage) {
     //   2 => const FriendsPage(),
@@ -238,7 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ? const SizedBox.shrink()
           : true
               ? ExpandableFab(
-                  key: _key,
+                  key: expandableFabStateKey,
                   distance: 80,
                   overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
                   type: ExpandableFabType.up,
@@ -254,7 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               lastUpdatedSession: DateTime.now(),
                             ));
 
-                        final state = _key.currentState;
+                        final state = expandableFabStateKey.currentState;
                         if (state != null && state.isOpen) state.toggle();
                       },
                       label: const Text('Create Bill'),
@@ -262,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     FloatingActionButton.extended(
                       onPressed: () {
-                        final state = _key.currentState;
+                        final state = expandableFabStateKey.currentState;
                         if (state != null && state.isOpen) state.toggle();
                       },
                       label: const Text('Quick Split'),

@@ -1,53 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:project_bs/services/user_data_repository.dart';
 import 'package:provider/provider.dart';
 
-import '../../runtime_models/user/user_data.dart';
 import 'friend_creation_form.dart';
 
-void addFriendDialog(BuildContext context) {
-  UserData? userData = context.read<UserData>();
+Future<void> createFriendDialog(BuildContext context) => showDialog(
+      context: context,
+      builder: (context) => StreamProvider.value(
+          value: context.read<UserDataRepository>().userDataStream,
+          initialData: null,
+          builder: (context, child) {
+            final friendCreationForm = FriendCreationForm(read: context.read);
 
-  showDialog(
-    context: context,
-    builder: (context) {
-      final friendCreationForm = FriendCreationForm(read: context.read, userData: userData);
-
-      return StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: const Text("Add Friend"),
-          content: TextFormField(
-            controller: friendCreationForm.nameFieldController,
-            autofocus:
-                true, // Auto-focuses on the text to allow for the keyboard to automatically display
-            decoration: InputDecoration(
-              labelText: "Name: ",
-              hintText: "Roberto Cruz",
-              border: const OutlineInputBorder(),
-              suffixIcon: IconButton(
-                onPressed: friendCreationForm.nameFieldController.clear, // Clears the input
-                icon: const Icon(Symbols.close),
+            return AlertDialog(
+              title: const Text("Add Friend"),
+              content: TextFormField(
+                controller: friendCreationForm.nameFieldController,
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: "Name: ",
+                  hintText: "Roberto Cruz",
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    onPressed: friendCreationForm.nameFieldController.clear, // Clears the input
+                    icon: const Icon(Symbols.close),
+                  ),
+                ),
               ),
-            ),
-          ),
-          actions: [
-            // Add Button
-            MaterialButton(
-              onPressed: () {
-                friendCreationForm.createFriend();
-                // setState(() {
-                //   //friendNameList.add(addFriendTextController.text); // Adds user inputs into list
-                // });
-                //addFriendTextController.clear(); // Clears the input
-                Navigator.of(context).pop(); // Exits out of the Dialog
-                setState(() {});
-              },
-              color: Theme.of(context).colorScheme.tertiaryContainer,
-              child: const Text("Add"),
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
+              actions: [
+                // Add Button
+                ElevatedButton(
+                  onPressed: () async {
+                    await friendCreationForm.createFriend();
+                    if (context.mounted) Navigator.of(context).pop();
+                    //addFriendTextController.clear(); // Clears the input
+                  },
+                  //color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: const Text("Add"),
+                ),
+              ],
+            );
+          }),
+    );
