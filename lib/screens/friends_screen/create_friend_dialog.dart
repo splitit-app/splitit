@@ -37,9 +37,7 @@ Future<void> createFriendDialog(BuildContext context) => showDialog(
                   onPressed: () async {
                     await friendCreationForm.createFriend();
                     if (context.mounted) Navigator.of(context).pop();
-                    //addFriendTextController.clear(); // Clears the input
                   },
-                  //color: Theme.of(context).colorScheme.tertiaryContainer,
                   child: const Text("Add"),
                 ),
               ],

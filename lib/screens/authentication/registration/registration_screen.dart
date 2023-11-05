@@ -59,11 +59,11 @@ class RegistrationFormForUserData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final registrationFormProvider = context.read<RegistrationForm>();
+    final registrationForm = context.read<RegistrationForm>();
 
     return WillPopScope(
       onWillPop: () async {
-        await registrationFormProvider.pageController.animateToPageWithDefaults(0);
+        await registrationForm.pageController.animateToPageWithDefaults(0);
         return false;
       },
       child: Stack(children: [
@@ -83,21 +83,21 @@ class RegistrationFormForUserData extends StatelessWidget {
               ),
               TextFormField(
                 decoration: textFieldDecoration_filled.copyWith(labelText: 'Name*'),
-                controller: registrationFormProvider.nameFieldController,
+                controller: registrationForm.nameFieldController,
               ),
               const SizedBox(height: 20),
               DateFormField(
                 decoration: dateFieldDecoration.copyWith(labelText: 'Birthday*'),
-                controller: registrationFormProvider.birthdayFieldController,
+                controller: registrationForm.birthdayFieldController,
               ),
               const SizedBox(height: 20),
               TextFormField(
                 decoration: textFieldDecoration_filled.copyWith(labelText: 'Quote'),
-                controller: registrationFormProvider.quoteFieldController,
+                controller: registrationForm.quoteFieldController,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: registrationFormProvider.createUser,
+                onPressed: registrationForm.createUser,
                 child: const Text('Get Started'),
               ),
             ])),
@@ -107,7 +107,7 @@ class RegistrationFormForUserData extends StatelessWidget {
           padding: const EdgeInsets.only(top: 20),
           child: BackButton(
               onPressed: () async =>
-                  await registrationFormProvider.pageController.animateToPageWithDefaults(0)),
+                  await registrationForm.pageController.animateToPageWithDefaults(0)),
         ),
       ]),
     );
