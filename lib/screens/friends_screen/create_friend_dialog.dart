@@ -30,7 +30,7 @@ Future<void> createFriendDialog(BuildContext context) => showDialog(
               ),
               actions: [
                 // Add Button
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () async {
                     await friendCreationForm.createFriend();
                     if (context.mounted) Navigator.of(context).pop();

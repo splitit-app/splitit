@@ -66,7 +66,6 @@ void quickSplitDialog(BuildContext context) {
             // Add Button
             OutlinedButton(
               onPressed: () {
-
                 Navigator.of(context).pop(); // Exits out of the Dialog
                 setState(() {});
               },
