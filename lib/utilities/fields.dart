@@ -1,11 +1,16 @@
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:project_bs/runtime_models/user/user_data.dart';
+import 'package:project_bs/screens/friends_screen/friend_creation_form.dart';
 
-const textFieldDecoration = InputDecoration(
+const textFieldDecoration_filled = InputDecoration(
   filled: true,
 );
 
-final dateFieldDecoration = textFieldDecoration.copyWith(
+final dateFieldDecoration = textFieldDecoration_filled.copyWith(
   suffixIcon: const Icon(Icons.calendar_today),
 );
 
