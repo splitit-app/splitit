@@ -24,13 +24,12 @@ void quickSplitDialog(BuildContext context) {
             child: Column(
               children: [
                 TextFormField(
-                  //controller: friendCreationForm.nameFieldController,
+                  controller: quickSplitForm.nameFieldController,
                   decoration: InputDecoration(
                     labelText: "Split Name",
                     border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      //.nameFieldController.clear, // Clears the input
+                      onPressed: quickSplitForm.nameFieldController.clear,
                       icon: const Icon(Symbols.close),
                     ),
                   ),
@@ -42,18 +41,16 @@ void quickSplitDialog(BuildContext context) {
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(Symbols.calendar_today),
                   ),
-                  controller: quickSplitForm.billDateFieldController,
+                  controller: quickSplitForm.dateFieldController,
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
-                  //controller: friendCreationForm.nameFieldController,
-                  //autofocus: true, // Auto-focuses on the text to allow for the keyboard to automatically display
+                  controller: quickSplitForm.totalFieldController,
                   decoration: InputDecoration(
                     labelText: "Total",
                     border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      //.nameFieldController.clear, // Clears the input
+                      onPressed: quickSplitForm.nameFieldController.clear,
                       icon: const Icon(Symbols.close),
                     ),
                   ),
