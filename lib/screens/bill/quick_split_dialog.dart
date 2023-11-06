@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/utilities/scroll_animations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utilities/fields.dart';
@@ -14,27 +13,23 @@ void quickSplitDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (context) {
-
       return StreamProvider.value(
           value: context.read<UserDataRepository>().userDataStream,
           initialData: null,
           builder: (context, child) {
             if (context.watch<UserData?>() == null) return const Placeholder();
 
-      final quickSplitForm = QuickSplitForm(read: context.read);
-            return PageView(
-              controller: quickSplitForm.pageController,
-              children: [
+            final quickSplitForm = QuickSplitForm(read: context.read);
+            return PageView(controller: quickSplitForm.pageController, children: [
               AlertDialog(
                 icon: const Icon(MaterialSymbols.bolt_filled),
                 title: const Text("Quick Split"),
                 titlePadding: const EdgeInsets.all(1),
-              
                 content: SingleChildScrollView(
                   child: Column(
                     children: [
-                    const Text("provide split information"),
-                    const SizedBox(height: 20),
+                      const Text("provide split information"),
+                      const SizedBox(height: 20),
                       TextFormField(
                         controller: quickSplitForm.nameFieldController,
                         decoration: InputDecoration(
@@ -57,7 +52,7 @@ void quickSplitDialog(BuildContext context) {
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
-                        controller: quickSplitForm.totalFieldController,
+                        controller: quickSplitForm.totalSpentFieldController,
                         decoration: InputDecoration(
                           labelText: "Total",
                           border: const OutlineInputBorder(),
@@ -74,8 +69,7 @@ void quickSplitDialog(BuildContext context) {
                 actions: [
                   // Next Button
                   OutlinedButton(
-                    onPressed: 
-                      () async{
+                    onPressed: () async {
                       await quickSplitForm.createBill();
                       //if (context.mounted) Navigator.of(context).pop();
                     },
@@ -83,32 +77,28 @@ void quickSplitDialog(BuildContext context) {
                   ),
                 ],
               ),
-
-
-
               AlertDialog(
-                //final registrationForm = context.read<RegistrationForm>();
-                icon: const Icon(MaterialSymbols.bolt_filled),
-                title: const Text("Quick Split"),
-                titlePadding: const EdgeInsets.all(1),
-                                content: const SingleChildScrollView(
-                  child: Column(
-                    children: [
-                    Text("select people to split equally"),
-                      SizedBox(height: 20),
-                    ],
+                  //final registrationForm = context.read<RegistrationForm>();
+                  icon: const Icon(MaterialSymbols.bolt_filled),
+                  title: const Text("Quick Split"),
+                  titlePadding: const EdgeInsets.all(1),
+                  content: const SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text("select people to split equally"),
+                        SizedBox(height: 20),
+                      ],
+                    ),
                   ),
-                ),
-                actions:[
+                  actions: [
                     OutlinedButton(
-                    onPressed: () async{
-                      await quickSplitForm.submitBill();
-                    if (context.mounted) Navigator.of(context).pop();
-                    },
-                    child: const Text("Split It"),
-                  ),
-                ]
-              ),
+                      onPressed: () async {
+                        await quickSplitForm.submitBill();
+                        if (context.mounted) Navigator.of(context).pop();
+                      },
+                      child: const Text("Split It"),
+                    ),
+                  ]),
             ]);
           });
     },

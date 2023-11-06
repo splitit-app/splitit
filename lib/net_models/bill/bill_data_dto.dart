@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/bill/modules/bill_module_tax.dart';
