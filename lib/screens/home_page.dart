@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import 'friends_screen/friends_page.dart';
 import 'mockup_page.dart';
@@ -44,26 +46,26 @@ class _MainHomePageState extends State<MainHomePage> {
         destinations: const [
           // Lists of Destinations
           NavigationDestination(
-            icon: Icon(Icons.home_sharp),
-            selectedIcon: Icon(Icons.home_outlined),
+            icon: Icon(Symbols.home_rounded),
+            selectedIcon: Icon(Symbols.home_filled_rounded),
             label: 'Home (Exp)',
             tooltip: 'Return Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.home_sharp),
-            selectedIcon: Icon(Icons.home_outlined),
+            icon: Icon(Symbols.home_rounded),
+            selectedIcon: Icon(Symbols.home_filled_rounded),
             label: 'Home',
             tooltip: 'Return Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.payments),
-            selectedIcon: Icon(Icons.payments_outlined),
+            icon: Icon(Symbols.payments_rounded),
+            selectedIcon: Icon(Symbols.payments_rounded),
             label: 'Bills',
             tooltip: 'Bill Splitting',
           ),
           NavigationDestination(
-            icon: Icon(Icons.person),
-            selectedIcon: Icon(Icons.person_outlined),
+            icon: Icon(Symbols.person_rounded),
+            selectedIcon: Icon(Symbols.person_rounded),
             label: 'People',
             tooltip: 'People',
           ),
