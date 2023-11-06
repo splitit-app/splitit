@@ -4,6 +4,7 @@ import '../utilities/person_icon.dart';
 
 class BillCards extends StatelessWidget {
   // Parameters:
+  final String uid;
   final String billName;
   final double billTotal;
   final String billDate;
@@ -13,6 +14,7 @@ class BillCards extends StatelessWidget {
 
   const BillCards({
     super.key,
+    required this.uid,
     required this.billName,
     required this.billTotal,
     required this.billDate,
@@ -44,7 +46,8 @@ class BillCards extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Spaces each of the Components in the First Row
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // Spaces each of the Components in the First Row
                 children: [
                   Row(
                     // Grouping (Wrapping) the Container and Column in a row to better separate between the arrow icon
@@ -75,7 +78,7 @@ class BillCards extends StatelessWidget {
                             style: TextStyle(
                               // color: textColors,
                               color: Theme.of(context).colorScheme.onPrimaryContainer,
-                              
+
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
@@ -96,10 +99,10 @@ class BillCards extends StatelessWidget {
                     ],
                   ),
                   // Arrow Icon
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Color(0xFF2B2929),
-                    size: 24,
+                  IconButton(
+                    onPressed: () => print(uid),
+                    color: const Color(0xFF2B2929),
+                    icon: const Icon(Icons.arrow_forward),
                   ),
                 ],
               ),
@@ -208,13 +211,11 @@ class BillCards extends StatelessWidget {
                               children: [
                                 // Bill Total Row
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
                                       "Total",
-                                      style:
-                                          TextStyle(color: Color(0xFF56585A)),
+                                      style: TextStyle(color: Color(0xFF56585A)),
                                     ),
                                     Text(
                                       // "\$125.45",
@@ -229,19 +230,16 @@ class BillCards extends StatelessWidget {
 
                                 // Settled Amount Row
                                 const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Settled",
-                                      style:
-                                          TextStyle(color: Color(0xFF56585A)),
+                                      style: TextStyle(color: Color(0xFF56585A)),
                                     ),
                                     Text(
                                       "\$5.45", // Amount Settled (Resolved)
                                       style: TextStyle(
-                                          color: Color(0xFF3E992A),
-                                          fontWeight: FontWeight.w500),
+                                          color: Color(0xFF3E992A), fontWeight: FontWeight.w500),
                                     ),
                                   ],
                                 ),
@@ -254,20 +252,18 @@ class BillCards extends StatelessWidget {
 
                                 // Pending Amount Row
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
                                       "Pending",
-                                      style:
-                                          TextStyle(color: Color(0xFF56585A)),
+                                      style: TextStyle(color: Color(0xFF56585A)),
                                     ),
                                     Text(
                                       // "\$100.00",
 
                                       // The bill total subtracted by the amount resolved. Currently the settled amount is hardcoded.
-                                      (billTotal - 5.45).toStringAsFixed(
-                                          2), // Rounding the Number to the tenths
+                                      (billTotal - 5.45)
+                                          .toStringAsFixed(2), // Rounding the Number to the tenths
                                       style: const TextStyle(
                                         color: Color(0xFFA11919),
                                         fontSize: 16.0,

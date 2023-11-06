@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../runtime_models/user/private_profile.dart';
-import '../../runtime_models/user/public_profile.dart';
 import '../../runtime_models/user/user_data.dart';
 import 'public_profile_dto.dart';
 

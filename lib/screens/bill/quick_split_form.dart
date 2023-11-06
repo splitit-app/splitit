@@ -1,12 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
-import 'package:project_bs/services/user_data_repository.dart';
-import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-import '../../runtime_models/user/public_profile.dart';
+import '../../runtime_models/user/user_data.dart';
+import '../../services/bill_data_repository.dart';
+import '../../utilities/scroll_animations.dart';
 
 class QuickSplitForm {
-  QuickSplitForm();
-  final billDateFieldController = TextEditingController();
-//TODO quicksplit form stuff
+  final Locator read;
+  final pageController = PageController();
+
+  final nameFieldController = TextEditingController();
+  final dateFieldController = TextEditingController();
+  final totalSpentFieldController = TextEditingController();
+
+  QuickSplitForm({required this.read});
+
+  Future<void> createBill() async {
+    final UserData? userData = read();
+
+    String name = nameFieldController.text.trim();
+    DateTime dateTime = DateFormat.yMMMMd().parse(dateFieldController.text.trim());
+    double totalSpent = double.parse(totalSpentFieldController.text.trim());
+
+    if (userData == null) return;
+
+    // if (await AuthenticationService().isValid_Email(_emailController.text)) {
+    await pageController.animateToPageWithDefaults(1);
+    // }
+
+    read<BillDataRepository>().createBill(
+      dateTime: dateTime,
+      name: name,
+      totalSpent: totalSpent,
+      payer: userData.publicProfile,
+    );
+    // userData.nonRegisteredFriends.add(PublicProfile(
+    //   uid: const Uuid().v1(),
+    //   createdBy: userData.publicProfile,
+    //   name: nameFieldController.text,
+    // ));
+    //read<UserDataRepository>().pushUserData(userData);
+  }
+
+  Future<void> submitBill() async {
+    await pageController.animateToPageWithDefaults(1);
+  }
 }

@@ -12,6 +12,7 @@ part 'bill_data.freezed.dart';
 class BillData with _$BillData {
   @Assert('totalSpent >= 0')
   factory BillData({
+    required String uid,
     required DateTime dateTime,
     @Default("New Bill") String name,
     @Default(0) double totalSpent,

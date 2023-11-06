@@ -99,6 +99,7 @@ class PageTest extends StatelessWidget {
                   // return BillCards(countIteration: index ,billName: _billName[index], billTotal: _billTotal[index], billDate: _billDate[index],);
 
                   return BillCards(
+                    uid: '',
                     billName: _billName[index],
                     billTotal: _billTotal[index],
                     billDate: _billDate[index],
@@ -222,7 +223,7 @@ class MyHomePageV2 extends StatelessWidget {
         ],
       ),
       body: userData == null
-          ? const Center(child: Text("No User Error"))
+          ? const Placeholder()
           : SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
