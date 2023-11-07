@@ -20,6 +20,8 @@ mixin _$ItemGroup {
   List<PublicProfile> get primarySplits => throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
   List<SplitRule> get splitRules => throw _privateConstructorUsedError;
+  Map<PublicProfile, double> get splitBalances =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ItemGroupCopyWith<ItemGroup> get copyWith =>
@@ -35,7 +37,8 @@ abstract class $ItemGroupCopyWith<$Res> {
       {String name,
       List<PublicProfile> primarySplits,
       List<Item> items,
-      List<SplitRule> splitRules});
+      List<SplitRule> splitRules,
+      Map<PublicProfile, double> splitBalances});
 }
 
 /// @nodoc
@@ -55,6 +58,7 @@ class _$ItemGroupCopyWithImpl<$Res, $Val extends ItemGroup>
     Object? primarySplits = null,
     Object? items = null,
     Object? splitRules = null,
+    Object? splitBalances = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -73,6 +77,10 @@ class _$ItemGroupCopyWithImpl<$Res, $Val extends ItemGroup>
           ? _value.splitRules
           : splitRules // ignore: cast_nullable_to_non_nullable
               as List<SplitRule>,
+      splitBalances: null == splitBalances
+          ? _value.splitBalances
+          : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<PublicProfile, double>,
     ) as $Val);
   }
 }
@@ -88,7 +96,8 @@ abstract class _$$_ItemGroupCopyWith<$Res> implements $ItemGroupCopyWith<$Res> {
       {String name,
       List<PublicProfile> primarySplits,
       List<Item> items,
-      List<SplitRule> splitRules});
+      List<SplitRule> splitRules,
+      Map<PublicProfile, double> splitBalances});
 }
 
 /// @nodoc
@@ -106,6 +115,7 @@ class __$$_ItemGroupCopyWithImpl<$Res>
     Object? primarySplits = null,
     Object? items = null,
     Object? splitRules = null,
+    Object? splitBalances = null,
   }) {
     return _then(_$_ItemGroup(
       name: null == name
@@ -124,21 +134,28 @@ class __$$_ItemGroupCopyWithImpl<$Res>
           ? _value._splitRules
           : splitRules // ignore: cast_nullable_to_non_nullable
               as List<SplitRule>,
+      splitBalances: null == splitBalances
+          ? _value._splitBalances
+          : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<PublicProfile, double>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ItemGroup implements _ItemGroup {
+class _$_ItemGroup extends _ItemGroup {
   _$_ItemGroup(
       {this.name = '',
       required final List<PublicProfile> primarySplits,
       required final List<Item> items,
-      required final List<SplitRule> splitRules})
+      required final List<SplitRule> splitRules,
+      required final Map<PublicProfile, double> splitBalances})
       : _primarySplits = primarySplits,
         _items = items,
-        _splitRules = splitRules;
+        _splitRules = splitRules,
+        _splitBalances = splitBalances,
+        super._();
 
   @override
   @JsonKey()
@@ -167,9 +184,17 @@ class _$_ItemGroup implements _ItemGroup {
     return EqualUnmodifiableListView(_splitRules);
   }
 
+  final Map<PublicProfile, double> _splitBalances;
+  @override
+  Map<PublicProfile, double> get splitBalances {
+    if (_splitBalances is EqualUnmodifiableMapView) return _splitBalances;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_splitBalances);
+  }
+
   @override
   String toString() {
-    return 'ItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRules: $splitRules)';
+    return 'ItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRules: $splitRules, splitBalances: $splitBalances)';
   }
 
   @override
@@ -182,7 +207,9 @@ class _$_ItemGroup implements _ItemGroup {
                 .equals(other._primarySplits, _primarySplits) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             const DeepCollectionEquality()
-                .equals(other._splitRules, _splitRules));
+                .equals(other._splitRules, _splitRules) &&
+            const DeepCollectionEquality()
+                .equals(other._splitBalances, _splitBalances));
   }
 
   @override
@@ -191,7 +218,8 @@ class _$_ItemGroup implements _ItemGroup {
       name,
       const DeepCollectionEquality().hash(_primarySplits),
       const DeepCollectionEquality().hash(_items),
-      const DeepCollectionEquality().hash(_splitRules));
+      const DeepCollectionEquality().hash(_splitRules),
+      const DeepCollectionEquality().hash(_splitBalances));
 
   @JsonKey(ignore: true)
   @override
@@ -200,12 +228,14 @@ class _$_ItemGroup implements _ItemGroup {
       __$$_ItemGroupCopyWithImpl<_$_ItemGroup>(this, _$identity);
 }
 
-abstract class _ItemGroup implements ItemGroup {
+abstract class _ItemGroup extends ItemGroup {
   factory _ItemGroup(
       {final String name,
       required final List<PublicProfile> primarySplits,
       required final List<Item> items,
-      required final List<SplitRule> splitRules}) = _$_ItemGroup;
+      required final List<SplitRule> splitRules,
+      required final Map<PublicProfile, double> splitBalances}) = _$_ItemGroup;
+  _ItemGroup._() : super._();
 
   @override
   String get name;
@@ -215,6 +245,8 @@ abstract class _ItemGroup implements ItemGroup {
   List<Item> get items;
   @override
   List<SplitRule> get splitRules;
+  @override
+  Map<PublicProfile, double> get splitBalances;
   @override
   @JsonKey(ignore: true)
   _$$_ItemGroupCopyWith<_$_ItemGroup> get copyWith =>

@@ -12,6 +12,13 @@ _$_BillDataDTO _$$_BillDataDTOFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       totalSpent: (json['totalSpent'] as num).toDouble(),
       payerUid: json['payerUid'] as String,
+      splitBalances: (json['splitBalances'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ),
+      paymentResolveStatuses:
+          (json['paymentResolveStatuses'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ),
       lastUpdatedSession: DateTime.parse(json['lastUpdatedSession'] as String),
     );
 
@@ -21,5 +28,7 @@ Map<String, dynamic> _$$_BillDataDTOToJson(_$_BillDataDTO instance) =>
       'name': instance.name,
       'totalSpent': instance.totalSpent,
       'payerUid': instance.payerUid,
+      'splitBalances': instance.splitBalances,
+      'paymentResolveStatuses': instance.paymentResolveStatuses,
       'lastUpdatedSession': instance.lastUpdatedSession.toIso8601String(),
     };

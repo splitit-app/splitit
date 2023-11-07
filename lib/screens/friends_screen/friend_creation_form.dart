@@ -18,11 +18,17 @@ class FriendCreationForm {
     if (userData == null) return;
     if (userData.nonRegisteredFriends.length >= UserData.nonRegisteredFriendLimit) return;
 
-    userData.nonRegisteredFriends.add(PublicProfile(
-      uid: const Uuid().v1(),
+    String uid = const Uuid().v1();
+    userData.nonRegisteredFriends[uid] = PublicProfile(
+      uid: uid,
       createdBy: userData.publicProfile,
       name: nameFieldController.text,
-    ));
+    );
+    // userData.nonRegisteredFriends.add(PublicProfile(
+    //   uid: const Uuid().v1(),
+    //   createdBy: userData.publicProfile,
+    //   name: nameFieldController.text,
+    // ));
 
     read<UserDataRepository>().pushUserData(userData);
   }

@@ -80,8 +80,9 @@ class FriendsPageView extends StatelessWidget {
             itemCount: min(friends.length - startingIndex, 6),
             itemBuilder: (context, index) => Column(
               children: [
-                PersonIcon(personName: friends[startingIndex + index].name),
-                Text(friends[startingIndex + index].name, style: const TextStyle(fontSize: 16.0))
+                PersonIcon(personName: friends.values.elementAt(startingIndex + index).name),
+                Text(friends.values.elementAt(startingIndex + index).name,
+                    style: const TextStyle(fontSize: 16.0))
               ],
             ),
           );

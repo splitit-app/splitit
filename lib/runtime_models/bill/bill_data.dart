@@ -19,7 +19,8 @@ class BillData with _$BillData {
     PublicProfile? payer,
     List<PublicProfile>? primarySplits,
     List<PublicProfile>? secondarySplits,
-    List<(PublicProfile, double)>? paymentResolveStatuses,
+    required Map<PublicProfile, double> splitBalances,
+    required Map<PublicProfile, double> paymentResolveStatuses,
     //
     required List<ItemGroup> itemGroups,
     required BillModule_Tax taxModule,
@@ -34,8 +35,22 @@ class BillData with _$BillData {
         name: name,
         totalSpent: totalSpent,
         payerUid: payer!.uid,
+        splitBalances: splitBalances.map((profile, balance) => MapEntry(profile.uid, balance)),
+        paymentResolveStatuses: paymentResolveStatuses
+            .map((profile, resolveStatus) => MapEntry(profile.uid, resolveStatus)),
         lastUpdatedSession: lastUpdatedSession,
       );
-}
+
+  ItemGroup get everythingElseItemGroup => ItemGroup(
+        name: 'Everything Else',
+        primarySplits: List.empty(),
+        items: List.empty(),
+        splitRules: List.empty(),
+        splitBalances: {},
+      );
+  double get everythingElse =>
+      itemGroups.fold(totalSpent, (previousValue, itemGroup) => previousValue - itemGroup.value);
+
 //TODO: when a new item is added, initialized its tax list with the current number of taxes
 //TODO: when a new tax is introduced, iterate through all the items and update their List<bool>
+}

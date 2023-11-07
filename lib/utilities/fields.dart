@@ -2,27 +2,32 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
-import 'package:project_bs/screens/friends_screen/friend_creation_form.dart';
+
+const textFieldDecoration_border = InputDecoration(
+  border: OutlineInputBorder(),
+);
 
 const textFieldDecoration_filled = InputDecoration(
   filled: true,
 );
 
-final dateFieldDecoration = textFieldDecoration_filled.copyWith(
+final dateFieldDecoration_border = textFieldDecoration_border.copyWith(
+  suffixIcon: const Icon(Icons.calendar_today),
+);
+
+final dateFieldDecoration_filled = textFieldDecoration_filled.copyWith(
   suffixIcon: const Icon(Icons.calendar_today),
 );
 
 class DateFormField extends StatelessWidget {
+  final TextEditingController? controller;
+
+  final InputDecoration? decoration;
   const DateFormField({
     super.key,
     this.controller,
     this.decoration = const InputDecoration(),
   });
-
-  final TextEditingController? controller;
-  final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) => TextFormField(

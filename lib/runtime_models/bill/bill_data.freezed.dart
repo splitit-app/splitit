@@ -33,9 +33,13 @@ mixin _$BillData {
       throw _privateConstructorUsedError;
   set secondarySplits(List<PublicProfile>? value) =>
       throw _privateConstructorUsedError;
-  List<(PublicProfile, double)>? get paymentResolveStatuses =>
+  Map<PublicProfile, double> get splitBalances =>
       throw _privateConstructorUsedError;
-  set paymentResolveStatuses(List<(PublicProfile, double)>? value) =>
+  set splitBalances(Map<PublicProfile, double> value) =>
+      throw _privateConstructorUsedError;
+  Map<PublicProfile, double> get paymentResolveStatuses =>
+      throw _privateConstructorUsedError;
+  set paymentResolveStatuses(Map<PublicProfile, double> value) =>
       throw _privateConstructorUsedError; //
   List<ItemGroup> get itemGroups => throw _privateConstructorUsedError; //
   set itemGroups(List<ItemGroup> value) => throw _privateConstructorUsedError;
@@ -64,7 +68,8 @@ abstract class $BillDataCopyWith<$Res> {
       PublicProfile? payer,
       List<PublicProfile>? primarySplits,
       List<PublicProfile>? secondarySplits,
-      List<(PublicProfile, double)>? paymentResolveStatuses,
+      Map<PublicProfile, double> splitBalances,
+      Map<PublicProfile, double> paymentResolveStatuses,
       List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
       BillModule_Tip tipModule,
@@ -95,7 +100,8 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? payer = freezed,
     Object? primarySplits = freezed,
     Object? secondarySplits = freezed,
-    Object? paymentResolveStatuses = freezed,
+    Object? splitBalances = null,
+    Object? paymentResolveStatuses = null,
     Object? itemGroups = null,
     Object? taxModule = null,
     Object? tipModule = null,
@@ -130,10 +136,14 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
               as List<PublicProfile>?,
-      paymentResolveStatuses: freezed == paymentResolveStatuses
+      splitBalances: null == splitBalances
+          ? _value.splitBalances
+          : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<PublicProfile, double>,
+      paymentResolveStatuses: null == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(PublicProfile, double)>?,
+              as Map<PublicProfile, double>,
       itemGroups: null == itemGroups
           ? _value.itemGroups
           : itemGroups // ignore: cast_nullable_to_non_nullable
@@ -197,7 +207,8 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
       PublicProfile? payer,
       List<PublicProfile>? primarySplits,
       List<PublicProfile>? secondarySplits,
-      List<(PublicProfile, double)>? paymentResolveStatuses,
+      Map<PublicProfile, double> splitBalances,
+      Map<PublicProfile, double> paymentResolveStatuses,
       List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
       BillModule_Tip tipModule,
@@ -229,7 +240,8 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? payer = freezed,
     Object? primarySplits = freezed,
     Object? secondarySplits = freezed,
-    Object? paymentResolveStatuses = freezed,
+    Object? splitBalances = null,
+    Object? paymentResolveStatuses = null,
     Object? itemGroups = null,
     Object? taxModule = null,
     Object? tipModule = null,
@@ -264,10 +276,14 @@ class __$$_BillDataCopyWithImpl<$Res>
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
               as List<PublicProfile>?,
-      paymentResolveStatuses: freezed == paymentResolveStatuses
+      splitBalances: null == splitBalances
+          ? _value.splitBalances
+          : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<PublicProfile, double>,
+      paymentResolveStatuses: null == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as List<(PublicProfile, double)>?,
+              as Map<PublicProfile, double>,
       itemGroups: null == itemGroups
           ? _value.itemGroups
           : itemGroups // ignore: cast_nullable_to_non_nullable
@@ -299,7 +315,8 @@ class _$_BillData extends _BillData {
       this.payer,
       this.primarySplits,
       this.secondarySplits,
-      this.paymentResolveStatuses,
+      required this.splitBalances,
+      required this.paymentResolveStatuses,
       required this.itemGroups,
       required this.taxModule,
       required this.tipModule,
@@ -324,7 +341,9 @@ class _$_BillData extends _BillData {
   @override
   List<PublicProfile>? secondarySplits;
   @override
-  List<(PublicProfile, double)>? paymentResolveStatuses;
+  Map<PublicProfile, double> splitBalances;
+  @override
+  Map<PublicProfile, double> paymentResolveStatuses;
 //
   @override
   List<ItemGroup> itemGroups;
@@ -337,7 +356,7 @@ class _$_BillData extends _BillData {
 
   @override
   String toString() {
-    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
+    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @JsonKey(ignore: true)
@@ -356,7 +375,8 @@ abstract class _BillData extends BillData {
       PublicProfile? payer,
       List<PublicProfile>? primarySplits,
       List<PublicProfile>? secondarySplits,
-      List<(PublicProfile, double)>? paymentResolveStatuses,
+      required Map<PublicProfile, double> splitBalances,
+      required Map<PublicProfile, double> paymentResolveStatuses,
       required List<ItemGroup> itemGroups,
       required BillModule_Tax taxModule,
       required BillModule_Tip tipModule,
@@ -385,8 +405,11 @@ abstract class _BillData extends BillData {
   List<PublicProfile>? get secondarySplits;
   set secondarySplits(List<PublicProfile>? value);
   @override
-  List<(PublicProfile, double)>? get paymentResolveStatuses;
-  set paymentResolveStatuses(List<(PublicProfile, double)>? value);
+  Map<PublicProfile, double> get splitBalances;
+  set splitBalances(Map<PublicProfile, double> value);
+  @override
+  Map<PublicProfile, double> get paymentResolveStatuses;
+  set paymentResolveStatuses(Map<PublicProfile, double> value);
   @override //
   List<ItemGroup> get itemGroups; //
   set itemGroups(List<ItemGroup> value);

@@ -29,9 +29,9 @@ mixin _$UserData {
       throw _privateConstructorUsedError;
   set registeredFriends(List<PublicProfile> value) =>
       throw _privateConstructorUsedError;
-  List<PublicProfile> get nonRegisteredFriends =>
+  Map<String, PublicProfile> get nonRegisteredFriends =>
       throw _privateConstructorUsedError;
-  set nonRegisteredFriends(List<PublicProfile> value) =>
+  set nonRegisteredFriends(Map<String, PublicProfile> value) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $UserDataCopyWith<$Res> {
       PublicProfile publicProfile,
       PrivateProfile privateProfile,
       List<PublicProfile> registeredFriends,
-      List<PublicProfile> nonRegisteredFriends});
+      Map<String, PublicProfile> nonRegisteredFriends});
 
   $PublicProfileCopyWith<$Res> get publicProfile;
   $PrivateProfileCopyWith<$Res> get privateProfile;
@@ -94,7 +94,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
       nonRegisteredFriends: null == nonRegisteredFriends
           ? _value.nonRegisteredFriends
           : nonRegisteredFriends // ignore: cast_nullable_to_non_nullable
-              as List<PublicProfile>,
+              as Map<String, PublicProfile>,
     ) as $Val);
   }
 
@@ -127,7 +127,7 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       PublicProfile publicProfile,
       PrivateProfile privateProfile,
       List<PublicProfile> registeredFriends,
-      List<PublicProfile> nonRegisteredFriends});
+      Map<String, PublicProfile> nonRegisteredFriends});
 
   @override
   $PublicProfileCopyWith<$Res> get publicProfile;
@@ -172,7 +172,7 @@ class __$$_UserDataCopyWithImpl<$Res>
       nonRegisteredFriends: null == nonRegisteredFriends
           ? _value.nonRegisteredFriends
           : nonRegisteredFriends // ignore: cast_nullable_to_non_nullable
-              as List<PublicProfile>,
+              as Map<String, PublicProfile>,
     ));
   }
 }
@@ -198,7 +198,7 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
   @override
   List<PublicProfile> registeredFriends;
   @override
-  List<PublicProfile> nonRegisteredFriends;
+  Map<String, PublicProfile> nonRegisteredFriends;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -230,7 +230,7 @@ abstract class _UserData extends UserData {
       required PublicProfile publicProfile,
       required PrivateProfile privateProfile,
       required List<PublicProfile> registeredFriends,
-      required List<PublicProfile> nonRegisteredFriends}) = _$_UserData;
+      required Map<String, PublicProfile> nonRegisteredFriends}) = _$_UserData;
   _UserData._() : super._();
 
   @override
@@ -246,8 +246,8 @@ abstract class _UserData extends UserData {
   List<PublicProfile> get registeredFriends;
   set registeredFriends(List<PublicProfile> value);
   @override
-  List<PublicProfile> get nonRegisteredFriends;
-  set nonRegisteredFriends(List<PublicProfile> value);
+  Map<String, PublicProfile> get nonRegisteredFriends;
+  set nonRegisteredFriends(Map<String, PublicProfile> value);
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

@@ -13,5 +13,10 @@ class ItemGroup with _$ItemGroup {
     required List<PublicProfile> primarySplits,
     required List<Item> items,
     required List<SplitRule> splitRules,
+    required Map<PublicProfile, double> splitBalances,
   }) = _ItemGroup;
+
+  ItemGroup._();
+
+  double get value => items.fold(0, (previousValue, item) => previousValue + item.value);
 }
