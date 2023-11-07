@@ -46,26 +46,26 @@ class _MainHomePageState extends State<MainHomePage> {
         destinations: const [
           // Lists of Destinations
           NavigationDestination(
-            icon: Icon(Symbols.home_rounded),
-            selectedIcon: Icon(Symbols.home_filled_rounded),
+            icon: Icon(MaterialSymbols.home_work),
+            selectedIcon: Icon(MaterialSymbols.home_work_filled),
             label: 'Home (Exp)',
             tooltip: 'Return Home',
           ),
           NavigationDestination(
             icon: Icon(Symbols.home_rounded),
-            selectedIcon: Icon(Symbols.home_filled_rounded),
+            selectedIcon: Icon(MaterialSymbols.home_filled),
             label: 'Home',
             tooltip: 'Return Home',
           ),
           NavigationDestination(
-            icon: Icon(Symbols.payments_rounded),
-            selectedIcon: Icon(Symbols.payments_rounded),
+            icon: Icon(MaterialSymbols.payments_outlined),
+            selectedIcon: Icon(MaterialSymbols.payments_filled),
             label: 'Bills',
             tooltip: 'Bill Splitting',
           ),
           NavigationDestination(
-            icon: Icon(Symbols.person_rounded),
-            selectedIcon: Icon(Symbols.person_rounded),
+            icon: Icon(MaterialSymbols.person_outlined),
+            selectedIcon: Icon(MaterialSymbols.person_filled_filled_sharp),
             label: 'People',
             tooltip: 'People',
           ),
