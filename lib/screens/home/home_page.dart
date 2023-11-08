@@ -48,12 +48,6 @@ class _MainHomePageState extends State<MainHomePage> {
         destinations: const [
           // Lists of Destinations
           NavigationDestination(
-            icon: Icon(MaterialSymbols.home_work),
-            selectedIcon: Icon(MaterialSymbols.home_work_filled),
-            label: 'Home (Exp)',
-            tooltip: 'Return Home',
-          ),
-          NavigationDestination(
             icon: Icon(Symbols.home_rounded),
             selectedIcon: Icon(MaterialSymbols.home_filled),
             label: 'Home',
