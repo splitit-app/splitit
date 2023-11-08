@@ -11,6 +11,10 @@ class UserDataRepository {
   UserDataRepository({required this.read});
   String? get uid => read<User?>()?.uid;
 
+  Future<UserData> get userData async => userDocumentReference
+      .get()
+      .then((snapshot) => UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid!));
+
   Stream<UserData?> get userDataStream => userDocumentReference
       .snapshots()
       .where((snapshot) => snapshot.exists)

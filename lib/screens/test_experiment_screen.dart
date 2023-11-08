@@ -4,8 +4,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
-import '../runtime_models/bill/modules/bill_module_tax.dart';
-import '../runtime_models/bill/modules/bill_module_tip.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
 import '../services/bill_data_repository.dart';
@@ -47,9 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    UserData? userData = context.watch<UserData?>();
+    final UserData? userData = context.watch();
+    final List<BillData>? bills = context.watch();
     final expandableFabStateKey = GlobalKey<ExpandableFabState>();
-
     // return switch (_currentPage) {
     //   2 => const FriendsPage(),
     //   0 || 1 => Scaffold(
@@ -186,48 +184,40 @@ class _MyHomePageState extends State<MyHomePage> {
             Text("Transaction History", style: Theme.of(context).textTheme.headlineMedium),
             const Text("Displaying Most Recent", style: TextStyle(fontSize: 20)),
 
-            userData == null
+            bills == null
                 ? const SizedBox.shrink()
-                :
-                // Data from Database:
-                StreamBuilder<List<BillData>?>(
-                    stream: context.read<BillDataRepository>().billDataStream,
-                    builder: (context, snapshot) {
-                      return snapshot.hasData
-                          ? Expanded(
-                              // Makes the ListView scrollable.
-                              child: ListView.separated(
-                                  padding: const EdgeInsets.only(left: 20, right: 20),
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.length,
-                                  itemBuilder: (context, index) {
-                                    BillData bill = snapshot.data![index];
-                                    // return Text(
-                                    //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
+                : Expanded(
+                    // Makes the ListView scrollable.
+                    child: ListView.separated(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        shrinkWrap: true,
+                        itemCount: bills.length,
+                        itemBuilder: (context, index) {
+                          BillData bill = bills[index];
+                          // return Text(
+                          //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
 
-                                    // return BillCards(
-                                    //   billName:
-                                    //       "${bill.name} ${snapshot.data!.length - 1 - index}",
-                                    //   billTotal: bill.totalSpent,
-                                    //   billDate: bill.dateTime.toString(),
-                                    //   // billDate: bill.dateTime.toString().substring(0, 10),    // substring keeps only the date
-                                    //   countIteration: index,
-                                    // );
+                          // return BillCards(
+                          //   billName:
+                          //       "${bill.name} ${snapshot.data!.length - 1 - index}",
+                          //   billTotal: bill.totalSpent,
+                          //   billDate: bill.dateTime.toString(),
+                          //   // billDate: bill.dateTime.toString().substring(0, 10),    // substring keeps only the date
+                          //   countIteration: index,
+                          // );
 
-                                    return BillCards(
-                                      uid: bill.uid,
-                                      billName:
-                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
-                                      billTotal: bill.totalSpent,
-                                      billDate: bill.dateTime.toString(),
-                                    );
-                                  },
-                                  separatorBuilder: (BuildContext context, int index) =>
-                                      const Divider() // Separator Elements between each of the items
-                                  ),
-                            )
-                          : const SizedBox.shrink();
-                    }),
+                          return BillCards(
+                            uid: bill.uid,
+                            billName:
+                                "${bill.name} ${bills.length - 1 - index}", // Displays in Reverse Order
+                            billTotal: bill.totalSpent,
+                            billDate: bill.dateTime.toString(),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider() // Separator Elements between each of the items
+                        ),
+                  )
           ],
         ),
       ),

@@ -3,7 +3,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/user/user_data.dart';
-import '../../services/user_data_repository.dart';
 import '../../utilities/friend_tile.dart';
 import '../../utilities/person_icon.dart';
 import 'create_friend_dialog.dart';
@@ -14,14 +13,12 @@ class FriendsPageOverview extends StatelessWidget {
   FriendsPageOverview({super.key});
 
   @override
-  Widget build(BuildContext context) => StreamBuilder(
-        stream: context.read<UserDataRepository>().userDataStream,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return const Placeholder();
+  Widget build(BuildContext context) {
+    final UserData? userData = context.watch<UserData?>();
 
-          final UserData userData = snapshot.data!;
-
-          return Scaffold(
+    return userData == null
+        ? const Placeholder()
+        : Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               title: const Text("Friends"),
@@ -87,13 +84,16 @@ class FriendsPageOverview extends StatelessWidget {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  PersonIcon(personName: userData.nonRegisteredFriends[index].name),
+                                  PersonIcon(
+                                      personName: userData.nonRegisteredFriends.values
+                                          .elementAt(index)
+                                          .name),
 
                                   // Truncating Long Text
                                   SizedBox(
                                       width: 60.0,
                                       child: Text(
-                                        userData.nonRegisteredFriends[index].name,
+                                        userData.nonRegisteredFriends.values.elementAt(index).name,
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 1,
                                         softWrap: false,
@@ -160,15 +160,15 @@ class FriendsPageOverview extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: userData.nonRegisteredFriends.length,
-                    itemBuilder: (context, index) =>
-                        FriendTile(profile: userData.nonRegisteredFriends[index], index: index),
+                    itemBuilder: (context, index) => FriendTile(
+                      profile: userData.nonRegisteredFriends.values.elementAt(index),
+                      index: index,
+                    ),
                     separatorBuilder: (BuildContext context, int index) => const Divider(),
                   ),
                 ],
               ),
             ), // End of Main Column (Wrapped in SingleChildScrollView)
           );
-          // Add Friend Method
-        },
-      );
+  }
 }

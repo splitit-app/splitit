@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../friends_screen/friends_page.dart';
 import 'home_screen.dart';
@@ -6,7 +8,6 @@ import 'home_screen.dart';
 // import 'test_experiment_screen.dart';
 import '../bill/view_bills.dart';
 import '../../utilities/bill utilities/bill_info.dart';
-
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -27,7 +28,7 @@ class _MainHomePageState extends State<MainHomePage> {
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,20 +48,26 @@ class _MainHomePageState extends State<MainHomePage> {
         destinations: const [
           // Lists of Destinations
           NavigationDestination(
-            icon: Icon(Icons.home_sharp),
-            selectedIcon: Icon(Icons.home_outlined),
+            icon: Icon(MaterialSymbols.home_work),
+            selectedIcon: Icon(MaterialSymbols.home_work_filled),
+            label: 'Home (Exp)',
+            tooltip: 'Return Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Symbols.home_rounded),
+            selectedIcon: Icon(MaterialSymbols.home_filled),
             label: 'Home',
             tooltip: 'Return Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.payments),
-            selectedIcon: Icon(Icons.payments_outlined),
+            icon: Icon(MaterialSymbols.payments_outlined),
+            selectedIcon: Icon(MaterialSymbols.payments_filled),
             label: 'Bills',
             tooltip: 'Bill Splitting',
           ),
           NavigationDestination(
-            icon: Icon(Icons.person),
-            selectedIcon: Icon(Icons.person_outlined),
+            icon: Icon(MaterialSymbols.person_outlined),
+            selectedIcon: Icon(MaterialSymbols.person_filled_filled_sharp),
             label: 'People',
             tooltip: 'People',
           ),

@@ -6,20 +6,20 @@ import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../runtime_models/user/user_data.dart';
-import 'friends_page_view.dart';
 import '../../utilities/group_container.dart';
 import '../../utilities/scroll_animations.dart';
 import 'friends_page_overview.dart';
+import 'friends_page_view.dart';
 import 'group_page_overview.dart';
 
 class FriendsPage extends StatelessWidget {
-  FriendsPage({super.key});
-
   // The controller keeps track on the user input from the Search Bar.
   final _searchBarController = TextEditingController();
 
   // Page Controller for Page Indicator
   final _controller = PageController(initialPage: 0);
+
+  FriendsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

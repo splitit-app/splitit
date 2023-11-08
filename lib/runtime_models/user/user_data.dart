@@ -17,7 +17,7 @@ class UserData with _$UserData {
     required PublicProfile publicProfile,
     required PrivateProfile privateProfile,
     required List<PublicProfile> registeredFriends,
-    required List<PublicProfile> nonRegisteredFriends,
+    required Map<String, PublicProfile> nonRegisteredFriends,
   }) = _UserData;
 
   UserData._();
@@ -29,7 +29,7 @@ class UserData with _$UserData {
             .map((friend) => friend.uid)
             .toList(),
         nonRegisteredFriends:
-            nonRegisteredFriends.map((friend) => friend.toDataTransferObj).toList(),
+            nonRegisteredFriends.values.map((profile) => profile.toDataTransferObj).toList(),
         lastUpdatedSession: DateTime.now(),
       );
 }

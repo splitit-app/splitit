@@ -43,7 +43,7 @@ class RegistrationForm {
       publicProfile: PublicProfile(uid: user.uid, name: username),
       privateProfile: PrivateProfile(themeData: ThemeData.light()),
       registeredFriends: List.empty(),
-      nonRegisteredFriends: List.empty(),
+      nonRegisteredFriends: {},
     ));
 
     print('hellooo');

@@ -16,6 +16,10 @@ class QuickSplitForm {
 
   QuickSplitForm({required this.read});
 
+  Future<void> submitBillInfo() async {
+    await pageController.animateToPageWithDefaults(1);
+  }
+
   Future<void> createBill() async {
     final UserData? userData = read();
 
@@ -24,10 +28,6 @@ class QuickSplitForm {
     double totalSpent = double.parse(totalSpentFieldController.text.trim());
 
     if (userData == null) return;
-
-    // if (await AuthenticationService().isValid_Email(_emailController.text)) {
-    await pageController.animateToPageWithDefaults(1);
-    // }
 
     read<BillDataRepository>().createBill(
       dateTime: dateTime,
@@ -41,9 +41,5 @@ class QuickSplitForm {
     //   name: nameFieldController.text,
     // ));
     //read<UserDataRepository>().pushUserData(userData);
-  }
-
-  Future<void> submitBill() async {
-    await pageController.animateToPageWithDefaults(1);
   }
 }

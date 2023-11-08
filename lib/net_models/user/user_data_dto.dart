@@ -31,9 +31,10 @@ class UserDataDTO with _$UserDataDTO {
       publicProfile: $publicProfile,
       privateProfile: PrivateProfile(themeData: ThemeData.light()),
       registeredFriends: List.empty(),
-      nonRegisteredFriends: nonRegisteredFriends
-          .map((friend) => friend.toRuntimeObj(friend.uid, createdBy: $publicProfile))
-          .toList(),
+      nonRegisteredFriends: {
+        for (var profile in nonRegisteredFriends)
+          profile.uid: profile.toRuntimeObj(profile.uid, createdBy: $publicProfile)
+      },
     );
   }
 }

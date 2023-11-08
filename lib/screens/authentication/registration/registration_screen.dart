@@ -87,7 +87,7 @@ class RegistrationFormForUserData extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               DateFormField(
-                decoration: dateFieldDecoration.copyWith(labelText: 'Birthday*'),
+                decoration: dateFieldDecoration_filled.copyWith(labelText: 'Birthday*'),
                 controller: registrationForm.birthdayFieldController,
               ),
               const SizedBox(height: 20),
