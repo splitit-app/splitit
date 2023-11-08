@@ -66,7 +66,6 @@ class FriendsPage extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 15.0)),
                     ),
                   ),
-
                   // Contains Friend Profiles
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -94,10 +93,11 @@ class FriendsPage extends StatelessWidget {
                                 )),
                           ],
                         ),
+                        const SizedBox(height: 40.0),
 
                         // Profile List Row in PageView Format
                         SizedBox(
-                          height: 200,
+                          height: 300,
                           child: PageView.builder(
                               // PageView Builder
                               scrollDirection: Axis.horizontal,
@@ -119,7 +119,7 @@ class FriendsPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25.0),
+                  const SizedBox(height: 40.0),
 
                   if (true) // Displays on True. False to Hide.
                     // Group Containers
