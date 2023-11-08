@@ -30,6 +30,28 @@ class RegistrationForm {
     String password = passwordFieldController.text;
     String username = nameFieldController.text.trim();
 
+    String? emailError = validateEmail(email);
+    String? passwordError = validatePassword(password);
+    String? usernameError = validateUsername(username);
+
+if (emailError != null || passwordError != null) {
+  // Display validation errors
+  if (emailError != null) {
+    print(emailError);
+  }
+
+if (passwordError != null) {
+    print(passwordError);
+  }
+} 
+if (usernameError != null) {
+  // Display validation error
+    print(usernameError);
+} else {
+  // Proceed with user registration
+}
+
+
     final user = await read<AuthenticationService>().createUserWith_EmailAndPassword(
       email: email,
       password: password,
@@ -56,4 +78,44 @@ class RegistrationForm {
     await pageController.animateToPageWithDefaults(1);
     // }
   }
+}
+
+// Email validator
+String? validateEmail(String email) {
+  // Regular expression to validate email addresses
+  final emailRegex = RegExp(r'^[\w-]+(.[\w-]+)*@[\w-]+(.[\w-]+)+$');
+
+  if (email.isEmpty) {
+    return 'Email is required';
+  } else if (!emailRegex.hasMatch(email)) {
+    return 'Invalid email format';
+  }
+
+  return null; // No validation errors
+}
+
+// Password validator
+String? validatePassword(String password) {
+  if (password.isEmpty) {
+    return 'Password is required';
+  } else if (password.length < 6) {
+    return 'Password must be at least 6 characters long';
+  }
+
+  return null; // No validation errors
+}
+
+//Username validator
+String? validateUsername(String username) {
+  if (username.isEmpty) {
+    return 'Username is required';
+  // } else if (username.length < 6) {
+  //   return '';
+  // } else if (username.length > 6) {
+  //   return '';
+  // } else if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(username)) {
+  //   return 'Username can only contain letters, numbers, and underscores';
+   }
+
+  return null;  
 }
