@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import 'friends_screen/friends_page.dart';
-import 'mockup_page.dart';
-import 'test_experiment_screen.dart';
+import '../friends_screen/friends_page.dart';
+import 'home_screen.dart';
+// import 'mockup_page.dart';
+// import 'test_experiment_screen.dart';
+import '../bill/view_bills.dart';
+import '../../utilities/bill utilities/bill_info.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -18,11 +21,10 @@ class MainHomePage extends StatefulWidget {
 class _MainHomePageState extends State<MainHomePage> {
   // List of Pages accessed through currentPage indexing
   final screens = [
-    // const MockUpPage(),
-    const MyHomePageV2(),
-    const MyHomePage(),
-    PageTest(),
+    const MainHomeScreen(),
+    const ViewBillHistory(),
     FriendsPage(),
+    const BillInfo(billName: "McDonalds", billDate: "1999-09-19", billTotal: 125.0),
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
@@ -68,6 +70,12 @@ class _MainHomePageState extends State<MainHomePage> {
             selectedIcon: Icon(MaterialSymbols.person_filled_filled_sharp),
             label: 'People',
             tooltip: 'People',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.warning),
+            selectedIcon: Icon(Icons.warning),
+            label: 'Test',
+            tooltip: 'Test',
           ),
         ],
         onDestinationSelected: (int value) {

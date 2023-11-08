@@ -54,6 +54,7 @@ class FriendsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: SearchBar(
                       controller: _searchBarController,
+                      hintText: "Search friends & groups",
                       leading: const Icon(Symbols.menu),
                       trailing: const <Widget>[
                         Tooltip(

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'authentication/login/login_screen.dart';
 import 'authentication/registration/registration_screen.dart';
-import 'home_page.dart';
+import 'home/home_page.dart';
 
 class AuthenticationSwitcher extends StatelessWidget {
   const AuthenticationSwitcher({super.key});

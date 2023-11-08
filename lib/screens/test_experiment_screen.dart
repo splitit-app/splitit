@@ -7,7 +7,7 @@ import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
 import '../services/bill_data_repository.dart';
-import '../utilities/bill_cards.dart';
+import '../utilities/bill utilities/bill_cards.dart';
 import 'bill/quick_split_dialog.dart';
 
 class MyHomePage extends StatefulWidget {

@@ -7,8 +7,9 @@ import 'person_icon.dart';
 
 class FriendTile extends StatelessWidget {
   final PublicProfile profile;
+  final int index;
 
-  const FriendTile({super.key, required this.profile});
+  const FriendTile({super.key, required this.profile, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,10 @@ class FriendTile extends StatelessWidget {
               }),
               backgroundColor: const Color(0xFFD42B2B),
               foregroundColor: Colors.white,
-              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(25.0)),
+              // First Tile have border-edges, the remainder have none.
+              borderRadius: index == 0
+                  ? const BorderRadius.only(topLeft: Radius.circular(25.0))
+                  : const BorderRadius.horizontal(left: Radius.circular(0.0)),
               icon: Symbols.delete,
               label: "Abandon",
             ),
@@ -52,9 +56,12 @@ class FriendTile extends StatelessWidget {
               onPressed: ((context) {}),
               backgroundColor: const Color(0xFF2B82D4),
               foregroundColor: Colors.white,
-              borderRadius: const BorderRadius.only(bottomRight: Radius.circular(25.0)),
+              // First Tile have border-edges, the remainder have none.
+              borderRadius: index == 0
+                  ? const BorderRadius.only(topRight: Radius.circular(25.0))
+                  : const BorderRadius.horizontal(right: Radius.circular(0.0)),
               icon: Symbols.chat,
-              label: "Nothing",
+              label: "Chat",
             ),
           ],
         ),
