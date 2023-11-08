@@ -67,9 +67,10 @@ class FriendTile extends StatelessWidget {
         ),
         child: Container(
           decoration: const BoxDecoration(
-            color: Color(0xFFF1EFEF),
+            //color: Color(0xFFF1EFEF),
           ),
           child: ListTile(
+            
             title: Text(profile.name),
             subtitle: const Text("Subtitles Subtitles Subtitles"),
             leading: PersonIcon(personName: profile.name),

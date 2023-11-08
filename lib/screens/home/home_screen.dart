@@ -17,19 +17,24 @@ class MainHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     UserData? userData = context.watch<UserData?>();
     final expandableFabStateKey = GlobalKey<ExpandableFabState>();
 
     return Scaffold(
       appBar: AppBar(
+        // shape: const RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.vertical(
+        //     bottom: Radius.circular(18),
+        //   ),
+        // ),
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         title: const Text("Home"),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Symbols.menu),
-          iconSize: 30.0,
+          padding: const EdgeInsets.only(left:16, right:24),
+          iconSize: 24,
         ),
         actions: [
           ElevatedButton(
@@ -230,22 +235,22 @@ class MainHomeScreen extends StatelessWidget {
                       ],
                     ),
 
-                   // Data from Database:
+                    // Data from Database:
                     StreamBuilder<List<BillData>?>(
-                        stream: context.read<BillDataRepository>().billDataStream,
+                        stream:
+                            context.read<BillDataRepository>().billDataStream,
                         builder: (context, snapshot) {
                           return snapshot.hasData
                               ? ListView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   // itemCount: snapshot.data!.length,
-                                  itemCount:
-                                      min(snapshot.data!.length, 5),
+                                  itemCount: min(snapshot.data!.length, 5),
                                   itemBuilder: (context, index) {
                                     BillData bill = snapshot.data![index];
                                     return BillCardsCompact(
                                       billName:
-                                          "${bill.name} ${snapshot.data!.length - 1 - index}", // Displays in Reverse Order
+                                          "${bill.name}", // Displays in Reverse Order
                                       billTotal: bill.totalSpent,
                                       billDate: bill.dateTime.toString(),
                                     );
@@ -266,11 +271,13 @@ class MainHomeScreen extends StatelessWidget {
               ? ExpandableFab(
                   key: expandableFabStateKey,
                   distance: 80,
-                  overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
+                  overlayStyle:
+                      ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
                   type: ExpandableFabType.up,
                   children: [
                     FloatingActionButton.extended(
-                      heroTag: "fab", // Prevents multiple heroes error for Page Routing
+                      heroTag:
+                          "fab", // Prevents multiple heroes error for Page Routing
                       onPressed: () {
                         // context.read<BillDataRepository>().pushBillData(BillData(
                         //       dateTime: DateTime.now(),
@@ -306,7 +313,8 @@ class MainHomeScreen extends StatelessWidget {
                 )
               // ignore: dead_code
               : FloatingActionButton.extended(
-                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.tertiaryContainer,
                   onPressed: () {},
                   label: const Text('Actions'),
                   icon: const Icon(Symbols.view_cozy),
