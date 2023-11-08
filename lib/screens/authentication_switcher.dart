@@ -6,7 +6,7 @@ import '../services/bill_data_repository.dart';
 import '../services/user_data_repository.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/registration/registration_screen.dart';
-import 'home_page.dart';
+import 'home/home_page.dart';
 
 class AuthenticationSwitcher extends StatelessWidget {
   const AuthenticationSwitcher({super.key});

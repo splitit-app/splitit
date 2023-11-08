@@ -48,6 +48,7 @@ class FriendsPageOverview extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: SearchBar(
                       controller: _searchBarController,
+                      hintText: "Search friends",
                       leading: const Icon(Symbols.menu),
                       trailing: const <Widget>[
                         Tooltip(
@@ -135,7 +136,7 @@ class FriendsPageOverview extends StatelessWidget {
                                 userData.nonRegisteredFriends.length.toString(),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  //color: Colors.white,
+                                  // color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -160,7 +161,7 @@ class FriendsPageOverview extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: userData.nonRegisteredFriends.length,
                     itemBuilder: (context, index) =>
-                        FriendTile(profile: userData.nonRegisteredFriends[index]),
+                        FriendTile(profile: userData.nonRegisteredFriends[index], index: index),
                     separatorBuilder: (BuildContext context, int index) => const Divider(),
                   ),
                 ],

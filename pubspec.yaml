@@ -51,6 +51,8 @@ dependencies:
   uuid: ^4.1.0
   flutter_expandable_fab: ^2.0.0
   flutter_material_symbols: ^0.0.4
+  expansion_tile_card: ^3.0.0
+  assorted_layout_widgets: ^8.0.5
   
 
 dev_dependencies:

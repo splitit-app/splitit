@@ -11,12 +11,22 @@ class LoginForm {
 
   final Locator read;
 
-  Future<void> login() async {
+  String toReturn = "";
+
+  Future<String> login() async {
+  // Future<void> login() async {
+
     //TODO: Check values not null
 
-    read<AuthenticationService>().signInWith_EmailAndPassword(
+    const Center(child: CircularProgressIndicator());
+
+    await read<AuthenticationService>().signInWith_EmailAndPassword(
       emailFieldController.text.trim().toLowerCase(),
       passwordFieldController.text,
-    );
+    ).then((auth){
+      // print("form: $auth");
+      toReturn = auth;
+    });
+    return toReturn;
   }
 }

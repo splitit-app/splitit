@@ -46,7 +46,18 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: loginForm.login,
+                    onPressed: () async {
+                      await loginForm.login()
+                      .then((auth){
+                        // print("test : $auth");
+                        if(auth.toString() == "INVALID_LOGIN_CREDENTIALS"){
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email or Password incorrect!")));
+                        }
+                        else if(auth.toString() == "invalid-email"){
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid Email!")));
+                        }
+                      });
+                    },
                     child: const Text('Login'),
                   ),
                 ],

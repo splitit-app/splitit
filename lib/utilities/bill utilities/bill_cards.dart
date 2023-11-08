@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/person_icon.dart';
+import '../person_icon.dart';
 
 class BillCards extends StatelessWidget {
   // Parameters:

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'friends_screen/friends_page.dart';
-import 'mockup_page.dart';
-import 'test_experiment_screen.dart';
+import '../friends_screen/friends_page.dart';
+import 'home_screen.dart';
+// import 'mockup_page.dart';
+// import 'test_experiment_screen.dart';
+import '../bill/view_bills.dart';
+import '../../utilities/bill utilities/bill_info.dart';
+
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -16,15 +20,14 @@ class MainHomePage extends StatefulWidget {
 class _MainHomePageState extends State<MainHomePage> {
   // List of Pages accessed through currentPage indexing
   final screens = [
-    // const MockUpPage(),
-    const MyHomePageV2(),
-    const MyHomePage(),
-    PageTest(),
+    const MainHomeScreen(),
+    const ViewBillHistory(),
     FriendsPage(),
+    const BillInfo(billName: "McDonalds", billDate: "1999-09-19", billTotal: 125.0),
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +49,6 @@ class _MainHomePageState extends State<MainHomePage> {
           NavigationDestination(
             icon: Icon(Icons.home_sharp),
             selectedIcon: Icon(Icons.home_outlined),
-            label: 'Home (Exp)',
-            tooltip: 'Return Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.home_sharp),
-            selectedIcon: Icon(Icons.home_outlined),
             label: 'Home',
             tooltip: 'Return Home',
           ),
@@ -66,6 +63,12 @@ class _MainHomePageState extends State<MainHomePage> {
             selectedIcon: Icon(Icons.person_outlined),
             label: 'People',
             tooltip: 'People',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.warning),
+            selectedIcon: Icon(Icons.warning),
+            label: 'Test',
+            tooltip: 'Test',
           ),
         ],
         onDestinationSelected: (int value) {
