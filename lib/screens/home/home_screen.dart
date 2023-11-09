@@ -20,13 +20,19 @@ class MainHomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        // shape: const RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.vertical(
+        //     bottom: Radius.circular(18),
+        //   ),
+        // ),
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         title: const Text("Home"),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Symbols.menu),
-          iconSize: 30.0,
+          padding: const EdgeInsets.only(left: 16, right: 24),
+          iconSize: 24,
         ),
         actions: [
           ElevatedButton(

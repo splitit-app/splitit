@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -20,22 +21,28 @@ class FriendsPageOverview extends StatelessWidget {
         ? const Placeholder()
         : Scaffold(
             appBar: AppBar(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(18),
+                ),
+              ),
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               title: const Text("Friends"),
               centerTitle: true,
               leading: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(Symbols.arrow_back),
+                icon: const Icon(MaterialSymbols.arrow_back_filled_outlined),
                 iconSize: 30.0,
               ),
               actions: [
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(Symbols.settings),
+                  icon: const Icon(MaterialSymbols.settings_filled_outlined),
                   iconSize: 30.0,
                 ),
               ],
             ),
+
             body: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -120,7 +127,7 @@ class FriendsPageOverview extends StatelessWidget {
                             const Text(
                               "Friends",
                               style: TextStyle(fontSize: 20.0),
-                              textAlign: TextAlign.right,
+                              textAlign: TextAlign.center,
                             ),
                             const SizedBox(width: 10),
                             // Displays Friend Total
@@ -128,7 +135,7 @@ class FriendsPageOverview extends StatelessWidget {
                               height: 25.0,
                               width: 65.0,
                               decoration: BoxDecoration(
-                                color: Colors.blueAccent,
+                                //color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Text(
