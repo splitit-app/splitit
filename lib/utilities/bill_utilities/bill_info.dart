@@ -261,33 +261,31 @@ class _BillInfoState extends State<BillInfo> {
                               //! Change Colors if needed
                               //color: Theme.of(context).colorScheme.secondaryContainer,
                             ),
-                            child: Expanded(
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: CustomScrollView(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  slivers: [
-                                    //Primary Splits
-                                    SliverList.builder(
-                                      itemCount: min(widget.billData.primarySplits.length, 5),
-                                      itemBuilder: (context, index) =>
-                                          PersonIcon(profile: widget.billData.primarySplits[index]),
-                                    ),
-                                    SliverToBoxAdapter(
-                                      child: widget.billData.primarySplits.length > 5
-                                          ? Padding(
-                                              padding: const EdgeInsets.only(left: 10),
-                                              child: Center(
-                                                child: Text(
-                                                    '+ ${widget.billData.primarySplits.length - 5}'),
-                                              ),
-                                            )
-                                          : const SizedBox.shrink(),
-                                    ),
-                                  ],
-                                ),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: CustomScrollView(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                physics: const NeverScrollableScrollPhysics(),
+                                slivers: [
+                                  //Primary Splits
+                                  SliverList.builder(
+                                    itemCount: min(widget.billData.primarySplits.length, 5),
+                                    itemBuilder: (context, index) =>
+                                        PersonIcon(profile: widget.billData.primarySplits[index]),
+                                  ),
+                                  SliverToBoxAdapter(
+                                    child: widget.billData.primarySplits.length > 5
+                                        ? Padding(
+                                            padding: const EdgeInsets.only(left: 10),
+                                            child: Center(
+                                              child: Text(
+                                                  '+ ${widget.billData.primarySplits.length - 5}'),
+                                            ),
+                                          )
+                                        : const SizedBox.shrink(),
+                                  ),
+                                ],
                               ),
                             ),
                             // Row(
