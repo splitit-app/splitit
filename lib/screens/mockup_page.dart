@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
-import '../utilities/bill utilities/bill_cards.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:project_bs/runtime_models/bill/bill_data.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
+import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
 
+import '../utilities/bill_utilities/bill_cards.dart';
 
 class MockUpPage extends StatelessWidget {
   const MockUpPage({super.key});
@@ -25,24 +27,18 @@ class MockUpPage extends StatelessWidget {
 }
 
 class PageTest extends StatelessWidget {
-  final List _billName = [
-    "McRonalds",
-    "Barbie Movie",
-    "Brandon's Funeral",
-    "Fortnite Battlepass",
-    "Nose Hair Museum",
-    "My Little Pony Convention",
-  ];
+  final _dummyBillData = BillData(
+    uid: 'uid',
+    dateTime: DateTime.now(),
+    primarySplits: List.empty(),
+    splitBalances: {},
+    paymentResolveStatuses: {},
+    itemGroups: List.empty(),
+    taxModule: BillModule_Tax(),
+    tipModule: BillModule_Tip(),
+    lastUpdatedSession: DateTime.now(),
+  );
 
-  final List _billDate = [
-    "September 1st, 2023",
-    "September 25th, 2023",
-    "October 2nd, 2023",
-    "October 6th, 2023",
-    "October 9th, 2023",
-    "October 10th, 2023",
-  ];
-  final List _billTotal = [152.32, 175.23, 14.21, 15.61, 25.61, 58.61];
   PageTest({super.key});
 
   @override
@@ -81,20 +77,9 @@ class PageTest extends StatelessWidget {
               // flex: 4,
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: _billName.length,
-                // itemCount: 2,
-                itemBuilder: (BuildContext context, int index) {
-                  // return const Placeholder();
-                  // return BillCards(countIteration: index ,billName: "Mickie Dees Nuts", billTotal: 5.45, billDate: "yursday",);
-                  // return BillCards(countIteration: index ,billName: _billName[index], billTotal: _billTotal[index], billDate: _billDate[index],);
-
-                  return BillCards(
-                    uid: '',
-                    billName: _billName[index],
-                    billTotal: _billTotal[index],
-                    billDate: _billDate[index],
-                  );
-                },
+                itemCount: 7,
+                itemBuilder: (BuildContext context, int index) =>
+                    BillCards(billData: _dummyBillData),
               ),
             ),
           ],

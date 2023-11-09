@@ -18,6 +18,7 @@ class BillDataDTO with _$BillDataDTO {
     required double totalSpent,
     //
     required String payerUid,
+    required List<String> primarySplits,
     required Map<String, double> splitBalances,
     required Map<String, double> paymentResolveStatuses,
     required DateTime lastUpdatedSession,
@@ -32,7 +33,8 @@ class BillDataDTO with _$BillDataDTO {
         dateTime: dateTime,
         name: name,
         totalSpent: totalSpent,
-        payer: null,
+        payer: userData.publicProfile, //TODO: search database correctly
+        primarySplits: primarySplits.map((uid) => userData.nonRegisteredFriends[uid]!).toList(),
         splitBalances: splitBalances
             .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
         paymentResolveStatuses: paymentResolveStatuses.map(

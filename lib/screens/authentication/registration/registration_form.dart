@@ -24,6 +24,8 @@ class RegistrationForm {
   final quoteFieldController = TextEditingController();
 
   Future<void> createUser() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+
     //TODO: Check values not null
 
     String email = emailFieldController.text.trim().toLowerCase();
@@ -45,12 +47,10 @@ class RegistrationForm {
       registeredFriends: List.empty(),
       nonRegisteredFriends: {},
     ));
-
-    print('hellooo');
   }
 
   Future<void> submitEmailAndPassword() async {
-    print(emailFieldController.text);
+    FocusManager.instance.primaryFocus?.unfocus();
 
     // if (await AuthenticationService().isValid_Email(_emailController.text)) {
     await pageController.animateToPageWithDefaults(1);

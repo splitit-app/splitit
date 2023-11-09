@@ -61,21 +61,22 @@ class _$SplitRuleCopyWithImpl<$Res, $Val extends SplitRule>
 }
 
 /// @nodoc
-abstract class _$$_SplitRuleCopyWith<$Res> implements $SplitRuleCopyWith<$Res> {
-  factory _$$_SplitRuleCopyWith(
-          _$_SplitRule value, $Res Function(_$_SplitRule) then) =
-      __$$_SplitRuleCopyWithImpl<$Res>;
+abstract class _$$SplitRuleImplCopyWith<$Res>
+    implements $SplitRuleCopyWith<$Res> {
+  factory _$$SplitRuleImplCopyWith(
+          _$SplitRuleImpl value, $Res Function(_$SplitRuleImpl) then) =
+      __$$SplitRuleImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int type});
 }
 
 /// @nodoc
-class __$$_SplitRuleCopyWithImpl<$Res>
-    extends _$SplitRuleCopyWithImpl<$Res, _$_SplitRule>
-    implements _$$_SplitRuleCopyWith<$Res> {
-  __$$_SplitRuleCopyWithImpl(
-      _$_SplitRule _value, $Res Function(_$_SplitRule) _then)
+class __$$SplitRuleImplCopyWithImpl<$Res>
+    extends _$SplitRuleCopyWithImpl<$Res, _$SplitRuleImpl>
+    implements _$$SplitRuleImplCopyWith<$Res> {
+  __$$SplitRuleImplCopyWithImpl(
+      _$SplitRuleImpl _value, $Res Function(_$SplitRuleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -83,7 +84,7 @@ class __$$_SplitRuleCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$_SplitRule(
+    return _then(_$SplitRuleImpl(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -94,11 +95,11 @@ class __$$_SplitRuleCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SplitRule implements _SplitRule {
-  _$_SplitRule({required this.type});
+class _$SplitRuleImpl implements _SplitRule {
+  _$SplitRuleImpl({required this.type});
 
-  factory _$_SplitRule.fromJson(Map<String, dynamic> json) =>
-      _$$_SplitRuleFromJson(json);
+  factory _$SplitRuleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SplitRuleImplFromJson(json);
 
   @override
   final int type;
@@ -112,7 +113,7 @@ class _$_SplitRule implements _SplitRule {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SplitRule &&
+            other is _$SplitRuleImpl &&
             (identical(other.type, type) || other.type == type));
   }
 
@@ -123,27 +124,27 @@ class _$_SplitRule implements _SplitRule {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SplitRuleCopyWith<_$_SplitRule> get copyWith =>
-      __$$_SplitRuleCopyWithImpl<_$_SplitRule>(this, _$identity);
+  _$$SplitRuleImplCopyWith<_$SplitRuleImpl> get copyWith =>
+      __$$SplitRuleImplCopyWithImpl<_$SplitRuleImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SplitRuleToJson(
+    return _$$SplitRuleImplToJson(
       this,
     );
   }
 }
 
 abstract class _SplitRule implements SplitRule {
-  factory _SplitRule({required final int type}) = _$_SplitRule;
+  factory _SplitRule({required final int type}) = _$SplitRuleImpl;
 
   factory _SplitRule.fromJson(Map<String, dynamic> json) =
-      _$_SplitRule.fromJson;
+      _$SplitRuleImpl.fromJson;
 
   @override
   int get type;
   @override
   @JsonKey(ignore: true)
-  _$$_SplitRuleCopyWith<_$_SplitRule> get copyWith =>
+  _$$SplitRuleImplCopyWith<_$SplitRuleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -43,6 +43,7 @@ class BillDataRepository {
     required String name,
     required double totalSpent,
     required PublicProfile payer,
+    required List<PublicProfile> primarySplits,
   }) async {
     return _billCollection
         .add(BillDataDTO(
@@ -50,6 +51,7 @@ class BillDataRepository {
           name: name,
           totalSpent: totalSpent,
           payerUid: payer.uid,
+          primarySplits: primarySplits.map((profile) => profile.uid).toList(),
           //itemGroups: List.empty(),
           //taxModule: BillModule_Tax(),
           //tipModule: BillModule_Tip(),

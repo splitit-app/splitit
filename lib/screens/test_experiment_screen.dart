@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
-import '../services/bill_data_repository.dart';
-import '../utilities/bill utilities/bill_cards.dart';
-import 'bill/quick_split_dialog.dart';
+import '../utilities/bill_utilities/bill_cards.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -47,7 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final UserData? userData = context.watch();
     final List<BillData>? bills = context.watch();
-    final expandableFabStateKey = GlobalKey<ExpandableFabState>();
     // return switch (_currentPage) {
     //   2 => const FriendsPage(),
     //   0 || 1 => Scaffold(
@@ -189,92 +184,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 : Expanded(
                     // Makes the ListView scrollable.
                     child: ListView.separated(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        shrinkWrap: true,
-                        itemCount: bills.length,
-                        itemBuilder: (context, index) {
-                          BillData bill = bills[index];
-                          // return Text(
-                          //     'T:${bill.dateTime.toString()} N:${bill.name} \$:${bill.totalSpent}');
-
-                          // return BillCards(
-                          //   billName:
-                          //       "${bill.name} ${snapshot.data!.length - 1 - index}",
-                          //   billTotal: bill.totalSpent,
-                          //   billDate: bill.dateTime.toString(),
-                          //   // billDate: bill.dateTime.toString().substring(0, 10),    // substring keeps only the date
-                          //   countIteration: index,
-                          // );
-
-                          return BillCards(
-                            uid: bill.uid,
-                            billName:
-                                "${bill.name} ${bills.length - 1 - index}", // Displays in Reverse Order
-                            billTotal: bill.totalSpent,
-                            billDate: bill.dateTime.toString(),
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider() // Separator Elements between each of the items
-                        ),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      shrinkWrap: true,
+                      itemCount: bills.length,
+                      itemBuilder: (context, index) => BillCards(billData: bills[index]),
+                      separatorBuilder: (BuildContext context, int index) => const Divider(),
+                    ),
                   )
           ],
         ),
       ),
-
-      //* If you want this FAB accessible in any page, move to home_page.dart
-
-      // FAB:
-      floatingActionButtonLocation: ExpandableFab.location,
-      floatingActionButton: userData == null
-          ? const SizedBox.shrink()
-          : true
-              ? ExpandableFab(
-                  key: expandableFabStateKey,
-                  distance: 80,
-                  overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
-                  type: ExpandableFabType.up,
-                  children: [
-                    FloatingActionButton.extended(
-                      onPressed: () {
-                        // context.read<BillDataRepository>().pushBillData(BillData(
-                        //       dateTime: DateTime.now(),
-                        //       itemGroups: List.empty(),
-                        //       taxModule: BillModule_Tax(),
-                        //       tipModule: BillModule_Tip(),
-                        //       payer: userData.publicProfile,
-                        //       lastUpdatedSession: DateTime.now(),
-                        //     ));
-                        context.read<BillDataRepository>().createBill(
-                              dateTime: DateTime.now(),
-                              name: "New Bill",
-                              totalSpent: 0,
-                              payer: userData.publicProfile,
-                            );
-
-                        final state = expandableFabStateKey.currentState;
-                        if (state != null && state.isOpen) state.toggle();
-                      },
-                      label: const Text('Create Bill'),
-                      icon: const Icon(Symbols.file_copy),
-                    ),
-                    FloatingActionButton.extended(
-                      onPressed: () {
-                        quickSplitDialog(context);
-                        final state = expandableFabStateKey.currentState;
-                        if (state != null && state.isOpen) state.toggle();
-                      },
-                      label: const Text('Quick Split'),
-                      icon: const Icon(Symbols.bolt),
-                    ),
-                  ],
-                )
-              : FloatingActionButton.extended(
-                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-                  onPressed: () {},
-                  label: const Text('Actions'),
-                  icon: const Icon(Symbols.view_cozy),
-                ), // This traili
     );
   }
 }

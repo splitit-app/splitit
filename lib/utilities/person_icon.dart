@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'dart:math';
 
-class PersonIcon extends StatelessWidget {
-  final String? personName;
+import 'package:flutter/material.dart';
 
-  const PersonIcon({
-    super.key,
-    this.personName = "?", // Not a required parameter for now.
-  });
+import '../runtime_models/user/public_profile.dart';
+
+class PersonIcon extends StatelessWidget {
+  final PublicProfile profile;
+
+  const PersonIcon({super.key, required this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,8 @@ class PersonIcon extends StatelessWidget {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.primaries[Random().nextInt(Colors.primaries.length)], // Random Colors (https://stackoverflow.com/questions/51340588/flutter-how-can-i-make-a-random-color-generator-background)
+        // Random Colors (https://stackoverflow.com/questions/51340588/flutter-how-can-i-make-a-random-color-generator-background)
+        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
         shape: BoxShape.circle,
 
         boxShadow: const [
@@ -28,27 +28,11 @@ class PersonIcon extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Displays First Name initials. If Empty, then display "?"
-          if (personName != null)
-            personName!.isEmpty
-                ? const Text(
-                    "?",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold),
-                  )
-                : Text(
-                    personName!.substring(0, 1),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-        ],
+      child: Center(
+        child: Text(
+          profile.name.isNotEmpty ? profile.name[0] : '?',
+          style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

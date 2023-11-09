@@ -7,7 +7,6 @@ import 'home_screen.dart';
 // import 'mockup_page.dart';
 // import 'test_experiment_screen.dart';
 import '../bill/view_bills.dart';
-import '../../utilities/bill utilities/bill_info.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -24,7 +23,7 @@ class _MainHomePageState extends State<MainHomePage> {
     const MainHomeScreen(),
     const ViewBillHistory(),
     FriendsPage(),
-    const BillInfo(billName: "McDonalds", billDate: "1999-09-19", billTotal: 125.0),
+    //const BillInfo(billName: "McDonalds", billDate: "1999-09-19", billTotal: 125.0),
   ];
 
   int currentPage = 0; // Keeps track of the Current Page Index.
@@ -65,12 +64,12 @@ class _MainHomePageState extends State<MainHomePage> {
             label: 'People',
             tooltip: 'People',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.warning),
-            selectedIcon: Icon(Icons.warning),
-            label: 'Test',
-            tooltip: 'Test',
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.warning),
+          //   selectedIcon: Icon(Icons.warning),
+          //   label: 'Test',
+          //   tooltip: 'Test',
+          // ),
         ],
         onDestinationSelected: (int value) {
           // On Navigation Selected, update the index

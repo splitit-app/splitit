@@ -72,7 +72,7 @@ class FriendTile extends StatelessWidget {
           child: ListTile(
             title: Text(profile.name),
             subtitle: const Text("Subtitles Subtitles Subtitles"),
-            leading: PersonIcon(personName: profile.name),
+            leading: PersonIcon(profile: profile),
             trailing: const Icon(Symbols.drag_handle),
           ),
         ));

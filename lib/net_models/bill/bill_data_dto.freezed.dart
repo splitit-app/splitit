@@ -24,6 +24,7 @@ mixin _$BillDataDTO {
   String get name => throw _privateConstructorUsedError;
   double get totalSpent => throw _privateConstructorUsedError; //
   String get payerUid => throw _privateConstructorUsedError;
+  List<String> get primarySplits => throw _privateConstructorUsedError;
   Map<String, double> get splitBalances => throw _privateConstructorUsedError;
   Map<String, double> get paymentResolveStatuses =>
       throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $BillDataDTOCopyWith<$Res> {
       String name,
       double totalSpent,
       String payerUid,
+      List<String> primarySplits,
       Map<String, double> splitBalances,
       Map<String, double> paymentResolveStatuses,
       DateTime lastUpdatedSession});
@@ -68,6 +70,7 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
     Object? name = null,
     Object? totalSpent = null,
     Object? payerUid = null,
+    Object? primarySplits = null,
     Object? splitBalances = null,
     Object? paymentResolveStatuses = null,
     Object? lastUpdatedSession = null,
@@ -89,6 +92,10 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
           ? _value.payerUid
           : payerUid // ignore: cast_nullable_to_non_nullable
               as String,
+      primarySplits: null == primarySplits
+          ? _value.primarySplits
+          : primarySplits // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
@@ -106,11 +113,11 @@ class _$BillDataDTOCopyWithImpl<$Res, $Val extends BillDataDTO>
 }
 
 /// @nodoc
-abstract class _$$_BillDataDTOCopyWith<$Res>
+abstract class _$$BillDataDTOImplCopyWith<$Res>
     implements $BillDataDTOCopyWith<$Res> {
-  factory _$$_BillDataDTOCopyWith(
-          _$_BillDataDTO value, $Res Function(_$_BillDataDTO) then) =
-      __$$_BillDataDTOCopyWithImpl<$Res>;
+  factory _$$BillDataDTOImplCopyWith(
+          _$BillDataDTOImpl value, $Res Function(_$BillDataDTOImpl) then) =
+      __$$BillDataDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -118,17 +125,18 @@ abstract class _$$_BillDataDTOCopyWith<$Res>
       String name,
       double totalSpent,
       String payerUid,
+      List<String> primarySplits,
       Map<String, double> splitBalances,
       Map<String, double> paymentResolveStatuses,
       DateTime lastUpdatedSession});
 }
 
 /// @nodoc
-class __$$_BillDataDTOCopyWithImpl<$Res>
-    extends _$BillDataDTOCopyWithImpl<$Res, _$_BillDataDTO>
-    implements _$$_BillDataDTOCopyWith<$Res> {
-  __$$_BillDataDTOCopyWithImpl(
-      _$_BillDataDTO _value, $Res Function(_$_BillDataDTO) _then)
+class __$$BillDataDTOImplCopyWithImpl<$Res>
+    extends _$BillDataDTOCopyWithImpl<$Res, _$BillDataDTOImpl>
+    implements _$$BillDataDTOImplCopyWith<$Res> {
+  __$$BillDataDTOImplCopyWithImpl(
+      _$BillDataDTOImpl _value, $Res Function(_$BillDataDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,11 +146,12 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
     Object? name = null,
     Object? totalSpent = null,
     Object? payerUid = null,
+    Object? primarySplits = null,
     Object? splitBalances = null,
     Object? paymentResolveStatuses = null,
     Object? lastUpdatedSession = null,
   }) {
-    return _then(_$_BillDataDTO(
+    return _then(_$BillDataDTOImpl(
       dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -159,6 +168,10 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
           ? _value.payerUid
           : payerUid // ignore: cast_nullable_to_non_nullable
               as String,
+      primarySplits: null == primarySplits
+          ? _value._primarySplits
+          : primarySplits // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       splitBalances: null == splitBalances
           ? _value._splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
@@ -178,21 +191,23 @@ class __$$_BillDataDTOCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_BillDataDTO extends _BillDataDTO {
-  _$_BillDataDTO(
+class _$BillDataDTOImpl extends _BillDataDTO {
+  _$BillDataDTOImpl(
       {required this.dateTime,
       required this.name,
       required this.totalSpent,
       required this.payerUid,
+      required final List<String> primarySplits,
       required final Map<String, double> splitBalances,
       required final Map<String, double> paymentResolveStatuses,
       required this.lastUpdatedSession})
-      : _splitBalances = splitBalances,
+      : _primarySplits = primarySplits,
+        _splitBalances = splitBalances,
         _paymentResolveStatuses = paymentResolveStatuses,
         super._();
 
-  factory _$_BillDataDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_BillDataDTOFromJson(json);
+  factory _$BillDataDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BillDataDTOImplFromJson(json);
 
   @override
   final DateTime dateTime;
@@ -203,6 +218,14 @@ class _$_BillDataDTO extends _BillDataDTO {
 //
   @override
   final String payerUid;
+  final List<String> _primarySplits;
+  @override
+  List<String> get primarySplits {
+    if (_primarySplits is EqualUnmodifiableListView) return _primarySplits;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_primarySplits);
+  }
+
   final Map<String, double> _splitBalances;
   @override
   Map<String, double> get splitBalances {
@@ -225,14 +248,14 @@ class _$_BillDataDTO extends _BillDataDTO {
 
   @override
   String toString() {
-    return 'BillDataDTO(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payerUid: $payerUid, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, lastUpdatedSession: $lastUpdatedSession)';
+    return 'BillDataDTO(dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payerUid: $payerUid, primarySplits: $primarySplits, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BillDataDTO &&
+            other is _$BillDataDTOImpl &&
             (identical(other.dateTime, dateTime) ||
                 other.dateTime == dateTime) &&
             (identical(other.name, name) || other.name == name) &&
@@ -240,6 +263,8 @@ class _$_BillDataDTO extends _BillDataDTO {
                 other.totalSpent == totalSpent) &&
             (identical(other.payerUid, payerUid) ||
                 other.payerUid == payerUid) &&
+            const DeepCollectionEquality()
+                .equals(other._primarySplits, _primarySplits) &&
             const DeepCollectionEquality()
                 .equals(other._splitBalances, _splitBalances) &&
             const DeepCollectionEquality().equals(
@@ -256,6 +281,7 @@ class _$_BillDataDTO extends _BillDataDTO {
       name,
       totalSpent,
       payerUid,
+      const DeepCollectionEquality().hash(_primarySplits),
       const DeepCollectionEquality().hash(_splitBalances),
       const DeepCollectionEquality().hash(_paymentResolveStatuses),
       lastUpdatedSession);
@@ -263,12 +289,12 @@ class _$_BillDataDTO extends _BillDataDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BillDataDTOCopyWith<_$_BillDataDTO> get copyWith =>
-      __$$_BillDataDTOCopyWithImpl<_$_BillDataDTO>(this, _$identity);
+  _$$BillDataDTOImplCopyWith<_$BillDataDTOImpl> get copyWith =>
+      __$$BillDataDTOImplCopyWithImpl<_$BillDataDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BillDataDTOToJson(
+    return _$$BillDataDTOImplToJson(
       this,
     );
   }
@@ -280,13 +306,14 @@ abstract class _BillDataDTO extends BillDataDTO {
       required final String name,
       required final double totalSpent,
       required final String payerUid,
+      required final List<String> primarySplits,
       required final Map<String, double> splitBalances,
       required final Map<String, double> paymentResolveStatuses,
-      required final DateTime lastUpdatedSession}) = _$_BillDataDTO;
+      required final DateTime lastUpdatedSession}) = _$BillDataDTOImpl;
   _BillDataDTO._() : super._();
 
   factory _BillDataDTO.fromJson(Map<String, dynamic> json) =
-      _$_BillDataDTO.fromJson;
+      _$BillDataDTOImpl.fromJson;
 
   @override
   DateTime get dateTime;
@@ -297,6 +324,8 @@ abstract class _BillDataDTO extends BillDataDTO {
   @override //
   String get payerUid;
   @override
+  List<String> get primarySplits;
+  @override
   Map<String, double> get splitBalances;
   @override
   Map<String, double> get paymentResolveStatuses;
@@ -304,6 +333,6 @@ abstract class _BillDataDTO extends BillDataDTO {
   DateTime get lastUpdatedSession;
   @override
   @JsonKey(ignore: true)
-  _$$_BillDataDTOCopyWith<_$_BillDataDTO> get copyWith =>
+  _$$BillDataDTOImplCopyWith<_$BillDataDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

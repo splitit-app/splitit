@@ -17,7 +17,7 @@ class BillData with _$BillData {
     @Default("New Bill") String name,
     @Default(0) double totalSpent,
     PublicProfile? payer,
-    List<PublicProfile>? primarySplits,
+    required List<PublicProfile> primarySplits,
     List<PublicProfile>? secondarySplits,
     required Map<PublicProfile, double> splitBalances,
     required Map<PublicProfile, double> paymentResolveStatuses,
@@ -35,6 +35,7 @@ class BillData with _$BillData {
         name: name,
         totalSpent: totalSpent,
         payerUid: payer!.uid,
+        primarySplits: primarySplits.map((profile) => profile.uid).toList(),
         splitBalances: splitBalances.map((profile, balance) => MapEntry(profile.uid, balance)),
         paymentResolveStatuses: paymentResolveStatuses
             .map((profile, resolveStatus) => MapEntry(profile.uid, resolveStatus)),

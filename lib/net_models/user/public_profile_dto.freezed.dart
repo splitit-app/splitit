@@ -74,22 +74,22 @@ class _$PublicProfileDTOCopyWithImpl<$Res, $Val extends PublicProfileDTO>
 }
 
 /// @nodoc
-abstract class _$$_PublicProfileDTOCopyWith<$Res>
+abstract class _$$PublicProfileDTOImplCopyWith<$Res>
     implements $PublicProfileDTOCopyWith<$Res> {
-  factory _$$_PublicProfileDTOCopyWith(
-          _$_PublicProfileDTO value, $Res Function(_$_PublicProfileDTO) then) =
-      __$$_PublicProfileDTOCopyWithImpl<$Res>;
+  factory _$$PublicProfileDTOImplCopyWith(_$PublicProfileDTOImpl value,
+          $Res Function(_$PublicProfileDTOImpl) then) =
+      __$$PublicProfileDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String uid, String? createdBy, String name});
 }
 
 /// @nodoc
-class __$$_PublicProfileDTOCopyWithImpl<$Res>
-    extends _$PublicProfileDTOCopyWithImpl<$Res, _$_PublicProfileDTO>
-    implements _$$_PublicProfileDTOCopyWith<$Res> {
-  __$$_PublicProfileDTOCopyWithImpl(
-      _$_PublicProfileDTO _value, $Res Function(_$_PublicProfileDTO) _then)
+class __$$PublicProfileDTOImplCopyWithImpl<$Res>
+    extends _$PublicProfileDTOCopyWithImpl<$Res, _$PublicProfileDTOImpl>
+    implements _$$PublicProfileDTOImplCopyWith<$Res> {
+  __$$PublicProfileDTOImplCopyWithImpl(_$PublicProfileDTOImpl _value,
+      $Res Function(_$PublicProfileDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_PublicProfileDTOCopyWithImpl<$Res>
     Object? createdBy = freezed,
     Object? name = null,
   }) {
-    return _then(_$_PublicProfileDTO(
+    return _then(_$PublicProfileDTOImpl(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,13 @@ class __$$_PublicProfileDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PublicProfileDTO extends _PublicProfileDTO {
-  _$_PublicProfileDTO({required this.uid, this.createdBy, required this.name})
+class _$PublicProfileDTOImpl extends _PublicProfileDTO {
+  _$PublicProfileDTOImpl(
+      {required this.uid, this.createdBy, required this.name})
       : super._();
 
-  factory _$_PublicProfileDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_PublicProfileDTOFromJson(json);
+  factory _$PublicProfileDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PublicProfileDTOImplFromJson(json);
 
   @override
   final String uid;
@@ -141,7 +142,7 @@ class _$_PublicProfileDTO extends _PublicProfileDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PublicProfileDTO &&
+            other is _$PublicProfileDTOImpl &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
@@ -155,12 +156,13 @@ class _$_PublicProfileDTO extends _PublicProfileDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PublicProfileDTOCopyWith<_$_PublicProfileDTO> get copyWith =>
-      __$$_PublicProfileDTOCopyWithImpl<_$_PublicProfileDTO>(this, _$identity);
+  _$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl> get copyWith =>
+      __$$PublicProfileDTOImplCopyWithImpl<_$PublicProfileDTOImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PublicProfileDTOToJson(
+    return _$$PublicProfileDTOImplToJson(
       this,
     );
   }
@@ -170,11 +172,11 @@ abstract class _PublicProfileDTO extends PublicProfileDTO {
   factory _PublicProfileDTO(
       {required final String uid,
       final String? createdBy,
-      required final String name}) = _$_PublicProfileDTO;
+      required final String name}) = _$PublicProfileDTOImpl;
   _PublicProfileDTO._() : super._();
 
   factory _PublicProfileDTO.fromJson(Map<String, dynamic> json) =
-      _$_PublicProfileDTO.fromJson;
+      _$PublicProfileDTOImpl.fromJson;
 
   @override
   String get uid;
@@ -184,6 +186,6 @@ abstract class _PublicProfileDTO extends PublicProfileDTO {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_PublicProfileDTOCopyWith<_$_PublicProfileDTO> get copyWith =>
+  _$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

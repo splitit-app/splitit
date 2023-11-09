@@ -86,10 +86,11 @@ class _$ItemGroupCopyWithImpl<$Res, $Val extends ItemGroup>
 }
 
 /// @nodoc
-abstract class _$$_ItemGroupCopyWith<$Res> implements $ItemGroupCopyWith<$Res> {
-  factory _$$_ItemGroupCopyWith(
-          _$_ItemGroup value, $Res Function(_$_ItemGroup) then) =
-      __$$_ItemGroupCopyWithImpl<$Res>;
+abstract class _$$ItemGroupImplCopyWith<$Res>
+    implements $ItemGroupCopyWith<$Res> {
+  factory _$$ItemGroupImplCopyWith(
+          _$ItemGroupImpl value, $Res Function(_$ItemGroupImpl) then) =
+      __$$ItemGroupImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -101,11 +102,11 @@ abstract class _$$_ItemGroupCopyWith<$Res> implements $ItemGroupCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ItemGroupCopyWithImpl<$Res>
-    extends _$ItemGroupCopyWithImpl<$Res, _$_ItemGroup>
-    implements _$$_ItemGroupCopyWith<$Res> {
-  __$$_ItemGroupCopyWithImpl(
-      _$_ItemGroup _value, $Res Function(_$_ItemGroup) _then)
+class __$$ItemGroupImplCopyWithImpl<$Res>
+    extends _$ItemGroupCopyWithImpl<$Res, _$ItemGroupImpl>
+    implements _$$ItemGroupImplCopyWith<$Res> {
+  __$$ItemGroupImplCopyWithImpl(
+      _$ItemGroupImpl _value, $Res Function(_$ItemGroupImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -117,7 +118,7 @@ class __$$_ItemGroupCopyWithImpl<$Res>
     Object? splitRules = null,
     Object? splitBalances = null,
   }) {
-    return _then(_$_ItemGroup(
+    return _then(_$ItemGroupImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -144,8 +145,8 @@ class __$$_ItemGroupCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ItemGroup extends _ItemGroup {
-  _$_ItemGroup(
+class _$ItemGroupImpl extends _ItemGroup {
+  _$ItemGroupImpl(
       {this.name = '',
       required final List<PublicProfile> primarySplits,
       required final List<Item> items,
@@ -201,7 +202,7 @@ class _$_ItemGroup extends _ItemGroup {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ItemGroup &&
+            other is _$ItemGroupImpl &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._primarySplits, _primarySplits) &&
@@ -224,17 +225,18 @@ class _$_ItemGroup extends _ItemGroup {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ItemGroupCopyWith<_$_ItemGroup> get copyWith =>
-      __$$_ItemGroupCopyWithImpl<_$_ItemGroup>(this, _$identity);
+  _$$ItemGroupImplCopyWith<_$ItemGroupImpl> get copyWith =>
+      __$$ItemGroupImplCopyWithImpl<_$ItemGroupImpl>(this, _$identity);
 }
 
 abstract class _ItemGroup extends ItemGroup {
   factory _ItemGroup(
-      {final String name,
-      required final List<PublicProfile> primarySplits,
-      required final List<Item> items,
-      required final List<SplitRule> splitRules,
-      required final Map<PublicProfile, double> splitBalances}) = _$_ItemGroup;
+          {final String name,
+          required final List<PublicProfile> primarySplits,
+          required final List<Item> items,
+          required final List<SplitRule> splitRules,
+          required final Map<PublicProfile, double> splitBalances}) =
+      _$ItemGroupImpl;
   _ItemGroup._() : super._();
 
   @override
@@ -249,6 +251,6 @@ abstract class _ItemGroup extends ItemGroup {
   Map<PublicProfile, double> get splitBalances;
   @override
   @JsonKey(ignore: true)
-  _$$_ItemGroupCopyWith<_$_ItemGroup> get copyWith =>
+  _$$ItemGroupImplCopyWith<_$ItemGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

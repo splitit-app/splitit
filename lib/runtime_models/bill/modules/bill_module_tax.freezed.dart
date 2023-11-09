@@ -57,22 +57,22 @@ class _$BillModule_TaxCopyWithImpl<$Res, $Val extends BillModule_Tax>
 }
 
 /// @nodoc
-abstract class _$$_BillModule_TaxCopyWith<$Res>
+abstract class _$$BillModule_TaxImplCopyWith<$Res>
     implements $BillModule_TaxCopyWith<$Res> {
-  factory _$$_BillModule_TaxCopyWith(
-          _$_BillModule_Tax value, $Res Function(_$_BillModule_Tax) then) =
-      __$$_BillModule_TaxCopyWithImpl<$Res>;
+  factory _$$BillModule_TaxImplCopyWith(_$BillModule_TaxImpl value,
+          $Res Function(_$BillModule_TaxImpl) then) =
+      __$$BillModule_TaxImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double totalTax});
 }
 
 /// @nodoc
-class __$$_BillModule_TaxCopyWithImpl<$Res>
-    extends _$BillModule_TaxCopyWithImpl<$Res, _$_BillModule_Tax>
-    implements _$$_BillModule_TaxCopyWith<$Res> {
-  __$$_BillModule_TaxCopyWithImpl(
-      _$_BillModule_Tax _value, $Res Function(_$_BillModule_Tax) _then)
+class __$$BillModule_TaxImplCopyWithImpl<$Res>
+    extends _$BillModule_TaxCopyWithImpl<$Res, _$BillModule_TaxImpl>
+    implements _$$BillModule_TaxImplCopyWith<$Res> {
+  __$$BillModule_TaxImplCopyWithImpl(
+      _$BillModule_TaxImpl _value, $Res Function(_$BillModule_TaxImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_BillModule_TaxCopyWithImpl<$Res>
   $Res call({
     Object? totalTax = null,
   }) {
-    return _then(_$_BillModule_Tax(
+    return _then(_$BillModule_TaxImpl(
       totalTax: null == totalTax
           ? _value.totalTax
           : totalTax // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_BillModule_TaxCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BillModule_Tax implements _BillModule_Tax {
-  _$_BillModule_Tax({this.totalTax = 0});
+class _$BillModule_TaxImpl implements _BillModule_Tax {
+  _$BillModule_TaxImpl({this.totalTax = 0});
 
   @override
   @JsonKey()
@@ -107,7 +107,7 @@ class _$_BillModule_Tax implements _BillModule_Tax {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BillModule_Tax &&
+            other is _$BillModule_TaxImpl &&
             (identical(other.totalTax, totalTax) ||
                 other.totalTax == totalTax));
   }
@@ -118,17 +118,18 @@ class _$_BillModule_Tax implements _BillModule_Tax {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BillModule_TaxCopyWith<_$_BillModule_Tax> get copyWith =>
-      __$$_BillModule_TaxCopyWithImpl<_$_BillModule_Tax>(this, _$identity);
+  _$$BillModule_TaxImplCopyWith<_$BillModule_TaxImpl> get copyWith =>
+      __$$BillModule_TaxImplCopyWithImpl<_$BillModule_TaxImpl>(
+          this, _$identity);
 }
 
 abstract class _BillModule_Tax implements BillModule_Tax {
-  factory _BillModule_Tax({final double totalTax}) = _$_BillModule_Tax;
+  factory _BillModule_Tax({final double totalTax}) = _$BillModule_TaxImpl;
 
   @override
   double get totalTax;
   @override
   @JsonKey(ignore: true)
-  _$$_BillModule_TaxCopyWith<_$_BillModule_Tax> get copyWith =>
+  _$$BillModule_TaxImplCopyWith<_$BillModule_TaxImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

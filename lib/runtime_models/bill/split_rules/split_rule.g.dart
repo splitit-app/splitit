@@ -6,11 +6,12 @@ part of 'split_rule.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SplitRule _$$_SplitRuleFromJson(Map<String, dynamic> json) => _$_SplitRule(
+_$SplitRuleImpl _$$SplitRuleImplFromJson(Map<String, dynamic> json) =>
+    _$SplitRuleImpl(
       type: json['type'] as int,
     );
 
-Map<String, dynamic> _$$_SplitRuleToJson(_$_SplitRule instance) =>
+Map<String, dynamic> _$$SplitRuleImplToJson(_$SplitRuleImpl instance) =>
     <String, dynamic>{
       'type': instance.type,
     };

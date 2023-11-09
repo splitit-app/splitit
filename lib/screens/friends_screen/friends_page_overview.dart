@@ -14,7 +14,7 @@ class FriendsPageOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserData? userData = context.watch<UserData?>();
+    final UserData? userData = context.watch();
 
     return userData == null
         ? const Placeholder()
@@ -85,9 +85,8 @@ class FriendsPageOverview extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   PersonIcon(
-                                      personName: userData.nonRegisteredFriends.values
-                                          .elementAt(index)
-                                          .name),
+                                      profile:
+                                          userData.nonRegisteredFriends.values.elementAt(index)),
 
                                   // Truncating Long Text
                                   SizedBox(

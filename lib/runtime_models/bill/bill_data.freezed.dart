@@ -26,8 +26,8 @@ mixin _$BillData {
   set totalSpent(double value) => throw _privateConstructorUsedError;
   PublicProfile? get payer => throw _privateConstructorUsedError;
   set payer(PublicProfile? value) => throw _privateConstructorUsedError;
-  List<PublicProfile>? get primarySplits => throw _privateConstructorUsedError;
-  set primarySplits(List<PublicProfile>? value) =>
+  List<PublicProfile> get primarySplits => throw _privateConstructorUsedError;
+  set primarySplits(List<PublicProfile> value) =>
       throw _privateConstructorUsedError;
   List<PublicProfile>? get secondarySplits =>
       throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $BillDataCopyWith<$Res> {
       String name,
       double totalSpent,
       PublicProfile? payer,
-      List<PublicProfile>? primarySplits,
+      List<PublicProfile> primarySplits,
       List<PublicProfile>? secondarySplits,
       Map<PublicProfile, double> splitBalances,
       Map<PublicProfile, double> paymentResolveStatuses,
@@ -98,7 +98,7 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? name = null,
     Object? totalSpent = null,
     Object? payer = freezed,
-    Object? primarySplits = freezed,
+    Object? primarySplits = null,
     Object? secondarySplits = freezed,
     Object? splitBalances = null,
     Object? paymentResolveStatuses = null,
@@ -128,10 +128,10 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.payer
           : payer // ignore: cast_nullable_to_non_nullable
               as PublicProfile?,
-      primarySplits: freezed == primarySplits
+      primarySplits: null == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
-              as List<PublicProfile>?,
+              as List<PublicProfile>,
       secondarySplits: freezed == secondarySplits
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
@@ -193,10 +193,11 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
 }
 
 /// @nodoc
-abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
-  factory _$$_BillDataCopyWith(
-          _$_BillData value, $Res Function(_$_BillData) then) =
-      __$$_BillDataCopyWithImpl<$Res>;
+abstract class _$$BillDataImplCopyWith<$Res>
+    implements $BillDataCopyWith<$Res> {
+  factory _$$BillDataImplCopyWith(
+          _$BillDataImpl value, $Res Function(_$BillDataImpl) then) =
+      __$$BillDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -205,7 +206,7 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
       String name,
       double totalSpent,
       PublicProfile? payer,
-      List<PublicProfile>? primarySplits,
+      List<PublicProfile> primarySplits,
       List<PublicProfile>? secondarySplits,
       Map<PublicProfile, double> splitBalances,
       Map<PublicProfile, double> paymentResolveStatuses,
@@ -223,11 +224,11 @@ abstract class _$$_BillDataCopyWith<$Res> implements $BillDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_BillDataCopyWithImpl<$Res>
-    extends _$BillDataCopyWithImpl<$Res, _$_BillData>
-    implements _$$_BillDataCopyWith<$Res> {
-  __$$_BillDataCopyWithImpl(
-      _$_BillData _value, $Res Function(_$_BillData) _then)
+class __$$BillDataImplCopyWithImpl<$Res>
+    extends _$BillDataCopyWithImpl<$Res, _$BillDataImpl>
+    implements _$$BillDataImplCopyWith<$Res> {
+  __$$BillDataImplCopyWithImpl(
+      _$BillDataImpl _value, $Res Function(_$BillDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -238,7 +239,7 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? name = null,
     Object? totalSpent = null,
     Object? payer = freezed,
-    Object? primarySplits = freezed,
+    Object? primarySplits = null,
     Object? secondarySplits = freezed,
     Object? splitBalances = null,
     Object? paymentResolveStatuses = null,
@@ -247,7 +248,7 @@ class __$$_BillDataCopyWithImpl<$Res>
     Object? tipModule = null,
     Object? lastUpdatedSession = null,
   }) {
-    return _then(_$_BillData(
+    return _then(_$BillDataImpl(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -268,10 +269,10 @@ class __$$_BillDataCopyWithImpl<$Res>
           ? _value.payer
           : payer // ignore: cast_nullable_to_non_nullable
               as PublicProfile?,
-      primarySplits: freezed == primarySplits
+      primarySplits: null == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
-              as List<PublicProfile>?,
+              as List<PublicProfile>,
       secondarySplits: freezed == secondarySplits
           ? _value.secondarySplits
           : secondarySplits // ignore: cast_nullable_to_non_nullable
@@ -306,14 +307,14 @@ class __$$_BillDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BillData extends _BillData {
-  _$_BillData(
+class _$BillDataImpl extends _BillData {
+  _$BillDataImpl(
       {required this.uid,
       required this.dateTime,
       this.name = "New Bill",
       this.totalSpent = 0,
       this.payer,
-      this.primarySplits,
+      required this.primarySplits,
       this.secondarySplits,
       required this.splitBalances,
       required this.paymentResolveStatuses,
@@ -337,7 +338,7 @@ class _$_BillData extends _BillData {
   @override
   PublicProfile? payer;
   @override
-  List<PublicProfile>? primarySplits;
+  List<PublicProfile> primarySplits;
   @override
   List<PublicProfile>? secondarySplits;
   @override
@@ -362,8 +363,8 @@ class _$_BillData extends _BillData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BillDataCopyWith<_$_BillData> get copyWith =>
-      __$$_BillDataCopyWithImpl<_$_BillData>(this, _$identity);
+  _$$BillDataImplCopyWith<_$BillDataImpl> get copyWith =>
+      __$$BillDataImplCopyWithImpl<_$BillDataImpl>(this, _$identity);
 }
 
 abstract class _BillData extends BillData {
@@ -373,14 +374,14 @@ abstract class _BillData extends BillData {
       String name,
       double totalSpent,
       PublicProfile? payer,
-      List<PublicProfile>? primarySplits,
+      required List<PublicProfile> primarySplits,
       List<PublicProfile>? secondarySplits,
       required Map<PublicProfile, double> splitBalances,
       required Map<PublicProfile, double> paymentResolveStatuses,
       required List<ItemGroup> itemGroups,
       required BillModule_Tax taxModule,
       required BillModule_Tip tipModule,
-      required DateTime lastUpdatedSession}) = _$_BillData;
+      required DateTime lastUpdatedSession}) = _$BillDataImpl;
   _BillData._() : super._();
 
   @override
@@ -399,8 +400,8 @@ abstract class _BillData extends BillData {
   PublicProfile? get payer;
   set payer(PublicProfile? value);
   @override
-  List<PublicProfile>? get primarySplits;
-  set primarySplits(List<PublicProfile>? value);
+  List<PublicProfile> get primarySplits;
+  set primarySplits(List<PublicProfile> value);
   @override
   List<PublicProfile>? get secondarySplits;
   set secondarySplits(List<PublicProfile>? value);
@@ -424,6 +425,6 @@ abstract class _BillData extends BillData {
   set lastUpdatedSession(DateTime value);
   @override
   @JsonKey(ignore: true)
-  _$$_BillDataCopyWith<_$_BillData> get copyWith =>
+  _$$BillDataImplCopyWith<_$BillDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

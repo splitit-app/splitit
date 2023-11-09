@@ -6,8 +6,8 @@ part of 'user_data_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserDataDTO _$$_UserDataDTOFromJson(Map<String, dynamic> json) =>
-    _$_UserDataDTO(
+_$UserDataDTOImpl _$$UserDataDTOImplFromJson(Map<String, dynamic> json) =>
+    _$UserDataDTOImpl(
       publicProfile: PublicProfileDTO.fromJson(
           json['publicProfile'] as Map<String, dynamic>),
       registeredFriendUids: (json['registeredFriendUids'] as List<dynamic>)
@@ -19,7 +19,7 @@ _$_UserDataDTO _$$_UserDataDTOFromJson(Map<String, dynamic> json) =>
       lastUpdatedSession: DateTime.parse(json['lastUpdatedSession'] as String),
     );
 
-Map<String, dynamic> _$$_UserDataDTOToJson(_$_UserDataDTO instance) =>
+Map<String, dynamic> _$$UserDataDTOImplToJson(_$UserDataDTOImpl instance) =>
     <String, dynamic>{
       'publicProfile': instance.publicProfile.toJson(),
       'registeredFriendUids': instance.registeredFriendUids,

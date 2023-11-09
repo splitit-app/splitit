@@ -13,10 +13,10 @@ class DummyBillForm {
     final BillData billData = read();
 
     final profileToIndex = Map.fromIterables(
-        billData.primarySplits!, List.generate(billData.primarySplits!.length, (index) => index));
+        billData.primarySplits, List.generate(billData.primarySplits.length, (index) => index));
 
     billData.splitBalances =
-        Map.fromIterables(billData.primarySplits!, List.filled(billData.primarySplits!.length, 0));
+        Map.fromIterables(billData.primarySplits, List.filled(billData.primarySplits.length, 0));
 
     for (ItemGroup itemGroup in billData.itemGroups) {
       for (PublicProfile profile in itemGroup.primarySplits) {

@@ -3,6 +3,7 @@ import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:project_bs/runtime_models/user/public_profile.dart';
 import 'package:project_bs/utilities/person_icon.dart';
+import 'package:project_bs/utilities/scroll_animations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utilities/fields.dart';
@@ -20,11 +21,13 @@ void quickSplitDialog(BuildContext context) => showDialog(
             ? const Placeholder()
             : PageView(
                 controller: quickSplitForm.pageController,
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   AlertDialog(
                     icon: const Icon(MaterialSymbols.bolt_filled),
                     title: const Text("Quick Split"),
                     titlePadding: const EdgeInsets.all(1),
+                    scrollable: true,
                     content: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -61,19 +64,23 @@ void quickSplitDialog(BuildContext context) => showDialog(
                         ],
                       ),
                     ),
+                    actionsAlignment: MainAxisAlignment.spaceBetween,
                     actions: [
-                      // Next Button
+                      //Cancel Button
                       OutlinedButton(
-                        onPressed: () async {
-                          await quickSplitForm.submitBillInfo();
-                          //if (context.mounted) Navigator.of(context).pop();
+                        onPressed: () {
+                          if (context.mounted) Navigator.of(context).pop();
                         },
+                        child: const Text("Cancel"),
+                      ),
+                      //Next Button
+                      OutlinedButton(
+                        onPressed: () async => await quickSplitForm.submitBillInfo(),
                         child: const Text("Next"),
                       ),
                     ],
                   ),
                   AlertDialog(
-                      //final registrationForm = context.read<RegistrationForm>();
                       icon: const Icon(MaterialSymbols.bolt_filled),
                       title: const Text("Quick Split"),
                       titlePadding: const EdgeInsets.all(1),
@@ -84,26 +91,35 @@ void quickSplitDialog(BuildContext context) => showDialog(
                             const SizedBox(height: 20),
                             SizedBox(
                               height: 300,
-                              child: ListView.builder(
-                                  itemCount: userData.nonRegisteredFriends.length,
-                                  itemBuilder: (context, index) {
-                                    PublicProfile profile =
-                                        userData.nonRegisteredFriends.values.elementAt(index);
+                              child: StatefulBuilder(
+                                builder: (context, setState) => ListView.builder(
+                                    itemCount: userData.nonRegisteredFriends.length,
+                                    itemBuilder: (context, index) {
+                                      PublicProfile profile =
+                                          userData.nonRegisteredFriends.values.elementAt(index);
 
-                                    return ListTile(
-                                      leading: PersonIcon(personName: profile.name),
-                                      title: Text(profile.name),
-                                      trailing: Checkbox(
-                                        value: false,
-                                        onChanged: (value) {},
-                                      ),
-                                    );
-                                  }),
+                                      return ListTile(
+                                        leading: PersonIcon(profile: profile),
+                                        title: Text(profile.name),
+                                        trailing: Checkbox(
+                                          value: quickSplitForm.friendInvolvements[profile],
+                                          onChanged: (value) => setState(() =>
+                                              quickSplitForm.friendInvolvements[profile] = value!),
+                                        ),
+                                      );
+                                    }),
+                              ),
                             ),
                           ],
                         ),
                       ),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
                       actions: [
+                        OutlinedButton(
+                          onPressed: () =>
+                              quickSplitForm.pageController.animateToPageWithDefaults(0),
+                          child: const Text("Back"),
+                        ),
                         OutlinedButton(
                           onPressed: () async {
                             await quickSplitForm.createBill();

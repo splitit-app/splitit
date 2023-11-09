@@ -91,11 +91,11 @@ class _$PublicProfileCopyWithImpl<$Res, $Val extends PublicProfile>
 }
 
 /// @nodoc
-abstract class _$$_PublicProfileCopyWith<$Res>
+abstract class _$$PublicProfileImplCopyWith<$Res>
     implements $PublicProfileCopyWith<$Res> {
-  factory _$$_PublicProfileCopyWith(
-          _$_PublicProfile value, $Res Function(_$_PublicProfile) then) =
-      __$$_PublicProfileCopyWithImpl<$Res>;
+  factory _$$PublicProfileImplCopyWith(
+          _$PublicProfileImpl value, $Res Function(_$PublicProfileImpl) then) =
+      __$$PublicProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String uid, PublicProfile? createdBy, String name});
@@ -105,11 +105,11 @@ abstract class _$$_PublicProfileCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PublicProfileCopyWithImpl<$Res>
-    extends _$PublicProfileCopyWithImpl<$Res, _$_PublicProfile>
-    implements _$$_PublicProfileCopyWith<$Res> {
-  __$$_PublicProfileCopyWithImpl(
-      _$_PublicProfile _value, $Res Function(_$_PublicProfile) _then)
+class __$$PublicProfileImplCopyWithImpl<$Res>
+    extends _$PublicProfileCopyWithImpl<$Res, _$PublicProfileImpl>
+    implements _$$PublicProfileImplCopyWith<$Res> {
+  __$$PublicProfileImplCopyWithImpl(
+      _$PublicProfileImpl _value, $Res Function(_$PublicProfileImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -119,7 +119,7 @@ class __$$_PublicProfileCopyWithImpl<$Res>
     Object? createdBy = freezed,
     Object? name = null,
   }) {
-    return _then(_$_PublicProfile(
+    return _then(_$PublicProfileImpl(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -138,12 +138,12 @@ class __$$_PublicProfileCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PublicProfile extends _PublicProfile {
-  _$_PublicProfile({required this.uid, this.createdBy, required this.name})
+class _$PublicProfileImpl extends _PublicProfile {
+  _$PublicProfileImpl({required this.uid, this.createdBy, required this.name})
       : super._();
 
-  factory _$_PublicProfile.fromJson(Map<String, dynamic> json) =>
-      _$$_PublicProfileFromJson(json);
+  factory _$PublicProfileImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PublicProfileImplFromJson(json);
 
   @override
   String uid;
@@ -160,12 +160,12 @@ class _$_PublicProfile extends _PublicProfile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PublicProfileCopyWith<_$_PublicProfile> get copyWith =>
-      __$$_PublicProfileCopyWithImpl<_$_PublicProfile>(this, _$identity);
+  _$$PublicProfileImplCopyWith<_$PublicProfileImpl> get copyWith =>
+      __$$PublicProfileImplCopyWithImpl<_$PublicProfileImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PublicProfileToJson(
+    return _$$PublicProfileImplToJson(
       this,
     );
   }
@@ -175,11 +175,11 @@ abstract class _PublicProfile extends PublicProfile {
   factory _PublicProfile(
       {required String uid,
       PublicProfile? createdBy,
-      required String name}) = _$_PublicProfile;
+      required String name}) = _$PublicProfileImpl;
   _PublicProfile._() : super._();
 
   factory _PublicProfile.fromJson(Map<String, dynamic> json) =
-      _$_PublicProfile.fromJson;
+      _$PublicProfileImpl.fromJson;
 
   @override
   String get uid;
@@ -192,6 +192,6 @@ abstract class _PublicProfile extends PublicProfile {
   set name(String value);
   @override
   @JsonKey(ignore: true)
-  _$$_PublicProfileCopyWith<_$_PublicProfile> get copyWith =>
+  _$$PublicProfileImplCopyWith<_$PublicProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -14,16 +14,20 @@ class LoginForm {
   String toReturn = "";
 
   Future<String> login() async {
-  // Future<void> login() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    // Future<void> login() async {
 
     //TODO: Check values not null
 
     const Center(child: CircularProgressIndicator());
 
-    await read<AuthenticationService>().signInWith_EmailAndPassword(
+    await read<AuthenticationService>()
+        .signInWith_EmailAndPassword(
       emailFieldController.text.trim().toLowerCase(),
       passwordFieldController.text,
-    ).then((auth){
+    )
+        .then((auth) {
       // print("form: $auth");
       toReturn = auth;
     });

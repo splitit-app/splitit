@@ -63,22 +63,22 @@ class _$BillModule_TipCopyWithImpl<$Res, $Val extends BillModule_Tip>
 }
 
 /// @nodoc
-abstract class _$$_BillModule_TipCopyWith<$Res>
+abstract class _$$BillModule_TipImplCopyWith<$Res>
     implements $BillModule_TipCopyWith<$Res> {
-  factory _$$_BillModule_TipCopyWith(
-          _$_BillModule_Tip value, $Res Function(_$_BillModule_Tip) then) =
-      __$$_BillModule_TipCopyWithImpl<$Res>;
+  factory _$$BillModule_TipImplCopyWith(_$BillModule_TipImpl value,
+          $Res Function(_$BillModule_TipImpl) then) =
+      __$$BillModule_TipImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double totalTip, bool includedInTotalSpent});
 }
 
 /// @nodoc
-class __$$_BillModule_TipCopyWithImpl<$Res>
-    extends _$BillModule_TipCopyWithImpl<$Res, _$_BillModule_Tip>
-    implements _$$_BillModule_TipCopyWith<$Res> {
-  __$$_BillModule_TipCopyWithImpl(
-      _$_BillModule_Tip _value, $Res Function(_$_BillModule_Tip) _then)
+class __$$BillModule_TipImplCopyWithImpl<$Res>
+    extends _$BillModule_TipCopyWithImpl<$Res, _$BillModule_TipImpl>
+    implements _$$BillModule_TipImplCopyWith<$Res> {
+  __$$BillModule_TipImplCopyWithImpl(
+      _$BillModule_TipImpl _value, $Res Function(_$BillModule_TipImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_BillModule_TipCopyWithImpl<$Res>
     Object? totalTip = null,
     Object? includedInTotalSpent = null,
   }) {
-    return _then(_$_BillModule_Tip(
+    return _then(_$BillModule_TipImpl(
       totalTip: null == totalTip
           ? _value.totalTip
           : totalTip // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_BillModule_TipCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BillModule_Tip implements _BillModule_Tip {
-  _$_BillModule_Tip({this.totalTip = 0, this.includedInTotalSpent = false});
+class _$BillModule_TipImpl implements _BillModule_Tip {
+  _$BillModule_TipImpl({this.totalTip = 0, this.includedInTotalSpent = false});
 
   @override
   @JsonKey()
@@ -121,7 +121,7 @@ class _$_BillModule_Tip implements _BillModule_Tip {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BillModule_Tip &&
+            other is _$BillModule_TipImpl &&
             (identical(other.totalTip, totalTip) ||
                 other.totalTip == totalTip) &&
             (identical(other.includedInTotalSpent, includedInTotalSpent) ||
@@ -134,14 +134,15 @@ class _$_BillModule_Tip implements _BillModule_Tip {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BillModule_TipCopyWith<_$_BillModule_Tip> get copyWith =>
-      __$$_BillModule_TipCopyWithImpl<_$_BillModule_Tip>(this, _$identity);
+  _$$BillModule_TipImplCopyWith<_$BillModule_TipImpl> get copyWith =>
+      __$$BillModule_TipImplCopyWithImpl<_$BillModule_TipImpl>(
+          this, _$identity);
 }
 
 abstract class _BillModule_Tip implements BillModule_Tip {
   factory _BillModule_Tip(
       {final double totalTip,
-      final bool includedInTotalSpent}) = _$_BillModule_Tip;
+      final bool includedInTotalSpent}) = _$BillModule_TipImpl;
 
   @override
   double get totalTip;
@@ -149,6 +150,6 @@ abstract class _BillModule_Tip implements BillModule_Tip {
   bool get includedInTotalSpent;
   @override
   @JsonKey(ignore: true)
-  _$$_BillModule_TipCopyWith<_$_BillModule_Tip> get copyWith =>
+  _$$BillModule_TipImplCopyWith<_$BillModule_TipImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

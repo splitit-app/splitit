@@ -116,10 +116,11 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
 }
 
 /// @nodoc
-abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
-  factory _$$_UserDataCopyWith(
-          _$_UserData value, $Res Function(_$_UserData) then) =
-      __$$_UserDataCopyWithImpl<$Res>;
+abstract class _$$UserDataImplCopyWith<$Res>
+    implements $UserDataCopyWith<$Res> {
+  factory _$$UserDataImplCopyWith(
+          _$UserDataImpl value, $Res Function(_$UserDataImpl) then) =
+      __$$UserDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -136,11 +137,11 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserDataCopyWithImpl<$Res>
-    extends _$UserDataCopyWithImpl<$Res, _$_UserData>
-    implements _$$_UserDataCopyWith<$Res> {
-  __$$_UserDataCopyWithImpl(
-      _$_UserData _value, $Res Function(_$_UserData) _then)
+class __$$UserDataImplCopyWithImpl<$Res>
+    extends _$UserDataCopyWithImpl<$Res, _$UserDataImpl>
+    implements _$$UserDataImplCopyWith<$Res> {
+  __$$UserDataImplCopyWithImpl(
+      _$UserDataImpl _value, $Res Function(_$UserDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -152,7 +153,7 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? registeredFriends = null,
     Object? nonRegisteredFriends = null,
   }) {
-    return _then(_$_UserData(
+    return _then(_$UserDataImpl(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -179,8 +180,8 @@ class __$$_UserDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserData extends _UserData with DiagnosticableTreeMixin {
-  _$_UserData(
+class _$UserDataImpl extends _UserData with DiagnosticableTreeMixin {
+  _$UserDataImpl(
       {required this.uid,
       required this.publicProfile,
       required this.privateProfile,
@@ -220,17 +221,18 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserDataCopyWith<_$_UserData> get copyWith =>
-      __$$_UserDataCopyWithImpl<_$_UserData>(this, _$identity);
+  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
+      __$$UserDataImplCopyWithImpl<_$UserDataImpl>(this, _$identity);
 }
 
 abstract class _UserData extends UserData {
   factory _UserData(
-      {required String uid,
-      required PublicProfile publicProfile,
-      required PrivateProfile privateProfile,
-      required List<PublicProfile> registeredFriends,
-      required Map<String, PublicProfile> nonRegisteredFriends}) = _$_UserData;
+          {required String uid,
+          required PublicProfile publicProfile,
+          required PrivateProfile privateProfile,
+          required List<PublicProfile> registeredFriends,
+          required Map<String, PublicProfile> nonRegisteredFriends}) =
+      _$UserDataImpl;
   _UserData._() : super._();
 
   @override
@@ -250,6 +252,6 @@ abstract class _UserData extends UserData {
   set nonRegisteredFriends(Map<String, PublicProfile> value);
   @override
   @JsonKey(ignore: true)
-  _$$_UserDataCopyWith<_$_UserData> get copyWith =>
+  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

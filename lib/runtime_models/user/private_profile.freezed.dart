@@ -57,22 +57,22 @@ class _$PrivateProfileCopyWithImpl<$Res, $Val extends PrivateProfile>
 }
 
 /// @nodoc
-abstract class _$$_PrivateProfileCopyWith<$Res>
+abstract class _$$PrivateProfileImplCopyWith<$Res>
     implements $PrivateProfileCopyWith<$Res> {
-  factory _$$_PrivateProfileCopyWith(
-          _$_PrivateProfile value, $Res Function(_$_PrivateProfile) then) =
-      __$$_PrivateProfileCopyWithImpl<$Res>;
+  factory _$$PrivateProfileImplCopyWith(_$PrivateProfileImpl value,
+          $Res Function(_$PrivateProfileImpl) then) =
+      __$$PrivateProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeData themeData});
 }
 
 /// @nodoc
-class __$$_PrivateProfileCopyWithImpl<$Res>
-    extends _$PrivateProfileCopyWithImpl<$Res, _$_PrivateProfile>
-    implements _$$_PrivateProfileCopyWith<$Res> {
-  __$$_PrivateProfileCopyWithImpl(
-      _$_PrivateProfile _value, $Res Function(_$_PrivateProfile) _then)
+class __$$PrivateProfileImplCopyWithImpl<$Res>
+    extends _$PrivateProfileCopyWithImpl<$Res, _$PrivateProfileImpl>
+    implements _$$PrivateProfileImplCopyWith<$Res> {
+  __$$PrivateProfileImplCopyWithImpl(
+      _$PrivateProfileImpl _value, $Res Function(_$PrivateProfileImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_PrivateProfileCopyWithImpl<$Res>
   $Res call({
     Object? themeData = null,
   }) {
-    return _then(_$_PrivateProfile(
+    return _then(_$PrivateProfileImpl(
       themeData: null == themeData
           ? _value.themeData
           : themeData // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_PrivateProfileCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PrivateProfile implements _PrivateProfile {
-  _$_PrivateProfile({required this.themeData});
+class _$PrivateProfileImpl implements _PrivateProfile {
+  _$PrivateProfileImpl({required this.themeData});
 
   @override
   final ThemeData themeData;
@@ -106,7 +106,7 @@ class _$_PrivateProfile implements _PrivateProfile {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PrivateProfile &&
+            other is _$PrivateProfileImpl &&
             (identical(other.themeData, themeData) ||
                 other.themeData == themeData));
   }
@@ -117,18 +117,19 @@ class _$_PrivateProfile implements _PrivateProfile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PrivateProfileCopyWith<_$_PrivateProfile> get copyWith =>
-      __$$_PrivateProfileCopyWithImpl<_$_PrivateProfile>(this, _$identity);
+  _$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> get copyWith =>
+      __$$PrivateProfileImplCopyWithImpl<_$PrivateProfileImpl>(
+          this, _$identity);
 }
 
 abstract class _PrivateProfile implements PrivateProfile {
   factory _PrivateProfile({required final ThemeData themeData}) =
-      _$_PrivateProfile;
+      _$PrivateProfileImpl;
 
   @override
   ThemeData get themeData;
   @override
   @JsonKey(ignore: true)
-  _$$_PrivateProfileCopyWith<_$_PrivateProfile> get copyWith =>
+  _$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

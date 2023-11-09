@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:project_bs/runtime_models/user/public_profile.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/user/user_data.dart';
@@ -14,9 +15,23 @@ class QuickSplitForm {
   final dateFieldController = TextEditingController();
   final totalSpentFieldController = TextEditingController();
 
-  QuickSplitForm({required this.read});
+  late Map<PublicProfile, bool> friendInvolvements;
+
+  QuickSplitForm({required this.read}) {
+    final UserData? userData = read();
+
+    if (userData == null) {
+      friendInvolvements = {};
+      return;
+    }
+
+    friendInvolvements = {for (var profile in userData.nonRegisteredFriends.values) profile: false};
+  }
 
   Future<void> submitBillInfo() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    //TODO: validate
     await pageController.animateToPageWithDefaults(1);
   }
 
@@ -34,6 +49,10 @@ class QuickSplitForm {
       name: name,
       totalSpent: totalSpent,
       payer: userData.publicProfile,
+      primarySplits: friendInvolvements.entries
+          .where((entry) => entry.value)
+          .map((entry) => entry.key)
+          .toList(),
     );
     // userData.nonRegisteredFriends.add(PublicProfile(
     //   uid: const Uuid().v1(),
