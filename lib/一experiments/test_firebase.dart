@@ -64,9 +64,13 @@ class TestDatabase {
   void foo0() async {
     var db = FirebaseFirestore.instance;
 
-    final user = <String, dynamic>{"first": "Ada", "last": "Lovelace", "born": 1815};
+    final user = <String, dynamic>{
+      "first": "Ada",
+      "last": "Lovelace",
+      "born": 1815
+    };
 
-    await db.collection('users').add(user).then(
-        (documentReference) => print('DocumentSnapshot added with ID: ${documentReference.id}'));
+    await db.collection('users').add(user).then((documentReference) =>
+        print('DocumentSnapshot added with ID: ${documentReference.id}'));
   }
 }

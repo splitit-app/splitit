@@ -30,9 +30,9 @@ class QuickSplitForm {
 
   Future<void> submitBillInfo() async {
     FocusManager.instance.primaryFocus?.unfocus();
-
-    //TODO: validate
     await pageController.animateToPageWithDefaults(1);
+    //if (context.mounted) Navigator.of(context).pop();
+    //TODO: validate
   }
 
   Future<void> createBill() async {
