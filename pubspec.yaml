@@ -53,6 +53,7 @@ dependencies:
   flutter_material_symbols: ^0.0.4
   expansion_tile_card: ^3.0.0
   assorted_layout_widgets: ^8.0.5
+  material_color_utilities: ^0.5.0
   
 
 dev_dependencies:

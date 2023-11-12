@@ -32,12 +32,11 @@ class _MainHomePageState extends State<MainHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentPage],
+      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
 
       // Bottom Navigation Bar:
       bottomNavigationBar: NavigationBar(
-        backgroundColor: Theme.of(context)
-            .colorScheme
-            .surfaceVariant, // Theme of the App (line 32) defines the background color
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant, // Theme of the App (line 32) defines the background color
         indicatorColor: Theme.of(context).colorScheme.tertiary,
         labelBehavior: NavigationDestinationLabelBehavior
             .alwaysShow, // Only shows the label of the selected icon

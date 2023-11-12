@@ -38,7 +38,8 @@ void quickSplitDialog(BuildContext context) => showDialog(
                             decoration: textFieldDecoration_border.copyWith(
                               labelText: "Name",
                               suffixIcon: IconButton(
-                                onPressed: quickSplitForm.nameFieldController.clear,
+                                onPressed:
+                                    quickSplitForm.nameFieldController.clear,
                                 icon: const Icon(Symbols.close),
                               ),
                             ),
@@ -46,16 +47,19 @@ void quickSplitDialog(BuildContext context) => showDialog(
                           const SizedBox(height: 20),
                           DateFormField(
                             controller: quickSplitForm.dateFieldController,
-                            decoration: dateFieldDecoration_border.copyWith(labelText: "Date"),
+                            decoration: dateFieldDecoration_border.copyWith(
+                                labelText: "Date"),
                           ),
                           const SizedBox(height: 20),
                           TextFormField(
-                            controller: quickSplitForm.totalSpentFieldController,
+                            controller:
+                                quickSplitForm.totalSpentFieldController,
                             keyboardType: TextInputType.number,
                             decoration: textFieldDecoration_border.copyWith(
                               labelText: "Total Spent",
                               suffixIcon: IconButton(
-                                onPressed: quickSplitForm.totalSpentFieldController.clear,
+                                onPressed: quickSplitForm
+                                    .totalSpentFieldController.clear,
                                 icon: const Icon(Symbols.close),
                               ),
                             ),
@@ -64,10 +68,10 @@ void quickSplitDialog(BuildContext context) => showDialog(
                         ],
                       ),
                     ),
-                    actionsAlignment: MainAxisAlignment.spaceBetween,
+                    //actionsAlignment: MainAxisAlignment.spaceBetween,
                     actions: [
                       //Cancel Button
-                      OutlinedButton(
+                      TextButton(
                         onPressed: () {
                           if (context.mounted) Navigator.of(context).pop();
                         },
@@ -75,7 +79,9 @@ void quickSplitDialog(BuildContext context) => showDialog(
                       ),
                       //Next Button
                       OutlinedButton(
-                        onPressed: () async => await quickSplitForm.submitBillInfo(),
+                        onPressed: () async =>
+                            await quickSplitForm.submitBillInfo(),
+                        //Navigator.push(context,),
                         child: const Text("Next"),
                       ),
                     ],
@@ -92,22 +98,30 @@ void quickSplitDialog(BuildContext context) => showDialog(
                             SizedBox(
                               height: 300,
                               child: StatefulBuilder(
-                                builder: (context, setState) => ListView.builder(
-                                    itemCount: userData.nonRegisteredFriends.length,
-                                    itemBuilder: (context, index) {
-                                      PublicProfile profile =
-                                          userData.nonRegisteredFriends.values.elementAt(index);
+                                builder: (context, setState) =>
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: userData
+                                            .nonRegisteredFriends.length,
+                                        itemBuilder: (context, index) {
+                                          PublicProfile profile = userData
+                                              .nonRegisteredFriends.values
+                                              .elementAt(index);
 
-                                      return ListTile(
-                                        leading: PersonIcon(profile: profile),
-                                        title: Text(profile.name),
-                                        trailing: Checkbox(
-                                          value: quickSplitForm.friendInvolvements[profile],
-                                          onChanged: (value) => setState(() =>
-                                              quickSplitForm.friendInvolvements[profile] = value!),
-                                        ),
-                                      );
-                                    }),
+                                          return ListTile(
+                                            leading:
+                                                PersonIcon(profile: profile),
+                                            title: Text(profile.name),
+                                            trailing: Checkbox(
+                                              value: quickSplitForm
+                                                  .friendInvolvements[profile],
+                                              onChanged: (value) => setState(
+                                                  () => quickSplitForm
+                                                          .friendInvolvements[
+                                                      profile] = value!),
+                                            ),
+                                          );
+                                        }),
                               ),
                             ),
                           ],
@@ -116,8 +130,8 @@ void quickSplitDialog(BuildContext context) => showDialog(
                       actionsAlignment: MainAxisAlignment.spaceBetween,
                       actions: [
                         OutlinedButton(
-                          onPressed: () =>
-                              quickSplitForm.pageController.animateToPageWithDefaults(0),
+                          onPressed: () => quickSplitForm.pageController
+                              .animateToPageWithDefaults(0),
                           child: const Text("Back"),
                         ),
                         OutlinedButton(

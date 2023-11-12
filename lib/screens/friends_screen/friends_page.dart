@@ -29,19 +29,20 @@ class FriendsPage extends StatelessWidget {
         ? const Placeholder()
         : Scaffold(
             appBar: AppBar(
+              //backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               title: const Text("People"),
               centerTitle: true,
               leading: IconButton(
-                onPressed: () {},
+                color: Theme.of(context).colorScheme.onSurface,
                 icon: const Icon(Symbols.notifications),
-                iconSize: 30.0,
+                onPressed: () {},
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  color: Theme.of(context).colorScheme.onSurface,
                   icon: const Icon(Symbols.settings),
-                  iconSize: 30.0,
+                  onPressed: () {},
                 ),
               ],
             ),

@@ -26,35 +26,41 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SvgPicture.asset('assets/login_screen/splitit_logo.svg'),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Text(
                     'Log In',
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall!
-                        .copyWith(fontWeight: FontWeight.bold),
+                        .copyWith(fontWeight: FontWeight.w600),
                   ),
+                  const SizedBox(height: 20),
                   TextFormField(
-                    decoration: textFieldDecoration_filled.copyWith(labelText: 'Email'),
+                    decoration:
+                    
+                        textFieldDecoration_filled.copyWith(labelText: 'Email'),
                     controller: loginForm.emailFieldController,
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
-                    decoration: textFieldDecoration_filled.copyWith(labelText: 'Password'),
+                    decoration: textFieldDecoration_filled.copyWith(
+                        labelText: 'Password'),
                     obscureText: true,
                     controller: loginForm.passwordFieldController,
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () async {
-                      await loginForm.login()
-                      .then((auth){
+                      await loginForm.login().then((auth) {
                         // print("test : $auth");
-                        if(auth.toString() == "INVALID_LOGIN_CREDENTIALS"){
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email or Password incorrect!")));
-                        }
-                        else if(auth.toString() == "invalid-email"){
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid Email!")));
+                        if (auth.toString() == "INVALID_LOGIN_CREDENTIALS") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text("Email or Password incorrect!")));
+                        } else if (auth.toString() == "invalid-email") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Invalid Email!")));
                         }
                       });
                     },
@@ -71,7 +77,8 @@ class LoginScreen extends StatelessWidget {
         children: [
           const Text('Don\'t have an account?'),
           TextButton(
-            onPressed: () => context.read<PageController>().animateToPageWithDefaults(1),
+            onPressed: () =>
+                context.read<PageController>().animateToPageWithDefaults(1),
             child: const Text('Sign Up'),
           ),
         ],
