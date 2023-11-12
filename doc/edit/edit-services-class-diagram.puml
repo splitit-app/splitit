@@ -1,0 +1,42 @@
+@startuml Services
+
+class "project_bs::services::authentication_service.dart::AuthenticationService" {
+  -FirebaseAuth _firebaseAuth
+  +Stream<User?> userAuthState
+  +dynamic isValid_Email()
+  +dynamic createUserWith_EmailAndPassword()
+  +dynamic signInWith_EmailAndPassword()
+  +dynamic signOut()
+}
+"project_bs::services::authentication_service.dart::AuthenticationService" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"project_bs::services::authentication_service.dart::AuthenticationService" o-- "dart::async::Stream<User>"
+
+class "project_bs::services::bill_data_repository.dart::BillDataRepository" {
+  +T Function<T>() read
+  -CollectionReference<Map<String, dynamic>> _billCollection
+  +Stream<List<BillData>?> billDataStream
+  +dynamic billDocumentSnapshots
+  +UserData? userData
+  +dynamic createBill()
+  +dynamic pushBillData()
+  +BillData? snapshotToRuntimeObj()
+}
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "dart::async::Stream<List<BillData>>"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "project_bs::runtime_models::user::user_data.dart::UserData"
+
+class "project_bs::services::user_data_repository.dart::UserDataRepository" {
+  +T Function<T>() read
+  +String? uid
+  +dynamic userData
+  +Stream<UserData?> userDataStream
+  +DocumentReference<Map<String, dynamic>> userDocumentReference
+  +dynamic pushUserData()
+  +UserData? snapshotToRuntimeObj()
+}
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "dart::async::Stream<UserData>"
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "cloud_firestore::cloud_firestore.dart::DocumentReference<Map<String, dynamic>>"
+
+@enduml

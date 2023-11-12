@@ -1,0 +1,36 @@
+@startuml Services
+
+' class "project_bs::services::authentication_service.dart::AuthenticationService" {
+'     -FirebaseAuth _firebaseAuth
+'     +Stream<User?> userAuthState
+'     +dynamic isValid_Email()
+'     +dynamic createUserWith_EmailAndPassword()
+'     +dynamic signInWith_EmailAndPassword()
+'     +dynamic signOut()
+' }
+
+class "project_bs::services::bill_data_repository.dart::BillDataRepository" {
+    +T Function<T>() read
+    -CollectionReference<Map<String, dynamic>> _billCollection
+    +Stream<List<BillData>?> billDataStream
+    +dynamic billDocumentSnapshots
+    +UserData? userData
+    +dynamic createBill()
+    +dynamic pushBillData()
+    +BillData? snapshotToRuntimeObj()
+}
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "project_bs::runtime_models::user::user_data.dart::UserData"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+
+class "project_bs::services::user_data_repository.dart::UserDataRepository" {
+    +T Function<T>() read
+    +String? uid
+    +dynamic userData
+    +Stream<UserData?> userDataStream
+    +DocumentReference<Map<String, dynamic>> userDocumentReference
+    +dynamic pushUserData()
+    +UserData? snapshotToRuntimeObj()
+}
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "project_bs::runtime_models::user::user_data.dart::UserData"
+
+@enduml

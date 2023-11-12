@@ -14,7 +14,7 @@ abstract class "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO" 
     +Map<String, double> paymentResolveStatuses
     +DateTime lastUpdatedSession
 }
-"project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO" <|-- "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO"
+"project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO" <-- "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO"
 
 class "project_bs::runtime_models::bill::bill_data.dart::BillData" {
     +BillDataDTO toDataTransferObj
@@ -41,9 +41,10 @@ abstract class "project_bs::runtime_models::bill::bill_data.dart::_BillData" {
     +DateTime lastUpdatedSession
 }
 "project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
-"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
-"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
-"project_bs::runtime_models::bill::bill_data.dart::BillData" <|-- "project_bs::runtime_models::bill::bill_data.dart::_BillData"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" *-- "project_bs::runtime_models::bill::item_group.dart::ItemGroup"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" *-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" *-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
+"project_bs::runtime_models::bill::bill_data.dart::BillData" <-- "project_bs::runtime_models::bill::bill_data.dart::_BillData"
 
 class "project_bs::runtime_models::bill::item.dart::Item" {
 }
@@ -53,7 +54,7 @@ abstract class "project_bs::runtime_models::bill::item.dart::_Item" {
     +double value
     +List<bool> taxableStatusList
 }
-"project_bs::runtime_models::bill::item.dart::Item" <|-- "project_bs::runtime_models::bill::item.dart::_Item"
+"project_bs::runtime_models::bill::item.dart::Item" <-- "project_bs::runtime_models::bill::item.dart::_Item"
 
 class "project_bs::runtime_models::bill::item_group.dart::ItemGroup" {
     +double value
@@ -66,9 +67,9 @@ abstract class "project_bs::runtime_models::bill::item_group.dart::_ItemGroup" {
     +List<SplitRule> splitRules
     +Map<PublicProfile, double> splitBalances
 }
-"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" o-- "project_bs::runtime_models::bill::item.dart::Item"
-"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" o-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule"
-"project_bs::runtime_models::bill::item_group.dart::ItemGroup" <|-- "project_bs::runtime_models::bill::item_group.dart::_ItemGroup"
+"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" *-- "project_bs::runtime_models::bill::item.dart::Item"
+"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" *-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule"
+"project_bs::runtime_models::bill::item_group.dart::ItemGroup" <-- "project_bs::runtime_models::bill::item_group.dart::_ItemGroup"
 
 class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" {
 }
@@ -76,7 +77,7 @@ class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModu
 abstract class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax" {
     +double totalTax
 }
-"project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax"
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" <-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax"
 
 class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" {
 }
@@ -85,7 +86,7 @@ abstract class "project_bs::runtime_models::bill::modules::bill_module_tip.dart:
     +double totalTip
     +bool includedInTotalSpent
 }
-"project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip"
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" <-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip"
 
 class "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" {
 }
@@ -93,6 +94,6 @@ class "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule
 abstract class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule" {
     +int type
 }
-"project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule"
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" <-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule"
 
 @enduml
