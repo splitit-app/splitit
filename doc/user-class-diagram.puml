@@ -1,0 +1,67 @@
+@startuml User
+
+class "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" {
+    +PublicProfile toRuntimeObj()
+}
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" {
+    +String uid
+    +String? createdBy
+    +String name
+}
+"project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO"
+
+class "project_bs::net_models::user::user_data_dto.dart::UserDataDTO" {
+    +UserData toRuntimeObj()
+}
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" {
+    +PublicProfileDTO publicProfile
+    +List<String> registeredFriendUids
+    +List<PublicProfileDTO> nonRegisteredFriends
+    +DateTime lastUpdatedSession
+}
+"project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+"project_bs::net_models::user::user_data_dto.dart::UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO"
+
+class "project_bs::runtime_models::user::private_profile.dart::PrivateProfile" {
+}
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" {
+    +ThemeData themeData
+}
+"project_bs::runtime_models::user::private_profile.dart::PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile"
+
+class "project_bs::runtime_models::user::public_profile.dart::PublicProfile" {
+    +bool isRegistered
+    +PublicProfileDTO toDataTransferObj
+    +void syncToActiveAccount()
+}
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::_PublicProfile" {
+    +String uid
+    +PublicProfile? createdBy
+    +String name
+}
+"project_bs::runtime_models::user::public_profile.dart::_PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::_PublicProfile"
+
+class "project_bs::runtime_models::user::user_data.dart::UserData" {
+    {static} +int nonRegisteredFriendLimit
+    +UserDataDTO toDataTransferObj
+}
+"project_bs::runtime_models::user::user_data.dart::UserData" o-- "project_bs::net_models::user::user_data_dto.dart::UserDataDTO"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::_UserData" {
+    +String uid
+    +PublicProfile publicProfile
+    +PrivateProfile privateProfile
+    +List<PublicProfile> registeredFriends
+    +Map<String, PublicProfile> nonRegisteredFriends
+}
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+"project_bs::runtime_models::user::user_data.dart::UserData" <|-- "project_bs::runtime_models::user::user_data.dart::_UserData"
+
+@enduml

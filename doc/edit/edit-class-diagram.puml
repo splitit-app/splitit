@@ -1,0 +1,347 @@
+@startuml ClassDiagram
+set namespaceSeparator ::
+
+' class "project_bs::firebase_options.dart::DefaultFirebaseOptions" {
+'   {static} +FirebaseOptions android
+'   {static} +FirebaseOptions ios
+'   {static} +FirebaseOptions currentPlatform
+' }
+
+' "project_bs::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+' class "project_bs::main.dart::SplitItApp" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::main.dart::SplitItApp"
+
+
+
+' class "project_bs::screens::authentication::login::login_form.dart::LoginForm" {
+'   +TextEditingController emailFieldController
+'   +TextEditingController passwordFieldController
+'   +T Function<T>() read
+'   +String toReturn
+'   +dynamic login()
+' }
+
+' "project_bs::screens::authentication::login::login_form.dart::LoginForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+' "project_bs::screens::authentication::login::login_form.dart::LoginForm" o-- "provider::src::provider.dart::T Function<T>()"
+
+' class "project_bs::screens::authentication::login::login_screen.dart::LoginScreen" {
+'   -GlobalKey<FormState> _formKey
+'   +Widget build()
+' }
+
+' "project_bs::screens::authentication::login::login_screen.dart::LoginScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::login::login_screen.dart::LoginScreen"
+
+' class "project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" {
+'   +T Function<T>() read
+'   +PageController pageController
+'   +TextEditingController emailFieldController
+'   +TextEditingController passwordFieldController
+'   +TextEditingController confirmPasswordController
+'   +TextEditingController nameFieldController
+'   +TextEditingController birthdayFieldController
+'   +TextEditingController quoteFieldController
+'   +dynamic createUser()
+'   +dynamic submitEmailAndPassword()
+' }
+
+' "project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" o-- "provider::src::provider.dart::T Function<T>()"
+' "project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" o-- "flutter::src::widgets::page_view.dart::PageController"
+' "project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+' class "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForEmailAndPassword" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForEmailAndPassword"
+
+' class "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForUserData" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForUserData"
+
+' class "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationScreen" {
+'   -GlobalKey<FormState> _formKey
+'   +Widget build()
+' }
+
+' "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationScreen"
+
+' class "project_bs::screens::authentication_switcher.dart::AuthenticationSwitcher" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication_switcher.dart::AuthenticationSwitcher"
+
+' class "project_bs::screens::bill::dummy_bill_form.dart::DummyBillForm" {
+'   +T Function<T>() read
+'   +bool triggerRecalculate
+'   +void calculate()
+' }
+
+' "project_bs::screens::bill::dummy_bill_form.dart::DummyBillForm" o-- "provider::src::provider.dart::T Function<T>()"
+
+' class "project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" {
+'   +T Function<T>() read
+'   +PageController pageController
+'   +TextEditingController nameFieldController
+'   +TextEditingController dateFieldController
+'   +TextEditingController totalSpentFieldController
+'   +Map<PublicProfile, bool> friendInvolvements
+'   +dynamic submitBillInfo()
+'   +dynamic createBill()
+' }
+
+' "project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" o-- "provider::src::provider.dart::T Function<T>()"
+' "project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" o-- "flutter::src::widgets::page_view.dart::PageController"
+' "project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+' class "project_bs::screens::bill::view_bills.dart::ViewBillHistory" {
+'   +State<ViewBillHistory> createState()
+' }
+
+' "flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::screens::bill::view_bills.dart::ViewBillHistory"
+
+' class "project_bs::screens::bill::view_bills.dart::_ViewBillHistoryState" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::State" <|-- "project_bs::screens::bill::view_bills.dart::_ViewBillHistoryState"
+
+' class "project_bs::screens::friends_screen::friends_page.dart::FriendsPage" {
+'   -TextEditingController _searchBarController
+'   -PageController _controller
+'   +Widget build()
+' }
+
+' "project_bs::screens::friends_screen::friends_page.dart::FriendsPage" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+' "project_bs::screens::friends_screen::friends_page.dart::FriendsPage" o-- "flutter::src::widgets::page_view.dart::PageController"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::friends_page.dart::FriendsPage"
+
+' class "project_bs::screens::friends_screen::friends_page_overview.dart::FriendsPageOverview" {
+'   -TextEditingController _searchBarController
+'   +Widget build()
+' }
+
+' "project_bs::screens::friends_screen::friends_page_overview.dart::FriendsPageOverview" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::friends_page_overview.dart::FriendsPageOverview"
+
+' class "project_bs::screens::friends_screen::friends_page_view.dart::FriendsPageView" {
+'   +int startingIndex
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::friends_page_view.dart::FriendsPageView"
+
+' class "project_bs::screens::friends_screen::friend_creation_form.dart::FriendCreationForm" {
+'   +T Function<T>() read
+'   +TextEditingController nameFieldController
+'   +dynamic createFriend()
+' }
+
+' "project_bs::screens::friends_screen::friend_creation_form.dart::FriendCreationForm" o-- "provider::src::provider.dart::T Function<T>()"
+' "project_bs::screens::friends_screen::friend_creation_form.dart::FriendCreationForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+' class "project_bs::screens::friends_screen::group_page_overview.dart::GroupPageOverview" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::group_page_overview.dart::GroupPageOverview"
+
+' class "project_bs::screens::home::home_page.dart::MainHomePage" {
+'   +State<MainHomePage> createState()
+' }
+
+' "flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::screens::home::home_page.dart::MainHomePage"
+
+' class "project_bs::screens::home::home_page.dart::_MainHomePageState" {
+'   +List<Widget> screens
+'   +int currentPage
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::State" <|-- "project_bs::screens::home::home_page.dart::_MainHomePageState"
+
+' class "project_bs::screens::home::home_screen.dart::MainHomeScreen" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::home::home_screen.dart::MainHomeScreen"
+
+' class "project_bs::screens::mockup_page.dart::MockUpPage" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::mockup_page.dart::MockUpPage"
+
+' class "project_bs::screens::mockup_page.dart::PageTest" {
+'   -BillData _dummyBillData
+'   +Widget build()
+' }
+
+' "project_bs::screens::mockup_page.dart::PageTest" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::mockup_page.dart::PageTest"
+
+' class "project_bs::screens::mockup_page.dart::SlideAbleTest" {
+'   +Widget build()
+'   +Container builtUserListTile()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::mockup_page.dart::SlideAbleTest"
+
+' class "project_bs::screens::test_experiment_screen.dart::MyHomePage" {
+'   +State<MyHomePage> createState()
+' }
+
+' "flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::screens::test_experiment_screen.dart::MyHomePage"
+
+' class "project_bs::screens::test_experiment_screen.dart::_MyHomePageState" {
+'   -GlobalKey<FormState> _formKey
+'   +int currentPage
+'   +Widget build()
+' }
+
+' "project_bs::screens::test_experiment_screen.dart::_MyHomePageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+' "flutter::src::widgets::framework.dart::State" <|-- "project_bs::screens::test_experiment_screen.dart::_MyHomePageState"
+
+class "project_bs::services::authentication_service.dart::AuthenticationService" {
+  -FirebaseAuth _firebaseAuth
+  +Stream<User?> userAuthState
+  +dynamic isValid_Email()
+  +dynamic createUserWith_EmailAndPassword()
+  +dynamic signInWith_EmailAndPassword()
+  +dynamic signOut()
+}
+
+"project_bs::services::authentication_service.dart::AuthenticationService" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"project_bs::services::authentication_service.dart::AuthenticationService" o-- "dart::async::Stream<User>"
+
+class "project_bs::services::bill_data_repository.dart::BillDataRepository" {
+  +T Function<T>() read
+  -CollectionReference<Map<String, dynamic>> _billCollection
+  +Stream<List<BillData>?> billDataStream
+  +dynamic billDocumentSnapshots
+  +UserData? userData
+  +dynamic createBill()
+  +dynamic pushBillData()
+  +BillData? snapshotToRuntimeObj()
+}
+
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "dart::async::Stream<List<BillData>>"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "project_bs::runtime_models::user::user_data.dart::UserData"
+
+class "project_bs::services::user_data_repository.dart::UserDataRepository" {
+  +T Function<T>() read
+  +String? uid
+  +dynamic userData
+  +Stream<UserData?> userDataStream
+  +DocumentReference<Map<String, dynamic>> userDocumentReference
+  +dynamic pushUserData()
+  +UserData? snapshotToRuntimeObj()
+}
+
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "dart::async::Stream<UserData>"
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "cloud_firestore::cloud_firestore.dart::DocumentReference<Map<String, dynamic>>"
+
+' class "project_bs::utilities::bill_utilities::bill_cards.dart::BillCards" {
+'   +BillData billData
+'   +Color textColors
+'   +Widget build()
+' }
+
+' "project_bs::utilities::bill_utilities::bill_cards.dart::BillCards" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+' "project_bs::utilities::bill_utilities::bill_cards.dart::BillCards" o-- "dart::ui::Color"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_cards.dart::BillCards"
+
+' class "project_bs::utilities::bill_utilities::bill_cards_compact.dart::BillCardsCompact" {
+'   +BillData billData
+'   +Widget build()
+' }
+
+' "project_bs::utilities::bill_utilities::bill_cards_compact.dart::BillCardsCompact" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_cards_compact.dart::BillCardsCompact"
+
+' class "project_bs::utilities::bill_utilities::bill_info.dart::BillInfo" {
+'   +BillData billData
+'   +State<BillInfo> createState()
+' }
+
+' "project_bs::utilities::bill_utilities::bill_info.dart::BillInfo" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+' "flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::BillInfo"
+
+' class "project_bs::utilities::bill_utilities::bill_info.dart::CloseTitle" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::CloseTitle"
+
+' class "project_bs::utilities::bill_utilities::bill_info.dart::OpenTitle" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::OpenTitle"
+
+' class "project_bs::utilities::bill_utilities::bill_info.dart::PeopleInvolved" {
+'   -TextEditingController _searchBarController
+'   +Widget build()
+' }
+
+' "project_bs::utilities::bill_utilities::bill_info.dart::PeopleInvolved" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::PeopleInvolved"
+
+' class "project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState" {
+'   +GlobalKey<ExpansionTileCardState> cardA
+'   +Widget onDisplay
+'   +Widget build()
+' }
+
+' "project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ExpansionTileCardState>"
+' "project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState" o-- "flutter::src::widgets::framework.dart::Widget"
+' "flutter::src::widgets::framework.dart::State" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState"
+
+' class "project_bs::utilities::fields.dart::DateFormField" {
+'   +TextEditingController? controller
+'   +InputDecoration? decoration
+'   +Widget build()
+' }
+
+' "project_bs::utilities::fields.dart::DateFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+' "project_bs::utilities::fields.dart::DateFormField" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::fields.dart::DateFormField"
+
+' class "project_bs::utilities::friend_tile.dart::FriendTile" {
+'   +PublicProfile profile
+'   +int index
+'   +Widget build()
+' }
+
+' "project_bs::utilities::friend_tile.dart::FriendTile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::friend_tile.dart::FriendTile"
+
+' class "project_bs::utilities::group_container.dart::GroupContainer" {
+'   +Widget build()
+' }
+
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::group_container.dart::GroupContainer"
+
+' class "project_bs::utilities::person_icon.dart::PersonIcon" {
+'   +PublicProfile profile
+'   +Widget build()
+' }
+
+' "project_bs::utilities::person_icon.dart::PersonIcon" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::person_icon.dart::PersonIcon"
+
+
+
+
+@enduml

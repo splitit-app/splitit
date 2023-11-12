@@ -1,0 +1,1246 @@
+@startuml ClassDiagram
+set namespaceSeparator ::
+
+class "project_bs::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions currentPlatform
+}
+
+"project_bs::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "project_bs::main.dart::SplitItApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::main.dart::SplitItApp"
+
+class "project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO" {
+  +BillData toRuntimeObj()
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTO" <|-- "project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO"
+
+abstract class "project_bs::net_models::bill::bill_data_dto.dart::$BillDataDTOCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::net_models::bill::bill_data_dto.dart::$BillDataDTOCopyWith" <|-- "project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOCopyWithImpl"
+
+abstract class "project_bs::net_models::bill::bill_data_dto.dart::_$$BillDataDTOImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::$BillDataDTOCopyWith" <|-- "project_bs::net_models::bill::bill_data_dto.dart::_$$BillDataDTOImplCopyWith"
+
+class "project_bs::net_models::bill::bill_data_dto.dart::__$$BillDataDTOImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOCopyWithImpl" <|-- "project_bs::net_models::bill::bill_data_dto.dart::__$$BillDataDTOImplCopyWithImpl"
+"project_bs::net_models::bill::bill_data_dto.dart::_$$BillDataDTOImplCopyWith" <|-- "project_bs::net_models::bill::bill_data_dto.dart::__$$BillDataDTOImplCopyWithImpl"
+
+class "project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOImpl" {
+  +DateTime dateTime
+  +String name
+  +double totalSpent
+  +String payerUid
+  -List<String> _primarySplits
+  -Map<String, double> _splitBalances
+  -Map<String, double> _paymentResolveStatuses
+  +DateTime lastUpdatedSession
+  +List<String> primarySplits
+  +Map<String, double> splitBalances
+  +Map<String, double> paymentResolveStatuses
+  +int hashCode
+  +_$$BillDataDTOImplCopyWith<_$BillDataDTOImpl> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOImpl" o-- "project_bs::net_models::bill::bill_data_dto.dart::_$$BillDataDTOImplCopyWith<_$BillDataDTOImpl>"
+"project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO" <|-- "project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTOImpl"
+
+abstract class "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO" {
+  +DateTime dateTime
+  +String name
+  +double totalSpent
+  +String payerUid
+  +List<String> primarySplits
+  +Map<String, double> splitBalances
+  +Map<String, double> paymentResolveStatuses
+  +DateTime lastUpdatedSession
+  +_$$BillDataDTOImplCopyWith<_$BillDataDTOImpl> copyWith
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO" o-- "project_bs::net_models::bill::bill_data_dto.dart::_$$BillDataDTOImplCopyWith<_$BillDataDTOImpl>"
+"project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO" <|-- "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO"
+
+abstract class "project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTO" {
+  +DateTime dateTime
+  +String name
+  +double totalSpent
+  +String payerUid
+  +List<String> primarySplits
+  +Map<String, double> splitBalances
+  +Map<String, double> paymentResolveStatuses
+  +DateTime lastUpdatedSession
+  +$BillDataDTOCopyWith<BillDataDTO> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::net_models::bill::bill_data_dto.dart::_$BillDataDTO" o-- "project_bs::net_models::bill::bill_data_dto.dart::$BillDataDTOCopyWith<BillDataDTO>"
+
+class "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" {
+  +PublicProfile toRuntimeObj()
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith" <|-- "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl"
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith" <|-- "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith"
+
+class "project_bs::net_models::user::public_profile_dto.dart::__$$PublicProfileDTOImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl" <|-- "project_bs::net_models::user::public_profile_dto.dart::__$$PublicProfileDTOImplCopyWithImpl"
+"project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith" <|-- "project_bs::net_models::user::public_profile_dto.dart::__$$PublicProfileDTOImplCopyWithImpl"
+
+class "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOImpl" {
+  +String uid
+  +String? createdBy
+  +String name
+  +int hashCode
+  +_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOImpl" o-- "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl>"
+"project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOImpl"
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" {
+  +String uid
+  +String? createdBy
+  +String name
+  +_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl> copyWith
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl>"
+"project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO"
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTO" {
+  +String uid
+  +String? createdBy
+  +String name
+  +$PublicProfileDTOCopyWith<PublicProfileDTO> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<PublicProfileDTO>"
+
+class "project_bs::net_models::user::user_data_dto.dart::UserDataDTO" {
+  +UserData toRuntimeObj()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::UserDataDTO"
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" {
+  +$PublicProfileDTOCopyWith<$Res> publicProfile
+  +$Res call()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<$Res>"
+
+class "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$PublicProfileDTOCopyWith<$Res> publicProfile
+  +$Res call()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<$Res>"
+"project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" <|-- "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl"
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith" {
+  +$PublicProfileDTOCopyWith<$Res> publicProfile
+  +$Res call()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<$Res>"
+"project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" <|-- "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith"
+
+class "project_bs::net_models::user::user_data_dto.dart::__$$UserDataDTOImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" <|-- "project_bs::net_models::user::user_data_dto.dart::__$$UserDataDTOImplCopyWithImpl"
+"project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith" <|-- "project_bs::net_models::user::user_data_dto.dart::__$$UserDataDTOImplCopyWithImpl"
+
+class "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl" {
+  +PublicProfileDTO publicProfile
+  -List<String> _registeredFriendUids
+  -List<PublicProfileDTO> _nonRegisteredFriends
+  +DateTime lastUpdatedSession
+  +List<String> registeredFriendUids
+  +List<PublicProfileDTO> nonRegisteredFriends
+  +int hashCode
+  +_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl" o-- "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl>"
+"project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl"
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" {
+  +PublicProfileDTO publicProfile
+  +List<String> registeredFriendUids
+  +List<PublicProfileDTO> nonRegisteredFriends
+  +DateTime lastUpdatedSession
+  +_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl> copyWith
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+"project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" o-- "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl>"
+"project_bs::net_models::user::user_data_dto.dart::UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO"
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" {
+  +PublicProfileDTO publicProfile
+  +List<String> registeredFriendUids
+  +List<PublicProfileDTO> nonRegisteredFriends
+  +DateTime lastUpdatedSession
+  +$UserDataDTOCopyWith<UserDataDTO> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+"project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" o-- "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith<UserDataDTO>"
+
+class "project_bs::runtime_models::bill::bill_data.dart::BillData" {
+  +BillDataDTO toDataTransferObj
+  +ItemGroup everythingElseItemGroup
+  +double everythingElse
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::BillData" o-- "project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO"
+"project_bs::runtime_models::bill::bill_data.dart::BillData" o-- "project_bs::runtime_models::bill::item_group.dart::ItemGroup"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillData" <|-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+
+abstract class "project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith" {
+  +$PublicProfileCopyWith<$Res>? payer
+  +$BillModule_TaxCopyWith<$Res> taxModule
+  +$BillModule_TipCopyWith<$Res> tipModule
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith<$Res>"
+
+class "project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$PublicProfileCopyWith<$Res>? payer
+  +$BillModule_TaxCopyWith<$Res> taxModule
+  +$BillModule_TipCopyWith<$Res> tipModule
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith" <|-- "project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl"
+
+abstract class "project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith" {
+  +$PublicProfileCopyWith<$Res>? payer
+  +$BillModule_TaxCopyWith<$Res> taxModule
+  +$BillModule_TipCopyWith<$Res> tipModule
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith<$Res>"
+"project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith" <|-- "project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith"
+
+class "project_bs::runtime_models::bill::bill_data.dart::__$$BillDataImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataCopyWithImpl" <|-- "project_bs::runtime_models::bill::bill_data.dart::__$$BillDataImplCopyWithImpl"
+"project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith" <|-- "project_bs::runtime_models::bill::bill_data.dart::__$$BillDataImplCopyWithImpl"
+
+class "project_bs::runtime_models::bill::bill_data.dart::_$BillDataImpl" {
+  +String uid
+  +DateTime dateTime
+  +String name
+  +double totalSpent
+  +PublicProfile? payer
+  +List<PublicProfile> primarySplits
+  +List<PublicProfile>? secondarySplits
+  +Map<PublicProfile, double> splitBalances
+  +Map<PublicProfile, double> paymentResolveStatuses
+  +List<ItemGroup> itemGroups
+  +BillModule_Tax taxModule
+  +BillModule_Tip tipModule
+  +DateTime lastUpdatedSession
+  +_$$BillDataImplCopyWith<_$BillDataImpl> copyWith
+  +String toString()
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataImpl" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataImpl" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataImpl" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillDataImpl" o-- "project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith<_$BillDataImpl>"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" <|-- "project_bs::runtime_models::bill::bill_data.dart::_$BillDataImpl"
+
+abstract class "project_bs::runtime_models::bill::bill_data.dart::_BillData" {
+  +String uid
+  +DateTime dateTime
+  +String name
+  +double totalSpent
+  +PublicProfile? payer
+  +List<PublicProfile> primarySplits
+  +List<PublicProfile>? secondarySplits
+  +Map<PublicProfile, double> splitBalances
+  +Map<PublicProfile, double> paymentResolveStatuses
+  +List<ItemGroup> itemGroups
+  +BillModule_Tax taxModule
+  +BillModule_Tip tipModule
+  +DateTime lastUpdatedSession
+  +_$$BillDataImplCopyWith<_$BillDataImpl> copyWith
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::bill_data.dart::_$$BillDataImplCopyWith<_$BillDataImpl>"
+"project_bs::runtime_models::bill::bill_data.dart::BillData" <|-- "project_bs::runtime_models::bill::bill_data.dart::_BillData"
+
+abstract class "project_bs::runtime_models::bill::bill_data.dart::_$BillData" {
+  +String uid
+  +DateTime dateTime
+  +String name
+  +double totalSpent
+  +PublicProfile? payer
+  +List<PublicProfile> primarySplits
+  +List<PublicProfile>? secondarySplits
+  +Map<PublicProfile, double> splitBalances
+  +Map<PublicProfile, double> paymentResolveStatuses
+  +List<ItemGroup> itemGroups
+  +BillModule_Tax taxModule
+  +BillModule_Tip tipModule
+  +DateTime lastUpdatedSession
+  +$BillDataCopyWith<BillData> copyWith
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::_$BillData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
+"project_bs::runtime_models::bill::bill_data.dart::_$BillData" o-- "project_bs::runtime_models::bill::bill_data.dart::$BillDataCopyWith<BillData>"
+
+class "project_bs::runtime_models::bill::item.dart::Item" {
+}
+
+"project_bs::runtime_models::bill::item.dart::_$Item" <|-- "project_bs::runtime_models::bill::item.dart::Item"
+
+abstract class "project_bs::runtime_models::bill::item.dart::$ItemCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::runtime_models::bill::item.dart::_$ItemCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::item.dart::_$ItemCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::bill::item.dart::$ItemCopyWith" <|-- "project_bs::runtime_models::bill::item.dart::_$ItemCopyWithImpl"
+
+abstract class "project_bs::runtime_models::bill::item.dart::_$$ItemImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::item.dart::$ItemCopyWith" <|-- "project_bs::runtime_models::bill::item.dart::_$$ItemImplCopyWith"
+
+class "project_bs::runtime_models::bill::item.dart::__$$ItemImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::item.dart::_$ItemCopyWithImpl" <|-- "project_bs::runtime_models::bill::item.dart::__$$ItemImplCopyWithImpl"
+"project_bs::runtime_models::bill::item.dart::_$$ItemImplCopyWith" <|-- "project_bs::runtime_models::bill::item.dart::__$$ItemImplCopyWithImpl"
+
+class "project_bs::runtime_models::bill::item.dart::_$ItemImpl" {
+  +String name
+  +double value
+  -List<bool> _taxableStatusList
+  +List<bool> taxableStatusList
+  +int hashCode
+  +_$$ItemImplCopyWith<_$ItemImpl> copyWith
+  +String toString()
+  +bool ==()
+}
+
+"project_bs::runtime_models::bill::item.dart::_$ItemImpl" o-- "project_bs::runtime_models::bill::item.dart::_$$ItemImplCopyWith<_$ItemImpl>"
+"project_bs::runtime_models::bill::item.dart::_Item" <|-- "project_bs::runtime_models::bill::item.dart::_$ItemImpl"
+
+abstract class "project_bs::runtime_models::bill::item.dart::_Item" {
+  +String name
+  +double value
+  +List<bool> taxableStatusList
+  +_$$ItemImplCopyWith<_$ItemImpl> copyWith
+}
+
+"project_bs::runtime_models::bill::item.dart::_Item" o-- "project_bs::runtime_models::bill::item.dart::_$$ItemImplCopyWith<_$ItemImpl>"
+"project_bs::runtime_models::bill::item.dart::Item" <|-- "project_bs::runtime_models::bill::item.dart::_Item"
+
+abstract class "project_bs::runtime_models::bill::item.dart::_$Item" {
+  +String name
+  +double value
+  +List<bool> taxableStatusList
+  +$ItemCopyWith<Item> copyWith
+}
+
+"project_bs::runtime_models::bill::item.dart::_$Item" o-- "project_bs::runtime_models::bill::item.dart::$ItemCopyWith<Item>"
+
+class "project_bs::runtime_models::bill::item_group.dart::ItemGroup" {
+  +double value
+}
+
+"project_bs::runtime_models::bill::item_group.dart::_$ItemGroup" <|-- "project_bs::runtime_models::bill::item_group.dart::ItemGroup"
+
+abstract class "project_bs::runtime_models::bill::item_group.dart::$ItemGroupCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::runtime_models::bill::item_group.dart::_$ItemGroupCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::item_group.dart::_$ItemGroupCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::bill::item_group.dart::$ItemGroupCopyWith" <|-- "project_bs::runtime_models::bill::item_group.dart::_$ItemGroupCopyWithImpl"
+
+abstract class "project_bs::runtime_models::bill::item_group.dart::_$$ItemGroupImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::item_group.dart::$ItemGroupCopyWith" <|-- "project_bs::runtime_models::bill::item_group.dart::_$$ItemGroupImplCopyWith"
+
+class "project_bs::runtime_models::bill::item_group.dart::__$$ItemGroupImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::item_group.dart::_$ItemGroupCopyWithImpl" <|-- "project_bs::runtime_models::bill::item_group.dart::__$$ItemGroupImplCopyWithImpl"
+"project_bs::runtime_models::bill::item_group.dart::_$$ItemGroupImplCopyWith" <|-- "project_bs::runtime_models::bill::item_group.dart::__$$ItemGroupImplCopyWithImpl"
+
+class "project_bs::runtime_models::bill::item_group.dart::_$ItemGroupImpl" {
+  +String name
+  -List<PublicProfile> _primarySplits
+  -List<Item> _items
+  -List<SplitRule> _splitRules
+  -Map<PublicProfile, double> _splitBalances
+  +List<PublicProfile> primarySplits
+  +List<Item> items
+  +List<SplitRule> splitRules
+  +Map<PublicProfile, double> splitBalances
+  +int hashCode
+  +_$$ItemGroupImplCopyWith<_$ItemGroupImpl> copyWith
+  +String toString()
+  +bool ==()
+}
+
+"project_bs::runtime_models::bill::item_group.dart::_$ItemGroupImpl" o-- "project_bs::runtime_models::bill::item_group.dart::_$$ItemGroupImplCopyWith<_$ItemGroupImpl>"
+"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" <|-- "project_bs::runtime_models::bill::item_group.dart::_$ItemGroupImpl"
+
+abstract class "project_bs::runtime_models::bill::item_group.dart::_ItemGroup" {
+  +String name
+  +List<PublicProfile> primarySplits
+  +List<Item> items
+  +List<SplitRule> splitRules
+  +Map<PublicProfile, double> splitBalances
+  +_$$ItemGroupImplCopyWith<_$ItemGroupImpl> copyWith
+}
+
+"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" o-- "project_bs::runtime_models::bill::item_group.dart::_$$ItemGroupImplCopyWith<_$ItemGroupImpl>"
+"project_bs::runtime_models::bill::item_group.dart::ItemGroup" <|-- "project_bs::runtime_models::bill::item_group.dart::_ItemGroup"
+
+abstract class "project_bs::runtime_models::bill::item_group.dart::_$ItemGroup" {
+  +String name
+  +List<PublicProfile> primarySplits
+  +List<Item> items
+  +List<SplitRule> splitRules
+  +Map<PublicProfile, double> splitBalances
+  +$ItemGroupCopyWith<ItemGroup> copyWith
+}
+
+"project_bs::runtime_models::bill::item_group.dart::_$ItemGroup" o-- "project_bs::runtime_models::bill::item_group.dart::$ItemGroupCopyWith<ItemGroup>"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" {
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_Tax" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxCopyWithImpl"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$$BillModule_TaxImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$$BillModule_TaxImplCopyWith"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::__$$BillModule_TaxImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxCopyWithImpl" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::__$$BillModule_TaxImplCopyWithImpl"
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$$BillModule_TaxImplCopyWith" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::__$$BillModule_TaxImplCopyWithImpl"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxImpl" {
+  +double totalTax
+  +int hashCode
+  +_$$BillModule_TaxImplCopyWith<_$BillModule_TaxImpl> copyWith
+  +String toString()
+  +bool ==()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxImpl" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$$BillModule_TaxImplCopyWith<_$BillModule_TaxImpl>"
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_TaxImpl"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax" {
+  +double totalTax
+  +_$$BillModule_TaxImplCopyWith<_$BillModule_TaxImpl> copyWith
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$$BillModule_TaxImplCopyWith<_$BillModule_TaxImpl>"
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_Tax" {
+  +double totalTax
+  +$BillModule_TaxCopyWith<BillModule_Tax> copyWith
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::_$BillModule_Tax" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::$BillModule_TaxCopyWith<BillModule_Tax>"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" {
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_Tip" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipCopyWithImpl"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$$BillModule_TipImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$$BillModule_TipImplCopyWith"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::__$$BillModule_TipImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipCopyWithImpl" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::__$$BillModule_TipImplCopyWithImpl"
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$$BillModule_TipImplCopyWith" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::__$$BillModule_TipImplCopyWithImpl"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipImpl" {
+  +double totalTip
+  +bool includedInTotalSpent
+  +int hashCode
+  +_$$BillModule_TipImplCopyWith<_$BillModule_TipImpl> copyWith
+  +String toString()
+  +bool ==()
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipImpl" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$$BillModule_TipImplCopyWith<_$BillModule_TipImpl>"
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_TipImpl"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip" {
+  +double totalTip
+  +bool includedInTotalSpent
+  +_$$BillModule_TipImplCopyWith<_$BillModule_TipImpl> copyWith
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$$BillModule_TipImplCopyWith<_$BillModule_TipImpl>"
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip"
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_Tip" {
+  +double totalTip
+  +bool includedInTotalSpent
+  +$BillModule_TipCopyWith<BillModule_Tip> copyWith
+}
+
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::_$BillModule_Tip" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::$BillModule_TipCopyWith<BillModule_Tip>"
+
+class "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" {
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRule" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule"
+
+abstract class "project_bs::runtime_models::bill::split_rules::split_rule.dart::$SplitRuleCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::$SplitRuleCopyWith" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleCopyWithImpl"
+
+abstract class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$$SplitRuleImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::$SplitRuleCopyWith" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$$SplitRuleImplCopyWith"
+
+class "project_bs::runtime_models::bill::split_rules::split_rule.dart::__$$SplitRuleImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleCopyWithImpl" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::__$$SplitRuleImplCopyWithImpl"
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_$$SplitRuleImplCopyWith" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::__$$SplitRuleImplCopyWithImpl"
+
+class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleImpl" {
+  +int type
+  +int hashCode
+  +_$$SplitRuleImplCopyWith<_$SplitRuleImpl> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleImpl" o-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$$SplitRuleImplCopyWith<_$SplitRuleImpl>"
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRuleImpl"
+
+abstract class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule" {
+  +int type
+  +_$$SplitRuleImplCopyWith<_$SplitRuleImpl> copyWith
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule" o-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$$SplitRuleImplCopyWith<_$SplitRuleImpl>"
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule"
+
+abstract class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRule" {
+  +int type
+  +$SplitRuleCopyWith<SplitRule> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::_$SplitRule" o-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::$SplitRuleCopyWith<SplitRule>"
+
+class "project_bs::runtime_models::user::private_profile.dart::PrivateProfile" {
+}
+
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith" {
+  +$Res call()
+}
+
+class "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith" <|-- "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl"
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith" <|-- "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith"
+
+class "project_bs::runtime_models::user::private_profile.dart::__$$PrivateProfileImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl" <|-- "project_bs::runtime_models::user::private_profile.dart::__$$PrivateProfileImplCopyWithImpl"
+"project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith" <|-- "project_bs::runtime_models::user::private_profile.dart::__$$PrivateProfileImplCopyWithImpl"
+
+class "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl" {
+  +ThemeData themeData
+  +int hashCode
+  +_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> copyWith
+  +String toString()
+  +bool ==()
+}
+
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl" o-- "flutter::src::material::theme_data.dart::ThemeData"
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl" o-- "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl>"
+"project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl"
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" {
+  +ThemeData themeData
+  +_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> copyWith
+}
+
+"project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" o-- "flutter::src::material::theme_data.dart::ThemeData"
+"project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" o-- "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl>"
+"project_bs::runtime_models::user::private_profile.dart::PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile"
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" {
+  +ThemeData themeData
+  +$PrivateProfileCopyWith<PrivateProfile> copyWith
+}
+
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" o-- "flutter::src::material::theme_data.dart::ThemeData"
+"project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<PrivateProfile>"
+
+class "project_bs::runtime_models::user::public_profile.dart::PublicProfile" {
+  +bool isRegistered
+  +PublicProfileDTO toDataTransferObj
+  +void syncToActiveAccount()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" {
+  +$PublicProfileCopyWith<$Res>? createdBy
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+
+class "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$PublicProfileCopyWith<$Res>? createdBy
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" <|-- "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith" {
+  +$PublicProfileCopyWith<$Res>? createdBy
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" <|-- "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith"
+
+class "project_bs::runtime_models::user::public_profile.dart::__$$PublicProfileImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" <|-- "project_bs::runtime_models::user::public_profile.dart::__$$PublicProfileImplCopyWithImpl"
+"project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith" <|-- "project_bs::runtime_models::user::public_profile.dart::__$$PublicProfileImplCopyWithImpl"
+
+class "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl" {
+  +String uid
+  +PublicProfile? createdBy
+  +String name
+  +_$$PublicProfileImplCopyWith<_$PublicProfileImpl> copyWith
+  +String toString()
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl" o-- "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith<_$PublicProfileImpl>"
+"project_bs::runtime_models::user::public_profile.dart::_PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::_PublicProfile" {
+  +String uid
+  +PublicProfile? createdBy
+  +String name
+  +_$$PublicProfileImplCopyWith<_$PublicProfileImpl> copyWith
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::public_profile.dart::_PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith<_$PublicProfileImpl>"
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::_PublicProfile"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" {
+  +String uid
+  +PublicProfile? createdBy
+  +String name
+  +$PublicProfileCopyWith<PublicProfile> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<PublicProfile>"
+
+class "project_bs::runtime_models::user::user_data.dart::UserData" {
+  {static} +int nonRegisteredFriendLimit
+  +UserDataDTO toDataTransferObj
+}
+
+"project_bs::runtime_models::user::user_data.dart::UserData" o-- "project_bs::net_models::user::user_data_dto.dart::UserDataDTO"
+"project_bs::runtime_models::user::user_data.dart::_$UserData" <|-- "project_bs::runtime_models::user::user_data.dart::UserData"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" {
+  +$PublicProfileCopyWith<$Res> publicProfile
+  +$PrivateProfileCopyWith<$Res> privateProfile
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<$Res>"
+
+class "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$PublicProfileCopyWith<$Res> publicProfile
+  +$PrivateProfileCopyWith<$Res> privateProfile
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" o-- "null::$Res Function($Val)"
+"project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" <|-- "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" {
+  +$PublicProfileCopyWith<$Res> publicProfile
+  +$PrivateProfileCopyWith<$Res> privateProfile
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<$Res>"
+"project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" <|-- "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith"
+
+class "project_bs::runtime_models::user::user_data.dart::__$$UserDataImplCopyWithImpl" {
+  +$Res call()
+}
+
+"project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" <|-- "project_bs::runtime_models::user::user_data.dart::__$$UserDataImplCopyWithImpl"
+"project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" <|-- "project_bs::runtime_models::user::user_data.dart::__$$UserDataImplCopyWithImpl"
+
+class "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" {
+  +String uid
+  +PublicProfile publicProfile
+  +PrivateProfile privateProfile
+  +List<PublicProfile> registeredFriends
+  +Map<String, PublicProfile> nonRegisteredFriends
+  +_$$UserDataImplCopyWith<_$UserDataImpl> copyWith
+  +String toString()
+  +void debugFillProperties()
+}
+
+"project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+"project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" o-- "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith<_$UserDataImpl>"
+"project_bs::runtime_models::user::user_data.dart::_UserData" <|-- "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl"
+"flutter::src::foundation::diagnostics.dart::DiagnosticableTreeMixin" <|-- "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::_UserData" {
+  +String uid
+  +PublicProfile publicProfile
+  +PrivateProfile privateProfile
+  +List<PublicProfile> registeredFriends
+  +Map<String, PublicProfile> nonRegisteredFriends
+  +_$$UserDataImplCopyWith<_$UserDataImpl> copyWith
+}
+
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith<_$UserDataImpl>"
+"project_bs::runtime_models::user::user_data.dart::UserData" <|-- "project_bs::runtime_models::user::user_data.dart::_UserData"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::_$UserData" {
+  +String uid
+  +PublicProfile publicProfile
+  +PrivateProfile privateProfile
+  +List<PublicProfile> registeredFriends
+  +Map<String, PublicProfile> nonRegisteredFriends
+  +$UserDataCopyWith<UserData> copyWith
+}
+
+"project_bs::runtime_models::user::user_data.dart::_$UserData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::user_data.dart::_$UserData" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+"project_bs::runtime_models::user::user_data.dart::_$UserData" o-- "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith<UserData>"
+
+class "project_bs::screens::authentication::login::login_form.dart::LoginForm" {
+  +TextEditingController emailFieldController
+  +TextEditingController passwordFieldController
+  +T Function<T>() read
+  +String toReturn
+  +dynamic login()
+}
+
+"project_bs::screens::authentication::login::login_form.dart::LoginForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"project_bs::screens::authentication::login::login_form.dart::LoginForm" o-- "provider::src::provider.dart::T Function<T>()"
+
+class "project_bs::screens::authentication::login::login_screen.dart::LoginScreen" {
+  -GlobalKey<FormState> _formKey
+  +Widget build()
+}
+
+"project_bs::screens::authentication::login::login_screen.dart::LoginScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::login::login_screen.dart::LoginScreen"
+
+class "project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" {
+  +T Function<T>() read
+  +PageController pageController
+  +TextEditingController emailFieldController
+  +TextEditingController passwordFieldController
+  +TextEditingController confirmPasswordController
+  +TextEditingController nameFieldController
+  +TextEditingController birthdayFieldController
+  +TextEditingController quoteFieldController
+  +dynamic createUser()
+  +dynamic submitEmailAndPassword()
+}
+
+"project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" o-- "flutter::src::widgets::page_view.dart::PageController"
+"project_bs::screens::authentication::registration::registration_form.dart::RegistrationForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForEmailAndPassword" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForEmailAndPassword"
+
+class "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForUserData" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationFormForUserData"
+
+class "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationScreen" {
+  -GlobalKey<FormState> _formKey
+  +Widget build()
+}
+
+"project_bs::screens::authentication::registration::registration_screen.dart::RegistrationScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication::registration::registration_screen.dart::RegistrationScreen"
+
+class "project_bs::screens::authentication_switcher.dart::AuthenticationSwitcher" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::authentication_switcher.dart::AuthenticationSwitcher"
+
+class "project_bs::screens::bill::dummy_bill_form.dart::DummyBillForm" {
+  +T Function<T>() read
+  +bool triggerRecalculate
+  +void calculate()
+}
+
+"project_bs::screens::bill::dummy_bill_form.dart::DummyBillForm" o-- "provider::src::provider.dart::T Function<T>()"
+
+class "project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" {
+  +T Function<T>() read
+  +PageController pageController
+  +TextEditingController nameFieldController
+  +TextEditingController dateFieldController
+  +TextEditingController totalSpentFieldController
+  +Map<PublicProfile, bool> friendInvolvements
+  +dynamic submitBillInfo()
+  +dynamic createBill()
+}
+
+"project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" o-- "flutter::src::widgets::page_view.dart::PageController"
+"project_bs::screens::bill::quick_split_form.dart::QuickSplitForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "project_bs::screens::bill::view_bills.dart::ViewBillHistory" {
+  +State<ViewBillHistory> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::screens::bill::view_bills.dart::ViewBillHistory"
+
+class "project_bs::screens::bill::view_bills.dart::_ViewBillHistoryState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "project_bs::screens::bill::view_bills.dart::_ViewBillHistoryState"
+
+class "project_bs::screens::friends_screen::friends_page.dart::FriendsPage" {
+  -TextEditingController _searchBarController
+  -PageController _controller
+  +Widget build()
+}
+
+"project_bs::screens::friends_screen::friends_page.dart::FriendsPage" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"project_bs::screens::friends_screen::friends_page.dart::FriendsPage" o-- "flutter::src::widgets::page_view.dart::PageController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::friends_page.dart::FriendsPage"
+
+class "project_bs::screens::friends_screen::friends_page_overview.dart::FriendsPageOverview" {
+  -TextEditingController _searchBarController
+  +Widget build()
+}
+
+"project_bs::screens::friends_screen::friends_page_overview.dart::FriendsPageOverview" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::friends_page_overview.dart::FriendsPageOverview"
+
+class "project_bs::screens::friends_screen::friends_page_view.dart::FriendsPageView" {
+  +int startingIndex
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::friends_page_view.dart::FriendsPageView"
+
+class "project_bs::screens::friends_screen::friend_creation_form.dart::FriendCreationForm" {
+  +T Function<T>() read
+  +TextEditingController nameFieldController
+  +dynamic createFriend()
+}
+
+"project_bs::screens::friends_screen::friend_creation_form.dart::FriendCreationForm" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::screens::friends_screen::friend_creation_form.dart::FriendCreationForm" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "project_bs::screens::friends_screen::group_page_overview.dart::GroupPageOverview" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::friends_screen::group_page_overview.dart::GroupPageOverview"
+
+class "project_bs::screens::home::home_page.dart::MainHomePage" {
+  +State<MainHomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::screens::home::home_page.dart::MainHomePage"
+
+class "project_bs::screens::home::home_page.dart::_MainHomePageState" {
+  +List<Widget> screens
+  +int currentPage
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "project_bs::screens::home::home_page.dart::_MainHomePageState"
+
+class "project_bs::screens::home::home_screen.dart::MainHomeScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::home::home_screen.dart::MainHomeScreen"
+
+class "project_bs::screens::mockup_page.dart::MockUpPage" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::mockup_page.dart::MockUpPage"
+
+class "project_bs::screens::mockup_page.dart::PageTest" {
+  -BillData _dummyBillData
+  +Widget build()
+}
+
+"project_bs::screens::mockup_page.dart::PageTest" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::mockup_page.dart::PageTest"
+
+class "project_bs::screens::mockup_page.dart::SlideAbleTest" {
+  +Widget build()
+  +Container builtUserListTile()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::screens::mockup_page.dart::SlideAbleTest"
+
+class "project_bs::screens::test_experiment_screen.dart::MyHomePage" {
+  +State<MyHomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::screens::test_experiment_screen.dart::MyHomePage"
+
+class "project_bs::screens::test_experiment_screen.dart::_MyHomePageState" {
+  -GlobalKey<FormState> _formKey
+  +int currentPage
+  +Widget build()
+}
+
+"project_bs::screens::test_experiment_screen.dart::_MyHomePageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "project_bs::screens::test_experiment_screen.dart::_MyHomePageState"
+
+class "project_bs::services::authentication_service.dart::AuthenticationService" {
+  -FirebaseAuth _firebaseAuth
+  +Stream<User?> userAuthState
+  +dynamic isValid_Email()
+  +dynamic createUserWith_EmailAndPassword()
+  +dynamic signInWith_EmailAndPassword()
+  +dynamic signOut()
+}
+
+"project_bs::services::authentication_service.dart::AuthenticationService" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"project_bs::services::authentication_service.dart::AuthenticationService" o-- "dart::async::Stream<User>"
+
+class "project_bs::services::bill_data_repository.dart::BillDataRepository" {
+  +T Function<T>() read
+  -CollectionReference<Map<String, dynamic>> _billCollection
+  +Stream<List<BillData>?> billDataStream
+  +dynamic billDocumentSnapshots
+  +UserData? userData
+  +dynamic createBill()
+  +dynamic pushBillData()
+  +BillData? snapshotToRuntimeObj()
+}
+
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "dart::async::Stream<List<BillData>>"
+"project_bs::services::bill_data_repository.dart::BillDataRepository" o-- "project_bs::runtime_models::user::user_data.dart::UserData"
+
+class "project_bs::services::user_data_repository.dart::UserDataRepository" {
+  +T Function<T>() read
+  +String? uid
+  +dynamic userData
+  +Stream<UserData?> userDataStream
+  +DocumentReference<Map<String, dynamic>> userDocumentReference
+  +dynamic pushUserData()
+  +UserData? snapshotToRuntimeObj()
+}
+
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "provider::src::provider.dart::T Function<T>()"
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "dart::async::Stream<UserData>"
+"project_bs::services::user_data_repository.dart::UserDataRepository" o-- "cloud_firestore::cloud_firestore.dart::DocumentReference<Map<String, dynamic>>"
+
+class "project_bs::utilities::bill_utilities::bill_cards.dart::BillCards" {
+  +BillData billData
+  +Color textColors
+  +Widget build()
+}
+
+"project_bs::utilities::bill_utilities::bill_cards.dart::BillCards" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+"project_bs::utilities::bill_utilities::bill_cards.dart::BillCards" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_cards.dart::BillCards"
+
+class "project_bs::utilities::bill_utilities::bill_cards_compact.dart::BillCardsCompact" {
+  +BillData billData
+  +Widget build()
+}
+
+"project_bs::utilities::bill_utilities::bill_cards_compact.dart::BillCardsCompact" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_cards_compact.dart::BillCardsCompact"
+
+class "project_bs::utilities::bill_utilities::bill_info.dart::BillInfo" {
+  +BillData billData
+  +State<BillInfo> createState()
+}
+
+"project_bs::utilities::bill_utilities::bill_info.dart::BillInfo" o-- "project_bs::runtime_models::bill::bill_data.dart::BillData"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::BillInfo"
+
+class "project_bs::utilities::bill_utilities::bill_info.dart::CloseTitle" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::CloseTitle"
+
+class "project_bs::utilities::bill_utilities::bill_info.dart::OpenTitle" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::OpenTitle"
+
+class "project_bs::utilities::bill_utilities::bill_info.dart::PeopleInvolved" {
+  -TextEditingController _searchBarController
+  +Widget build()
+}
+
+"project_bs::utilities::bill_utilities::bill_info.dart::PeopleInvolved" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::PeopleInvolved"
+
+class "project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState" {
+  +GlobalKey<ExpansionTileCardState> cardA
+  +Widget onDisplay
+  +Widget build()
+}
+
+"project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ExpansionTileCardState>"
+"project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::State" <|-- "project_bs::utilities::bill_utilities::bill_info.dart::_BillInfoState"
+
+class "project_bs::utilities::fields.dart::DateFormField" {
+  +TextEditingController? controller
+  +InputDecoration? decoration
+  +Widget build()
+}
+
+"project_bs::utilities::fields.dart::DateFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"project_bs::utilities::fields.dart::DateFormField" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::fields.dart::DateFormField"
+
+class "project_bs::utilities::friend_tile.dart::FriendTile" {
+  +PublicProfile profile
+  +int index
+  +Widget build()
+}
+
+"project_bs::utilities::friend_tile.dart::FriendTile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::friend_tile.dart::FriendTile"
+
+class "project_bs::utilities::group_container.dart::GroupContainer" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::group_container.dart::GroupContainer"
+
+class "project_bs::utilities::person_icon.dart::PersonIcon" {
+  +PublicProfile profile
+  +Widget build()
+}
+
+"project_bs::utilities::person_icon.dart::PersonIcon" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "project_bs::utilities::person_icon.dart::PersonIcon"
+
+class "project_bs::%E4%B8%80experiments::test_firebase.dart::TestDatabase" {
+  +void bar0()
+  +void barBill0()
+  +void foo0()
+}
+
+
+@enduml

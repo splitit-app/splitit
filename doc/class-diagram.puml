@@ -1,0 +1,162 @@
+@startuml ClassDiagram
+
+class "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" {
+    +PublicProfile toRuntimeObj()
+}
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" {
+    +String uid
+    +String? createdBy
+    +String name
+}
+"project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO"
+
+class "project_bs::net_models::user::user_data_dto.dart::UserDataDTO" {
+    +UserData toRuntimeObj()
+}
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" {
+    +PublicProfileDTO publicProfile
+    +List<String> registeredFriendUids
+    +List<PublicProfileDTO> nonRegisteredFriends
+    +DateTime lastUpdatedSession
+}
+"project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+"project_bs::net_models::user::user_data_dto.dart::UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO"
+
+class "project_bs::runtime_models::user::private_profile.dart::PrivateProfile" {
+}
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" {
+    +ThemeData themeData
+}
+"project_bs::runtime_models::user::private_profile.dart::PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile"
+
+class "project_bs::runtime_models::user::public_profile.dart::PublicProfile" {
+    +bool isRegistered
+    +PublicProfileDTO toDataTransferObj
+    +void syncToActiveAccount()
+}
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::_PublicProfile" {
+    +String uid
+    +PublicProfile? createdBy
+    +String name
+}
+"project_bs::runtime_models::user::public_profile.dart::_PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::_PublicProfile"
+
+class "project_bs::runtime_models::user::user_data.dart::UserData" {
+    {static} +int nonRegisteredFriendLimit
+    +UserDataDTO toDataTransferObj
+}
+"project_bs::runtime_models::user::user_data.dart::UserData" o-- "project_bs::net_models::user::user_data_dto.dart::UserDataDTO"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::_UserData" {
+    +String uid
+    +PublicProfile publicProfile
+    +PrivateProfile privateProfile
+    +List<PublicProfile> registeredFriends
+    +Map<String, PublicProfile> nonRegisteredFriends
+}
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+"project_bs::runtime_models::user::user_data.dart::UserData" <|-- "project_bs::runtime_models::user::user_data.dart::_UserData"
+
+class "project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO" {
+    +BillData toRuntimeObj()
+}
+
+abstract class "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO" {
+    +DateTime dateTime
+    +String name
+    +double totalSpent
+    +String payerUid
+    +List<String> primarySplits
+    +Map<String, double> splitBalances
+    +Map<String, double> paymentResolveStatuses
+    +DateTime lastUpdatedSession
+}
+"project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO" <|-- "project_bs::net_models::bill::bill_data_dto.dart::_BillDataDTO"
+
+class "project_bs::runtime_models::bill::bill_data.dart::BillData" {
+    +BillDataDTO toDataTransferObj
+    +ItemGroup everythingElseItemGroup
+    +double everythingElse
+}
+
+"project_bs::runtime_models::bill::bill_data.dart::BillData" o-- "project_bs::net_models::bill::bill_data_dto.dart::BillDataDTO"
+"project_bs::runtime_models::bill::bill_data.dart::BillData" o-- "project_bs::runtime_models::bill::item_group.dart::ItemGroup"
+
+abstract class "project_bs::runtime_models::bill::bill_data.dart::_BillData" {
+    +String uid
+    +DateTime dateTime
+    +String name
+    +double totalSpent
+    +PublicProfile? payer
+    +List<PublicProfile> primarySplits
+    +List<PublicProfile>? secondarySplits
+    +Map<PublicProfile, double> splitBalances
+    +Map<PublicProfile, double> paymentResolveStatuses
+    +List<ItemGroup> itemGroups
+    +BillModule_Tax taxModule
+    +BillModule_Tip tipModule
+    +DateTime lastUpdatedSession
+}
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax"
+"project_bs::runtime_models::bill::bill_data.dart::_BillData" o-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip"
+"project_bs::runtime_models::bill::bill_data.dart::BillData" <|-- "project_bs::runtime_models::bill::bill_data.dart::_BillData"
+
+class "project_bs::runtime_models::bill::item.dart::Item" {
+}
+
+abstract class "project_bs::runtime_models::bill::item.dart::_Item" {
+    +String name
+    +double value
+    +List<bool> taxableStatusList
+}
+"project_bs::runtime_models::bill::item.dart::Item" <|-- "project_bs::runtime_models::bill::item.dart::_Item"
+
+class "project_bs::runtime_models::bill::item_group.dart::ItemGroup" {
+    +double value
+}
+
+abstract class "project_bs::runtime_models::bill::item_group.dart::_ItemGroup" {
+    +String name
+    +List<PublicProfile> primarySplits
+    +List<Item> items
+    +List<SplitRule> splitRules
+    +Map<PublicProfile, double> splitBalances
+}
+"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" o-- "project_bs::runtime_models::bill::item.dart::Item"
+"project_bs::runtime_models::bill::item_group.dart::_ItemGroup" o-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule"
+"project_bs::runtime_models::bill::item_group.dart::ItemGroup" <|-- "project_bs::runtime_models::bill::item_group.dart::_ItemGroup"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" {
+}
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax" {
+    +double totalTax
+}
+"project_bs::runtime_models::bill::modules::bill_module_tax.dart::BillModule_Tax" <|-- "project_bs::runtime_models::bill::modules::bill_module_tax.dart::_BillModule_Tax"
+
+class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" {
+}
+
+abstract class "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip" {
+    +double totalTip
+    +bool includedInTotalSpent
+}
+"project_bs::runtime_models::bill::modules::bill_module_tip.dart::BillModule_Tip" <|-- "project_bs::runtime_models::bill::modules::bill_module_tip.dart::_BillModule_Tip"
+
+class "project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" {
+}
+
+abstract class "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule" {
+    +int type
+}
+"project_bs::runtime_models::bill::split_rules::split_rule.dart::SplitRule" <|-- "project_bs::runtime_models::bill::split_rules::split_rule.dart::_SplitRule"
+
+@enduml

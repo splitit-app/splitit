@@ -1,0 +1,382 @@
+@startuml User
+
+class "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" {
+  +PublicProfile toRuntimeObj()
+}
+
+' "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+
+' abstract class "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith" {
+'   +$Res call()
+' }
+
+' class "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl" {
+'   -$Val _value
+'   -$Res Function($Val) _then
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl" o-- "null::$Res Function($Val)"
+' "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith" <|-- "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl"
+
+' abstract class "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith" {
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith" <|-- "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith"
+
+' class "project_bs::net_models::user::public_profile_dto.dart::__$$PublicProfileDTOImplCopyWithImpl" {
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOCopyWithImpl" <|-- "project_bs::net_models::user::public_profile_dto.dart::__$$PublicProfileDTOImplCopyWithImpl"
+' "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith" <|-- "project_bs::net_models::user::public_profile_dto.dart::__$$PublicProfileDTOImplCopyWithImpl"
+
+' class "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOImpl" {
+'   +String uid
+'   +String? createdBy
+'   +String name
+'   +int hashCode
+'   +_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl> copyWith
+'   +String toString()
+'   +bool ==()
+'   +Map<String, dynamic> toJson()
+' }
+
+' "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOImpl" o-- "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl>"
+' "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTOImpl"
+
+abstract class "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" {
+  +String uid
+  +String? createdBy
+  +String name
+  ' +_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl> copyWith
+}
+
+' "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::_$$PublicProfileDTOImplCopyWith<_$PublicProfileDTOImpl>"
+"project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO" <|-- "project_bs::net_models::user::public_profile_dto.dart::_PublicProfileDTO"
+
+' abstract class "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTO" {
+'   +String uid
+'   +String? createdBy
+'   +String name
+'   +$PublicProfileDTOCopyWith<PublicProfileDTO> copyWith
+'   +Map<String, dynamic> toJson()
+' }
+
+' "project_bs::net_models::user::public_profile_dto.dart::_$PublicProfileDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<PublicProfileDTO>"
+
+class "project_bs::net_models::user::user_data_dto.dart::UserDataDTO" {
+  +UserData toRuntimeObj()
+}
+
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::UserDataDTO"
+
+' abstract class "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" {
+'   +$PublicProfileDTOCopyWith<$Res> publicProfile
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<$Res>"
+
+' class "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" {
+'   -$Val _value
+'   -$Res Function($Val) _then
+'   +$PublicProfileDTOCopyWith<$Res> publicProfile
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" o-- "null::$Res Function($Val)"
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<$Res>"
+' "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" <|-- "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl"
+
+' abstract class "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith" {
+'   +$PublicProfileDTOCopyWith<$Res> publicProfile
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith" o-- "project_bs::net_models::user::public_profile_dto.dart::$PublicProfileDTOCopyWith<$Res>"
+' "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith" <|-- "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith"
+
+' class "project_bs::net_models::user::user_data_dto.dart::__$$UserDataDTOImplCopyWithImpl" {
+'   +$Res call()
+' }
+
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOCopyWithImpl" <|-- "project_bs::net_models::user::user_data_dto.dart::__$$UserDataDTOImplCopyWithImpl"
+' "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith" <|-- "project_bs::net_models::user::user_data_dto.dart::__$$UserDataDTOImplCopyWithImpl"
+
+' class "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl" {
+'   +PublicProfileDTO publicProfile
+'   -List<String> _registeredFriendUids
+'   -List<PublicProfileDTO> _nonRegisteredFriends
+'   +DateTime lastUpdatedSession
+'   +List<String> registeredFriendUids
+'   +List<PublicProfileDTO> nonRegisteredFriends
+'   +int hashCode
+'   +_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl> copyWith
+'   +String toString()
+'   +bool ==()
+'   +Map<String, dynamic> toJson()
+' }
+
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl" o-- "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl>"
+' "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTOImpl"
+
+abstract class "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" {
+  +PublicProfileDTO publicProfile
+  +List<String> registeredFriendUids
+  +List<PublicProfileDTO> nonRegisteredFriends
+  +DateTime lastUpdatedSession
+  ' +_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl> copyWith
+}
+
+"project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+' "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO" o-- "project_bs::net_models::user::user_data_dto.dart::_$$UserDataDTOImplCopyWith<_$UserDataDTOImpl>"
+"project_bs::net_models::user::user_data_dto.dart::UserDataDTO" <|-- "project_bs::net_models::user::user_data_dto.dart::_UserDataDTO"
+
+' abstract class "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" {
+'   +PublicProfileDTO publicProfile
+'   +List<String> registeredFriendUids
+'   +List<PublicProfileDTO> nonRegisteredFriends
+'   +DateTime lastUpdatedSession
+'   +$UserDataDTOCopyWith<UserDataDTO> copyWith
+'   +Map<String, dynamic> toJson()
+' }
+
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+' "project_bs::net_models::user::user_data_dto.dart::_$UserDataDTO" o-- "project_bs::net_models::user::user_data_dto.dart::$UserDataDTOCopyWith<UserDataDTO>"
+
+
+
+
+class "project_bs::runtime_models::user::private_profile.dart::PrivateProfile" {
+}
+
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+
+' abstract class "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith" {
+'   +$Res call()
+' }
+
+' class "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl" {
+'   -$Val _value
+'   -$Res Function($Val) _then
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl" o-- "null::$Res Function($Val)"
+' "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith" <|-- "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl"
+
+' abstract class "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith" {
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith" <|-- "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith"
+
+' class "project_bs::runtime_models::user::private_profile.dart::__$$PrivateProfileImplCopyWithImpl" {
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileCopyWithImpl" <|-- "project_bs::runtime_models::user::private_profile.dart::__$$PrivateProfileImplCopyWithImpl"
+' "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith" <|-- "project_bs::runtime_models::user::private_profile.dart::__$$PrivateProfileImplCopyWithImpl"
+
+' class "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl" {
+'   +ThemeData themeData
+'   +int hashCode
+'   +_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> copyWith
+'   +String toString()
+'   +bool ==()
+' }
+
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl" o-- "flutter::src::material::theme_data.dart::ThemeData"
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl" o-- "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl>"
+' "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfileImpl"
+
+abstract class "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" {
+  +ThemeData themeData
+  ' +_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> copyWith
+}
+
+' "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" o-- "flutter::src::material::theme_data.dart::ThemeData"
+' "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile" o-- "project_bs::runtime_models::user::private_profile.dart::_$$PrivateProfileImplCopyWith<_$PrivateProfileImpl>"
+"project_bs::runtime_models::user::private_profile.dart::PrivateProfile" <|-- "project_bs::runtime_models::user::private_profile.dart::_PrivateProfile"
+
+' abstract class "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" {
+'   +ThemeData themeData
+'   +$PrivateProfileCopyWith<PrivateProfile> copyWith
+' }
+
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" o-- "flutter::src::material::theme_data.dart::ThemeData"
+' "project_bs::runtime_models::user::private_profile.dart::_$PrivateProfile" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<PrivateProfile>"
+
+class "project_bs::runtime_models::user::public_profile.dart::PublicProfile" {
+  +bool isRegistered
+  +PublicProfileDTO toDataTransferObj
+  +void syncToActiveAccount()
+}
+
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" o-- "project_bs::net_models::user::public_profile_dto.dart::PublicProfileDTO"
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+
+' abstract class "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" {
+'   +$PublicProfileCopyWith<$Res>? createdBy
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+
+' class "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" {
+'   -$Val _value
+'   -$Res Function($Val) _then
+'   +$PublicProfileCopyWith<$Res>? createdBy
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" o-- "null::$Res Function($Val)"
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" <|-- "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl"
+
+' abstract class "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith" {
+'   +$PublicProfileCopyWith<$Res>? createdBy
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith" <|-- "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith"
+
+' class "project_bs::runtime_models::user::public_profile.dart::__$$PublicProfileImplCopyWithImpl" {
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileCopyWithImpl" <|-- "project_bs::runtime_models::user::public_profile.dart::__$$PublicProfileImplCopyWithImpl"
+' "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith" <|-- "project_bs::runtime_models::user::public_profile.dart::__$$PublicProfileImplCopyWithImpl"
+
+' class "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl" {
+'   +String uid
+'   +PublicProfile? createdBy
+'   +String name
+'   +_$$PublicProfileImplCopyWith<_$PublicProfileImpl> copyWith
+'   +String toString()
+'   +Map<String, dynamic> toJson()
+' }
+
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl" o-- "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith<_$PublicProfileImpl>"
+' "project_bs::runtime_models::user::public_profile.dart::_PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::_$PublicProfileImpl"
+
+abstract class "project_bs::runtime_models::user::public_profile.dart::_PublicProfile" {
+  +String uid
+  +PublicProfile? createdBy
+  +String name
+  ' +_$$PublicProfileImplCopyWith<_$PublicProfileImpl> copyWith
+}
+
+"project_bs::runtime_models::user::public_profile.dart::_PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "project_bs::runtime_models::user::public_profile.dart::_PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::_$$PublicProfileImplCopyWith<_$PublicProfileImpl>"
+"project_bs::runtime_models::user::public_profile.dart::PublicProfile" <|-- "project_bs::runtime_models::user::public_profile.dart::_PublicProfile"
+
+' abstract class "project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" {
+'   +String uid
+'   +PublicProfile? createdBy
+'   +String name
+'   +$PublicProfileCopyWith<PublicProfile> copyWith
+'   +Map<String, dynamic> toJson()
+' }
+
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "project_bs::runtime_models::user::public_profile.dart::_$PublicProfile" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<PublicProfile>"
+
+class "project_bs::runtime_models::user::user_data.dart::UserData" {
+  {static} +int nonRegisteredFriendLimit
+  +UserDataDTO toDataTransferObj
+}
+
+"project_bs::runtime_models::user::user_data.dart::UserData" o-- "project_bs::net_models::user::user_data_dto.dart::UserDataDTO"
+' "project_bs::runtime_models::user::user_data.dart::_$UserData" <|-- "project_bs::runtime_models::user::user_data.dart::UserData"
+
+' abstract class "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" {
+'   +$PublicProfileCopyWith<$Res> publicProfile
+'   +$PrivateProfileCopyWith<$Res> privateProfile
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<$Res>"
+
+' class "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" {
+'   -$Val _value
+'   -$Res Function($Val) _then
+'   +$PublicProfileCopyWith<$Res> publicProfile
+'   +$PrivateProfileCopyWith<$Res> privateProfile
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" o-- "null::$Res Function($Val)"
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" <|-- "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl"
+
+' abstract class "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" {
+'   +$PublicProfileCopyWith<$Res> publicProfile
+'   +$PrivateProfileCopyWith<$Res> privateProfile
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" o-- "project_bs::runtime_models::user::public_profile.dart::$PublicProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" o-- "project_bs::runtime_models::user::private_profile.dart::$PrivateProfileCopyWith<$Res>"
+' "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith" <|-- "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith"
+
+' class "project_bs::runtime_models::user::user_data.dart::__$$UserDataImplCopyWithImpl" {
+'   +$Res call()
+' }
+
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataCopyWithImpl" <|-- "project_bs::runtime_models::user::user_data.dart::__$$UserDataImplCopyWithImpl"
+' "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith" <|-- "project_bs::runtime_models::user::user_data.dart::__$$UserDataImplCopyWithImpl"
+
+' class "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" {
+'   +String uid
+'   +PublicProfile publicProfile
+'   +PrivateProfile privateProfile
+'   +List<PublicProfile> registeredFriends
+'   +Map<String, PublicProfile> nonRegisteredFriends
+'   +_$$UserDataImplCopyWith<_$UserDataImpl> copyWith
+'   +String toString()
+'   +void debugFillProperties()
+' }
+
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+' "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl" o-- "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith<_$UserDataImpl>"
+' "project_bs::runtime_models::user::user_data.dart::_UserData" <|-- "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl"
+' "flutter::src::foundation::diagnostics.dart::DiagnosticableTreeMixin" <|-- "project_bs::runtime_models::user::user_data.dart::_$UserDataImpl"
+
+abstract class "project_bs::runtime_models::user::user_data.dart::_UserData" {
+  +String uid
+  +PublicProfile publicProfile
+  +PrivateProfile privateProfile
+  +List<PublicProfile> registeredFriends
+  +Map<String, PublicProfile> nonRegisteredFriends
+  ' +_$$UserDataImplCopyWith<_$UserDataImpl> copyWith
+}
+
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+"project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+' "project_bs::runtime_models::user::user_data.dart::_UserData" o-- "project_bs::runtime_models::user::user_data.dart::_$$UserDataImplCopyWith<_$UserDataImpl>"
+"project_bs::runtime_models::user::user_data.dart::UserData" <|-- "project_bs::runtime_models::user::user_data.dart::_UserData"
+
+' abstract class "project_bs::runtime_models::user::user_data.dart::_$UserData" {
+'   +String uid
+'   +PublicProfile publicProfile
+'   +PrivateProfile privateProfile
+'   +List<PublicProfile> registeredFriends
+'   +Map<String, PublicProfile> nonRegisteredFriends
+'   +$UserDataCopyWith<UserData> copyWith
+' }
+
+' "project_bs::runtime_models::user::user_data.dart::_$UserData" o-- "project_bs::runtime_models::user::public_profile.dart::PublicProfile"
+' "project_bs::runtime_models::user::user_data.dart::_$UserData" o-- "project_bs::runtime_models::user::private_profile.dart::PrivateProfile"
+' "project_bs::runtime_models::user::user_data.dart::_$UserData" o-- "project_bs::runtime_models::user::user_data.dart::$UserDataCopyWith<UserData>"
+
+
+@enduml
