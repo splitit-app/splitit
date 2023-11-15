@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'item.freezed.dart';
+part 'item.g.dart';
 
 @freezed
 class Item with _$Item {
@@ -9,4 +10,6 @@ class Item with _$Item {
     @Default(0) double value,
     required List<bool> taxableStatusList,
   }) = _Item;
+
+  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 }

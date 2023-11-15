@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_cache/firestore_cache.dart';
+import 'package:project_bs/net_models/bill/everything_else_item_group_dto.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
 import 'package:provider/provider.dart';
 
@@ -38,25 +39,32 @@ class BillDataRepository {
   UserData? get userData => read();
 
   Future<String> createBill({
-    //required String uid,
     required DateTime dateTime,
     required String name,
     required double totalSpent,
     required PublicProfile payer,
     required List<PublicProfile> primarySplits,
   }) async {
+    final primarySplitUids = primarySplits.map((profile) => profile.uid).toList();
+
     return _billCollection
         .add(BillDataDTO(
           dateTime: dateTime,
           name: name,
           totalSpent: totalSpent,
           payerUid: payer.uid,
-          primarySplits: primarySplits.map((profile) => profile.uid).toList(),
+          primarySplits: primarySplitUids,
           //itemGroups: List.empty(),
           //taxModule: BillModule_Tax(),
           //tipModule: BillModule_Tip(),
           splitBalances: {},
           paymentResolveStatuses: {},
+          everythingElse: EverythingElseItemGroupDTO(
+            primarySplits: [payer.uid] + primarySplitUids,
+            items: List.empty(),
+            splitBalances: {},
+            splitRules: List.empty(),
+          ),
           lastUpdatedSession: DateTime.now(),
         ).toJson())
         .then((value) => value.id);

@@ -22,6 +22,8 @@ _$BillDataDTOImpl _$$BillDataDTOImplFromJson(Map<String, dynamic> json) =>
           (json['paymentResolveStatuses'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(k, (e as num).toDouble()),
       ),
+      everythingElse: EverythingElseItemGroupDTO.fromJson(
+          json['everythingElse'] as Map<String, dynamic>),
       lastUpdatedSession: DateTime.parse(json['lastUpdatedSession'] as String),
     );
 
@@ -34,5 +36,6 @@ Map<String, dynamic> _$$BillDataDTOImplToJson(_$BillDataDTOImpl instance) =>
       'primarySplits': instance.primarySplits,
       'splitBalances': instance.splitBalances,
       'paymentResolveStatuses': instance.paymentResolveStatuses,
+      'everythingElse': instance.everythingElse.toJson(),
       'lastUpdatedSession': instance.lastUpdatedSession.toIso8601String(),
     };

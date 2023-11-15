@@ -14,12 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Item _$ItemFromJson(Map<String, dynamic> json) {
+  return _Item.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Item {
   String get name => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
   List<bool> get taxableStatusList => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
 }
@@ -108,13 +113,16 @@ class __$$ItemImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ItemImpl implements _Item {
   _$ItemImpl(
       {this.name = 'New Item',
       this.value = 0,
       required final List<bool> taxableStatusList})
       : _taxableStatusList = taxableStatusList;
+
+  factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ItemImplFromJson(json);
 
   @override
   @JsonKey()
@@ -147,6 +155,7 @@ class _$ItemImpl implements _Item {
                 .equals(other._taxableStatusList, _taxableStatusList));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, value,
       const DeepCollectionEquality().hash(_taxableStatusList));
@@ -156,6 +165,13 @@ class _$ItemImpl implements _Item {
   @pragma('vm:prefer-inline')
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>
       __$$ItemImplCopyWithImpl<_$ItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ItemImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Item implements Item {
@@ -163,6 +179,8 @@ abstract class _Item implements Item {
       {final String name,
       final double value,
       required final List<bool> taxableStatusList}) = _$ItemImpl;
+
+  factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
 
   @override
   String get name;

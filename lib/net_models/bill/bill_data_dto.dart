@@ -1,9 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:project_bs/runtime_models/bill/everything_else_item_group.dart';
+import 'package:project_bs/runtime_models/bill/item_group.dart';
 import 'package:project_bs/runtime_models/user/user_data.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/bill/modules/bill_module_tax.dart';
 import '../../runtime_models/bill/modules/bill_module_tip.dart';
+import 'everything_else_item_group_dto.dart';
 
 part 'bill_data_dto.freezed.dart';
 part 'bill_data_dto.g.dart';
@@ -21,6 +24,9 @@ class BillDataDTO with _$BillDataDTO {
     required List<String> primarySplits,
     required Map<String, double> splitBalances,
     required Map<String, double> paymentResolveStatuses,
+    //
+    required EverythingElseItemGroupDTO everythingElse,
+    //
     required DateTime lastUpdatedSession,
   }) = _BillDataDTO;
 
@@ -39,6 +45,7 @@ class BillDataDTO with _$BillDataDTO {
             .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
         paymentResolveStatuses: paymentResolveStatuses.map(
             (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!, resolveStatus)),
+        everythingElse: everythingElse.toRuntimeObj(userData),
         itemGroups: List.empty(),
         taxModule: BillModule_Tax(),
         tipModule: BillModule_Tip(),

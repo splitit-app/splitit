@@ -330,6 +330,8 @@ class _BillInfoState extends State<BillInfo> {
                         scrollDirection: Axis.vertical,
                         itemCount: widget.billData.primarySplits.length,
                         itemBuilder: (context, index) {
+                          final currentProfile = widget.billData.primarySplits[index];
+
                           return Slidable(
                             closeOnScroll: false,
                             startActionPane: ActionPane(
@@ -352,20 +354,19 @@ class _BillInfoState extends State<BillInfo> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
-                                    children: [
-                                      PersonIcon(profile: widget.billData.primarySplits[index]),
-                                      const SizedBox(width: 15.0),
-                                      SizedBox(
-                                          width: 100.0,
-                                          child: Text(widget.billData.primarySplits[index].name,
-                                              overflow: TextOverflow.ellipsis, maxLines: 1)),
-                                    ],
-                                  ),
+                                  PersonIcon(profile: currentProfile),
+                                  const SizedBox(width: 15.0),
+                                  SizedBox(
+                                      width: 100.0,
+                                      child: Text(currentProfile.name,
+                                          overflow: TextOverflow.ellipsis, maxLines: 1)),
+                                  const Spacer(),
                                   Text(
-                                    '\$ Money',
+                                    widget.billData.everythingElse
+                                        .splitBalancess(widget.billData)[currentProfile]!
+                                        .toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context).colorScheme.error),
