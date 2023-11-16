@@ -181,10 +181,10 @@ class BillCards extends StatelessWidget {
                                   style: TextStyle(color: Color(0xFF56585A)),
                                 ),
                                 Text(
-                                  // "\$125.45",
-                                  //TODO: currency
-                                  NumberFormat.currency(symbol: '\$', decimalDigits: 2,).format(billData.totalSpent),
-                                  //billData.totalSpent.toString(),
+                                  NumberFormat.currency(
+                                    symbol: '\$',
+                                    decimalDigits: 2,
+                                  ).format(billData.totalSpent),
                                   style: TextStyle(
                                       // color: Color(0xFF101217)),
                                       // color: textColors),
@@ -194,17 +194,19 @@ class BillCards extends StatelessWidget {
                             ),
 
                             // Settled Amount Row
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   "Settled",
                                   style: TextStyle(color: Color(0xFF56585A)),
                                 ),
                                 Text(
-                                  //TODO: currency
-                                  "\$5.45", // Amount Settled (Resolved)
-                                  style: TextStyle(
+                                  NumberFormat.currency(
+                                    symbol: '\$',
+                                    decimalDigits: 2,
+                                  ).format(5.45),
+                                  style: const TextStyle(
                                       color: Color(0xFF3E992A), fontWeight: FontWeight.w500),
                                 ),
                               ],
@@ -228,15 +230,15 @@ class BillCards extends StatelessWidget {
                                   // "\$100.00",
 
                                   // The bill total subtracted by the amount resolved. Currently the settled amount is hardcoded.
-                                  //TODO: currency
-                                  NumberFormat.currency(symbol: '\$', decimalDigits: 2,).format(billData.totalSpent - 5.45),
-//                                   (billData.totalSpent - 5.45)
-//                                       .toStringAsFixed(2), // Rounding the Number to the tenths
+                                  NumberFormat.currency(
+                                    symbol: '\$',
+                                    decimalDigits: 2,
+                                  ).format(billData.totalSpent - 5.45),
+
                                   style: const TextStyle(
                                     color: Color(0xFFA11919),
                                     //fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
-
                                   ),
                                 ),
                               ],

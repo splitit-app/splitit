@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import 'bill_info.dart';
@@ -47,39 +46,52 @@ class BillCardsCompact extends StatelessWidget {
                 child: Column(
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      billData.name,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        billData.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
-                    Text(
-                      DateFormat.yMMMMd().format(billData.dateTime),
-                      //billDate.substring(0, 10),
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        DateFormat.yMMMMd().format(billData.dateTime),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               Expanded(
-                child: Text(
-                  billData.totalSpent.toString(),
-                  style: const TextStyle(fontSize: 20.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    NumberFormat.currency(
+                      symbol: '\$',
+                      decimalDigits: 2,
+                    ).format(billData.totalSpent),
+                    // style: const TextStyle(fontSize: 20.0),
+                  ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Symbols.more_horiz,
-                  size: 24,
-                ),
-              ),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(
+              //     Symbols.more_horiz,
+              //     size: 24,
+              //   ),
+              // ),
             ],
           ),
         ),
