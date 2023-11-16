@@ -55,7 +55,7 @@ class SplitItApp extends StatelessWidget {
                 title: 'SplitIt',
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData(
-                  colorSchemeSeed: const Color(0xFF26B645),
+                  colorSchemeSeed: const Color.fromRGBO(38, 182, 69, 1),
                   useMaterial3: true,
                   
                 ),
