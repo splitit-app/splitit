@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:material_color_utilities/palettes/core_palette.dart';
 
-Color seedColor = const Color.fromRGBO(249, 250, 244, 1);
+
+Color seedColor = const Color.fromRGBO(38, 182, 69, 1);
 
 Color getSurface(bool darkMode) {
   CorePalette p = CorePalette.of(seedColor.value);

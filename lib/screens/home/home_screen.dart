@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:project_bs/screens/home/home_page.dart';
+import 'package:project_bs/utilities/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
@@ -31,8 +32,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         //   ),
         // ),
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: const Text("Home"),
+        title: const Text("Home",style: TextStyle(fontWeight: FontWeight.w400, height: 28),),
+        
         centerTitle: true,
+        toolbarHeight: 64,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Symbols.menu),
@@ -41,7 +45,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(left: 24, right: 16),
             child: TextButton(
               onPressed: AuthenticationService().signOut,
               child: const Text('Log out'),
@@ -53,7 +57,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           ? const Placeholder()
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 24.0),
                 child: Column(
                   children: [
                     // Profile Icon and Welcoming Text
@@ -69,6 +73,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
                           ],
                         ),
+                        //const SizedBox(24),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
                         GestureDetector(
                           onTap: () {},
@@ -82,13 +87,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                     ),
                     // Container Box for Something
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
                       child: Container(
-                        height: 100,
+                        height: 50,
                         padding: const EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: Theme.of(context).colorScheme.surfaceVariant),
+                            borderRadius: BorderRadius.circular(18.0),
+                            color: getSurfaceContainerHighest(false),
+                            //Theme.of(context).colorScheme.surfaceVariant
+                            ),
                         child: const Column(
                           children: [
                             Row(
@@ -113,7 +120,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -126,10 +133,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                               height: 100,
                               decoration: BoxDecoration(
                                   color: Theme.of(context).colorScheme.primaryContainer,
-                                  borderRadius: BorderRadius.circular(25.0)),
+                                  borderRadius: BorderRadius.circular(18.0)),
                               child: InkWell(
                                 onTap: () {},
-                                borderRadius: BorderRadius.circular(25.0),
+                                borderRadius: BorderRadius.circular(18.0),
                                 child: const Icon(Symbols.person_add, size: 45.0),
                               ),
                             )),
@@ -226,7 +233,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                     ),
 
                     bills == null
-                        ? const Placeholder()
+                        ? const Placeholder(child: Text('seems empty here'))
                         : ListView.separated(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             shrinkWrap: true,

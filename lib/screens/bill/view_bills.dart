@@ -27,7 +27,7 @@ class _ViewBillHistoryState extends State<ViewBillHistory> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Bills History"),
+          title: const Text("Splits"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         ),

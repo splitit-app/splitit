@@ -3,6 +3,7 @@ import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
+import '../../utilities/colors.dart';
 import '../bill/view_bills.dart';
 import '../friends_screen/friends_page.dart';
 import 'home_screen.dart';
@@ -41,7 +42,6 @@ class _MainHomePageState extends State<MainHomePage> {
             index: rootForm.currentPageId,
             children: rootForm.screens,
           ),
-
           bottomNavigationBar: NavigationBar(
             backgroundColor: Theme.of(context)
                 .colorScheme
@@ -49,7 +49,7 @@ class _MainHomePageState extends State<MainHomePage> {
             indicatorColor: Theme.of(context).colorScheme.tertiary,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
             animationDuration: const Duration(milliseconds: 1500),
-            height: 70.0,
+            height: 80.0,
 
             destinations: const [
               NavigationDestination(
@@ -61,7 +61,7 @@ class _MainHomePageState extends State<MainHomePage> {
               NavigationDestination(
                 icon: Icon(MaterialSymbols.payments_outlined),
                 selectedIcon: Icon(MaterialSymbols.payments_filled),
-                label: 'Bills',
+                label: 'Splits',
                 tooltip: 'Bill Splitting',
               ),
               NavigationDestination(
