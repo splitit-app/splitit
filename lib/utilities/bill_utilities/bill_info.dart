@@ -309,13 +309,14 @@ class _BillInfoState extends State<BillInfo> {
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 10.0),
                     Container(
-                      height: 300.0,
                       decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                           color: Theme.of(context)
                               .colorScheme
                               .surfaceVariant), //! Change Colors if needed
                       child: ListView.separated(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                         scrollDirection: Axis.vertical,
                         itemCount: widget.billData.primarySplits.length,
                         itemBuilder: (context, index) {
@@ -340,34 +341,33 @@ class _BillInfoState extends State<BillInfo> {
                                 ),
                               ],
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  PersonIcon(profile: currentProfile),
-                                  const SizedBox(width: 15.0),
-                                  SizedBox(
-                                      width: 100.0,
-                                      child: Text(
-                                        currentProfile.name,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      )),
-                                  const Spacer(),
-                                  Text(
+                            child: Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                PersonIcon(profile: currentProfile),
+                                const SizedBox(width: 15.0),
+                                Expanded(
+                                    flex: 3,
+                                    child: Text(
+                                      currentProfile.name,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    )),
+                                Expanded(
+                                  child: Text(
                                     widget.billData.getSplitBalances[currentProfile]!.toString(),
+                                    textAlign: TextAlign.right,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context).colorScheme.error),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(height: 0, thickness: 2.0),
+                            const Divider(height: 16, thickness: 2.0),
                       ),
                     ),
                   ],
