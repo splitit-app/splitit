@@ -26,7 +26,7 @@ class AuthenticationSwitcher extends StatelessWidget {
         ),
       );
     } else {
-      return const MainHomePage();
+      return MainHomePage();
     }
   }
 }

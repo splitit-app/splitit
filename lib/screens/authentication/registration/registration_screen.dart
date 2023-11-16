@@ -18,34 +18,28 @@ class RegistrationFormForEmailAndPassword extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: Center(
         child: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             SvgPicture.asset('assets/login_screen/splitit_logo.svg'),
             const SizedBox(height: 20),
             Text(
               'Create Account',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(fontWeight: FontWeight.w600),
+              style:
+                  Theme.of(context).textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration:
-                  textFieldDecoration_filled.copyWith(labelText: 'Email'),
+              decoration: textFieldDecoration_filled.copyWith(labelText: 'Email'),
               controller: registrationForm.emailFieldController,
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration:
-                  textFieldDecoration_filled.copyWith(labelText: 'Password'),
+              decoration: textFieldDecoration_filled.copyWith(labelText: 'Password'),
               obscureText: true,
               controller: registrationForm.passwordFieldController,
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration: textFieldDecoration_filled.copyWith(
-                  labelText: 'Confirm Password'),
+              decoration: textFieldDecoration_filled.copyWith(labelText: 'Confirm Password'),
               obscureText: true,
               controller: registrationForm.confirmPasswordController,
             ),
@@ -78,49 +72,44 @@ class RegistrationFormForUserData extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
           child: Center(
             child: SingleChildScrollView(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                  SvgPicture.asset('assets/login_screen/splitit_logo.svg'),
-                  const SizedBox(height: 30),
-                  Text(
-                    'Create Account',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall!
-                        .copyWith(fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    decoration:
-                        textFieldDecoration_filled.copyWith(labelText: 'Name*'),
-                    controller: registrationForm.nameFieldController,
-                  ),
-                  const SizedBox(height: 20),
-                  DateFormField(
-                    decoration: dateFieldDecoration_filled.copyWith(
-                        labelText: 'Birthday*'),
-                    controller: registrationForm.birthdayFieldController,
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    decoration:
-                        textFieldDecoration_filled.copyWith(labelText: 'Quote'),
-                    controller: registrationForm.quoteFieldController,
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: registrationForm.createUser,
-                    child: const Text('Get Started'),
-                  ),
-                ])),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              SvgPicture.asset('assets/login_screen/splitit_logo.svg'),
+              const SizedBox(height: 30),
+              Text(
+                'Create Account',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: textFieldDecoration_filled.copyWith(labelText: 'Name*'),
+                controller: registrationForm.nameFieldController,
+              ),
+              const SizedBox(height: 20),
+              DateFormField(
+                decoration: dateFieldDecoration_filled.copyWith(labelText: 'Birthday*'),
+                controller: registrationForm.birthdayFieldController,
+              ),
+              const SizedBox(height: 20),
+              TextFormField(
+                decoration: textFieldDecoration_filled.copyWith(labelText: 'Quote'),
+                controller: registrationForm.quoteFieldController,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: registrationForm.createUser,
+                child: const Text('Get Started'),
+              ),
+            ])),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: BackButton(
-              onPressed: () async => await registrationForm.pageController
-                  .animateToPageWithDefaults(0)),
+              onPressed: () async =>
+                  await registrationForm.pageController.animateToPageWithDefaults(0)),
         ),
       ]),
     );
@@ -139,8 +128,8 @@ class RegistrationScreen extends StatelessWidget {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Provider<RegistrationForm>(
-          create: (context) => registrationForm,
+        child: Provider.value(
+          value: registrationForm,
           builder: (context, child) => Column(
             children: [
               Expanded(
@@ -167,9 +156,8 @@ class RegistrationScreen extends StatelessWidget {
         children: [
           const Text('Already have an account?'),
           TextButton(
-            onPressed: () async => await context
-                .read<PageController>()
-                .animateToPageWithDefaults(0),
+            onPressed: () async =>
+                await context.read<PageController>().animateToPageWithDefaults(0),
             child: const Text('Log In'),
           ),
         ],
