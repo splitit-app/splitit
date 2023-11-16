@@ -35,9 +35,12 @@ class MainHomeScreen extends StatelessWidget {
           iconSize: 24,
         ),
         actions: [
-          ElevatedButton(
-            onPressed: AuthenticationService().signOut,
-            child: const Text('Log out'),
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: TextButton(
+              onPressed: AuthenticationService().signOut,
+              child: const Text('Log out'),
+            ),
           )
         ],
       ),
@@ -45,7 +48,8 @@ class MainHomeScreen extends StatelessWidget {
           ? const Placeholder()
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0, vertical: 10.0),
                 child: Column(
                   children: [
                     // Profile Icon and Welcoming Text
@@ -55,10 +59,12 @@ class MainHomeScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Welcome Back, ', style: TextStyle(fontSize: 25.0)),
+                            const Text('Welcome Back, ',
+                                style: TextStyle(fontSize: 25.0)),
                             Text('${userData.publicProfile.name}!',
-                                style:
-                                    const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
+                                style: const TextStyle(
+                                    fontSize: 25.0,
+                                    fontWeight: FontWeight.w500)),
                           ],
                         ),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
@@ -80,7 +86,8 @@ class MainHomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.0),
-                            color: Theme.of(context).colorScheme.surfaceVariant),
+                            color:
+                                Theme.of(context).colorScheme.surfaceVariant),
                         child: const Column(
                           children: [
                             Row(
@@ -102,9 +109,11 @@ class MainHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Quick Start",
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold)),
                       ],
                     ),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -116,12 +125,15 @@ class MainHomeScreen extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.primaryContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer,
                                   borderRadius: BorderRadius.circular(25.0)),
                               child: InkWell(
                                 onTap: () {},
                                 borderRadius: BorderRadius.circular(25.0),
-                                child: const Icon(Symbols.person_add, size: 45.0),
+                                child:
+                                    const Icon(Symbols.person_add, size: 45.0),
                               ),
                             )),
                             const SizedBox(height: 5.0),
@@ -144,7 +156,9 @@ class MainHomeScreen extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.secondaryContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryContainer,
                                   borderRadius: BorderRadius.circular(25.0)),
                               child: InkWell(
                                 onTap: () {},
@@ -172,12 +186,15 @@ class MainHomeScreen extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .tertiaryContainer,
                                   borderRadius: BorderRadius.circular(25.0)),
                               child: InkWell(
                                 onTap: () {},
                                 borderRadius: BorderRadius.circular(25.0),
-                                child: const Icon(Symbols.group_add, size: 45.0),
+                                child:
+                                    const Icon(Symbols.group_add, size: 45.0),
                               ),
                             )),
                             const SizedBox(height: 5.0),
@@ -194,24 +211,28 @@ class MainHomeScreen extends StatelessWidget {
                       ],
                     ), // End of Home Button Row
 
-                    const SizedBox(height: 20.0),
+                    const SizedBox(height: 30.0),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("Recent Transactions",
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold)),
                         TextButton(
                             onPressed: () {
                               //! Bill Data not being displayed when navigating to New Page
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const ViewBillHistory()),
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ViewBillHistory()),
                               );
                             },
-                            child: const Text("See All",
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700))),
+                            child: const Text(
+                              "See All",
+                            )),
                       ],
                     ),
 

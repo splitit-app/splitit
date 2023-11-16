@@ -59,8 +59,8 @@ class BillCards extends StatelessWidget {
                             // Grouping (Wrapping) the Container and Column in a row to better separate between the arrow icon
                             children: [
                               Container(
-                                width: 50,
-                                height: 50,
+                                width: 40,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   // color: Colors.white,

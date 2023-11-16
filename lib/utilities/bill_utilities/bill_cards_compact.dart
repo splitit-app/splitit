@@ -42,8 +42,8 @@ class BillCardsCompact extends StatelessWidget {
                       // Grouping (Wrapping) the Container and Column in a row to better separate between the arrow icon
                       children: [
                         Container(
-                          width: 50,
-                          height: 50,
+                          width: 40,
+                          height: 40,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             // color: Colors.white,
@@ -56,9 +56,9 @@ class BillCardsCompact extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 15.0),
+                        const SizedBox(width: 20.0),
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          //crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               billData.name,
@@ -89,7 +89,7 @@ class BillCardsCompact extends StatelessWidget {
                       onPressed: () {},
                       icon: const Icon(
                         Symbols.more_horiz,
-                        size: 25,
+                        size: 24,
                       ),
                     ),
                   ],
