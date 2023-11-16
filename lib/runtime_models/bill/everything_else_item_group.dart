@@ -28,7 +28,7 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
         splitBalances: splitBalances.map((profile, balance) => MapEntry(profile.uid, balance)),
       );
 
-  Map<PublicProfile, double> splitBalancess(BillData billData) {
+  Map<PublicProfile, double> getSplitBalances(BillData billData) {
     final balance = value(billData) / primarySplits.length;
     return {for (var profile in primarySplits) profile: balance};
   }

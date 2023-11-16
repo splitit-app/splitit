@@ -1,16 +1,17 @@
 import 'dart:math';
 
-//import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/public_profile.dart';
+import '../../runtime_models/user/user_data.dart';
+import '../../screens/bill/bill_info/bill_modify_split_screen.dart';
 import '../person_icon.dart';
 
 Route _createRoute() {
@@ -61,37 +62,24 @@ class CloseTitle extends StatelessWidget {
     final List<PublicProfile> primarySplits =
         context.select((BillData billData) => billData.primarySplits);
 
-    return SizedBox(
-      height: 60,
-      child: CustomScrollView(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
-        slivers: [
-          //Payer
-          SliverToBoxAdapter(child: PersonIcon(profile: payer)),
-          SliverToBoxAdapter(
-              child: VerticalDivider(thickness: 2, color: Theme.of(context).dividerColor)),
-
-          //Primary Splits
-          SliverList.builder(
-            itemCount: min(primarySplits.length, 3),
-            itemBuilder: (context, index) => PersonIcon(profile: primarySplits[index]),
+    return IntrinsicHeight(
+      child: Row(
+        children: [
+          PersonIcon(profile: payer),
+          VerticalDivider(thickness: 2.0, color: Theme.of(context).dividerColor),
+          RowSuper(
+            innerDistance: -10.0,
+            children: primarySplits
+                .sublist(0, min(primarySplits.length, 3))
+                .map((profile) => PersonIcon(profile: profile))
+                .toList(),
           ),
-          SliverToBoxAdapter(
-            child: primarySplits.length > 3
-                ? const Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: Icon(Icons.keyboard_control),
-                  )
-                : const SizedBox.shrink(),
-          ),
-          // RowSuper(innerDistance: -10.0, children: [
-          //   PersonIcon(profile: _dummyProfile),
-          //   PersonIcon(profile: _dummyProfile),
-          //   PersonIcon(profile: _dummyProfile),
-          // ]),
-          // const SizedBox(width: 5.0),
+          primarySplits.length > 3
+              ? const Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: Icon(Icons.keyboard_control),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );
@@ -210,6 +198,7 @@ class _BillInfoState extends State<BillInfo> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -360,13 +349,14 @@ class _BillInfoState extends State<BillInfo> {
                                   const SizedBox(width: 15.0),
                                   SizedBox(
                                       width: 100.0,
-                                      child: Text(currentProfile.name,
-                                          overflow: TextOverflow.ellipsis, maxLines: 1)),
+                                      child: Text(
+                                        currentProfile.name,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      )),
                                   const Spacer(),
                                   Text(
-                                    widget.billData.everythingElse
-                                        .splitBalancess(widget.billData)[currentProfile]!
-                                        .toString(),
+                                    widget.billData.getSplitBalances[currentProfile]!.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context).colorScheme.error),
@@ -382,31 +372,37 @@ class _BillInfoState extends State<BillInfo> {
                     ),
                   ],
                 ),
+
+                const SizedBox(height: 15),
+                ElevatedButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ModifySplitScreen(billData: widget.billData)),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: const Text('Modify Split'),
+                ),
                 const SizedBox(height: 25.0),
 
                 // Pending and Total Costs
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Pending",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text("Total", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Text("\$ Pending Total",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(widget.billData.totalSpent.toString(),
-                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ],
-                ),
+                Column(children: [
+                  const Row(children: [
+                    Text("Pending", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text("\$ Pending Total",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ]),
+                  Row(children: [
+                    const Text("Total",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    const Spacer(),
+                    Text(widget.billData.totalSpent.toString(),
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ]),
+                ]),
               ],
             ),
           ),

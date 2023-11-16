@@ -2,17 +2,22 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:project_bs/screens/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/authentication_service.dart';
 import '../../utilities/bill_utilities/bill_cards_compact.dart';
-import '../bill/view_bills.dart';
 
-class MainHomeScreen extends StatelessWidget {
+class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key});
 
+  @override
+  State<MainHomeScreen> createState() => _MainHomeScreenState();
+}
+
+class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final UserData? userData = context.watch();
@@ -48,8 +53,7 @@ class MainHomeScreen extends StatelessWidget {
           ? const Placeholder()
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0, vertical: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
                 child: Column(
                   children: [
                     // Profile Icon and Welcoming Text
@@ -59,12 +63,10 @@ class MainHomeScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Welcome Back, ',
-                                style: TextStyle(fontSize: 25.0)),
+                            const Text('Welcome Back, ', style: TextStyle(fontSize: 25.0)),
                             Text('${userData.publicProfile.name}!',
-                                style: const TextStyle(
-                                    fontSize: 25.0,
-                                    fontWeight: FontWeight.w500)),
+                                style:
+                                    const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
                           ],
                         ),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
@@ -86,8 +88,7 @@ class MainHomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.0),
-                            color:
-                                Theme.of(context).colorScheme.surfaceVariant),
+                            color: Theme.of(context).colorScheme.surfaceVariant),
                         child: const Column(
                           children: [
                             Row(
@@ -109,8 +110,7 @@ class MainHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Quick Start",
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -125,15 +125,12 @@ class MainHomeScreen extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primaryContainer,
+                                  color: Theme.of(context).colorScheme.primaryContainer,
                                   borderRadius: BorderRadius.circular(25.0)),
                               child: InkWell(
                                 onTap: () {},
                                 borderRadius: BorderRadius.circular(25.0),
-                                child:
-                                    const Icon(Symbols.person_add, size: 45.0),
+                                child: const Icon(Symbols.person_add, size: 45.0),
                               ),
                             )),
                             const SizedBox(height: 5.0),
@@ -156,9 +153,7 @@ class MainHomeScreen extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer,
+                                  color: Theme.of(context).colorScheme.secondaryContainer,
                                   borderRadius: BorderRadius.circular(25.0)),
                               child: InkWell(
                                 onTap: () {},
@@ -186,15 +181,12 @@ class MainHomeScreen extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .tertiaryContainer,
+                                  color: Theme.of(context).colorScheme.tertiaryContainer,
                                   borderRadius: BorderRadius.circular(25.0)),
                               child: InkWell(
                                 onTap: () {},
                                 borderRadius: BorderRadius.circular(25.0),
-                                child:
-                                    const Icon(Symbols.group_add, size: 45.0),
+                                child: const Icon(Symbols.group_add, size: 45.0),
                               ),
                             )),
                             const SizedBox(height: 5.0),
@@ -217,33 +209,32 @@ class MainHomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Recent Transactions",
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                        const Text(
+                          "Recent Transactions",
+                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
                         TextButton(
-                            onPressed: () {
-                              //! Bill Data not being displayed when navigating to New Page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ViewBillHistory()),
-                              );
-                            },
-                            child: const Text(
-                              "See All",
-                            )),
+                          onPressed: () {
+                            setState(() {
+                              context.read<RootForm>().currentPageId = 1;
+                            });
+                            print(context.read<RootForm>().currentPageId);
+                          },
+                          child: const Text("See All"),
+                        ),
                       ],
                     ),
 
                     bills == null
                         ? const Placeholder()
-                        : ListView.builder(
+                        : ListView.separated(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: min(bills.length, 5),
                             itemBuilder: (context, index) =>
                                 BillCardsCompact(billData: bills[index]),
+                            separatorBuilder: (context, index) => const SizedBox(height: 10),
                           )
                   ],
                 ),
