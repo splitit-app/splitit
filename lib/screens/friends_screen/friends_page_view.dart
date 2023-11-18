@@ -81,8 +81,15 @@ class FriendsPageView extends StatelessWidget {
             itemBuilder: (context, index) => Column(
               children: [
                 PersonIcon(profile: friends.values.elementAt(startingIndex + index)),
-                Text(friends.values.elementAt(startingIndex + index).name,
-                    style: const TextStyle(fontSize: 16.0))
+                SizedBox(
+                  width: 125.0,
+                  child: Text(friends.values.elementAt(startingIndex + index).name,
+                      style: const TextStyle(fontSize: 16.0),  
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      softWrap: false,
+                      textAlign: TextAlign.center),
+                ),
               ],
             ),
           );

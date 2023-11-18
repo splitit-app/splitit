@@ -152,7 +152,21 @@ class FriendsPageOverview extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: TextButton(
-                            onPressed: () async => await createFriendDialog(context),
+                            // onPressed: () async => await createFriendDialog(context),
+                            onPressed: () async {
+                                if(userData.nonRegisteredFriends.length < UserData.nonRegisteredFriendLimit){
+                                  await createFriendDialog(context);
+                                }
+                                else{
+                                 showDialog(context: context, builder: (context) {
+                                  return const AlertDialog(
+                                    icon: Icon(MaterialSymbols.warning, size: 40.0),
+                                    title: Text("Friend Limit Exceeded!"),
+                                    content: Text("You can only have up to 30 friends. Remove one to add a new friend.", textAlign: TextAlign.center),
+                                    );
+                                  });
+                                }  
+                            },
                             child: const Text("Add Friend", style: TextStyle(fontSize: 18.0)),
                           ),
                         ),
