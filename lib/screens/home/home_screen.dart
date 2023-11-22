@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:project_bs/screens/home/home_page.dart';
+import 'package:project_bs/screens/profile/profile_page.dart';
 import 'package:project_bs/utilities/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         //   ),
         // ),
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: const Text("Home",style: TextStyle(fontWeight: FontWeight.w400, height: 28),),
+        title: const Text("Home",style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
         
         centerTitle: true,
         toolbarHeight: 64,
@@ -54,7 +55,17 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ],
       ),
       body: userData == null
-          ? const Placeholder()
+          // ? const Placeholder()
+          ? Center(
+            child: Transform.scale(
+              scale: 5.0,
+              //* or use LinearProgressIndicator())
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              ),
+            ),
+          )
           : SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 24.0),
@@ -76,7 +87,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         //const SizedBox(24),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage())),
                           child: const CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(

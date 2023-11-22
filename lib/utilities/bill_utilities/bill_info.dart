@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:project_bs/utilities/bill_utilities/bill_items.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
@@ -309,6 +310,7 @@ class _BillInfoState extends State<BillInfo> {
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 10.0),
                     Container(
+                      clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                           color: Theme.of(context)
@@ -344,6 +346,7 @@ class _BillInfoState extends State<BillInfo> {
                             child: Row(
                               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                const SizedBox(width: 15.0),
                                 PersonIcon(profile: currentProfile),
                                 const SizedBox(width: 15.0),
                                 Expanded(
@@ -378,7 +381,8 @@ class _BillInfoState extends State<BillInfo> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ModifySplitScreen(billData: widget.billData)),
+                        // builder: (context) => ModifySplitScreen(billData: widget.billData)),
+                        builder: (context) => BillItems(billData: widget.billData)),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -3,10 +3,12 @@ import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
-import '../../utilities/colors.dart';
+// import '../../utilities/colorss.dart';
 import '../bill/view_bills.dart';
 import '../friends_screen/friends_page.dart';
+import '../magnifier_screen.dart';
 import 'home_screen.dart';
+
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -22,7 +24,10 @@ class RootForm {
     const MainHomeScreen(),
     const ViewBillHistory(),
     FriendsPage(),
-    //const BillInfo(billName: "McDonalds", billDate: "1999-09-19", billTotal: 125.0),
+
+    const MagnifierPage(),
+
+
   ];
 }
 
@@ -70,12 +75,13 @@ class _MainHomePageState extends State<MainHomePage> {
                 label: 'People',
                 tooltip: 'People',
               ),
-              // NavigationDestination(
-              //   icon: Icon(Icons.warning),
-              //   selectedIcon: Icon(Icons.warning),
-              //   label: 'Test',
-              //   tooltip: 'Test',
-              // ),
+
+              NavigationDestination(
+                icon: Icon(MaterialSymbols.warning),
+                selectedIcon: Icon(MaterialSymbols.warning),
+                label: 'Test',
+                tooltip: 'Test',
+              ),
             ],
             onDestinationSelected: (value) {
               setState(() => rootForm.currentPageId = value);
