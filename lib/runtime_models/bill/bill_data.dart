@@ -45,7 +45,7 @@ class BillData with _$BillData {
         lastUpdatedSession: lastUpdatedSession,
       );
 
-  Map<PublicProfile, double> get getSplitBalances => everythingElse.getSplitBalances(this);
+  Map<PublicProfile, double> get getSplitBalances => everythingElse.getSplitBalances;
 
 //TODO: when a new item is added, initialized its tax list with the current number of taxes
 //TODO: when a new tax is introduced, iterate through all the items and update their List<bool>

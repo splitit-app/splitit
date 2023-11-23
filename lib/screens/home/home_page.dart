@@ -6,9 +6,7 @@ import 'package:provider/provider.dart';
 // import '../../utilities/colorss.dart';
 import '../bill/view_bills.dart';
 import '../friends_screen/friends_page.dart';
-import '../magnifier_screen.dart';
 import 'home_screen.dart';
-
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -24,10 +22,6 @@ class RootForm {
     const MainHomeScreen(),
     const ViewBillHistory(),
     FriendsPage(),
-
-    const MagnifierPage(),
-
-
   ];
 }
 
@@ -75,13 +69,12 @@ class _MainHomePageState extends State<MainHomePage> {
                 label: 'People',
                 tooltip: 'People',
               ),
-
-              NavigationDestination(
-                icon: Icon(MaterialSymbols.warning),
-                selectedIcon: Icon(MaterialSymbols.warning),
-                label: 'Test',
-                tooltip: 'Test',
-              ),
+              // NavigationDestination(
+              //   icon: Icon(MaterialSymbols.warning),
+              //   selectedIcon: Icon(MaterialSymbols.warning),
+              //   label: 'Test',
+              //   tooltip: 'Test',
+              // ),
             ],
             onDestinationSelected: (value) {
               setState(() => rootForm.currentPageId = value);

@@ -381,8 +381,8 @@ class _BillInfoState extends State<BillInfo> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        // builder: (context) => ModifySplitScreen(billData: widget.billData)),
-                        builder: (context) => BillItems(billData: widget.billData)),
+                      builder: (context) => ModifySplitScreen(billData: widget.billData),
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

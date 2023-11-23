@@ -229,7 +229,7 @@ class _$ItemGroupImpl extends _ItemGroup {
       __$$ItemGroupImplCopyWithImpl<_$ItemGroupImpl>(this, _$identity);
 }
 
-abstract class _ItemGroup extends ItemGroup {
+abstract class _ItemGroup extends ItemGroup implements IItemGroup {
   factory _ItemGroup(
           {final String name,
           required final List<PublicProfile> primarySplits,

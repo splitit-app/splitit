@@ -33,8 +33,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         //   ),
         // ),
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: const Text("Home",style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
-        
+        title: const Text("Home", style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
+
         centerTitle: true,
         toolbarHeight: 64,
         elevation: 0,
@@ -57,15 +57,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       body: userData == null
           // ? const Placeholder()
           ? Center(
-            child: Transform.scale(
-              scale: 5.0,
-              //* or use LinearProgressIndicator())
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              child: Transform.scale(
+                scale: 5.0,
+                //* or use LinearProgressIndicator())
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                ),
               ),
-            ),
-          )
+            )
           : SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 24.0),
@@ -87,7 +87,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         //const SizedBox(24),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
                         GestureDetector(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage())),
+                          onTap: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const ProfilePage())),
                           child: const CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -103,10 +104,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         height: 50,
                         padding: const EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18.0),
-                            color: getSurfaceContainerHighest(false),
-                            //Theme.of(context).colorScheme.surfaceVariant
-                            ),
+                          borderRadius: BorderRadius.circular(18.0),
+                          color: getSurfaceContainerHighest(false),
+                          //Theme.of(context).colorScheme.surfaceVariant
+                        ),
                         child: const Column(
                           children: [
                             Row(
@@ -244,16 +245,21 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                     ),
 
                     bills == null
-                        ? const Placeholder(child: Text('seems empty here'))
-                        : ListView.separated(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: min(bills.length, 5),
-                            itemBuilder: (context, index) =>
-                                BillCardsCompact(billData: bills[index]),
-                            separatorBuilder: (context, index) => const SizedBox(height: 10),
-                          )
+                        ? const Placeholder()
+                        : bills.isEmpty
+                            ? const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 24),
+                                child: Text('seems empty here'),
+                              )
+                            : ListView.separated(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: min(bills.length, 5),
+                                itemBuilder: (context, index) =>
+                                    BillCardsCompact(billData: bills[index]),
+                                separatorBuilder: (context, index) => const SizedBox(height: 10),
+                              )
                   ],
                 ),
               ),

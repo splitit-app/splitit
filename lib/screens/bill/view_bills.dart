@@ -31,35 +31,30 @@ class _ViewBillHistoryState extends State<ViewBillHistory> {
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const TabBar(
-                indicatorSize: TabBarIndicatorSize.tab,
-                tabs: [
-                  Tab(text: 'All'),
-                  Tab(text: 'Placeholder'),
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    bills == null
-                        ? const Placeholder()
-                        : ListView.separated(
-                            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 26),
-                            shrinkWrap: true,
-                            itemCount: bills.length,
-                            itemBuilder: (context, index) => BillCards(billData: bills[index]),
-                            separatorBuilder: (context, index) => const SizedBox(height: 20),
-                          ),
-                    const Placeholder(),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        body: Column(
+          children: [
+            const TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
+              tabs: [
+                Tab(text: 'All'),
+                Tab(text: 'Placeholder'),
+              ],
+            ),
+            Expanded(
+              child: TabBarView(children: [
+                bills == null
+                    ? const Placeholder()
+                    : ListView.separated(
+                        padding: const EdgeInsets.only(top: 16, bottom: 64, left: 24, right: 24),
+                        shrinkWrap: true,
+                        itemCount: bills.length,
+                        itemBuilder: (context, index) => BillCards(billData: bills[index]),
+                        separatorBuilder: (context, index) => const SizedBox(height: 20),
+                      ),
+                const Placeholder(),
+              ]),
+            ),
+          ],
         ),
 
         // FAB:

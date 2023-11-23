@@ -34,21 +34,27 @@ class BillDataDTO with _$BillDataDTO {
 
   BillDataDTO._();
 
-  BillData toRuntimeObj(String uid, UserData userData) => BillData(
-        uid: uid,
-        dateTime: dateTime,
-        name: name,
-        totalSpent: totalSpent,
-        payer: userData.publicProfile, //TODO: search database correctly
-        primarySplits: primarySplits.map((uid) => userData.nonRegisteredFriends[uid]!).toList(),
-        splitBalances: splitBalances
-            .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
-        paymentResolveStatuses: paymentResolveStatuses.map(
-            (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!, resolveStatus)),
-        everythingElse: everythingElse.toRuntimeObj(userData),
-        itemGroups: List.empty(),
-        taxModule: BillModule_Tax(),
-        tipModule: BillModule_Tip(),
-        lastUpdatedSession: lastUpdatedSession,
-      );
+  BillData toRuntimeObj(String uid, UserData userData) {
+    BillData billData = BillData(
+      uid: uid,
+      dateTime: dateTime,
+      name: name,
+      totalSpent: totalSpent,
+      payer: userData.publicProfile, //TODO: search database correctly
+      primarySplits: primarySplits.map((uid) => userData.nonRegisteredFriends[uid]!).toList(),
+      splitBalances: splitBalances
+          .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
+      paymentResolveStatuses: paymentResolveStatuses.map(
+          (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!, resolveStatus)),
+      everythingElse: everythingElse.toRuntimeObj(userData),
+      itemGroups: List.empty(),
+      taxModule: BillModule_Tax(),
+      tipModule: BillModule_Tip(),
+      lastUpdatedSession: lastUpdatedSession,
+    );
+    
+    billData.everythingElse.billData = billData;
+
+    return billData;
+  }
 }

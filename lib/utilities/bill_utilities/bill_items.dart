@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:project_bs/runtime_models/bill/i_item_group.dart';
 import 'package:provider/provider.dart';
-import '../../runtime_models/bill/bill_data.dart';
 import '../person_icon.dart';
 
 class BillItems extends StatefulWidget {
-  final BillData billData;
-  const BillItems({super.key, required this.billData});
+  final IItemGroup itemGroup;
+  const BillItems({super.key, required this.itemGroup});
 
   @override
   State<BillItems> createState() => _BillItemsState();
 }
 
 enum SplitType {
+  even("Even", Icon(MaterialSymbols.balance)),
   shares("By Shares", Icon(MaterialSymbols.pie_chart_outlined)),
-  even("Even", Icon(MaterialSymbols.safety_check)),
   odd("Odd", Icon(MaterialSymbols.breastfeeding)),
   lonely("Lonely", Icon(MaterialSymbols.sentiment_dissatisfied));
 
@@ -37,7 +37,7 @@ class _BillItemsState extends State<BillItems> {
   @override
   Widget build(BuildContext context) {
     return Provider.value(
-      value: widget.billData,
+      value: widget.itemGroup,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Items"),
@@ -141,10 +141,10 @@ class _BillItemsState extends State<BillItems> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 24),
                         scrollDirection: Axis.vertical,
-                        itemCount: widget.billData.primarySplits.length,
+                        itemCount: widget.itemGroup.primarySplits.length,
                         itemBuilder: (context, index) {
                           final currentProfile =
-                              widget.billData.primarySplits[index];
+                              widget.itemGroup.primarySplits[index];
 
                           // ? Are we making this list slidable? If not, remove.
                           return Slidable(
@@ -163,7 +163,7 @@ class _BillItemsState extends State<BillItems> {
                                     topLeft:
                                         Radius.circular(index == 0 ? 25 : 0),
                                     bottomLeft: Radius.circular(index ==
-                                            widget.billData.primarySplits
+                                            widget.itemGroup.primarySplits
                                                     .length -
                                                 1
                                         ? 25
