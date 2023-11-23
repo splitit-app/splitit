@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/user/user_data.dart';
 import '../services/authentication_service.dart';
-import '../utilities/bill_utilities/bill_cards.dart';
+import 'bill/bill_card.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -187,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       shrinkWrap: true,
                       itemCount: bills.length,
-                      itemBuilder: (context, index) => BillCards(billData: bills[index]),
+                      itemBuilder: (context, index) => BillCard(billData: bills[index]),
                       separatorBuilder: (BuildContext context, int index) => const Divider(),
                     ),
                   )

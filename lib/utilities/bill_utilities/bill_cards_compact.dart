@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
-import 'bill_info.dart';
+import '../../screens/bill/bill_info/bill_info.dart';
 
 class BillCardsCompact extends StatelessWidget {
   final BillData billData;

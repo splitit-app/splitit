@@ -7,16 +7,16 @@ import 'package:provider/provider.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/user_data.dart';
-import '../person_icon.dart';
-import 'bill_info.dart';
+import '../../utilities/person_icon.dart';
+import 'bill_info/bill_info.dart';
 
-class BillCards extends StatelessWidget {
+class BillCard extends StatelessWidget {
   final BillData billData;
 
   // Information Text Color
   final Color textColors = const Color(0xFF0F1013);
 
-  const BillCards({super.key, required this.billData});
+  const BillCard({super.key, required this.billData});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,8 @@ class BillCards extends StatelessWidget {
     return userData == null
         ? const Placeholder()
         : GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => BillInfo(billData: billData)),
-            ),
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => BillInfo(billData: billData))),
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceVariant,

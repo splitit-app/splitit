@@ -6,7 +6,7 @@ import 'package:project_bs/runtime_models/bill/everything_else_item_group.dart';
 import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
 import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
 
-import '../utilities/bill_utilities/bill_cards.dart';
+import 'bill/bill_card.dart';
 
 class MockUpPage extends StatelessWidget {
   const MockUpPage({super.key});
@@ -86,7 +86,7 @@ class PageTest extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 7,
                 itemBuilder: (BuildContext context, int index) =>
-                    BillCards(billData: _dummyBillData),
+                    BillCard(billData: _dummyBillData),
               ),
             ),
           ],

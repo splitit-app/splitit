@@ -17,10 +17,17 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ItemGroup {
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   List<PublicProfile> get primarySplits => throw _privateConstructorUsedError;
+  set primarySplits(List<PublicProfile> value) =>
+      throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
+  set items(List<Item> value) => throw _privateConstructorUsedError;
   List<SplitRule> get splitRules => throw _privateConstructorUsedError;
+  set splitRules(List<SplitRule> value) => throw _privateConstructorUsedError;
   Map<PublicProfile, double> get splitBalances =>
+      throw _privateConstructorUsedError;
+  set splitBalances(Map<PublicProfile, double> value) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -124,19 +131,19 @@ class __$$ItemGroupImplCopyWithImpl<$Res>
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       primarySplits: null == primarySplits
-          ? _value._primarySplits
+          ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
               as List<PublicProfile>,
       items: null == items
-          ? _value._items
+          ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
       splitRules: null == splitRules
-          ? _value._splitRules
+          ? _value.splitRules
           : splitRules // ignore: cast_nullable_to_non_nullable
               as List<SplitRule>,
       splitBalances: null == splitBalances
-          ? _value._splitBalances
+          ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
               as Map<PublicProfile, double>,
     ));
@@ -148,79 +155,28 @@ class __$$ItemGroupImplCopyWithImpl<$Res>
 class _$ItemGroupImpl extends _ItemGroup {
   _$ItemGroupImpl(
       {this.name = '',
-      required final List<PublicProfile> primarySplits,
-      required final List<Item> items,
-      required final List<SplitRule> splitRules,
-      required final Map<PublicProfile, double> splitBalances})
-      : _primarySplits = primarySplits,
-        _items = items,
-        _splitRules = splitRules,
-        _splitBalances = splitBalances,
-        super._();
+      required this.primarySplits,
+      required this.items,
+      required this.splitRules,
+      required this.splitBalances})
+      : super._();
 
   @override
   @JsonKey()
-  final String name;
-  final List<PublicProfile> _primarySplits;
+  String name;
   @override
-  List<PublicProfile> get primarySplits {
-    if (_primarySplits is EqualUnmodifiableListView) return _primarySplits;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_primarySplits);
-  }
-
-  final List<Item> _items;
+  List<PublicProfile> primarySplits;
   @override
-  List<Item> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
-
-  final List<SplitRule> _splitRules;
+  List<Item> items;
   @override
-  List<SplitRule> get splitRules {
-    if (_splitRules is EqualUnmodifiableListView) return _splitRules;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_splitRules);
-  }
-
-  final Map<PublicProfile, double> _splitBalances;
+  List<SplitRule> splitRules;
   @override
-  Map<PublicProfile, double> get splitBalances {
-    if (_splitBalances is EqualUnmodifiableMapView) return _splitBalances;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_splitBalances);
-  }
+  Map<PublicProfile, double> splitBalances;
 
   @override
   String toString() {
     return 'ItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRules: $splitRules, splitBalances: $splitBalances)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ItemGroupImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality()
-                .equals(other._primarySplits, _primarySplits) &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
-            const DeepCollectionEquality()
-                .equals(other._splitRules, _splitRules) &&
-            const DeepCollectionEquality()
-                .equals(other._splitBalances, _splitBalances));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      const DeepCollectionEquality().hash(_primarySplits),
-      const DeepCollectionEquality().hash(_items),
-      const DeepCollectionEquality().hash(_splitRules),
-      const DeepCollectionEquality().hash(_splitBalances));
 
   @JsonKey(ignore: true)
   @override
@@ -231,24 +187,28 @@ class _$ItemGroupImpl extends _ItemGroup {
 
 abstract class _ItemGroup extends ItemGroup implements IItemGroup {
   factory _ItemGroup(
-          {final String name,
-          required final List<PublicProfile> primarySplits,
-          required final List<Item> items,
-          required final List<SplitRule> splitRules,
-          required final Map<PublicProfile, double> splitBalances}) =
-      _$ItemGroupImpl;
+      {String name,
+      required List<PublicProfile> primarySplits,
+      required List<Item> items,
+      required List<SplitRule> splitRules,
+      required Map<PublicProfile, double> splitBalances}) = _$ItemGroupImpl;
   _ItemGroup._() : super._();
 
   @override
   String get name;
+  set name(String value);
   @override
   List<PublicProfile> get primarySplits;
+  set primarySplits(List<PublicProfile> value);
   @override
   List<Item> get items;
+  set items(List<Item> value);
   @override
   List<SplitRule> get splitRules;
+  set splitRules(List<SplitRule> value);
   @override
   Map<PublicProfile, double> get splitBalances;
+  set splitBalances(Map<PublicProfile, double> value);
   @override
   @JsonKey(ignore: true)
   _$$ItemGroupImplCopyWith<_$ItemGroupImpl> get copyWith =>

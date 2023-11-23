@@ -4,14 +4,14 @@ import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:project_bs/runtime_models/bill/i_item_group.dart';
 import 'package:provider/provider.dart';
-import '../person_icon.dart';
+import '../../../../utilities/person_icon.dart';
 
-class BillItems extends StatefulWidget {
+class ItemGroupInfo extends StatefulWidget {
   final IItemGroup itemGroup;
-  const BillItems({super.key, required this.itemGroup});
+  const ItemGroupInfo({super.key, required this.itemGroup});
 
   @override
-  State<BillItems> createState() => _BillItemsState();
+  State<ItemGroupInfo> createState() => _ItemGroupInfoState();
 }
 
 enum SplitType {
@@ -25,7 +25,7 @@ enum SplitType {
   final Icon icon;
 }
 
-class _BillItemsState extends State<BillItems> {
+class _ItemGroupInfoState extends State<ItemGroupInfo> {
   final TextEditingController _itemGroupName =
       TextEditingController(text: "Item Group 1");
   bool _isTextFormEnabled = false;

@@ -6,14 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/utilities/bill_utilities/bill_items.dart';
 import 'package:provider/provider.dart';
 
-import '../../runtime_models/bill/bill_data.dart';
-import '../../runtime_models/user/public_profile.dart';
-import '../../runtime_models/user/user_data.dart';
-import '../../screens/bill/bill_info/bill_modify_split_screen.dart';
-import '../person_icon.dart';
+import '../../../runtime_models/bill/bill_data.dart';
+import '../../../runtime_models/user/public_profile.dart';
+import '../../../runtime_models/user/user_data.dart';
+import 'bill_modify_split_page.dart';
+import '../../../utilities/person_icon.dart';
 
 Route _createRoute() {
   return PageRouteBuilder(
@@ -378,10 +377,12 @@ class _BillInfoState extends State<BillInfo> {
 
                 const SizedBox(height: 15),
                 ElevatedButton(
-                  onPressed: () => Navigator.push(
-                    context,
+                  onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => ModifySplitScreen(billData: widget.billData),
+                      builder: (context) => Provider.value(
+                        value: widget.billData,
+                        builder: (context, child) => const ModifySplitPage(),
+                      ),
                     ),
                   ),
                   style: ElevatedButton.styleFrom(

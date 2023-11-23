@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/utilities/bill_utilities/bill_items.dart';
+import 'package:project_bs/screens/bill/bill_info/item/item_group_info.dart';
 
-import '../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/i_item_group.dart';
 
-class BillItemGroup extends StatelessWidget {
+class ItemGroupCard extends StatelessWidget {
   final IItemGroup itemGroup;
 
-  const BillItemGroup({
+  const ItemGroupCard({
     super.key,
     required this.itemGroup,
   });
@@ -16,7 +16,7 @@ class BillItemGroup extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BillItems(itemGroup: itemGroup)),
+        MaterialPageRoute(builder: (context) => ItemGroupInfo(itemGroup: itemGroup)),
       ),
       child: Container(
           padding: const EdgeInsets.all(15.0),

@@ -6,17 +6,17 @@ import 'package:provider/provider.dart';
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/bill_data_repository.dart';
-import '../../utilities/bill_utilities/bill_cards.dart';
+import 'bill_card.dart';
 import 'quick_split_dialog.dart';
 
-class ViewBillHistory extends StatefulWidget {
-  const ViewBillHistory({super.key});
+class BillListScreen extends StatefulWidget {
+  const BillListScreen({super.key});
 
   @override
-  State<ViewBillHistory> createState() => _ViewBillHistoryState();
+  State<BillListScreen> createState() => _BillListScreenState();
 }
 
-class _ViewBillHistoryState extends State<ViewBillHistory> {
+class _BillListScreenState extends State<BillListScreen> {
   @override
   Widget build(BuildContext context) {
     final UserData? userData = context.watch();
@@ -45,11 +45,11 @@ class _ViewBillHistoryState extends State<ViewBillHistory> {
                 bills == null
                     ? const Placeholder()
                     : ListView.separated(
-                        padding: const EdgeInsets.only(top: 16, bottom: 64, left: 24, right: 24),
+                        padding: const EdgeInsets.all(16).copyWith(bottom: 64),
                         shrinkWrap: true,
                         itemCount: bills.length,
-                        itemBuilder: (context, index) => BillCards(billData: bills[index]),
-                        separatorBuilder: (context, index) => const SizedBox(height: 20),
+                        itemBuilder: (context, index) => BillCard(billData: bills[index]),
+                        separatorBuilder: (context, index) => const SizedBox(height: 16),
                       ),
                 const Placeholder(),
               ]),

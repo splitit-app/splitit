@@ -4,7 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 // import '../../utilities/colorss.dart';
-import '../bill/view_bills.dart';
+import '../bill/bill_list_screen.dart';
 import '../friends_screen/friends_page.dart';
 import 'home_screen.dart';
 
@@ -20,7 +20,7 @@ class RootForm {
 
   final screens = [
     const MainHomeScreen(),
-    const ViewBillHistory(),
+    const BillListScreen(),
     FriendsPage(),
   ];
 }

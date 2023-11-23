@@ -1,11 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/runtime_models/bill/everything_else_item_group.dart';
-import 'package:project_bs/runtime_models/bill/item_group.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/bill/modules/bill_module_tax.dart';
 import '../../runtime_models/bill/modules/bill_module_tip.dart';
+import '../../runtime_models/user/user_data.dart';
 import 'everything_else_item_group_dto.dart';
 
 part 'bill_data_dto.freezed.dart';
@@ -47,12 +45,12 @@ class BillDataDTO with _$BillDataDTO {
       paymentResolveStatuses: paymentResolveStatuses.map(
           (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!, resolveStatus)),
       everythingElse: everythingElse.toRuntimeObj(userData),
-      itemGroups: List.empty(),
+      itemGroups: List.empty(growable: true),
       taxModule: BillModule_Tax(),
       tipModule: BillModule_Tip(),
       lastUpdatedSession: lastUpdatedSession,
     );
-    
+
     billData.everythingElse.billData = billData;
 
     return billData;

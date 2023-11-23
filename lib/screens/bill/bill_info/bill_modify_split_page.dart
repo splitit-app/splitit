@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
-import 'package:project_bs/runtime_models/bill/i_item_group.dart';
 
-import '../../../runtime_models/bill/bill_data.dart';
-import '../../../utilities/bill_utilities/bill_item_groups.dart';
+import 'item/item_list_screen.dart';
 
-class ModifySplitScreen extends StatelessWidget {
-  final BillData billData;
-
-  const ModifySplitScreen({super.key, required this.billData});
+class ModifySplitPage extends StatelessWidget {
+  const ModifySplitPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +16,9 @@ class ModifySplitScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         ),
-        body: Column(
+        body: const Column(
           children: [
-            const TabBar(
+            TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               tabs: [
                 Tab(
@@ -59,32 +55,9 @@ class ModifySplitScreen extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverList.separated(
-                        itemCount: billData.itemGroups.length,
-                        itemBuilder: (context, index) => BillItemGroup(
-                          itemGroup: billData.itemGroups[index] as IItemGroup,
-                        ),
-                        separatorBuilder: (context, index) => const SizedBox(height: 16.0),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            billData.itemGroups.isEmpty
-                                ? const SizedBox.shrink()
-                                : const SizedBox(height: 16),
-                            BillItemGroup(itemGroup: billData.everythingElse as IItemGroup),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Placeholder(),
-                const Placeholder(),
+                ItemListScreen(),
+                Placeholder(),
+                Placeholder(),
               ]),
             ),
           ],
