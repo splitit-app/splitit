@@ -118,10 +118,9 @@ class __$$PublicProfileDTOImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PublicProfileDTOImpl extends _PublicProfileDTO {
+class _$PublicProfileDTOImpl implements _PublicProfileDTO {
   _$PublicProfileDTOImpl(
-      {required this.uid, this.createdBy, required this.name})
-      : super._();
+      {required this.uid, this.createdBy, required this.name});
 
   factory _$PublicProfileDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$PublicProfileDTOImplFromJson(json);
@@ -168,12 +167,11 @@ class _$PublicProfileDTOImpl extends _PublicProfileDTO {
   }
 }
 
-abstract class _PublicProfileDTO extends PublicProfileDTO {
+abstract class _PublicProfileDTO implements PublicProfileDTO {
   factory _PublicProfileDTO(
       {required final String uid,
       final String? createdBy,
       required final String name}) = _$PublicProfileDTOImpl;
-  _PublicProfileDTO._() : super._();
 
   factory _PublicProfileDTO.fromJson(Map<String, dynamic> json) =
       _$PublicProfileDTOImpl.fromJson;

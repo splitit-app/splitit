@@ -17,10 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserData {
   String get uid => throw _privateConstructorUsedError;
-  set uid(String value) =>
-      throw _privateConstructorUsedError; //required String name,
-  PublicProfile get publicProfile =>
-      throw _privateConstructorUsedError; //required String name,
+  set uid(String value) => throw _privateConstructorUsedError;
+  PublicProfile get publicProfile => throw _privateConstructorUsedError;
   set publicProfile(PublicProfile value) => throw _privateConstructorUsedError;
   PrivateProfile get privateProfile => throw _privateConstructorUsedError;
   set privateProfile(PrivateProfile value) =>
@@ -191,7 +189,6 @@ class _$UserDataImpl extends _UserData with DiagnosticableTreeMixin {
 
   @override
   String uid;
-//required String name,
   @override
   PublicProfile publicProfile;
   @override
@@ -238,8 +235,8 @@ abstract class _UserData extends UserData {
   @override
   String get uid;
   set uid(String value);
-  @override //required String name,
-  PublicProfile get publicProfile; //required String name,
+  @override
+  PublicProfile get publicProfile;
   set publicProfile(PublicProfile value);
   @override
   PrivateProfile get privateProfile;

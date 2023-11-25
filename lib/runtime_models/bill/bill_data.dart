@@ -3,6 +3,7 @@ import 'package:project_bs/runtime_models/bill/everything_else_item_group.dart';
 
 import '../../net_models/bill/bill_data_dto.dart';
 import '../user/public_profile.dart';
+import '../user/user_data.dart';
 import 'item_group.dart';
 import 'modules/bill_module_tax.dart';
 import 'modules/bill_module_tip.dart';
@@ -42,8 +43,36 @@ class BillData with _$BillData {
         paymentResolveStatuses: paymentResolveStatuses
             .map((profile, resolveStatus) => MapEntry(profile.uid, resolveStatus)),
         everythingElse: everythingElse.toDataTransferObj,
+        itemGroups: itemGroups.map((itemGroup) => itemGroup.toDataTransferObj).toList(),
         lastUpdatedSession: lastUpdatedSession,
       );
+
+  factory BillData.fromDataTransferObj(BillDataDTO billDataDTO, String uid, UserData userData) {
+    BillData billData = BillData(
+      uid: uid,
+      dateTime: billDataDTO.dateTime,
+      name: billDataDTO.name,
+      totalSpent: billDataDTO.totalSpent,
+      payer: userData.publicProfile, //TODO: search database correctly
+      primarySplits:
+          billDataDTO.primarySplits.map((uid) => userData.nonRegisteredFriends[uid]!).toList(),
+      splitBalances: billDataDTO.splitBalances
+          .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
+      paymentResolveStatuses: billDataDTO.paymentResolveStatuses.map(
+          (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!, resolveStatus)),
+      everythingElse:
+          EverythingElseItemGroup.fromDataTransferObj(billDataDTO.everythingElse, userData),
+      itemGroups: billDataDTO.itemGroups
+          .map((itemGroup) => ItemGroup.fromDataTransferObj(itemGroup, userData))
+          .toList(),
+      taxModule: BillModule_Tax(),
+      tipModule: BillModule_Tip(),
+      lastUpdatedSession: billDataDTO.lastUpdatedSession,
+    );
+
+    billData.everythingElse.billData = billData;
+    return billData;
+  }
 
   Map<PublicProfile, double> get getSplitBalances => everythingElse.getSplitBalances;
 

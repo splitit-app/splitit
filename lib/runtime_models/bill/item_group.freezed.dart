@@ -154,7 +154,7 @@ class __$$ItemGroupImplCopyWithImpl<$Res>
 
 class _$ItemGroupImpl extends _ItemGroup {
   _$ItemGroupImpl(
-      {this.name = '',
+      {required this.name,
       required this.primarySplits,
       required this.items,
       required this.splitRules,
@@ -162,7 +162,6 @@ class _$ItemGroupImpl extends _ItemGroup {
       : super._();
 
   @override
-  @JsonKey()
   String name;
   @override
   List<PublicProfile> primarySplits;
@@ -187,7 +186,7 @@ class _$ItemGroupImpl extends _ItemGroup {
 
 abstract class _ItemGroup extends ItemGroup implements IItemGroup {
   factory _ItemGroup(
-      {String name,
+      {required String name,
       required List<PublicProfile> primarySplits,
       required List<Item> items,
       required List<SplitRule> splitRules,

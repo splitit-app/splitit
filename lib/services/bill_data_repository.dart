@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_cache/firestore_cache.dart';
-import 'package:project_bs/net_models/bill/everything_else_item_group_dto.dart';
-import 'package:project_bs/runtime_models/user/user_data.dart';
 import 'package:provider/provider.dart';
 
 import '../net_models/bill/bill_data_dto.dart';
+import '../net_models/bill/item_group_dto.dart';
 import '../runtime_models/bill/bill_data.dart';
 import '../runtime_models/user/public_profile.dart';
+import '../runtime_models/user/user_data.dart';
 
 class BillDataRepository {
   final Locator read;
@@ -54,29 +54,30 @@ class BillDataRepository {
           totalSpent: totalSpent,
           payerUid: payer.uid,
           primarySplits: primarySplitUids,
-          //itemGroups: List.empty(),
           //taxModule: BillModule_Tax(),
           //tipModule: BillModule_Tip(),
           splitBalances: {},
           paymentResolveStatuses: {},
-          everythingElse: EverythingElseItemGroupDTO(
+          everythingElse: ItemGroupDTO(
+            name: 'Everything Else',
             primarySplits: [payer.uid] + primarySplitUids,
             items: List.empty(),
             splitBalances: {},
             splitRules: List.empty(),
           ),
+          itemGroups: List.empty(),
           lastUpdatedSession: DateTime.now(),
         ).toJson())
         .then((value) => value.id);
   }
 
   Future pushBillData(BillData billData) =>
-      _billCollection.add(billData.toDataTransferObj.toJson());
+      _billCollection.doc(billData.uid).set(billData.toDataTransferObj.toJson());
 
-  BillData? snapshotToRuntimeObj(QueryDocumentSnapshot<Map<String, dynamic>> snapshot) =>
-      snapshot.exists
-          ? BillDataDTO.fromJson(snapshot.data()).toRuntimeObj(snapshot.id, userData!)
-          : null;
+  BillData? snapshotToRuntimeObj(QueryDocumentSnapshot<Map<String, dynamic>> snapshot) => snapshot
+          .exists
+      ? BillData.fromDataTransferObj(BillDataDTO.fromJson(snapshot.data()), snapshot.id, userData!)
+      : null;
 
   // Future pushUserData(UserData userData) async =>
   //     _userDocument.set(userData.toDataTransferObj.toJson());

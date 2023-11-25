@@ -15,6 +15,7 @@ class BillCard extends StatelessWidget {
 
   // Information Text Color
   final Color textColors = const Color(0xFF0F1013);
+  final int maxPersonIconCount = 6;
 
   const BillCard({super.key, required this.billData});
 
@@ -129,11 +130,11 @@ class BillCard extends StatelessWidget {
                           RowSuper(
                             innerDistance: -10.0,
                             children: billData.primarySplits
-                                .sublist(0, min(billData.primarySplits.length, 4))
+                                .sublist(0, min(billData.primarySplits.length, maxPersonIconCount))
                                 .map((profile) => PersonIcon(profile: profile))
                                 .toList(),
                           ),
-                          billData.primarySplits.length > 4
+                          billData.primarySplits.length > maxPersonIconCount
                               ? const Padding(
                                   padding: EdgeInsets.only(left: 5),
                                   child: Icon(Icons.keyboard_control),

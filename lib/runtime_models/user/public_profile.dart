@@ -14,6 +14,14 @@ class PublicProfile with _$PublicProfile {
     //Image? profileImage,
   }) = _PublicProfile;
 
+  factory PublicProfile.fromDataTransferObj(PublicProfileDTO publicProfileDTO, String uid,
+          {PublicProfile? createdBy}) =>
+      PublicProfile(
+        uid: uid,
+        createdBy: createdBy,
+        name: publicProfileDTO.name,
+      );
+
   factory PublicProfile.fromJson(Map<String, dynamic> json) => _$PublicProfileFromJson(json);
 
   PublicProfile._();

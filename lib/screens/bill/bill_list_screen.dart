@@ -64,12 +64,11 @@ class _BillListScreenState extends State<BillListScreen> {
             : true
                 ? ExpandableFab(
                     key: expandableFabStateKey,
-                    distance: 80,
+                    distance: 56,
                     overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
                     type: ExpandableFabType.up,
                     children: [
-                      FloatingActionButton.extended(
-                        heroTag: "fab", // Prevents multiple heroes error for Page Routing
+                      ElevatedButton.icon(
                         onPressed: () {
                           context.read<BillDataRepository>().createBill(
                                 dateTime: DateTime.now(),
@@ -85,7 +84,7 @@ class _BillListScreenState extends State<BillListScreen> {
                         label: const Text('Create Bill'),
                         icon: const Icon(Symbols.file_copy),
                       ),
-                      FloatingActionButton.extended(
+                      ElevatedButton.icon(
                         onPressed: () {
                           quickSplitDialog(context);
                           final state = expandableFabStateKey.currentState;

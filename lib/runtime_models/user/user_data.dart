@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../net_models/user/user_data_dto.dart';
@@ -9,16 +10,31 @@ part 'user_data.freezed.dart';
 
 @unfreezed
 class UserData with _$UserData {
-  static const int nonRegisteredFriendLimit = 30;
+  static const int nonRegisteredFriendLimit = 50;
 
   factory UserData({
     required String uid,
-    //required String name,
     required PublicProfile publicProfile,
     required PrivateProfile privateProfile,
     required List<PublicProfile> registeredFriends,
     required Map<String, PublicProfile> nonRegisteredFriends,
   }) = _UserData;
+
+  factory UserData.fromDataTransferObj(UserDataDTO userDataDTO, String uid) {
+    final publicProfile = PublicProfile.fromDataTransferObj(userDataDTO.publicProfile, uid);
+
+    return UserData(
+      uid: uid,
+      publicProfile: publicProfile,
+      privateProfile: PrivateProfile(themeData: ThemeData.light()),
+      registeredFriends: List.empty(),
+      nonRegisteredFriends: {
+        for (var profile in userDataDTO.nonRegisteredFriends)
+          profile.uid:
+              PublicProfile.fromDataTransferObj(profile, profile.uid, createdBy: publicProfile)
+      },
+    );
+  }
 
   UserData._();
 

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'everything_else_item_group_dto.dart';
+part of 'item_group_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-EverythingElseItemGroupDTO _$EverythingElseItemGroupDTOFromJson(
-    Map<String, dynamic> json) {
-  return _EverythingElseItemGroupDTO.fromJson(json);
+ItemGroupDTO _$ItemGroupDTOFromJson(Map<String, dynamic> json) {
+  return _ItemGroupDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$EverythingElseItemGroupDTO {
+mixin _$ItemGroupDTO {
+  String get name => throw _privateConstructorUsedError;
   List<String> get primarySplits => throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
   List<SplitRule> get splitRules => throw _privateConstructorUsedError;
@@ -28,29 +28,28 @@ mixin _$EverythingElseItemGroupDTO {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $EverythingElseItemGroupDTOCopyWith<EverythingElseItemGroupDTO>
-      get copyWith => throw _privateConstructorUsedError;
+  $ItemGroupDTOCopyWith<ItemGroupDTO> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EverythingElseItemGroupDTOCopyWith<$Res> {
-  factory $EverythingElseItemGroupDTOCopyWith(EverythingElseItemGroupDTO value,
-          $Res Function(EverythingElseItemGroupDTO) then) =
-      _$EverythingElseItemGroupDTOCopyWithImpl<$Res,
-          EverythingElseItemGroupDTO>;
+abstract class $ItemGroupDTOCopyWith<$Res> {
+  factory $ItemGroupDTOCopyWith(
+          ItemGroupDTO value, $Res Function(ItemGroupDTO) then) =
+      _$ItemGroupDTOCopyWithImpl<$Res, ItemGroupDTO>;
   @useResult
   $Res call(
-      {List<String> primarySplits,
+      {String name,
+      List<String> primarySplits,
       List<Item> items,
       List<SplitRule> splitRules,
       Map<String, double> splitBalances});
 }
 
 /// @nodoc
-class _$EverythingElseItemGroupDTOCopyWithImpl<$Res,
-        $Val extends EverythingElseItemGroupDTO>
-    implements $EverythingElseItemGroupDTOCopyWith<$Res> {
-  _$EverythingElseItemGroupDTOCopyWithImpl(this._value, this._then);
+class _$ItemGroupDTOCopyWithImpl<$Res, $Val extends ItemGroupDTO>
+    implements $ItemGroupDTOCopyWith<$Res> {
+  _$ItemGroupDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -60,12 +59,17 @@ class _$EverythingElseItemGroupDTOCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
     Object? splitRules = null,
     Object? splitBalances = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       primarySplits: null == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
@@ -87,40 +91,43 @@ class _$EverythingElseItemGroupDTOCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$EverythingElseItemGroupDTOImplCopyWith<$Res>
-    implements $EverythingElseItemGroupDTOCopyWith<$Res> {
-  factory _$$EverythingElseItemGroupDTOImplCopyWith(
-          _$EverythingElseItemGroupDTOImpl value,
-          $Res Function(_$EverythingElseItemGroupDTOImpl) then) =
-      __$$EverythingElseItemGroupDTOImplCopyWithImpl<$Res>;
+abstract class _$$ItemGroupDTOImplCopyWith<$Res>
+    implements $ItemGroupDTOCopyWith<$Res> {
+  factory _$$ItemGroupDTOImplCopyWith(
+          _$ItemGroupDTOImpl value, $Res Function(_$ItemGroupDTOImpl) then) =
+      __$$ItemGroupDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<String> primarySplits,
+      {String name,
+      List<String> primarySplits,
       List<Item> items,
       List<SplitRule> splitRules,
       Map<String, double> splitBalances});
 }
 
 /// @nodoc
-class __$$EverythingElseItemGroupDTOImplCopyWithImpl<$Res>
-    extends _$EverythingElseItemGroupDTOCopyWithImpl<$Res,
-        _$EverythingElseItemGroupDTOImpl>
-    implements _$$EverythingElseItemGroupDTOImplCopyWith<$Res> {
-  __$$EverythingElseItemGroupDTOImplCopyWithImpl(
-      _$EverythingElseItemGroupDTOImpl _value,
-      $Res Function(_$EverythingElseItemGroupDTOImpl) _then)
+class __$$ItemGroupDTOImplCopyWithImpl<$Res>
+    extends _$ItemGroupDTOCopyWithImpl<$Res, _$ItemGroupDTOImpl>
+    implements _$$ItemGroupDTOImplCopyWith<$Res> {
+  __$$ItemGroupDTOImplCopyWithImpl(
+      _$ItemGroupDTOImpl _value, $Res Function(_$ItemGroupDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
     Object? splitRules = null,
     Object? splitBalances = null,
   }) {
-    return _then(_$EverythingElseItemGroupDTOImpl(
+    return _then(_$ItemGroupDTOImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       primarySplits: null == primarySplits
           ? _value._primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
@@ -142,23 +149,25 @@ class __$$EverythingElseItemGroupDTOImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$EverythingElseItemGroupDTOImpl extends _EverythingElseItemGroupDTO {
-  _$EverythingElseItemGroupDTOImpl(
-      {required final List<String> primarySplits,
+
+@JsonSerializable(explicitToJson: true)
+class _$ItemGroupDTOImpl implements _ItemGroupDTO {
+  _$ItemGroupDTOImpl(
+      {required this.name,
+      required final List<String> primarySplits,
       required final List<Item> items,
       required final List<SplitRule> splitRules,
       required final Map<String, double> splitBalances})
       : _primarySplits = primarySplits,
         _items = items,
         _splitRules = splitRules,
-        _splitBalances = splitBalances,
-        super._();
+        _splitBalances = splitBalances;
 
-  factory _$EverythingElseItemGroupDTOImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$EverythingElseItemGroupDTOImplFromJson(json);
+  factory _$ItemGroupDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ItemGroupDTOImplFromJson(json);
 
+  @override
+  final String name;
   final List<String> _primarySplits;
   @override
   List<String> get primarySplits {
@@ -193,14 +202,15 @@ class _$EverythingElseItemGroupDTOImpl extends _EverythingElseItemGroupDTO {
 
   @override
   String toString() {
-    return 'EverythingElseItemGroupDTO(primarySplits: $primarySplits, items: $items, splitRules: $splitRules, splitBalances: $splitBalances)';
+    return 'ItemGroupDTO(name: $name, primarySplits: $primarySplits, items: $items, splitRules: $splitRules, splitBalances: $splitBalances)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EverythingElseItemGroupDTOImpl &&
+            other is _$ItemGroupDTOImpl &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._primarySplits, _primarySplits) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
@@ -214,6 +224,7 @@ class _$EverythingElseItemGroupDTOImpl extends _EverythingElseItemGroupDTO {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      name,
       const DeepCollectionEquality().hash(_primarySplits),
       const DeepCollectionEquality().hash(_items),
       const DeepCollectionEquality().hash(_splitRules),
@@ -222,30 +233,30 @@ class _$EverythingElseItemGroupDTOImpl extends _EverythingElseItemGroupDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$EverythingElseItemGroupDTOImplCopyWith<_$EverythingElseItemGroupDTOImpl>
-      get copyWith => __$$EverythingElseItemGroupDTOImplCopyWithImpl<
-          _$EverythingElseItemGroupDTOImpl>(this, _$identity);
+  _$$ItemGroupDTOImplCopyWith<_$ItemGroupDTOImpl> get copyWith =>
+      __$$ItemGroupDTOImplCopyWithImpl<_$ItemGroupDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EverythingElseItemGroupDTOImplToJson(
+    return _$$ItemGroupDTOImplToJson(
       this,
     );
   }
 }
 
-abstract class _EverythingElseItemGroupDTO extends EverythingElseItemGroupDTO {
-  factory _EverythingElseItemGroupDTO(
-          {required final List<String> primarySplits,
-          required final List<Item> items,
-          required final List<SplitRule> splitRules,
-          required final Map<String, double> splitBalances}) =
-      _$EverythingElseItemGroupDTOImpl;
-  _EverythingElseItemGroupDTO._() : super._();
+abstract class _ItemGroupDTO implements ItemGroupDTO {
+  factory _ItemGroupDTO(
+      {required final String name,
+      required final List<String> primarySplits,
+      required final List<Item> items,
+      required final List<SplitRule> splitRules,
+      required final Map<String, double> splitBalances}) = _$ItemGroupDTOImpl;
 
-  factory _EverythingElseItemGroupDTO.fromJson(Map<String, dynamic> json) =
-      _$EverythingElseItemGroupDTOImpl.fromJson;
+  factory _ItemGroupDTO.fromJson(Map<String, dynamic> json) =
+      _$ItemGroupDTOImpl.fromJson;
 
+  @override
+  String get name;
   @override
   List<String> get primarySplits;
   @override
@@ -256,6 +267,6 @@ abstract class _EverythingElseItemGroupDTO extends EverythingElseItemGroupDTO {
   Map<String, double> get splitBalances;
   @override
   @JsonKey(ignore: true)
-  _$$EverythingElseItemGroupDTOImplCopyWith<_$EverythingElseItemGroupDTOImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$ItemGroupDTOImplCopyWith<_$ItemGroupDTOImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

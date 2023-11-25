@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'everything_else_item_group_dto.dart';
+part of 'item_group_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EverythingElseItemGroupDTOImpl _$$EverythingElseItemGroupDTOImplFromJson(
-        Map<String, dynamic> json) =>
-    _$EverythingElseItemGroupDTOImpl(
+_$ItemGroupDTOImpl _$$ItemGroupDTOImplFromJson(Map<String, dynamic> json) =>
+    _$ItemGroupDTOImpl(
+      name: json['name'] as String,
       primarySplits: (json['primarySplits'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -23,11 +23,11 @@ _$EverythingElseItemGroupDTOImpl _$$EverythingElseItemGroupDTOImplFromJson(
       ),
     );
 
-Map<String, dynamic> _$$EverythingElseItemGroupDTOImplToJson(
-        _$EverythingElseItemGroupDTOImpl instance) =>
+Map<String, dynamic> _$$ItemGroupDTOImplToJson(_$ItemGroupDTOImpl instance) =>
     <String, dynamic>{
+      'name': instance.name,
       'primarySplits': instance.primarySplits,
-      'items': instance.items,
-      'splitRules': instance.splitRules,
+      'items': instance.items.map((e) => e.toJson()).toList(),
+      'splitRules': instance.splitRules.map((e) => e.toJson()).toList(),
       'splitBalances': instance.splitBalances,
     };

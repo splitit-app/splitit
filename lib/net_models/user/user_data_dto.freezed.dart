@@ -152,15 +152,14 @@ class __$$UserDataDTOImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$UserDataDTOImpl extends _UserDataDTO {
+class _$UserDataDTOImpl implements _UserDataDTO {
   _$UserDataDTOImpl(
       {required this.publicProfile,
       required final List<String> registeredFriendUids,
       required final List<PublicProfileDTO> nonRegisteredFriends,
       required this.lastUpdatedSession})
       : _registeredFriendUids = registeredFriendUids,
-        _nonRegisteredFriends = nonRegisteredFriends,
-        super._();
+        _nonRegisteredFriends = nonRegisteredFriends;
 
   factory _$UserDataDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataDTOImplFromJson(json);
@@ -231,13 +230,12 @@ class _$UserDataDTOImpl extends _UserDataDTO {
   }
 }
 
-abstract class _UserDataDTO extends UserDataDTO {
+abstract class _UserDataDTO implements UserDataDTO {
   factory _UserDataDTO(
       {required final PublicProfileDTO publicProfile,
       required final List<String> registeredFriendUids,
       required final List<PublicProfileDTO> nonRegisteredFriends,
       required final DateTime lastUpdatedSession}) = _$UserDataDTOImpl;
-  _UserDataDTO._() : super._();
 
   factory _UserDataDTO.fromJson(Map<String, dynamic> json) =
       _$UserDataDTOImpl.fromJson;

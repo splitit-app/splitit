@@ -11,9 +11,8 @@ class UserDataRepository {
   UserDataRepository({required this.read});
   String? get uid => read<User?>()?.uid;
 
-  Future<UserData> get userData async => userDocumentReference
-      .get()
-      .then((snapshot) => UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid!));
+  Future<UserData> get userData async => userDocumentReference.get().then(
+      (snapshot) => UserData.fromDataTransferObj(UserDataDTO.fromJson(snapshot.data()!), uid!));
 
   Stream<UserData?> get userDataStream => userDocumentReference
       .snapshots()
@@ -32,7 +31,7 @@ class UserDataRepository {
   UserData? snapshotToRuntimeObj(DocumentSnapshot<Map<String, dynamic>> snapshot) => uid == null
       ? null
       : snapshot.exists
-          ? UserDataDTO.fromJson(snapshot.data()!).toRuntimeObj(uid!)
+          ? UserData.fromDataTransferObj(UserDataDTO.fromJson(snapshot.data()!), uid!)
           : null;
 
   //TODO: query for friends?
