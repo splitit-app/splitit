@@ -12,4 +12,6 @@ abstract class IItemGroup {
   double get value;
 
   ItemGroupDTO get toDataTransferObj;
+
+  Map<PublicProfile, double> get getSplitBalances;
 }

@@ -1,9 +1,14 @@
+import 'dart:math';
+
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../utilities/decorations.dart';
 import '../../../../utilities/person_icon.dart';
 
 class ItemGroupInfo extends StatefulWidget {
@@ -32,16 +37,21 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
 
   SplitType selectedItem = SplitType.even;
   final TextEditingController itemController = TextEditingController();
+  bool expandPeople = false;
+  final int maxPersonIconCount = 6;
 
   @override
   Widget build(BuildContext context) {
     _itemGroupName.text = 'Item Group';
     itemController.text = selectedItem.label;
 
+    final splitBalances = widget.itemGroup.getSplitBalances;
+
     return Provider.value(
       value: widget.itemGroup,
       child: Scaffold(
         appBar: AppBar(
+          shape: appBarShape,
           title: const Text("Item Group"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
@@ -115,63 +125,103 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 // People Container
                 const Text("People", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 8),
-                //TODO: convert to expansion tile card
-                Container(
-                  height: 175.0,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
-                      color: Theme.of(context).colorScheme.surfaceVariant),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                    scrollDirection: Axis.vertical,
-                    itemCount: widget.itemGroup.primarySplits.length,
-                    itemBuilder: (context, index) {
-                      final currentProfile = widget.itemGroup.primarySplits[index];
+                ExpansionTileCard(
+                  //TODO: Design advice required here
+                  //onExpansionChanged: (isExpanded) => setState(() => expandPeople = isExpanded),
+                  borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                  baseColor: Theme.of(context).colorScheme.secondaryContainer,
+                  expandedColor: Theme.of(context).colorScheme.surfaceVariant,
+                  elevation: 0,
+                  title: expandPeople
+                      ? const SizedBox.shrink()
+                      : Row(children: [
+                          RowSuper(
+                            innerDistance: -10,
+                            children: widget.itemGroup.primarySplits
+                                .sublist(0,
+                                    min(widget.itemGroup.primarySplits.length, maxPersonIconCount))
+                                .map((profile) => PersonIcon(profile: profile))
+                                .toList(),
+                          ),
+                          widget.itemGroup.primarySplits.length > maxPersonIconCount
+                              ? const Padding(
+                                  padding: EdgeInsets.only(left: 5),
+                                  child: Icon(Icons.keyboard_control),
+                                )
+                              : const SizedBox.shrink(),
+                        ]),
+                  children: [
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      //padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                      scrollDirection: Axis.vertical,
+                      itemCount: widget.itemGroup.primarySplits.length,
+                      itemBuilder: (context, index) {
+                        final currentProfile = widget.itemGroup.primarySplits[index];
 
-                      // ? Are we making this list slidable? If not, remove.
-                      return Slidable(
-                        closeOnScroll: false,
-                        startActionPane: ActionPane(
-                          motion: const BehindMotion(),
-                          extentRatio: 0.2,
-                          children: [
-                            SlidableAction(
-                              onPressed: ((context) {}),
-                              backgroundColor: Theme.of(context).colorScheme.primary,
-                              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(index == 0 ? 25 : 0),
-                                bottomLeft: Radius.circular(
-                                    index == widget.itemGroup.primarySplits.length - 1 ? 25 : 0),
+                        // ? Are we making this list slidable? If not, remove.
+                        return Slidable(
+                          closeOnScroll: false,
+                          startActionPane: ActionPane(
+                            motion: const BehindMotion(),
+                            extentRatio: 0.2,
+                            children: [
+                              SlidableAction(
+                                onPressed: ((context) {}),
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                                borderRadius: BorderRadius.only(
+                                  //topLeft: Radius.circular(index == 0 ? 25 : 0),
+                                  bottomLeft: Radius.circular(
+                                      index == widget.itemGroup.primarySplits.length - 1 ? 25 : 0),
+                                ),
+                                icon: MaterialSymbols.check,
                               ),
-                              icon: MaterialSymbols.check,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 15.0),
-                            PersonIcon(profile: currentProfile),
-                            const SizedBox(width: 15.0),
-                            Expanded(
-                                flex: 3,
-                                child: Text(
+                            ],
+                          ),
+                          child: ListTile(
+                            leading: PersonIcon(profile: currentProfile),
+                            title: Column(children: [
+                              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                Expanded(
+                                    child: Text(
                                   currentProfile.name,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 )),
-                            //? what is this for?
-                            const Expanded(child: Text("9/11")),
-                          ],
-                        ),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(height: 16, thickness: 2.0),
-                  ),
+                                //const Spacer(),
+                                //TODO: implement split rule detail
+                                const SizedBox(width: 16),
+                                const SizedBox(
+                                    width: 60, child: Text("9/11", textAlign: TextAlign.right)),
+                              ]),
+                              //const SizedBox(height: 4),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  '\$${splitBalances[currentProfile]?.toStringAsFixed(2)}',
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ]),
+                            trailing: const Icon(MaterialSymbols.arrow_right),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(height: 2, indent: 16, endIndent: 16),
+                    ),
+                  ],
                 ),
+
+                // Original container for expansion tile card content
+                // Container(
+                //   clipBehavior: Clip.hardEdge,
+                //   decoration: BoxDecoration(
+                //       borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                //       color: Theme.of(context).colorScheme.surfaceVariant),
+                // ),
 
                 const SizedBox(height: 24),
 
@@ -185,7 +235,8 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                       color: Theme.of(context).colorScheme.surfaceVariant),
                   child: ListView.separated(
                     shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    physics: const NeverScrollableScrollPhysics(),
+                    //padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                     itemCount: widget.itemGroup.items.length,
                     itemBuilder: (context, index) {
                       final item = widget.itemGroup.items[index];
@@ -210,21 +261,25 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                           ],
                         ),
                         // Actual Items
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 3,
-                                child: Text(
-                                  item.name,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                )),
-                            Text(item.value.toString()),
-                          ],
+                        child: ListTile(
+                          leading: Text('${index + 1}.'),
+                          title: Row(
+                            children: [
+                              Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    item.name,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  )),
+                              Text('\$${item.value}'),
+                            ],
+                          ),
                         ),
                       );
                     },
-                    separatorBuilder: (context, index) => const Divider(height: 16, thickness: 2.0),
+                    separatorBuilder: (context, index) =>
+                        const Divider(height: 2, indent: 16, endIndent: 16),
                   ),
                 ),
               ],

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/bill_data_repository.dart';
+import '../../utilities/decorations.dart';
 import 'bill_card.dart';
 import 'quick_split_dialog.dart';
 
@@ -27,6 +28,7 @@ class _BillListScreenState extends State<BillListScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          shape: appBarShape,
           title: const Text("Splits"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,

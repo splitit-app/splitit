@@ -43,4 +43,9 @@ class ItemGroup with _$ItemGroup {
       );
 
   double get value => items.fold(0, (previousValue, item) => previousValue + item.value);
+
+  Map<PublicProfile, double> get getSplitBalances {
+    final balance = value / primarySplits.length;
+    return {for (var profile in primarySplits) profile: balance};
+  }
 }

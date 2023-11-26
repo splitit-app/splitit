@@ -74,7 +74,22 @@ class BillData with _$BillData {
     return billData;
   }
 
-  Map<PublicProfile, double> get getSplitBalances => everythingElse.getSplitBalances;
+  Map<PublicProfile, double> get getSplitBalances {
+    Map<PublicProfile, double> splitBalances = {
+      for (PublicProfile profile in [payer!] + primarySplits) profile: 0
+    };
+
+    for (ItemGroup itemGroup in itemGroups) {
+      for (PublicProfile profile in itemGroup.primarySplits) {
+        splitBalances[profile] = splitBalances[profile]! + itemGroup.getSplitBalances[profile]!;
+      }
+    }
+    for (PublicProfile profile in everythingElse.primarySplits) {
+      splitBalances[profile] = splitBalances[profile]! + everythingElse.getSplitBalances[profile]!;
+    }
+
+    return splitBalances;
+  }
 
 //TODO: when a new item is added, initialized its tax list with the current number of taxes
 //TODO: when a new tax is introduced, iterate through all the items and update their List<bool>

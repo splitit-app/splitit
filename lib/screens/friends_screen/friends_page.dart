@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../runtime_models/user/user_data.dart';
+import '../../utilities/decorations.dart';
 import '../../utilities/group_container.dart';
 import '../../utilities/scroll_animations.dart';
 import 'friends_page_overview.dart';
@@ -29,6 +30,7 @@ class FriendsPage extends StatelessWidget {
         ? const Placeholder()
         : Scaffold(
             appBar: AppBar(
+              shape: appBarShape,
               //backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               title: const Text("People"),

@@ -11,8 +11,9 @@ import 'package:provider/provider.dart';
 import '../../../runtime_models/bill/bill_data.dart';
 import '../../../runtime_models/user/public_profile.dart';
 import '../../../runtime_models/user/user_data.dart';
-import 'bill_modify_split_page.dart';
+import '../../../utilities/decorations.dart';
 import '../../../utilities/person_icon.dart';
+import 'bill_modify_split_page.dart';
 
 Route _createRoute() {
   return PageRouteBuilder(
@@ -117,6 +118,7 @@ class PeopleInvolved extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shape: appBarShape,
         title: const Text("People Involved"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
@@ -183,6 +185,7 @@ class PeopleInvolved extends StatelessWidget {
 class _BillInfoState extends State<BillInfo> {
   final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
   Widget onDisplay = const CloseTitle();
+  final int maxPersonIconCount = 6;
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +193,7 @@ class _BillInfoState extends State<BillInfo> {
       value: widget.billData,
       child: Scaffold(
         appBar: AppBar(
+          shape: appBarShape,
           title: Text(widget.billData.name),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
@@ -308,70 +312,97 @@ class _BillInfoState extends State<BillInfo> {
                     const Text("Overview",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 10.0),
-                    Container(
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(25.0)),
-                          color: Theme.of(context)
-                              .colorScheme
-                              .surfaceVariant), //! Change Colors if needed
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                        scrollDirection: Axis.vertical,
-                        itemCount: widget.billData.primarySplits.length,
-                        itemBuilder: (context, index) {
-                          final currentProfile = widget.billData.primarySplits[index];
+                    ExpansionTileCard(
+                      initiallyExpanded: true,
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      baseColor: Theme.of(context).colorScheme.secondaryContainer,
+                      expandedColor: Theme.of(context).colorScheme.surfaceVariant,
+                      elevation: 0,
+                      title: Row(children: [
+                        RowSuper(
+                          innerDistance: -10,
+                          children: widget.billData.primarySplits
+                              .sublist(
+                                  0, min(widget.billData.primarySplits.length, maxPersonIconCount))
+                              .map((profile) => PersonIcon(profile: profile))
+                              .toList(),
+                        ),
+                        widget.billData.primarySplits.length > maxPersonIconCount
+                            ? const Padding(
+                                padding: EdgeInsets.only(left: 5),
+                                child: Icon(Icons.keyboard_control),
+                              )
+                            : const SizedBox.shrink(),
+                      ]),
+                      children: [
+                        ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          //padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                          scrollDirection: Axis.vertical,
+                          itemCount: widget.billData.primarySplits.length,
+                          itemBuilder: (context, index) {
+                            final currentProfile = widget.billData.primarySplits[index];
 
-                          return Slidable(
-                            closeOnScroll: false,
-                            startActionPane: ActionPane(
-                              motion: const BehindMotion(),
-                              extentRatio: 0.2,
-                              children: [
-                                SlidableAction(
-                                  onPressed: ((context) {}),
-                                  backgroundColor: Theme.of(context).colorScheme.primary,
-                                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(index == 0 ? 25 : 0),
-                                    bottomLeft: Radius.circular(
-                                        index == widget.billData.primarySplits.length - 1 ? 25 : 0),
+                            return Slidable(
+                              closeOnScroll: false,
+                              startActionPane: ActionPane(
+                                motion: const BehindMotion(),
+                                extentRatio: 0.2,
+                                children: [
+                                  SlidableAction(
+                                    onPressed: ((context) {}),
+                                    backgroundColor: Theme.of(context).colorScheme.primary,
+                                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(index == 0 ? 25 : 0),
+                                      bottomLeft: Radius.circular(
+                                          index == widget.billData.primarySplits.length - 1
+                                              ? 25
+                                              : 0),
+                                    ),
+                                    icon: Symbols.check,
                                   ),
-                                  icon: Symbols.check,
+                                ],
+                              ),
+                              child: ListTile(
+                                leading: PersonIcon(profile: currentProfile),
+                                title: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 3,
+                                        child: Text(
+                                          currentProfile.name,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        )),
+                                    Expanded(
+                                      child: Text(
+                                        '\$${widget.billData.getSplitBalances[currentProfile]!.toStringAsFixed(2)}',
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context).colorScheme.error),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            child: Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const SizedBox(width: 15.0),
-                                PersonIcon(profile: currentProfile),
-                                const SizedBox(width: 15.0),
-                                Expanded(
-                                    flex: 3,
-                                    child: Text(
-                                      currentProfile.name,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    )),
-                                Expanded(
-                                  child: Text(
-                                    widget.billData.getSplitBalances[currentProfile]!.toString(),
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).colorScheme.error),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(height: 16, thickness: 2.0),
-                      ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(height: 2, indent: 16, endIndent: 16),
+                        ),
+                      ],
                     ),
+                    // Container(
+                    //   clipBehavior: Clip.hardEdge,
+                    //   decoration: BoxDecoration(
+                    //       borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                    //       color: Theme.of(context)
+                    //           .colorScheme
+                    //           .surfaceVariant), //! Change Colors if needed
+                    // ),
                   ],
                 ),
 

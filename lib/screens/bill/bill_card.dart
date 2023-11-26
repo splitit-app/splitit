@@ -31,14 +31,14 @@ class BillCard extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceVariant,
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 4,
-                    color: Colors.black45,
-                    offset: Offset(0, 2),
-                    spreadRadius: 1,
-                  ),
-                ],
+                // boxShadow: const [
+                //   BoxShadow(
+                //     blurRadius: 4,
+                //     color: Colors.black45,
+                //     offset: Offset(0, 2),
+                //     spreadRadius: 1,
+                //   ),
+                // ],
                 borderRadius: BorderRadius.circular(25.0),
               ),
               child: Padding(

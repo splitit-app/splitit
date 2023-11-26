@@ -2,15 +2,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/screens/home/home_page.dart';
-import 'package:project_bs/screens/profile/profile_page.dart';
-import 'package:project_bs/utilities/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/authentication_service.dart';
 import '../../utilities/bill_utilities/bill_cards_compact.dart';
+import '../../utilities/colors.dart';
+import '../../utilities/decorations.dart';
+import '../profile/profile_page.dart';
+import 'home_page.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key});
@@ -27,14 +28,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        // shape: const RoundedRectangleBorder(
-        //   borderRadius: BorderRadius.vertical(
-        //     bottom: Radius.circular(18),
-        //   ),
-        // ),
+        shape: appBarShape,
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         title: const Text("Home", style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
-
         centerTitle: true,
         toolbarHeight: 64,
         elevation: 0,

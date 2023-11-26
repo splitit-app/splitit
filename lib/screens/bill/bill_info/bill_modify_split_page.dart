@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 
+import '../../../utilities/decorations.dart';
 import 'item/item_list_screen.dart';
 
 class ModifySplitPage extends StatelessWidget {
@@ -12,6 +13,7 @@ class ModifySplitPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          shape: appBarShape,
           title: const Text("Magnifier"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
