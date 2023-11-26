@@ -8,10 +8,10 @@ abstract class IItemGroup {
   List<PublicProfile> get primarySplits;
   List<Item> get items;
   List<SplitRule> get splitRules;
-  Map<PublicProfile, double> get splitBalances;
+  Map<String, double> get splitBalances;
   double get value;
 
   ItemGroupDTO get toDataTransferObj;
 
-  Map<PublicProfile, double> get getSplitBalances;
+  Map<String, double> get getSplitBalances;
 }

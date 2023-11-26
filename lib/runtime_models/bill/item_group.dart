@@ -17,7 +17,7 @@ class ItemGroup with _$ItemGroup {
     required List<PublicProfile> primarySplits,
     required List<Item> items,
     required List<SplitRule> splitRules,
-    required Map<PublicProfile, double> splitBalances,
+    required Map<String, double> splitBalances,
   }) = _ItemGroup;
 
   factory ItemGroup.fromDataTransferObj(ItemGroupDTO itemGroupDTO, UserData userData) => ItemGroup(
@@ -28,8 +28,7 @@ class ItemGroup with _$ItemGroup {
             .toList(),
         items: itemGroupDTO.items,
         splitRules: itemGroupDTO.splitRules,
-        splitBalances: itemGroupDTO.splitBalances
-            .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
+        splitBalances: itemGroupDTO.splitBalances,
       );
 
   ItemGroup._();
@@ -39,13 +38,13 @@ class ItemGroup with _$ItemGroup {
         primarySplits: primarySplits.map((profile) => profile.uid).toList(),
         items: items,
         splitRules: splitRules,
-        splitBalances: splitBalances.map((profile, balance) => MapEntry(profile.uid, balance)),
+        splitBalances: splitBalances,
       );
 
-  double get value => items.fold(0, (previousValue, item) => previousValue + item.value);
+  double get value => items.fold(0, (previousValue, item) => previousValue + item.value * item.quantity);
 
-  Map<PublicProfile, double> get getSplitBalances {
+  Map<String, double> get getSplitBalances {
     final balance = value / primarySplits.length;
-    return {for (var profile in primarySplits) profile: balance};
+    return {for (var profile in primarySplits) profile.uid: balance};
   }
 }

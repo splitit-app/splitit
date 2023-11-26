@@ -21,8 +21,13 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Item {
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
+  set value(double value) => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
+  set quantity(int value) => throw _privateConstructorUsedError;
   List<bool> get taxableStatusList => throw _privateConstructorUsedError;
+  set taxableStatusList(List<bool> value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +39,8 @@ abstract class $ItemCopyWith<$Res> {
   factory $ItemCopyWith(Item value, $Res Function(Item) then) =
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
-  $Res call({String name, double value, List<bool> taxableStatusList});
+  $Res call(
+      {String name, double value, int quantity, List<bool> taxableStatusList});
 }
 
 /// @nodoc
@@ -52,6 +58,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   $Res call({
     Object? name = null,
     Object? value = null,
+    Object? quantity = null,
     Object? taxableStatusList = null,
   }) {
     return _then(_value.copyWith(
@@ -63,6 +70,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       taxableStatusList: null == taxableStatusList
           ? _value.taxableStatusList
           : taxableStatusList // ignore: cast_nullable_to_non_nullable
@@ -78,7 +89,8 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
       __$$ItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, double value, List<bool> taxableStatusList});
+  $Res call(
+      {String name, double value, int quantity, List<bool> taxableStatusList});
 }
 
 /// @nodoc
@@ -93,6 +105,7 @@ class __$$ItemImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? value = null,
+    Object? quantity = null,
     Object? taxableStatusList = null,
   }) {
     return _then(_$ItemImpl(
@@ -104,8 +117,12 @@ class __$$ItemImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       taxableStatusList: null == taxableStatusList
-          ? _value._taxableStatusList
+          ? _value.taxableStatusList
           : taxableStatusList // ignore: cast_nullable_to_non_nullable
               as List<bool>,
     ));
@@ -118,47 +135,28 @@ class _$ItemImpl implements _Item {
   _$ItemImpl(
       {this.name = 'New Item',
       this.value = 0,
-      required final List<bool> taxableStatusList})
-      : _taxableStatusList = taxableStatusList;
+      this.quantity = 1,
+      required this.taxableStatusList});
 
   factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItemImplFromJson(json);
 
   @override
   @JsonKey()
-  final String name;
+  String name;
   @override
   @JsonKey()
-  final double value;
-  final List<bool> _taxableStatusList;
+  double value;
   @override
-  List<bool> get taxableStatusList {
-    if (_taxableStatusList is EqualUnmodifiableListView)
-      return _taxableStatusList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_taxableStatusList);
-  }
+  @JsonKey()
+  int quantity;
+  @override
+  List<bool> taxableStatusList;
 
   @override
   String toString() {
-    return 'Item(name: $name, value: $value, taxableStatusList: $taxableStatusList)';
+    return 'Item(name: $name, value: $value, quantity: $quantity, taxableStatusList: $taxableStatusList)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ItemImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.value, value) || other.value == value) &&
-            const DeepCollectionEquality()
-                .equals(other._taxableStatusList, _taxableStatusList));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, name, value,
-      const DeepCollectionEquality().hash(_taxableStatusList));
 
   @JsonKey(ignore: true)
   @override
@@ -176,18 +174,25 @@ class _$ItemImpl implements _Item {
 
 abstract class _Item implements Item {
   factory _Item(
-      {final String name,
-      final double value,
-      required final List<bool> taxableStatusList}) = _$ItemImpl;
+      {String name,
+      double value,
+      int quantity,
+      required List<bool> taxableStatusList}) = _$ItemImpl;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
 
   @override
   String get name;
+  set name(String value);
   @override
   double get value;
+  set value(double value);
+  @override
+  int get quantity;
+  set quantity(int value);
   @override
   List<bool> get taxableStatusList;
+  set taxableStatusList(List<bool> value);
   @override
   @JsonKey(ignore: true)
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>

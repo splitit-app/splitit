@@ -33,13 +33,12 @@ mixin _$BillData {
       throw _privateConstructorUsedError;
   set secondarySplits(List<PublicProfile>? value) =>
       throw _privateConstructorUsedError;
-  Map<PublicProfile, double> get splitBalances =>
+  Map<String, double> get splitBalances => throw _privateConstructorUsedError;
+  set splitBalances(Map<String, double> value) =>
       throw _privateConstructorUsedError;
-  set splitBalances(Map<PublicProfile, double> value) =>
+  Map<String, double> get paymentResolveStatuses =>
       throw _privateConstructorUsedError;
-  Map<PublicProfile, double> get paymentResolveStatuses =>
-      throw _privateConstructorUsedError;
-  set paymentResolveStatuses(Map<PublicProfile, double> value) =>
+  set paymentResolveStatuses(Map<String, double> value) =>
       throw _privateConstructorUsedError; //
   EverythingElseItemGroup get everythingElse =>
       throw _privateConstructorUsedError; //
@@ -72,8 +71,8 @@ abstract class $BillDataCopyWith<$Res> {
       PublicProfile? payer,
       List<PublicProfile> primarySplits,
       List<PublicProfile>? secondarySplits,
-      Map<PublicProfile, double> splitBalances,
-      Map<PublicProfile, double> paymentResolveStatuses,
+      Map<String, double> splitBalances,
+      Map<String, double> paymentResolveStatuses,
       EverythingElseItemGroup everythingElse,
       List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
@@ -146,11 +145,11 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
       paymentResolveStatuses: null == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
       everythingElse: null == everythingElse
           ? _value.everythingElse
           : everythingElse // ignore: cast_nullable_to_non_nullable
@@ -228,8 +227,8 @@ abstract class _$$BillDataImplCopyWith<$Res>
       PublicProfile? payer,
       List<PublicProfile> primarySplits,
       List<PublicProfile>? secondarySplits,
-      Map<PublicProfile, double> splitBalances,
-      Map<PublicProfile, double> paymentResolveStatuses,
+      Map<String, double> splitBalances,
+      Map<String, double> paymentResolveStatuses,
       EverythingElseItemGroup everythingElse,
       List<ItemGroup> itemGroups,
       BillModule_Tax taxModule,
@@ -304,11 +303,11 @@ class __$$BillDataImplCopyWithImpl<$Res>
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
       paymentResolveStatuses: null == paymentResolveStatuses
           ? _value.paymentResolveStatuses
           : paymentResolveStatuses // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
       everythingElse: null == everythingElse
           ? _value.everythingElse
           : everythingElse // ignore: cast_nullable_to_non_nullable
@@ -371,9 +370,9 @@ class _$BillDataImpl extends _BillData {
   @override
   List<PublicProfile>? secondarySplits;
   @override
-  Map<PublicProfile, double> splitBalances;
+  Map<String, double> splitBalances;
   @override
-  Map<PublicProfile, double> paymentResolveStatuses;
+  Map<String, double> paymentResolveStatuses;
 //
   @override
   EverythingElseItemGroup everythingElse;
@@ -407,8 +406,8 @@ abstract class _BillData extends BillData {
       PublicProfile? payer,
       required List<PublicProfile> primarySplits,
       List<PublicProfile>? secondarySplits,
-      required Map<PublicProfile, double> splitBalances,
-      required Map<PublicProfile, double> paymentResolveStatuses,
+      required Map<String, double> splitBalances,
+      required Map<String, double> paymentResolveStatuses,
       required EverythingElseItemGroup everythingElse,
       required List<ItemGroup> itemGroups,
       required BillModule_Tax taxModule,
@@ -438,11 +437,11 @@ abstract class _BillData extends BillData {
   List<PublicProfile>? get secondarySplits;
   set secondarySplits(List<PublicProfile>? value);
   @override
-  Map<PublicProfile, double> get splitBalances;
-  set splitBalances(Map<PublicProfile, double> value);
+  Map<String, double> get splitBalances;
+  set splitBalances(Map<String, double> value);
   @override
-  Map<PublicProfile, double> get paymentResolveStatuses;
-  set paymentResolveStatuses(Map<PublicProfile, double> value);
+  Map<String, double> get paymentResolveStatuses;
+  set paymentResolveStatuses(Map<String, double> value);
   @override //
   EverythingElseItemGroup get everythingElse; //
   set everythingElse(EverythingElseItemGroup value);

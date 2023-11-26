@@ -200,7 +200,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  '\$${splitBalances[currentProfile]?.toStringAsFixed(2)}',
+                                  '\$${splitBalances[currentProfile.uid]?.toStringAsFixed(2)}',
                                   style: const TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -263,24 +263,57 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                         // Actual Items
                         child: ListTile(
                           leading: Text('${index + 1}.'),
-                          title: Row(
-                            children: [
-                              Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    item.name,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  )),
-                              Text('\$${item.value}'),
-                            ],
-                          ),
+                          title: Row(children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(item.name),
+                                  Text(
+                                    '\$${item.value}',
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                //TODO: save
+                                item.quantity--;
+                                setState(() {});
+                              },
+                              icon: const Icon(MaterialSymbols.remove),
+                            ),
+                            Center(child: Text(item.quantity.toString())),
+                            IconButton(
+                              onPressed: () {
+                                //TODO: save
+                                item.quantity++;
+                                setState(() {});
+                              },
+                              icon: const Icon(MaterialSymbols.add),
+                            ),
+                          ]),
                         ),
                       );
                     },
                     separatorBuilder: (context, index) =>
                         const Divider(height: 2, indent: 16, endIndent: 16),
                   ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Total",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      '\$${widget.itemGroup.value}',
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ],
             ),

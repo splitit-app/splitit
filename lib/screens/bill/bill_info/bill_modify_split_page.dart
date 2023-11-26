@@ -17,6 +17,9 @@ class ModifySplitPage extends StatelessWidget {
           title: const Text("Magnifier"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+          actions: [
+            TextButton(onPressed: () {}, child: const Text('SAVE (useless)')),
+          ],
         ),
         body: const Column(
           children: [

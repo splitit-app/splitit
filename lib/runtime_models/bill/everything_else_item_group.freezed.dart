@@ -23,9 +23,8 @@ mixin _$EverythingElseItemGroup {
   set items(List<Item> value) => throw _privateConstructorUsedError;
   List<SplitRule> get splitRules => throw _privateConstructorUsedError;
   set splitRules(List<SplitRule> value) => throw _privateConstructorUsedError;
-  Map<PublicProfile, double> get splitBalances =>
-      throw _privateConstructorUsedError;
-  set splitBalances(Map<PublicProfile, double> value) =>
+  Map<String, double> get splitBalances => throw _privateConstructorUsedError;
+  set splitBalances(Map<String, double> value) =>
       throw _privateConstructorUsedError;
   BillData? get billData => throw _privateConstructorUsedError;
   set billData(BillData? value) => throw _privateConstructorUsedError;
@@ -45,7 +44,7 @@ abstract class $EverythingElseItemGroupCopyWith<$Res> {
       {List<PublicProfile> primarySplits,
       List<Item> items,
       List<SplitRule> splitRules,
-      Map<PublicProfile, double> splitBalances,
+      Map<String, double> splitBalances,
       BillData? billData});
 
   $BillDataCopyWith<$Res>? get billData;
@@ -87,7 +86,7 @@ class _$EverythingElseItemGroupCopyWithImpl<$Res,
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
       billData: freezed == billData
           ? _value.billData
           : billData // ignore: cast_nullable_to_non_nullable
@@ -121,7 +120,7 @@ abstract class _$$EverythingElseItemGroupImplCopyWith<$Res>
       {List<PublicProfile> primarySplits,
       List<Item> items,
       List<SplitRule> splitRules,
-      Map<PublicProfile, double> splitBalances,
+      Map<String, double> splitBalances,
       BillData? billData});
 
   @override
@@ -163,7 +162,7 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
       billData: freezed == billData
           ? _value.billData
           : billData // ignore: cast_nullable_to_non_nullable
@@ -190,7 +189,7 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
   @override
   List<SplitRule> splitRules;
   @override
-  Map<PublicProfile, double> splitBalances;
+  Map<String, double> splitBalances;
   @override
   BillData? billData;
 
@@ -213,7 +212,7 @@ abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
       {required List<PublicProfile> primarySplits,
       required List<Item> items,
       required List<SplitRule> splitRules,
-      required Map<PublicProfile, double> splitBalances,
+      required Map<String, double> splitBalances,
       BillData? billData}) = _$EverythingElseItemGroupImpl;
   _EverythingElseItemGroup._() : super._();
 
@@ -227,8 +226,8 @@ abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
   List<SplitRule> get splitRules;
   set splitRules(List<SplitRule> value);
   @override
-  Map<PublicProfile, double> get splitBalances;
-  set splitBalances(Map<PublicProfile, double> value);
+  Map<String, double> get splitBalances;
+  set splitBalances(Map<String, double> value);
   @override
   BillData? get billData;
   set billData(BillData? value);

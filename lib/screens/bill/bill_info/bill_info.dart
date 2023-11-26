@@ -378,7 +378,7 @@ class _BillInfoState extends State<BillInfo> {
                                         )),
                                     Expanded(
                                       child: Text(
-                                        '\$${widget.billData.getSplitBalances[currentProfile]!.toStringAsFixed(2)}',
+                                        '\$${widget.billData.getSplitBalances[currentProfile.uid]!.toStringAsFixed(2)}',
                                         textAlign: TextAlign.right,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,

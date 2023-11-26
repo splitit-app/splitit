@@ -25,9 +25,8 @@ mixin _$ItemGroup {
   set items(List<Item> value) => throw _privateConstructorUsedError;
   List<SplitRule> get splitRules => throw _privateConstructorUsedError;
   set splitRules(List<SplitRule> value) => throw _privateConstructorUsedError;
-  Map<PublicProfile, double> get splitBalances =>
-      throw _privateConstructorUsedError;
-  set splitBalances(Map<PublicProfile, double> value) =>
+  Map<String, double> get splitBalances => throw _privateConstructorUsedError;
+  set splitBalances(Map<String, double> value) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,7 +44,7 @@ abstract class $ItemGroupCopyWith<$Res> {
       List<PublicProfile> primarySplits,
       List<Item> items,
       List<SplitRule> splitRules,
-      Map<PublicProfile, double> splitBalances});
+      Map<String, double> splitBalances});
 }
 
 /// @nodoc
@@ -87,7 +86,7 @@ class _$ItemGroupCopyWithImpl<$Res, $Val extends ItemGroup>
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
     ) as $Val);
   }
 }
@@ -105,7 +104,7 @@ abstract class _$$ItemGroupImplCopyWith<$Res>
       List<PublicProfile> primarySplits,
       List<Item> items,
       List<SplitRule> splitRules,
-      Map<PublicProfile, double> splitBalances});
+      Map<String, double> splitBalances});
 }
 
 /// @nodoc
@@ -145,7 +144,7 @@ class __$$ItemGroupImplCopyWithImpl<$Res>
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
-              as Map<PublicProfile, double>,
+              as Map<String, double>,
     ));
   }
 }
@@ -170,7 +169,7 @@ class _$ItemGroupImpl extends _ItemGroup {
   @override
   List<SplitRule> splitRules;
   @override
-  Map<PublicProfile, double> splitBalances;
+  Map<String, double> splitBalances;
 
   @override
   String toString() {
@@ -190,7 +189,7 @@ abstract class _ItemGroup extends ItemGroup implements IItemGroup {
       required List<PublicProfile> primarySplits,
       required List<Item> items,
       required List<SplitRule> splitRules,
-      required Map<PublicProfile, double> splitBalances}) = _$ItemGroupImpl;
+      required Map<String, double> splitBalances}) = _$ItemGroupImpl;
   _ItemGroup._() : super._();
 
   @override
@@ -206,8 +205,8 @@ abstract class _ItemGroup extends ItemGroup implements IItemGroup {
   List<SplitRule> get splitRules;
   set splitRules(List<SplitRule> value);
   @override
-  Map<PublicProfile, double> get splitBalances;
-  set splitBalances(Map<PublicProfile, double> value);
+  Map<String, double> get splitBalances;
+  set splitBalances(Map<String, double> value);
   @override
   @JsonKey(ignore: true)
   _$$ItemGroupImplCopyWith<_$ItemGroupImpl> get copyWith =>

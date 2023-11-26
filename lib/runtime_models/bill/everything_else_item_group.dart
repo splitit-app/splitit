@@ -17,7 +17,7 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
     required List<PublicProfile> primarySplits,
     required List<Item> items,
     required List<SplitRule> splitRules,
-    required Map<PublicProfile, double> splitBalances,
+    required Map<String, double> splitBalances,
     BillData? billData,
   }) = _EverythingElseItemGroup;
 
@@ -30,15 +30,14 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
             .toList(),
         items: itemGroupDTO.items,
         splitRules: itemGroupDTO.splitRules,
-        splitBalances: itemGroupDTO.splitBalances
-            .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
+        splitBalances: itemGroupDTO.splitBalances,
       );
 
   EverythingElseItemGroup._();
 
-  Map<PublicProfile, double> get getSplitBalances {
+  Map<String, double> get getSplitBalances {
     final balance = value / primarySplits.length;
-    return {for (var profile in primarySplits) profile: balance};
+    return {for (var profile in primarySplits) profile.uid: balance};
   }
 
   String get name => 'Everything Else';
@@ -48,7 +47,7 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
         primarySplits: primarySplits.map((profile) => profile.uid).toList(),
         items: items,
         splitRules: splitRules,
-        splitBalances: splitBalances.map((profile, balance) => MapEntry(profile.uid, balance)),
+        splitBalances: splitBalances,
       );
 
   double get value => billData != null

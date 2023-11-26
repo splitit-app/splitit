@@ -21,8 +21,8 @@ class BillData with _$BillData {
     PublicProfile? payer,
     required List<PublicProfile> primarySplits,
     List<PublicProfile>? secondarySplits,
-    required Map<PublicProfile, double> splitBalances,
-    required Map<PublicProfile, double> paymentResolveStatuses,
+    required Map<String, double> splitBalances,
+    required Map<String, double> paymentResolveStatuses,
     //
     required EverythingElseItemGroup everythingElse,
     required List<ItemGroup> itemGroups,
@@ -39,9 +39,8 @@ class BillData with _$BillData {
         totalSpent: totalSpent,
         payerUid: payer!.uid,
         primarySplits: primarySplits.map((profile) => profile.uid).toList(),
-        splitBalances: splitBalances.map((profile, balance) => MapEntry(profile.uid, balance)),
-        paymentResolveStatuses: paymentResolveStatuses
-            .map((profile, resolveStatus) => MapEntry(profile.uid, resolveStatus)),
+        splitBalances: splitBalances,
+        paymentResolveStatuses: paymentResolveStatuses,
         everythingElse: everythingElse.toDataTransferObj,
         itemGroups: itemGroups.map((itemGroup) => itemGroup.toDataTransferObj).toList(),
         lastUpdatedSession: lastUpdatedSession,
@@ -57,9 +56,9 @@ class BillData with _$BillData {
       primarySplits:
           billDataDTO.primarySplits.map((uid) => userData.nonRegisteredFriends[uid]!).toList(),
       splitBalances: billDataDTO.splitBalances
-          .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!, balance)),
+          .map((uid, balance) => MapEntry(userData.nonRegisteredFriends[uid]!.uid, balance)),
       paymentResolveStatuses: billDataDTO.paymentResolveStatuses.map(
-          (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!, resolveStatus)),
+          (uid, resolveStatus) => MapEntry(userData.nonRegisteredFriends[uid]!.uid, resolveStatus)),
       everythingElse:
           EverythingElseItemGroup.fromDataTransferObj(billDataDTO.everythingElse, userData),
       itemGroups: billDataDTO.itemGroups
@@ -74,18 +73,20 @@ class BillData with _$BillData {
     return billData;
   }
 
-  Map<PublicProfile, double> get getSplitBalances {
-    Map<PublicProfile, double> splitBalances = {
-      for (PublicProfile profile in [payer!] + primarySplits) profile: 0
+  Map<String, double> get getSplitBalances {
+    Map<String, double> splitBalances = {
+      for (PublicProfile profile in [payer!] + primarySplits) profile.uid: 0
     };
 
     for (ItemGroup itemGroup in itemGroups) {
       for (PublicProfile profile in itemGroup.primarySplits) {
-        splitBalances[profile] = splitBalances[profile]! + itemGroup.getSplitBalances[profile]!;
+        splitBalances[profile.uid] =
+            splitBalances[profile.uid]! + itemGroup.getSplitBalances[profile.uid]!;
       }
     }
     for (PublicProfile profile in everythingElse.primarySplits) {
-      splitBalances[profile] = splitBalances[profile]! + everythingElse.getSplitBalances[profile]!;
+      splitBalances[profile.uid] =
+          splitBalances[profile.uid]! + everythingElse.getSplitBalances[profile.uid]!;
     }
 
     return splitBalances;
