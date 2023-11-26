@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_cache/firestore_cache.dart';
+import 'package:project_bs/runtime_models/bill/split_rule.dart';
 import 'package:provider/provider.dart';
 
 import '../net_models/bill/bill_data_dto.dart';
@@ -63,7 +64,17 @@ class BillDataRepository {
             primarySplits: [payer.uid] + primarySplitUids,
             items: List.empty(),
             splitBalances: {},
-            splitRules: List.empty(),
+            splitRule: SplitRule.even,
+            //
+            splitPercentages: {
+              for (String uid in [payer.uid] + primarySplitUids) uid: 1 / primarySplits.length
+            },
+            splitShares: {
+              for (String uid in [payer.uid] + primarySplitUids) uid: 1
+            },
+            splitExacts: {
+              for (String uid in [payer.uid] + primarySplitUids) uid: 0
+            },
           ),
           itemGroups: List.empty(),
           lastUpdatedSession: DateTime.now(),

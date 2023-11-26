@@ -42,7 +42,7 @@ class ItemGroupCard extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const Icon(Icons.balance),
+                  itemGroup.splitRule.icon,
                 ],
               ),
               const SizedBox(height: 8),

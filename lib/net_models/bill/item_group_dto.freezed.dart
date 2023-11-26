@@ -23,8 +23,13 @@ mixin _$ItemGroupDTO {
   String get name => throw _privateConstructorUsedError;
   List<String> get primarySplits => throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
-  List<SplitRule> get splitRules => throw _privateConstructorUsedError;
-  Map<String, double> get splitBalances => throw _privateConstructorUsedError;
+  SplitRule get splitRule => throw _privateConstructorUsedError;
+  Map<String, double> get splitBalances =>
+      throw _privateConstructorUsedError; //
+  Map<String, double> get splitPercentages =>
+      throw _privateConstructorUsedError;
+  Map<String, double> get splitShares => throw _privateConstructorUsedError;
+  Map<String, double> get splitExacts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,8 +47,11 @@ abstract class $ItemGroupDTOCopyWith<$Res> {
       {String name,
       List<String> primarySplits,
       List<Item> items,
-      List<SplitRule> splitRules,
-      Map<String, double> splitBalances});
+      SplitRule splitRule,
+      Map<String, double> splitBalances,
+      Map<String, double> splitPercentages,
+      Map<String, double> splitShares,
+      Map<String, double> splitExacts});
 }
 
 /// @nodoc
@@ -62,8 +70,11 @@ class _$ItemGroupDTOCopyWithImpl<$Res, $Val extends ItemGroupDTO>
     Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
-    Object? splitRules = null,
+    Object? splitRule = null,
     Object? splitBalances = null,
+    Object? splitPercentages = null,
+    Object? splitShares = null,
+    Object? splitExacts = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -78,13 +89,25 @@ class _$ItemGroupDTOCopyWithImpl<$Res, $Val extends ItemGroupDTO>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
-      splitRules: null == splitRules
-          ? _value.splitRules
-          : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<SplitRule>,
+      splitRule: null == splitRule
+          ? _value.splitRule
+          : splitRule // ignore: cast_nullable_to_non_nullable
+              as SplitRule,
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitPercentages: null == splitPercentages
+          ? _value.splitPercentages
+          : splitPercentages // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitShares: null == splitShares
+          ? _value.splitShares
+          : splitShares // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitExacts: null == splitExacts
+          ? _value.splitExacts
+          : splitExacts // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
     ) as $Val);
   }
@@ -102,8 +125,11 @@ abstract class _$$ItemGroupDTOImplCopyWith<$Res>
       {String name,
       List<String> primarySplits,
       List<Item> items,
-      List<SplitRule> splitRules,
-      Map<String, double> splitBalances});
+      SplitRule splitRule,
+      Map<String, double> splitBalances,
+      Map<String, double> splitPercentages,
+      Map<String, double> splitShares,
+      Map<String, double> splitExacts});
 }
 
 /// @nodoc
@@ -120,8 +146,11 @@ class __$$ItemGroupDTOImplCopyWithImpl<$Res>
     Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
-    Object? splitRules = null,
+    Object? splitRule = null,
     Object? splitBalances = null,
+    Object? splitPercentages = null,
+    Object? splitShares = null,
+    Object? splitExacts = null,
   }) {
     return _then(_$ItemGroupDTOImpl(
       name: null == name
@@ -136,13 +165,25 @@ class __$$ItemGroupDTOImplCopyWithImpl<$Res>
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
-      splitRules: null == splitRules
-          ? _value._splitRules
-          : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<SplitRule>,
+      splitRule: null == splitRule
+          ? _value.splitRule
+          : splitRule // ignore: cast_nullable_to_non_nullable
+              as SplitRule,
       splitBalances: null == splitBalances
           ? _value._splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitPercentages: null == splitPercentages
+          ? _value._splitPercentages
+          : splitPercentages // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitShares: null == splitShares
+          ? _value._splitShares
+          : splitShares // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitExacts: null == splitExacts
+          ? _value._splitExacts
+          : splitExacts // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
     ));
   }
@@ -156,12 +197,17 @@ class _$ItemGroupDTOImpl implements _ItemGroupDTO {
       {required this.name,
       required final List<String> primarySplits,
       required final List<Item> items,
-      required final List<SplitRule> splitRules,
-      required final Map<String, double> splitBalances})
+      required this.splitRule,
+      required final Map<String, double> splitBalances,
+      required final Map<String, double> splitPercentages,
+      required final Map<String, double> splitShares,
+      required final Map<String, double> splitExacts})
       : _primarySplits = primarySplits,
         _items = items,
-        _splitRules = splitRules,
-        _splitBalances = splitBalances;
+        _splitBalances = splitBalances,
+        _splitPercentages = splitPercentages,
+        _splitShares = splitShares,
+        _splitExacts = splitExacts;
 
   factory _$ItemGroupDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItemGroupDTOImplFromJson(json);
@@ -184,14 +230,8 @@ class _$ItemGroupDTOImpl implements _ItemGroupDTO {
     return EqualUnmodifiableListView(_items);
   }
 
-  final List<SplitRule> _splitRules;
   @override
-  List<SplitRule> get splitRules {
-    if (_splitRules is EqualUnmodifiableListView) return _splitRules;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_splitRules);
-  }
-
+  final SplitRule splitRule;
   final Map<String, double> _splitBalances;
   @override
   Map<String, double> get splitBalances {
@@ -200,9 +240,35 @@ class _$ItemGroupDTOImpl implements _ItemGroupDTO {
     return EqualUnmodifiableMapView(_splitBalances);
   }
 
+//
+  final Map<String, double> _splitPercentages;
+//
+  @override
+  Map<String, double> get splitPercentages {
+    if (_splitPercentages is EqualUnmodifiableMapView) return _splitPercentages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_splitPercentages);
+  }
+
+  final Map<String, double> _splitShares;
+  @override
+  Map<String, double> get splitShares {
+    if (_splitShares is EqualUnmodifiableMapView) return _splitShares;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_splitShares);
+  }
+
+  final Map<String, double> _splitExacts;
+  @override
+  Map<String, double> get splitExacts {
+    if (_splitExacts is EqualUnmodifiableMapView) return _splitExacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_splitExacts);
+  }
+
   @override
   String toString() {
-    return 'ItemGroupDTO(name: $name, primarySplits: $primarySplits, items: $items, splitRules: $splitRules, splitBalances: $splitBalances)';
+    return 'ItemGroupDTO(name: $name, primarySplits: $primarySplits, items: $items, splitRule: $splitRule, splitBalances: $splitBalances, splitPercentages: $splitPercentages, splitShares: $splitShares, splitExacts: $splitExacts)';
   }
 
   @override
@@ -214,10 +280,16 @@ class _$ItemGroupDTOImpl implements _ItemGroupDTO {
             const DeepCollectionEquality()
                 .equals(other._primarySplits, _primarySplits) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.splitRule, splitRule) ||
+                other.splitRule == splitRule) &&
             const DeepCollectionEquality()
-                .equals(other._splitRules, _splitRules) &&
+                .equals(other._splitBalances, _splitBalances) &&
             const DeepCollectionEquality()
-                .equals(other._splitBalances, _splitBalances));
+                .equals(other._splitPercentages, _splitPercentages) &&
+            const DeepCollectionEquality()
+                .equals(other._splitShares, _splitShares) &&
+            const DeepCollectionEquality()
+                .equals(other._splitExacts, _splitExacts));
   }
 
   @JsonKey(ignore: true)
@@ -227,8 +299,11 @@ class _$ItemGroupDTOImpl implements _ItemGroupDTO {
       name,
       const DeepCollectionEquality().hash(_primarySplits),
       const DeepCollectionEquality().hash(_items),
-      const DeepCollectionEquality().hash(_splitRules),
-      const DeepCollectionEquality().hash(_splitBalances));
+      splitRule,
+      const DeepCollectionEquality().hash(_splitBalances),
+      const DeepCollectionEquality().hash(_splitPercentages),
+      const DeepCollectionEquality().hash(_splitShares),
+      const DeepCollectionEquality().hash(_splitExacts));
 
   @JsonKey(ignore: true)
   @override
@@ -249,8 +324,11 @@ abstract class _ItemGroupDTO implements ItemGroupDTO {
       {required final String name,
       required final List<String> primarySplits,
       required final List<Item> items,
-      required final List<SplitRule> splitRules,
-      required final Map<String, double> splitBalances}) = _$ItemGroupDTOImpl;
+      required final SplitRule splitRule,
+      required final Map<String, double> splitBalances,
+      required final Map<String, double> splitPercentages,
+      required final Map<String, double> splitShares,
+      required final Map<String, double> splitExacts}) = _$ItemGroupDTOImpl;
 
   factory _ItemGroupDTO.fromJson(Map<String, dynamic> json) =
       _$ItemGroupDTOImpl.fromJson;
@@ -262,9 +340,15 @@ abstract class _ItemGroupDTO implements ItemGroupDTO {
   @override
   List<Item> get items;
   @override
-  List<SplitRule> get splitRules;
+  SplitRule get splitRule;
   @override
   Map<String, double> get splitBalances;
+  @override //
+  Map<String, double> get splitPercentages;
+  @override
+  Map<String, double> get splitShares;
+  @override
+  Map<String, double> get splitExacts;
   @override
   @JsonKey(ignore: true)
   _$$ItemGroupDTOImplCopyWith<_$ItemGroupDTOImpl> get copyWith =>

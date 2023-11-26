@@ -6,7 +6,7 @@ import '../user/user_data.dart';
 import 'bill_data.dart';
 import 'i_item_group.dart';
 import 'item.dart';
-import 'split_rules/split_rule.dart';
+import 'split_rule.dart';
 
 part 'everything_else_item_group.freezed.dart';
 
@@ -16,9 +16,13 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
   factory EverythingElseItemGroup({
     required List<PublicProfile> primarySplits,
     required List<Item> items,
-    required List<SplitRule> splitRules,
+    required SplitRule splitRule,
     required Map<String, double> splitBalances,
     BillData? billData,
+    //
+    required Map<String, double> splitPercentages,
+    required Map<String, double> splitShares,
+    required Map<String, double> splitExacts,
   }) = _EverythingElseItemGroup;
 
   factory EverythingElseItemGroup.fromDataTransferObj(
@@ -29,8 +33,12 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
                 uid == userData.uid ? userData.publicProfile : userData.nonRegisteredFriends[uid]!)
             .toList(),
         items: itemGroupDTO.items,
-        splitRules: itemGroupDTO.splitRules,
+        splitRule: itemGroupDTO.splitRule,
         splitBalances: itemGroupDTO.splitBalances,
+        //
+        splitPercentages: itemGroupDTO.splitPercentages,
+        splitShares: itemGroupDTO.splitShares,
+        splitExacts: itemGroupDTO.splitExacts,
       );
 
   EverythingElseItemGroup._();
@@ -46,8 +54,12 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
         name: 'Everything Else',
         primarySplits: primarySplits.map((profile) => profile.uid).toList(),
         items: items,
-        splitRules: splitRules,
+        splitRule: splitRule,
         splitBalances: splitBalances,
+        //
+        splitPercentages: splitPercentages,
+        splitShares: splitShares,
+        splitExacts: splitExacts,
       );
 
   double get value => billData != null

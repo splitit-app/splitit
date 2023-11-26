@@ -1,3 +1,5 @@
+import 'package:project_bs/runtime_models/bill/split_rule.dart';
+import 'package:project_bs/runtime_models/user/public_profile.dart';
 import 'package:provider/provider.dart';
 
 import '../../../runtime_models/bill/bill_data.dart';
@@ -13,12 +15,20 @@ class BillForm {
   Future<void> addItemGroup() async {
     final BillData billData = read();
 
+    final primarySplits = [billData.payer!] + billData.primarySplits;
+
     billData.itemGroups.add(ItemGroup(
       name: 'Dummy Item Group',
-      primarySplits: [billData.payer!] + billData.primarySplits,
+      primarySplits: primarySplits,
       items: [Item(taxableStatusList: [])],
-      splitRules: List.empty(),
+      splitRule: SplitRule.even,
       splitBalances: {},
+      //
+      splitPercentages: {
+        for (PublicProfile profile in primarySplits) profile.uid: 1 / primarySplits.length
+      },
+      splitShares: {for (PublicProfile profile in primarySplits) profile.uid: 1},
+      splitExacts: {for (PublicProfile profile in primarySplits) profile.uid: 0},
     ));
 
     try {

@@ -15,10 +15,17 @@ _$ItemGroupDTOImpl _$$ItemGroupDTOImplFromJson(Map<String, dynamic> json) =>
       items: (json['items'] as List<dynamic>)
           .map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),
-      splitRules: (json['splitRules'] as List<dynamic>)
-          .map((e) => SplitRule.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      splitRule: $enumDecode(_$SplitRuleEnumMap, json['splitRule']),
       splitBalances: (json['splitBalances'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ),
+      splitPercentages: (json['splitPercentages'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ),
+      splitShares: (json['splitShares'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ),
+      splitExacts: (json['splitExacts'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(k, (e as num).toDouble()),
       ),
     );
@@ -28,6 +35,16 @@ Map<String, dynamic> _$$ItemGroupDTOImplToJson(_$ItemGroupDTOImpl instance) =>
       'name': instance.name,
       'primarySplits': instance.primarySplits,
       'items': instance.items.map((e) => e.toJson()).toList(),
-      'splitRules': instance.splitRules.map((e) => e.toJson()).toList(),
+      'splitRule': _$SplitRuleEnumMap[instance.splitRule]!,
       'splitBalances': instance.splitBalances,
+      'splitPercentages': instance.splitPercentages,
+      'splitShares': instance.splitShares,
+      'splitExacts': instance.splitExacts,
     };
+
+const _$SplitRuleEnumMap = {
+  SplitRule.even: 'even',
+  SplitRule.byPercentage: 'byPercentage',
+  SplitRule.byShares: 'byShares',
+  SplitRule.exact: 'exact',
+};

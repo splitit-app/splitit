@@ -5,7 +5,7 @@ import '../user/public_profile.dart';
 import '../user/user_data.dart';
 import 'i_item_group.dart';
 import 'item.dart';
-import 'split_rules/split_rule.dart';
+import 'split_rule.dart';
 
 part 'item_group.freezed.dart';
 
@@ -16,8 +16,12 @@ class ItemGroup with _$ItemGroup {
     required String name,
     required List<PublicProfile> primarySplits,
     required List<Item> items,
-    required List<SplitRule> splitRules,
+    required SplitRule splitRule,
     required Map<String, double> splitBalances,
+    //
+    required Map<String, double> splitPercentages,
+    required Map<String, double> splitShares,
+    required Map<String, double> splitExacts,
   }) = _ItemGroup;
 
   factory ItemGroup.fromDataTransferObj(ItemGroupDTO itemGroupDTO, UserData userData) => ItemGroup(
@@ -27,8 +31,12 @@ class ItemGroup with _$ItemGroup {
                 uid == userData.uid ? userData.publicProfile : userData.nonRegisteredFriends[uid]!)
             .toList(),
         items: itemGroupDTO.items,
-        splitRules: itemGroupDTO.splitRules,
+        splitRule: itemGroupDTO.splitRule,
         splitBalances: itemGroupDTO.splitBalances,
+        //
+        splitPercentages: itemGroupDTO.splitPercentages,
+        splitShares: itemGroupDTO.splitShares,
+        splitExacts: itemGroupDTO.splitExacts,
       );
 
   ItemGroup._();
@@ -37,11 +45,16 @@ class ItemGroup with _$ItemGroup {
         name: name,
         primarySplits: primarySplits.map((profile) => profile.uid).toList(),
         items: items,
-        splitRules: splitRules,
+        splitRule: splitRule,
         splitBalances: splitBalances,
+        //
+        splitPercentages: splitPercentages,
+        splitShares: splitShares,
+        splitExacts: splitExacts,
       );
 
-  double get value => items.fold(0, (previousValue, item) => previousValue + item.value * item.quantity);
+  double get value =>
+      items.fold(0, (previousValue, item) => previousValue + item.value * item.quantity);
 
   Map<String, double> get getSplitBalances {
     final balance = value / primarySplits.length;

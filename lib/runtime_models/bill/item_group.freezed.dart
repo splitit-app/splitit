@@ -23,10 +23,20 @@ mixin _$ItemGroup {
       throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
   set items(List<Item> value) => throw _privateConstructorUsedError;
-  List<SplitRule> get splitRules => throw _privateConstructorUsedError;
-  set splitRules(List<SplitRule> value) => throw _privateConstructorUsedError;
+  SplitRule get splitRule => throw _privateConstructorUsedError;
+  set splitRule(SplitRule value) => throw _privateConstructorUsedError;
   Map<String, double> get splitBalances => throw _privateConstructorUsedError;
   set splitBalances(Map<String, double> value) =>
+      throw _privateConstructorUsedError; //
+  Map<String, double> get splitPercentages =>
+      throw _privateConstructorUsedError; //
+  set splitPercentages(Map<String, double> value) =>
+      throw _privateConstructorUsedError;
+  Map<String, double> get splitShares => throw _privateConstructorUsedError;
+  set splitShares(Map<String, double> value) =>
+      throw _privateConstructorUsedError;
+  Map<String, double> get splitExacts => throw _privateConstructorUsedError;
+  set splitExacts(Map<String, double> value) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,8 +53,11 @@ abstract class $ItemGroupCopyWith<$Res> {
       {String name,
       List<PublicProfile> primarySplits,
       List<Item> items,
-      List<SplitRule> splitRules,
-      Map<String, double> splitBalances});
+      SplitRule splitRule,
+      Map<String, double> splitBalances,
+      Map<String, double> splitPercentages,
+      Map<String, double> splitShares,
+      Map<String, double> splitExacts});
 }
 
 /// @nodoc
@@ -63,8 +76,11 @@ class _$ItemGroupCopyWithImpl<$Res, $Val extends ItemGroup>
     Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
-    Object? splitRules = null,
+    Object? splitRule = null,
     Object? splitBalances = null,
+    Object? splitPercentages = null,
+    Object? splitShares = null,
+    Object? splitExacts = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -79,13 +95,25 @@ class _$ItemGroupCopyWithImpl<$Res, $Val extends ItemGroup>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
-      splitRules: null == splitRules
-          ? _value.splitRules
-          : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<SplitRule>,
+      splitRule: null == splitRule
+          ? _value.splitRule
+          : splitRule // ignore: cast_nullable_to_non_nullable
+              as SplitRule,
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitPercentages: null == splitPercentages
+          ? _value.splitPercentages
+          : splitPercentages // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitShares: null == splitShares
+          ? _value.splitShares
+          : splitShares // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitExacts: null == splitExacts
+          ? _value.splitExacts
+          : splitExacts // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
     ) as $Val);
   }
@@ -103,8 +131,11 @@ abstract class _$$ItemGroupImplCopyWith<$Res>
       {String name,
       List<PublicProfile> primarySplits,
       List<Item> items,
-      List<SplitRule> splitRules,
-      Map<String, double> splitBalances});
+      SplitRule splitRule,
+      Map<String, double> splitBalances,
+      Map<String, double> splitPercentages,
+      Map<String, double> splitShares,
+      Map<String, double> splitExacts});
 }
 
 /// @nodoc
@@ -121,8 +152,11 @@ class __$$ItemGroupImplCopyWithImpl<$Res>
     Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
-    Object? splitRules = null,
+    Object? splitRule = null,
     Object? splitBalances = null,
+    Object? splitPercentages = null,
+    Object? splitShares = null,
+    Object? splitExacts = null,
   }) {
     return _then(_$ItemGroupImpl(
       name: null == name
@@ -137,13 +171,25 @@ class __$$ItemGroupImplCopyWithImpl<$Res>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
-      splitRules: null == splitRules
-          ? _value.splitRules
-          : splitRules // ignore: cast_nullable_to_non_nullable
-              as List<SplitRule>,
+      splitRule: null == splitRule
+          ? _value.splitRule
+          : splitRule // ignore: cast_nullable_to_non_nullable
+              as SplitRule,
       splitBalances: null == splitBalances
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitPercentages: null == splitPercentages
+          ? _value.splitPercentages
+          : splitPercentages // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitShares: null == splitShares
+          ? _value.splitShares
+          : splitShares // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      splitExacts: null == splitExacts
+          ? _value.splitExacts
+          : splitExacts // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
     ));
   }
@@ -156,8 +202,11 @@ class _$ItemGroupImpl extends _ItemGroup {
       {required this.name,
       required this.primarySplits,
       required this.items,
-      required this.splitRules,
-      required this.splitBalances})
+      required this.splitRule,
+      required this.splitBalances,
+      required this.splitPercentages,
+      required this.splitShares,
+      required this.splitExacts})
       : super._();
 
   @override
@@ -167,13 +216,20 @@ class _$ItemGroupImpl extends _ItemGroup {
   @override
   List<Item> items;
   @override
-  List<SplitRule> splitRules;
+  SplitRule splitRule;
   @override
   Map<String, double> splitBalances;
+//
+  @override
+  Map<String, double> splitPercentages;
+  @override
+  Map<String, double> splitShares;
+  @override
+  Map<String, double> splitExacts;
 
   @override
   String toString() {
-    return 'ItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRules: $splitRules, splitBalances: $splitBalances)';
+    return 'ItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRule: $splitRule, splitBalances: $splitBalances, splitPercentages: $splitPercentages, splitShares: $splitShares, splitExacts: $splitExacts)';
   }
 
   @JsonKey(ignore: true)
@@ -188,8 +244,11 @@ abstract class _ItemGroup extends ItemGroup implements IItemGroup {
       {required String name,
       required List<PublicProfile> primarySplits,
       required List<Item> items,
-      required List<SplitRule> splitRules,
-      required Map<String, double> splitBalances}) = _$ItemGroupImpl;
+      required SplitRule splitRule,
+      required Map<String, double> splitBalances,
+      required Map<String, double> splitPercentages,
+      required Map<String, double> splitShares,
+      required Map<String, double> splitExacts}) = _$ItemGroupImpl;
   _ItemGroup._() : super._();
 
   @override
@@ -202,11 +261,20 @@ abstract class _ItemGroup extends ItemGroup implements IItemGroup {
   List<Item> get items;
   set items(List<Item> value);
   @override
-  List<SplitRule> get splitRules;
-  set splitRules(List<SplitRule> value);
+  SplitRule get splitRule;
+  set splitRule(SplitRule value);
   @override
   Map<String, double> get splitBalances;
   set splitBalances(Map<String, double> value);
+  @override //
+  Map<String, double> get splitPercentages; //
+  set splitPercentages(Map<String, double> value);
+  @override
+  Map<String, double> get splitShares;
+  set splitShares(Map<String, double> value);
+  @override
+  Map<String, double> get splitExacts;
+  set splitExacts(Map<String, double> value);
   @override
   @JsonKey(ignore: true)
   _$$ItemGroupImplCopyWith<_$ItemGroupImpl> get copyWith =>

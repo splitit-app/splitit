@@ -8,6 +8,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../utilities/decorations.dart';
 import '../../../../utilities/person_icon.dart';
 
@@ -19,23 +20,11 @@ class ItemGroupInfo extends StatefulWidget {
   State<ItemGroupInfo> createState() => _ItemGroupInfoState();
 }
 
-enum SplitType {
-  even('Even', Icon(MaterialSymbols.balance)),
-  byPercentage('By Percentage', Icon(MaterialSymbols.percent)),
-  byShares('By Shares', Icon(MaterialSymbols.pie_chart)),
-  exact('Exact', Icon(MaterialSymbols.one_two_three_outlined));
-
-  final String label;
-  final Icon icon;
-  const SplitType(this.label, this.icon);
-}
-
 class _ItemGroupInfoState extends State<ItemGroupInfo> {
   final TextEditingController _itemGroupName = TextEditingController(text: "Item Group 1");
   bool _isTextFormEnabled = false;
   // bool _isDropDownEnabled = false;
 
-  SplitType selectedItem = SplitType.even;
   final TextEditingController itemController = TextEditingController();
   bool expandPeople = false;
   final int maxPersonIconCount = 6;
@@ -43,7 +32,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
   @override
   Widget build(BuildContext context) {
     _itemGroupName.text = 'Item Group';
-    itemController.text = selectedItem.label;
+    itemController.text = widget.itemGroup.splitRule.label;
 
     final splitBalances = widget.itemGroup.getSplitBalances;
 
@@ -97,7 +86,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     width: 160,
                     controller: itemController,
                     //requestFocusOnTap: true,
-                    leadingIcon: selectedItem.icon,
+                    leadingIcon: widget.itemGroup.splitRule.icon,
                     label: const Text('Split Rule'),
                     textStyle: const TextStyle(fontSize: 16),
 
@@ -108,8 +97,11 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     ),
                     menuStyle:
                         const MenuStyle(padding: MaterialStatePropertyAll(EdgeInsets.all(8))),
-                    onSelected: (splitRule) => setState(() => selectedItem = splitRule!),
-                    dropdownMenuEntries: SplitType.values
+                    onSelected: (splitRule) {
+                      widget.itemGroup.splitRule = splitRule!;
+                      setState(() {});
+                    },
+                    dropdownMenuEntries: SplitRule.values
                         .map((splitRule) => DropdownMenuEntry(
                               value: splitRule,
                               label: splitRule.label,
@@ -193,8 +185,20 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                                 //const Spacer(),
                                 //TODO: implement split rule detail
                                 const SizedBox(width: 16),
-                                const SizedBox(
-                                    width: 60, child: Text("9/11", textAlign: TextAlign.right)),
+                                SizedBox(
+                                    width: 60,
+                                    child: Text(
+                                      switch (widget.itemGroup.splitRule) {
+                                        SplitRule.even => 'Even',
+                                        SplitRule.byPercentage =>
+                                          '${(widget.itemGroup.splitPercentages[currentProfile.uid]! * 100).toStringAsPrecision(4)}%',
+                                        SplitRule.byShares => widget
+                                            .itemGroup.splitShares[currentProfile.uid]
+                                            .toString(),
+                                        _ => '',
+                                      },
+                                      textAlign: TextAlign.right,
+                                    )),
                               ]),
                               //const SizedBox(height: 4),
                               Align(
@@ -268,7 +272,11 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(item.name),
+                                  Text(
+                                    item.name,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                   Text(
                                     '\$${item.value}',
                                     style: const TextStyle(fontWeight: FontWeight.bold),

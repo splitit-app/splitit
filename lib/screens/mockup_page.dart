@@ -5,6 +5,7 @@ import 'package:project_bs/runtime_models/bill/bill_data.dart';
 import 'package:project_bs/runtime_models/bill/everything_else_item_group.dart';
 import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
 import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
+import 'package:project_bs/runtime_models/bill/split_rule.dart';
 
 import 'bill/bill_card.dart';
 
@@ -38,7 +39,11 @@ class PageTest extends StatelessWidget {
       items: List.empty(),
       primarySplits: List.empty(),
       splitBalances: {},
-      splitRules: List.empty(),
+      splitRule: SplitRule.even,
+      //
+      splitPercentages: {},
+      splitShares: {},
+      splitExacts: {},
     ),
     itemGroups: List.empty(),
     taxModule: BillModule_Tax(),
