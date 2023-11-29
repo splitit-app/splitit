@@ -16,7 +16,7 @@ class BillDataRepository {
 
   BillDataRepository({required this.read});
 
-  Stream<List<BillData>?> get billDataStream {
+  Stream<List<BillData>?> get billListStream {
     try {
       return _billCollection
           .where('payerUid', isEqualTo: userData?.uid)
@@ -24,6 +24,22 @@ class BillDataRepository {
           //.orderBy('resolved')
           .snapshots()
           .map((snapshot) => snapshot.docs.map((e) => snapshotToRuntimeObj(e)).nonNulls.toList());
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Stream<BillData?> billDataStream(String uid) {
+    try {
+      return _billCollection
+          .doc(uid)
+          .snapshots()
+          .where((snapshot) => snapshot.exists)
+          .map((snapshot) => BillData.fromDataTransferObj(
+                BillDataDTO.fromJson(snapshot.data()!),
+                uid,
+                userData!,
+              ));
     } catch (e) {
       throw Exception(e);
     }

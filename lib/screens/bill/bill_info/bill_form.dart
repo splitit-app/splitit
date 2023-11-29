@@ -38,6 +38,14 @@ class BillForm {
     }
   }
 
+  Future<void> removeItemGroup(ItemGroup itemGroup) async {
+    final BillData billData = read();
+
+    billData.itemGroups.remove(itemGroup);
+
+    read<BillDataRepository>().pushBillData(billData);
+  }
+
   Future<void> bruh() async {
     final BillData billData = read();
 

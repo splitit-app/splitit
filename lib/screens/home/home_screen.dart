@@ -10,6 +10,7 @@ import '../../services/authentication_service.dart';
 import '../../utilities/bill_utilities/bill_cards_compact.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/decorations.dart';
+import '../bill/bill_info/bill_info.dart';
 import '../profile/profile_page.dart';
 import 'home_page.dart';
 
@@ -252,8 +253,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: min(bills.length, 5),
-                                itemBuilder: (context, index) =>
-                                    BillCardsCompact(billData: bills[index]),
+                                itemBuilder: (context, index) => BillCardsCompact(
+                                  billData: bills[index],
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BillInfo(billData: bills[index]),
+                                    ),
+                                  ),
+                                ),
                                 separatorBuilder: (context, index) => const SizedBox(height: 10),
                               )
                   ],

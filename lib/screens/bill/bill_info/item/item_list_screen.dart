@@ -6,6 +6,7 @@ import '../../../../runtime_models/bill/bill_data.dart';
 import '../../../../runtime_models/bill/i_item_group.dart';
 import '../bill_form.dart';
 import 'item_group_card.dart';
+import 'item_group_info.dart';
 
 class ItemListScreen extends StatefulWidget {
   const ItemListScreen({super.key});
@@ -20,34 +21,74 @@ class _ItemListScreenState extends State<ItemListScreen> {
     final BillData billData = context.watch();
     final billForm = BillForm(read: context.read);
 
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.all(billData.itemGroups.isEmpty ? 0 : 8),
-            sliver: SliverList.separated(
-              itemCount: billData.itemGroups.length,
-              itemBuilder: (context, index) => ItemGroupCard(
-                itemGroup:
-                    billData.itemGroups[billData.itemGroups.length - 1 - index] as IItemGroup,
+    return Provider.value(
+      value: billForm,
+      builder: (context, child) => Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.all(billData.itemGroups.isEmpty ? 0 : 8),
+              sliver: SliverList.separated(
+                itemCount: billData.itemGroups.length,
+                itemBuilder: (context, index) {
+                  final currentItemGroup =
+                      billData.itemGroups[billData.itemGroups.length - 1 - index] as IItemGroup;
+
+                  return ItemGroupCard(
+                    itemGroup: currentItemGroup,
+                    onTap: () async {
+                      final BillForm billForm = context.read();
+
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Provider.value(
+                            value: billForm,
+                            builder: (context, child) => ItemGroupInfo(itemGroup: currentItemGroup),
+                          ),
+                        ),
+                      );
+                      setState(() {});
+                    },
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 16.0),
               ),
-              separatorBuilder: (context, index) => const SizedBox(height: 16.0),
             ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(8).copyWith(bottom: 80),
-            sliver: SliverToBoxAdapter(
-              child: ItemGroupCard(itemGroup: billData.everythingElse as IItemGroup),
+            SliverPadding(
+              padding: const EdgeInsets.all(8).copyWith(bottom: 80),
+              sliver: SliverToBoxAdapter(
+                child: ItemGroupCard(
+                  itemGroup: billData.everythingElse as IItemGroup,
+                  isEverythingElseItemGroup: true,
+                  onTap: () {
+                    final BillForm billForm = context.read();
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Provider.value(
+                          value: billForm,
+                          builder: (context, child) => ItemGroupInfo(
+                            itemGroup: billData.everythingElse as IItemGroup,
+                            isEverythingElseItemGroup: true,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await billForm.addItemGroup();
-          setState(() {});
-        },
-        child: const Icon(MaterialSymbols.add),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await billForm.addItemGroup();
+            setState(() {});
+          },
+          child: const Icon(MaterialSymbols.add),
+        ),
       ),
     );
   }

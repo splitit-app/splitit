@@ -5,16 +5,23 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:project_bs/screens/bill/bill_info/bill_form.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../utilities/decorations.dart';
 import '../../../../utilities/person_icon.dart';
 
 class ItemGroupInfo extends StatefulWidget {
   final IItemGroup itemGroup;
-  const ItemGroupInfo({super.key, required this.itemGroup});
+  final bool isEverythingElseItemGroup;
+  const ItemGroupInfo({
+    super.key,
+    required this.itemGroup,
+    this.isEverythingElseItemGroup = false,
+  });
 
   @override
   State<ItemGroupInfo> createState() => _ItemGroupInfoState();
@@ -44,6 +51,17 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
           title: const Text("Item Group"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+          actions: [
+            !widget.isEverythingElseItemGroup
+                ? IconButton(
+                    onPressed: () async {
+                      await context.read<BillForm>().removeItemGroup(widget.itemGroup as ItemGroup);
+                      if (mounted) Navigator.of(context).pop();
+                    },
+                    icon: const Icon(MaterialSymbols.delete),
+                  )
+                : const SizedBox.shrink()
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -183,18 +201,16 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                                   overflow: TextOverflow.ellipsis,
                                 )),
                                 //const Spacer(),
-                                //TODO: implement split rule detail
                                 const SizedBox(width: 16),
                                 SizedBox(
-                                    width: 60,
+                                    width: 80,
                                     child: Text(
                                       switch (widget.itemGroup.splitRule) {
                                         SplitRule.even => 'Even',
                                         SplitRule.byPercentage =>
                                           '${(widget.itemGroup.splitPercentages[currentProfile.uid]! * 100).toStringAsPrecision(4)}%',
-                                        SplitRule.byShares => widget
-                                            .itemGroup.splitShares[currentProfile.uid]
-                                            .toString(),
+                                        SplitRule.byShares =>
+                                          '${widget.itemGroup.splitShares[currentProfile.uid]}x',
                                         _ => '',
                                       },
                                       textAlign: TextAlign.right,

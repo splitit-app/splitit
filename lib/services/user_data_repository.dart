@@ -28,6 +28,7 @@ class UserDataRepository {
   // Future<DocumentSnapshot<Map<String, dynamic>>> get userDocumentSnapshot =>
   //     FirestoreCache.getDocument(userDocumentReference, source: Source.server);
 
+//TODO: redundant exists check
   UserData? snapshotToRuntimeObj(DocumentSnapshot<Map<String, dynamic>> snapshot) => uid == null
       ? null
       : snapshot.exists

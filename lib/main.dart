@@ -49,7 +49,7 @@ class SplitItApp extends StatelessWidget {
             return MultiProvider(
               providers: [
                 Provider.value(value: billDataRepository),
-                StreamProvider.value(value: billDataRepository.billDataStream, initialData: null),
+                StreamProvider.value(value: billDataRepository.billListStream, initialData: null),
               ],
               child: MaterialApp(
                 title: 'SplitIt',

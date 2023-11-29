@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
+import 'package:project_bs/runtime_models/bill/bill_data.dart';
+import 'package:project_bs/services/bill_data_repository.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utilities/decorations.dart';
 import 'item/item_list_screen.dart';
@@ -18,7 +21,11 @@ class ModifySplitPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
           actions: [
-            TextButton(onPressed: () {}, child: const Text('SAVE (useless)')),
+            TextButton(
+                onPressed: () {
+                  context.read<BillDataRepository>().pushBillData(context.read<BillData>());
+                },
+                child: const Text('SAVE (beta)')),
           ],
         ),
         body: const Column(

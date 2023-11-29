@@ -132,7 +132,7 @@ class PeopleInvolved extends StatelessWidget {
               controller: _searchBarController,
               hintText: "Search friends & groups",
               leading: const Icon(Symbols.menu),
-              trailing: const <Widget>[
+              trailing: const [
                 Tooltip(
                   message: "Search",
                   child: Icon(Symbols.search),
@@ -189,6 +189,7 @@ class _BillInfoState extends State<BillInfo> {
 
   @override
   Widget build(BuildContext context) {
+    //final billData = context.read<BillDataRepository>().billDataStream(widget.billData.uid);
     return Provider.value(
       value: widget.billData,
       child: Scaffold(

@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../runtime_models/bill/bill_data.dart';
-import '../../screens/bill/bill_info/bill_info.dart';
 
 class BillCardsCompact extends StatelessWidget {
   final BillData billData;
+  final void Function()? onTap;
 
-  const BillCardsCompact({super.key, required this.billData});
+  const BillCardsCompact({super.key, required this.billData, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => BillInfo(billData: billData)),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceVariant,
-          borderRadius: BorderRadius.circular(25.0),
-        ),
+    return Material(
+      color: Theme.of(context).colorScheme.surfaceVariant,
+      borderRadius: BorderRadius.circular(25.0),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(25.0),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
