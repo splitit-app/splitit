@@ -14,6 +14,7 @@ part 'everything_else_item_group.freezed.dart';
 class EverythingElseItemGroup with _$EverythingElseItemGroup {
   @Implements<IItemGroup>()
   factory EverythingElseItemGroup({
+    @Default('Everthing Else') String name,
     required List<PublicProfile> primarySplits,
     required List<Item> items,
     required SplitRule splitRule,

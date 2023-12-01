@@ -18,7 +18,7 @@ class BillForm {
     final primarySplits = [billData.payer!] + billData.primarySplits;
 
     billData.itemGroups.add(ItemGroup(
-      name: 'Dummy Item Group',
+      name: '',
       primarySplits: primarySplits,
       items: [Item(taxableStatusList: [])],
       splitRule: SplitRule.even,

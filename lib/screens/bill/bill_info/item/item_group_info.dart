@@ -13,6 +13,7 @@ import '../../../../runtime_models/bill/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../utilities/decorations.dart';
 import '../../../../utilities/person_icon.dart';
+import 'edit_friend_split_dialog.dart';
 
 class ItemGroupInfo extends StatefulWidget {
   final IItemGroup itemGroup;
@@ -42,7 +43,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
     itemController.text = widget.itemGroup.splitRule.label;
 
     final splitBalances = widget.itemGroup.getSplitBalances;
-
+    //widget.itemGroup.splitExacts.update(widget.itemGroup.primarySplits[0].uid, (value) => 0);
     return Provider.value(
       value: widget.itemGroup,
       child: Scaffold(
@@ -191,6 +192,16 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                             ],
                           ),
                           child: ListTile(
+                            onTap: () async {
+                              if (widget.itemGroup.splitRule != SplitRule.even) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (context) => EditFriendSplitDialog(
+                                      profile: currentProfile, itemGroup: widget.itemGroup),
+                                );
+                                setState(() {});
+                              }
+                            },
                             leading: PersonIcon(profile: currentProfile),
                             title: Column(children: [
                               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -261,63 +272,65 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     itemBuilder: (context, index) {
                       final item = widget.itemGroup.items[index];
 
-                      return Slidable(
-                        closeOnScroll: false,
-                        startActionPane: ActionPane(
-                          motion: const BehindMotion(),
-                          extentRatio: 0.2,
-                          children: [
-                            SlidableAction(
-                              onPressed: ((context) {}),
-                              backgroundColor: Theme.of(context).colorScheme.primary,
-                              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(index == 0 ? 25 : 0),
-                                bottomLeft: Radius.circular(
-                                    index == widget.itemGroup.items.length - 1 ? 25 : 0),
+                      return StatefulBuilder(
+                        builder: (context, setState) => Slidable(
+                          closeOnScroll: false,
+                          startActionPane: ActionPane(
+                            motion: const BehindMotion(),
+                            extentRatio: 0.2,
+                            children: [
+                              SlidableAction(
+                                onPressed: ((context) {}),
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(index == 0 ? 25 : 0),
+                                  bottomLeft: Radius.circular(
+                                      index == widget.itemGroup.items.length - 1 ? 25 : 0),
+                                ),
+                                icon: MaterialSymbols.check,
                               ),
-                              icon: MaterialSymbols.check,
-                            ),
-                          ],
-                        ),
-                        // Actual Items
-                        child: ListTile(
-                          leading: Text('${index + 1}.'),
-                          title: Row(children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item.name,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    '\$${item.value}',
-                                    style: const TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                            ],
+                          ),
+                          // Actual Items
+                          child: ListTile(
+                            leading: Text('${index + 1}.'),
+                            title: Row(children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      item.name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      '\$${item.value}',
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                //TODO: save
-                                item.quantity--;
-                                setState(() {});
-                              },
-                              icon: const Icon(MaterialSymbols.remove),
-                            ),
-                            Center(child: Text(item.quantity.toString())),
-                            IconButton(
-                              onPressed: () {
-                                //TODO: save
-                                item.quantity++;
-                                setState(() {});
-                              },
-                              icon: const Icon(MaterialSymbols.add),
-                            ),
-                          ]),
+                              IconButton(
+                                onPressed: () {
+                                  //TODO: save
+                                  item.quantity--;
+                                  setState(() {});
+                                },
+                                icon: const Icon(MaterialSymbols.remove),
+                              ),
+                              Center(child: Text(item.quantity.toString())),
+                              IconButton(
+                                onPressed: () {
+                                  //TODO: save
+                                  item.quantity++;
+                                  setState(() {});
+                                },
+                                icon: const Icon(MaterialSymbols.add),
+                              ),
+                            ]),
+                          ),
                         ),
                       );
                     },

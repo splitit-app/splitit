@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EverythingElseItemGroup {
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   List<PublicProfile> get primarySplits => throw _privateConstructorUsedError;
   set primarySplits(List<PublicProfile> value) =>
       throw _privateConstructorUsedError;
@@ -51,7 +53,8 @@ abstract class $EverythingElseItemGroupCopyWith<$Res> {
       _$EverythingElseItemGroupCopyWithImpl<$Res, EverythingElseItemGroup>;
   @useResult
   $Res call(
-      {List<PublicProfile> primarySplits,
+      {String name,
+      List<PublicProfile> primarySplits,
       List<Item> items,
       SplitRule splitRule,
       Map<String, double> splitBalances,
@@ -77,6 +80,7 @@ class _$EverythingElseItemGroupCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
     Object? splitRule = null,
@@ -87,6 +91,10 @@ class _$EverythingElseItemGroupCopyWithImpl<$Res,
     Object? splitExacts = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       primarySplits: null == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
@@ -145,7 +153,8 @@ abstract class _$$EverythingElseItemGroupImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<PublicProfile> primarySplits,
+      {String name,
+      List<PublicProfile> primarySplits,
       List<Item> items,
       SplitRule splitRule,
       Map<String, double> splitBalances,
@@ -171,6 +180,7 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? primarySplits = null,
     Object? items = null,
     Object? splitRule = null,
@@ -181,6 +191,10 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
     Object? splitExacts = null,
   }) {
     return _then(_$EverythingElseItemGroupImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       primarySplits: null == primarySplits
           ? _value.primarySplits
           : primarySplits // ignore: cast_nullable_to_non_nullable
@@ -221,7 +235,8 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
 
 class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
   _$EverythingElseItemGroupImpl(
-      {required this.primarySplits,
+      {this.name = 'Everthing Else',
+      required this.primarySplits,
       required this.items,
       required this.splitRule,
       required this.splitBalances,
@@ -231,6 +246,9 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
       required this.splitExacts})
       : super._();
 
+  @override
+  @JsonKey()
+  String name;
   @override
   List<PublicProfile> primarySplits;
   @override
@@ -251,7 +269,7 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
 
   @override
   String toString() {
-    return 'EverythingElseItemGroup(primarySplits: $primarySplits, items: $items, splitRule: $splitRule, splitBalances: $splitBalances, billData: $billData, splitPercentages: $splitPercentages, splitShares: $splitShares, splitExacts: $splitExacts)';
+    return 'EverythingElseItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRule: $splitRule, splitBalances: $splitBalances, billData: $billData, splitPercentages: $splitPercentages, splitShares: $splitShares, splitExacts: $splitExacts)';
   }
 
   @JsonKey(ignore: true)
@@ -265,7 +283,8 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
 abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
     implements IItemGroup {
   factory _EverythingElseItemGroup(
-          {required List<PublicProfile> primarySplits,
+          {String name,
+          required List<PublicProfile> primarySplits,
           required List<Item> items,
           required SplitRule splitRule,
           required Map<String, double> splitBalances,
@@ -276,6 +295,9 @@ abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
       _$EverythingElseItemGroupImpl;
   _EverythingElseItemGroup._() : super._();
 
+  @override
+  String get name;
+  set name(String value);
   @override
   List<PublicProfile> get primarySplits;
   set primarySplits(List<PublicProfile> value);

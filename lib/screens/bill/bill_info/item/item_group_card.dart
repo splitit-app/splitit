@@ -39,7 +39,7 @@ class ItemGroupCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      itemGroup.name,
+                      itemGroup.name.isNotEmpty ? itemGroup.name : itemGroup.items[0].name,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

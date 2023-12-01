@@ -57,7 +57,18 @@ class ItemGroup with _$ItemGroup {
       items.fold(0, (previousValue, item) => previousValue + item.value * item.quantity);
 
   Map<String, double> get getSplitBalances {
-    final balance = value / primarySplits.length;
-    return {for (var profile in primarySplits) profile.uid: balance};
+    final evenBalance = value / primarySplits.length;
+    final double totalShares =
+        primarySplits.fold(0, (previousValue, profile) => previousValue + splitShares[profile.uid]!);
+
+    return {
+      for (var profile in primarySplits)
+        profile.uid: switch (splitRule) {
+          SplitRule.even => evenBalance,
+          SplitRule.byPercentage => value * splitPercentages[profile.uid]!,
+          SplitRule.byShares => value * splitShares[profile.uid]! / totalShares,
+          SplitRule.exact => splitExacts[profile.uid]!,
+        }
+    };
   }
 }

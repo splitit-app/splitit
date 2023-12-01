@@ -409,14 +409,17 @@ class _BillInfoState extends State<BillInfo> {
 
                 const SizedBox(height: 15),
                 ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Provider.value(
-                        value: widget.billData,
-                        builder: (context, child) => const ModifySplitPage(),
+                  onPressed: () async {
+                    await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Provider.value(
+                          value: widget.billData,
+                          builder: (context, child) => const ModifySplitPage(),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                    setState(() {});
+                  },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),

@@ -4,16 +4,16 @@ import 'item.dart';
 import 'split_rule.dart';
 
 abstract class IItemGroup {
-  String get name;
-  List<PublicProfile> get primarySplits;
-  List<Item> get items;
+  String name = '';
+  List<PublicProfile> primarySplits = [];
+  List<Item> items = [];
   SplitRule splitRule = SplitRule.even;
   Map<String, double> get splitBalances;
   double get value;
 
-  Map<String, double> get splitPercentages;
-  Map<String, double> get splitShares;
-  Map<String, double> get splitExacts;
+  Map<String, double> splitPercentages = {};
+  Map<String, double> splitShares = {};
+  Map<String, double> splitExacts = {};
 
   ItemGroupDTO get toDataTransferObj;
 
