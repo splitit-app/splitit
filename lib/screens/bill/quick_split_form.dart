@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
 import 'package:provider/provider.dart';
 
+import '../../runtime_models/user/public_profile.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/bill_data_repository.dart';
 import '../../utilities/scroll_animations.dart';
@@ -26,13 +26,6 @@ class QuickSplitForm {
     }
 
     friendInvolvements = {for (var profile in userData.nonRegisteredFriends.values) profile: false};
-  }
-
-  Future<void> submitBillInfo() async {
-    FocusManager.instance.primaryFocus?.unfocus();
-    await pageController.animateToPageWithDefaults(1);
-    //if (context.mounted) Navigator.of(context).pop();
-    //TODO: validate
   }
 
   Future<void> createBill() async {
@@ -60,5 +53,12 @@ class QuickSplitForm {
     //   name: nameFieldController.text,
     // ));
     //read<UserDataRepository>().pushUserData(userData);
+  }
+
+  Future<void> submitBillInfo() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    await pageController.animateToPageWithDefaults(1);
+    //if (context.mounted) Navigator.of(context).pop();
+    //TODO: validate
   }
 }

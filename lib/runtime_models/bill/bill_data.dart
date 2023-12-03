@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_bs/runtime_models/bill/everything_else_item_group.dart';
 
 import '../../net_models/bill/bill_data_dto.dart';
 import '../user/public_profile.dart';
 import '../user/user_data.dart';
+import 'everything_else_item_group.dart';
 import 'item_group.dart';
 import 'modules/bill_module_tax.dart';
 import 'modules/bill_module_tip.dart';
@@ -30,21 +30,6 @@ class BillData with _$BillData {
     required BillModule_Tip tipModule,
     required DateTime lastUpdatedSession,
   }) = _BillData;
-
-  BillData._();
-
-  BillDataDTO get toDataTransferObj => BillDataDTO(
-        dateTime: dateTime,
-        name: name,
-        totalSpent: totalSpent,
-        payerUid: payer!.uid,
-        primarySplits: primarySplits.map((profile) => profile.uid).toList(),
-        splitBalances: splitBalances,
-        paymentResolveStatuses: paymentResolveStatuses,
-        everythingElse: everythingElse.toDataTransferObj,
-        itemGroups: itemGroups.map((itemGroup) => itemGroup.toDataTransferObj).toList(),
-        lastUpdatedSession: lastUpdatedSession,
-      );
 
   factory BillData.fromDataTransferObj(BillDataDTO billDataDTO, String uid, UserData userData) {
     BillData billData = BillData(
@@ -73,6 +58,8 @@ class BillData with _$BillData {
     return billData;
   }
 
+  BillData._();
+
   Map<String, double> get getSplitBalances {
     Map<String, double> splitBalances = {
       for (PublicProfile profile in [payer!] + primarySplits) profile.uid: 0
@@ -91,6 +78,19 @@ class BillData with _$BillData {
 
     return splitBalances;
   }
+
+  BillDataDTO get toDataTransferObj => BillDataDTO(
+        dateTime: dateTime,
+        name: name,
+        totalSpent: totalSpent,
+        payerUid: payer!.uid,
+        primarySplits: primarySplits.map((profile) => profile.uid).toList(),
+        splitBalances: splitBalances,
+        paymentResolveStatuses: paymentResolveStatuses,
+        everythingElse: everythingElse.toDataTransferObj,
+        itemGroups: itemGroups.map((itemGroup) => itemGroup.toDataTransferObj).toList(),
+        lastUpdatedSession: lastUpdatedSession,
+      );
 
 //TODO: when a new item is added, initialized its tax list with the current number of taxes
 //TODO: when a new tax is introduced, iterate through all the items and update their List<bool>

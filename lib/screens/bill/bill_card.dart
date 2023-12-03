@@ -52,8 +52,8 @@ class BillCard extends StatelessWidget {
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          // "https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png",
-                          "https://i.imgflip.com/7sp8qe.jpg",
+                          "https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png",
+                          // "https://i.imgflip.com/7sp8qe.jpg",
                         ),
                       ),
                     ),

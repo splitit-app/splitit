@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_cache/firestore_cache.dart';
-import 'package:project_bs/runtime_models/bill/split_rule.dart';
 import 'package:provider/provider.dart';
 
 import '../net_models/bill/bill_data_dto.dart';
 import '../net_models/bill/item_group_dto.dart';
 import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/bill/split_rule.dart';
 import '../runtime_models/user/public_profile.dart';
 import '../runtime_models/user/user_data.dart';
 
@@ -15,6 +15,14 @@ class BillDataRepository {
   final _billCollection = FirebaseFirestore.instance.collection('bills');
 
   BillDataRepository({required this.read});
+
+  @Deprecated('Reserve for future caching implementation')
+  Future<QuerySnapshot<Map<String, dynamic>>> get billDocumentSnapshots =>
+      FirestoreCache.getDocuments(
+        query: _billCollection,
+        cacheDocRef: FirebaseFirestore.instance.doc('cacheTimestamps/bills'),
+        firestoreCacheField: 'lastUpdatedSession',
+      );
 
   Stream<List<BillData>?> get billListStream {
     try {
@@ -28,6 +36,8 @@ class BillDataRepository {
       throw Exception(e);
     }
   }
+
+  UserData? get userData => read();
 
   Stream<BillData?> billDataStream(String uid) {
     try {
@@ -44,16 +54,6 @@ class BillDataRepository {
       throw Exception(e);
     }
   }
-
-  @Deprecated('Reserve for future caching implementation')
-  Future<QuerySnapshot<Map<String, dynamic>>> get billDocumentSnapshots =>
-      FirestoreCache.getDocuments(
-        query: _billCollection,
-        cacheDocRef: FirebaseFirestore.instance.doc('cacheTimestamps/bills'),
-        firestoreCacheField: 'lastUpdatedSession',
-      );
-
-  UserData? get userData => read();
 
   Future<String> createBill({
     required DateTime dateTime,
