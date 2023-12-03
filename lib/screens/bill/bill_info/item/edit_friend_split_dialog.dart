@@ -18,8 +18,12 @@ class EditFriendSplitDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+
+        insetPadding: const EdgeInsets.all(8.0),
         icon: PersonIcon(profile: profile),
         title: Text(profile.name, maxLines: 1, overflow: TextOverflow.ellipsis),
+        titlePadding: const EdgeInsets.all(1),
+        scrollable: true,
         content: switch (itemGroup.splitRule) {
           SplitRule.byPercentage => Column(
               children: [
