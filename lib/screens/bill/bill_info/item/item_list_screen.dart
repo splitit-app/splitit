@@ -8,6 +8,8 @@ import '../bill_form.dart';
 import 'item_group_card.dart';
 import 'item_group_info.dart';
 
+import 'item_group_form.dart';
+
 class ItemListScreen extends StatefulWidget {
   const ItemListScreen({super.key});
 
@@ -33,6 +35,7 @@ class _ItemListScreenState extends State<ItemListScreen> {
                 itemBuilder: (context, index) {
                   final currentItemGroup =
                       billData.itemGroups[billData.itemGroups.length - 1 - index] as IItemGroup;
+                  currentItemGroup.name = "New Item";
 
                   return ItemGroupCard(
                     itemGroup: currentItemGroup,
@@ -83,8 +86,12 @@ class _ItemListScreenState extends State<ItemListScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await billForm.addItemGroup();
+          // onPressed: () async {
+          //   await billForm.addItemGroup();
+          //   setState(() {});
+          // },
+          onPressed: (){
+            itemGroupDialog(context);
             setState(() {});
           },
           child: const Icon(MaterialSymbols.add),

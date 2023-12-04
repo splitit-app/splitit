@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:project_bs/screens/bill/bill_info/bill_form.dart';
+import 'package:project_bs/utilities/fields.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/i_item_group.dart';
@@ -29,7 +30,7 @@ class ItemGroupInfo extends StatefulWidget {
 }
 
 class _ItemGroupInfoState extends State<ItemGroupInfo> {
-  final TextEditingController _itemGroupName = TextEditingController(text: "Item Group 1");
+  final TextEditingController _itemGroupName = TextEditingController();
   bool _isTextFormEnabled = false;
   // bool _isDropDownEnabled = false;
 
@@ -39,7 +40,9 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
 
   @override
   Widget build(BuildContext context) {
-    _itemGroupName.text = 'Item Group';
+    // _itemGroupName.text = 'Item Group';
+    _itemGroupName.text = widget.itemGroup.name;
+
     itemController.text = widget.itemGroup.splitRule.label;
 
     final splitBalances = widget.itemGroup.getSplitBalances;
@@ -49,7 +52,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
       child: Scaffold(
         appBar: AppBar(
           shape: appBarShape,
-          title: const Text("Item Group"),
+          title: Text(_itemGroupName.text),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
           actions: [
@@ -57,7 +60,10 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 ? IconButton(
                     onPressed: () async {
                       await context.read<BillForm>().removeItemGroup(widget.itemGroup as ItemGroup);
-                      if (mounted) Navigator.of(context).pop();
+                      if (mounted){ 
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Item Group Deleted")));
+                      }
                     },
                     icon: const Icon(MaterialSymbols.delete),
                   )
@@ -292,44 +298,54 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                               ),
                             ],
                           ),
+
+
+                          // * editable tile here (notes for me)
+
+
                           // Actual Items
-                          child: ListTile(
-                            leading: Text('${index + 1}.'),
-                            title: Row(children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item.name,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      '\$${item.value}',
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                          child: GestureDetector(
+                            onLongPress: () {
+                              itemNameDialog();
+                            },
+                            child: ListTile(
+                              leading: Text('${index + 1}.'),
+                              title: Row(children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item.name,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        '\$${item.value}',
+                                        style: const TextStyle(fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  //TODO: save
-                                  item.quantity--;
-                                  setState(() {});
-                                },
-                                icon: const Icon(MaterialSymbols.remove),
-                              ),
-                              Center(child: Text(item.quantity.toString())),
-                              IconButton(
-                                onPressed: () {
-                                  //TODO: save
-                                  item.quantity++;
-                                  setState(() {});
-                                },
-                                icon: const Icon(MaterialSymbols.add),
-                              ),
-                            ]),
+                                IconButton(
+                                  onPressed: () {
+                                    //TODO: save
+                                    item.quantity--;
+                                    setState(() {});
+                                  },
+                                  icon: const Icon(MaterialSymbols.remove),
+                                ),
+                                Center(child: Text(item.quantity.toString())),
+                                IconButton(
+                                  onPressed: () {
+                                    //TODO: save
+                                    item.quantity++;
+                                    setState(() {});
+                                  },
+                                  icon: const Icon(MaterialSymbols.add),
+                                ),
+                              ]),
+                            ),
                           ),
                         ),
                       );
@@ -359,4 +375,38 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
       ),
     );
   }
+
+
+    Future<void> itemNameDialog() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          icon: const Icon(MaterialSymbols.description_filled),
+          title: const Text("Rename Item"),
+          content: TextFormField(
+            //! add controller for ren
+            // controller:
+            decoration: textFieldDecoration_border.copyWith(
+              labelText: "Item Group Name",
+              suffixIcon: IconButton(
+                onPressed: () {},
+                icon: const Icon(MaterialSymbols.close),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("Cancel"),
+            ),
+            OutlinedButton(
+              onPressed: (){
+                // item.name
+                if (context.mounted) Navigator.of(context).pop();
+              },
+              child: const Text("Ok"),
+            ),
+          ],
+        ),
+      );
+
 }

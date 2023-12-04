@@ -14,6 +14,8 @@ import '../bill/bill_info/bill_info.dart';
 import '../profile/profile_page.dart';
 import 'home_page.dart';
 
+import '../friends_screen/friends_page_overview.dart';
+
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key});
 
@@ -144,7 +146,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                   color: Theme.of(context).colorScheme.primaryContainer,
                                   borderRadius: BorderRadius.circular(18.0)),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) => FriendsPageOverview()),
+                                  );
+                                },
                                 borderRadius: BorderRadius.circular(18.0),
                                 child: const Icon(Symbols.person_add, size: 45.0),
                               ),

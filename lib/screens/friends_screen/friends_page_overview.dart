@@ -162,7 +162,7 @@ class FriendsPageOverview extends StatelessWidget {
                                         icon: Icon(MaterialSymbols.warning, size: 40.0),
                                         title: Text("Friend Limit Exceeded!"),
                                         content: Text(
-                                            "You can only have up to 30 friends. Remove one to add a new friend.",
+                                            "You can only have up to ${UserData.nonRegisteredFriendLimit} friends. Remove one to add a new friend.",
                                             textAlign: TextAlign.center),
                                       );
                                     });
