@@ -18,7 +18,6 @@ class EditFriendSplitDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-
         insetPadding: const EdgeInsets.all(8.0),
         icon: PersonIcon(profile: profile),
         title: Text(profile.name, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -34,7 +33,7 @@ class EditFriendSplitDialog extends StatelessWidget {
                       Expanded(
                         child: TextField(
                           controller: splitController
-                            ..text = (itemGroup.splitPercentages[profile.uid]! * 100).toString(),
+                            ..text = (itemGroup.splitPercentages[profile.uid]! * 100).toStringAsFixed(2),
                           onChanged: (value) {
                             if (double.tryParse(value) != null) {
                               final parsedValue = double.parse(value) / 100;
@@ -58,22 +57,25 @@ class EditFriendSplitDialog extends StatelessWidget {
                       const Text('%'),
                     ]),
                     Slider(
-                      value: itemGroup.splitPercentages[profile.uid]!,
+                      value: itemGroup.splitPercentages[profile.uid]! * 100,
                       onChanged: (value) {
+                        //value /= 100;
                         if (value >
                             itemGroup.primarySplits.fold(
-                                1,
+                                100,
                                 (previousValue, profile) =>
                                     previousValue -
                                     (profile != this.profile
-                                        ? itemGroup.splitPercentages[profile.uid]!
+                                        ? (itemGroup.splitPercentages[profile.uid]! * 100).round()
                                         : 0))) return;
                         final splitPercentages = Map.of(itemGroup.splitPercentages);
-                        splitPercentages[profile.uid] = value;
+                        splitPercentages[profile.uid] = value / 100;
                         itemGroup.splitPercentages = splitPercentages;
                         setState(() {});
                       },
+                      max: 100,
                       divisions: 20,
+                      label: (itemGroup.splitPercentages[profile.uid]! * 100).round().toString(),
                     ),
                   ]),
                 )

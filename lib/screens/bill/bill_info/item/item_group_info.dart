@@ -8,15 +8,18 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../runtime_models/bill/bill_data.dart';
 import '../../../../runtime_models/bill/i_item_group.dart';
 import '../../../../runtime_models/bill/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
+import '../../../../runtime_models/user/public_profile.dart';
 import '../../../../utilities/decorations.dart';
 import '../../../../utilities/fields.dart';
 import '../../../../utilities/person_icon.dart';
 import '../bill_form.dart';
-import 'edit_friend_involvement_bottom_sheet.dart';
+import 'friend_involvement_checklist.dart';
 import 'edit_friend_split_dialog.dart';
+import 'friend_involvement_checklist_form.dart';
 
 class ItemGroupInfo extends StatefulWidget {
   final IItemGroup itemGroup;
@@ -48,6 +51,9 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
     itemController.text = widget.itemGroup.splitRule.label;
 
     final splitBalances = widget.itemGroup.getSplitBalances;
+
+    final sourcePrimarySplits = context
+        .select<BillData, List<PublicProfile>>((value) => [value.payer!] + value.primarySplits);
 
     return Provider.value(
       value: widget.itemGroup,
@@ -149,13 +155,29 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     const Text("People",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                     ElevatedButton(
-                        onPressed: () {
-                          showModalBottomSheet(
+                        onPressed: () async {
+                          final friendInvolvementChecklistForm = FriendInvolvementChecklistForm(
+                            friendInvolvements: {
+                              for (var profile in sourcePrimarySplits)
+                                profile: widget.itemGroup.primarySplits.contains(profile)
+                            },
+                          );
+
+                          await showModalBottomSheet(
                             isScrollControlled: true,
                             context: context,
                             builder: (context) => FriendInvolvementChecklist(
-                                primarySplits: widget.itemGroup.primarySplits),
+                              friendInvolvementChecklistForm: friendInvolvementChecklistForm,
+                            ),
                           );
+
+                          widget.itemGroup.primarySplits = friendInvolvementChecklistForm
+                              .friendInvolvements.entries
+                              .where((entry) => entry.value)
+                              .map((entry) => entry.key)
+                              .toList();
+
+                          setState(() {});
                         },
                         child: const Text('Edit'))
                   ],
@@ -385,18 +407,19 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 80),
               ],
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          label: const Text('Save'),
-          icon: const Icon(Symbols.save),
-          onPressed: () async {
-            //update itemgroup form
-            setState(() {});
-          },
-        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   label: const Text('Save'),
+        //   icon: const Icon(Symbols.save),
+        //   onPressed: () async {
+        //     //update itemgroup form
+        //     setState(() {});
+        //   },
+        // ),
       ),
     );
   }

@@ -45,8 +45,19 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
   EverythingElseItemGroup._();
 
   Map<String, double> get getSplitBalances {
-    final balance = value / primarySplits.length;
-    return {for (var profile in primarySplits) profile.uid: balance};
+    final evenBalance = value / primarySplits.length;
+    final double totalShares = primarySplits.fold(
+        0, (previousValue, profile) => previousValue + splitShares[profile.uid]!);
+
+    return {
+      for (var profile in primarySplits)
+        profile.uid: switch (splitRule) {
+          SplitRule.even => evenBalance,
+          SplitRule.byPercentage => value * splitPercentages[profile.uid]!,
+          SplitRule.byShares => value * splitShares[profile.uid]! / totalShares,
+          SplitRule.exact => splitExacts[profile.uid]!,
+        }
+    };
   }
 
   String get name => 'Everything Else';

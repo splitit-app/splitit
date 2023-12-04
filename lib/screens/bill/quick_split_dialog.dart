@@ -100,14 +100,12 @@ void quickSplitDialog(BuildContext context) => showDialog(
                                       PublicProfile profile =
                                           userData.nonRegisteredFriends.values.elementAt(index);
 
-                                      return ListTile(
-                                        leading: PersonIcon(profile: profile),
+                                      return CheckboxListTile(
+                                        secondary: PersonIcon(profile: profile),
                                         title: Text(profile.name),
-                                        trailing: Checkbox(
-                                          value: quickSplitForm.friendInvolvements[profile],
-                                          onChanged: (value) => setState(() =>
-                                              quickSplitForm.friendInvolvements[profile] = value!),
-                                        ),
+                                        value: quickSplitForm.friendInvolvements[profile],
+                                        onChanged: (value) => setState(() =>
+                                            quickSplitForm.friendInvolvements[profile] = value!),
                                       );
                                     }),
                               ),

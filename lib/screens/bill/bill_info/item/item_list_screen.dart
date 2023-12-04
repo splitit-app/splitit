@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +8,7 @@ import '../bill_form.dart';
 import 'item_group_card.dart';
 import 'item_group_info.dart';
 
-import 'create_item_group_dialog.dart';
+// import 'create_item_group_dialog.dart';
 
 class ItemListScreen extends StatefulWidget {
   const ItemListScreen({super.key});
@@ -46,8 +45,11 @@ class _ItemListScreenState extends State<ItemListScreen> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Provider.value(
-                            value: billForm,
+                          builder: (context) => MultiProvider(
+                            providers: [
+                              Provider.value(value: billData),
+                              Provider.value(value: billForm),
+                            ],
                             builder: (context, child) => ItemGroupInfo(itemGroup: currentItemGroup),
                           ),
                         ),
@@ -71,8 +73,11 @@ class _ItemListScreenState extends State<ItemListScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Provider.value(
-                          value: billForm,
+                        builder: (context) => MultiProvider(
+                          providers: [
+                            Provider.value(value: billData),
+                            Provider.value(value: billForm),
+                          ],
                           builder: (context, child) => ItemGroupInfo(
                             itemGroup: billData.everythingElse as IItemGroup,
                             isEverythingElseItemGroup: true,
