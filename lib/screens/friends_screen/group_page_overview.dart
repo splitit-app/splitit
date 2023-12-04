@@ -45,7 +45,7 @@ class GroupPageOverview extends StatelessWidget {
                   height: 25.0,
                   width: 65.0,
                   decoration: BoxDecoration(
-                    color: Colors.blueAccent,
+                    // color: Colors.blueAccent,
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: const Row(
@@ -53,7 +53,9 @@ class GroupPageOverview extends StatelessWidget {
                     children: [
                       Text(
                         "0",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                          // color: Colors.white, 
+                          fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
