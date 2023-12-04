@@ -5,9 +5,6 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:project_bs/screens/bill/bill_info/bill_form.dart';
-import 'package:project_bs/utilities/fields.dart';
-
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -15,8 +12,10 @@ import '../../../../runtime_models/bill/i_item_group.dart';
 import '../../../../runtime_models/bill/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../utilities/decorations.dart';
+import '../../../../utilities/fields.dart';
 import '../../../../utilities/person_icon.dart';
 import '../bill_form.dart';
+import 'edit_friend_involvement_bottom_sheet.dart';
 import 'edit_friend_split_dialog.dart';
 
 class ItemGroupInfo extends StatefulWidget {
@@ -49,7 +48,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
     itemController.text = widget.itemGroup.splitRule.label;
 
     final splitBalances = widget.itemGroup.getSplitBalances;
-    //widget.itemGroup.splitExacts.update(widget.itemGroup.primarySplits[0].uid, (value) => 0);
+
     return Provider.value(
       value: widget.itemGroup,
       child: Scaffold(
@@ -63,9 +62,10 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 ? IconButton(
                     onPressed: () async {
                       await context.read<BillForm>().removeItemGroup(widget.itemGroup as ItemGroup);
-                      if (mounted){ 
+                      if (mounted) {
                         Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Item Group Deleted")));
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(content: Text("Item Group Deleted")));
                       }
                     },
                     icon: const Icon(MaterialSymbols.delete),
@@ -151,35 +151,11 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     ElevatedButton(
                         onPressed: () {
                           showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              builder: (context) => SizedBox(
-                                    height: MediaQuery.of(context).size.height * 0.7,
-                                    child: Column(
-                                      children: [
-                                        AppBar(
-                                          title: const Text('Yeet'),
-                                          shape: const RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.vertical(top: Radius.circular(25))),
-                                        ),
-                                        Expanded(
-                                          child: ListView.builder(
-                                            itemCount: widget.itemGroup.primarySplits.length,
-                                            itemBuilder: (context, index) => ListTile(
-                                              leading: PersonIcon(
-                                                  profile: widget.itemGroup.primarySplits[index]),
-                                              title: Text(
-                                                  widget.itemGroup.primarySplits[index].name,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis),
-                                              trailing: const Icon(Icons.check),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ));
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (context) => FriendInvolvementChecklist(
+                                primarySplits: widget.itemGroup.primarySplits),
+                          );
                         },
                         child: const Text('Edit'))
                   ],
@@ -342,9 +318,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                             ],
                           ),
 
-
                           // * editable tile here (notes for me)
-
 
                           // Actual Items
                           child: GestureDetector(
@@ -427,8 +401,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
     );
   }
 
-
-    Future<void> itemNameDialog() => showDialog(
+  Future<void> itemNameDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
           icon: const Icon(MaterialSymbols.description_filled),
@@ -450,7 +423,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
               child: const Text("Cancel"),
             ),
             OutlinedButton(
-              onPressed: (){
+              onPressed: () {
                 // item.name
                 if (context.mounted) Navigator.of(context).pop();
               },
@@ -459,5 +432,4 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
           ],
         ),
       );
-
 }

@@ -9,7 +9,7 @@ import '../bill_form.dart';
 import 'item_group_card.dart';
 import 'item_group_info.dart';
 
-import 'item_group_form.dart';
+import 'create_item_group_dialog.dart';
 
 class ItemListScreen extends StatefulWidget {
   const ItemListScreen({super.key});
@@ -90,10 +90,9 @@ class _ItemListScreenState extends State<ItemListScreen> {
           label: const Text('Add'),
           icon: const Icon(Symbols.add),
           onPressed: () async {
-            await billForm.addItemGroup();
-
-            setState(() {});
             //itemGroupDialog(context);
+            await billForm.addItemGroup();
+            setState(() {});
           },
         ),
       ),

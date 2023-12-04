@@ -162,10 +162,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).colorScheme.onSurface,
-
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
 
                         // Group Add Home Button:

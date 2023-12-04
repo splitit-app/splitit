@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
-import 'package:project_bs/runtime_models/bill/bill_data.dart';
-import 'package:project_bs/services/bill_data_repository.dart';
 import 'package:provider/provider.dart';
 
+import '../../../runtime_models/bill/bill_data.dart';
+import '../../../services/bill_data_repository.dart';
 import '../../../utilities/decorations.dart';
 import 'item/item_list_screen.dart';
 
