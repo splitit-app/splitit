@@ -7,6 +7,8 @@ import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:project_bs/screens/bill/bill_info/bill_form.dart';
 import 'package:project_bs/utilities/fields.dart';
+
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/i_item_group.dart';
@@ -14,6 +16,7 @@ import '../../../../runtime_models/bill/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../utilities/decorations.dart';
 import '../../../../utilities/person_icon.dart';
+import '../bill_form.dart';
 import 'edit_friend_split_dialog.dart';
 
 class ItemGroupInfo extends StatefulWidget {
@@ -140,7 +143,47 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 const SizedBox(height: 16),
 
                 // People Container
-                const Text("People", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("People",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                    ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) => SizedBox(
+                                    height: MediaQuery.of(context).size.height * 0.7,
+                                    child: Column(
+                                      children: [
+                                        AppBar(
+                                          title: const Text('Yeet'),
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.vertical(top: Radius.circular(25))),
+                                        ),
+                                        Expanded(
+                                          child: ListView.builder(
+                                            itemCount: widget.itemGroup.primarySplits.length,
+                                            itemBuilder: (context, index) => ListTile(
+                                              leading: PersonIcon(
+                                                  profile: widget.itemGroup.primarySplits[index]),
+                                              title: Text(
+                                                  widget.itemGroup.primarySplits[index].name,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis),
+                                              trailing: const Icon(Icons.check),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                        },
+                        child: const Text('Edit'))
+                  ],
+                ),
                 const SizedBox(height: 8),
                 ExpansionTileCard(
                   //TODO: Design advice required here
@@ -363,7 +406,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      '\$${widget.itemGroup.value}',
+                      '\$ ${widget.itemGroup.value}',
                       style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -371,6 +414,14 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
               ],
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          label: const Text('Save'),
+          icon: const Icon(Symbols.save),
+          onPressed: () async {
+            //update itemgroup form
+            setState(() {});
+          },
         ),
       ),
     );

@@ -1,10 +1,10 @@
-import 'package:project_bs/runtime_models/bill/split_rule.dart';
-import 'package:project_bs/runtime_models/user/public_profile.dart';
 import 'package:provider/provider.dart';
 
 import '../../../runtime_models/bill/bill_data.dart';
 import '../../../runtime_models/bill/item.dart';
 import '../../../runtime_models/bill/item_group.dart';
+import '../../../runtime_models/bill/split_rule.dart';
+import '../../../runtime_models/user/public_profile.dart';
 import '../../../services/bill_data_repository.dart';
 
 class BillForm {
@@ -38,16 +38,16 @@ class BillForm {
     }
   }
 
-  Future<void> removeItemGroup(ItemGroup itemGroup) async {
+  Future<void> bruh() async {
     final BillData billData = read();
-
-    billData.itemGroups.remove(itemGroup);
 
     read<BillDataRepository>().pushBillData(billData);
   }
 
-  Future<void> bruh() async {
+  Future<void> removeItemGroup(ItemGroup itemGroup) async {
     final BillData billData = read();
+
+    billData.itemGroups.remove(itemGroup);
 
     read<BillDataRepository>().pushBillData(billData);
   }

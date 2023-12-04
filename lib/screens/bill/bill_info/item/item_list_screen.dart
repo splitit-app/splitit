@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/bill_data.dart';
@@ -85,16 +86,15 @@ class _ItemListScreenState extends State<ItemListScreen> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          // onPressed: () async {
-          //   await billForm.addItemGroup();
-          //   setState(() {});
-          // },
-          onPressed: (){
-            itemGroupDialog(context);
+        floatingActionButton: FloatingActionButton.extended(
+          label: const Text('Add'),
+          icon: const Icon(Symbols.add),
+          onPressed: () async {
+            await billForm.addItemGroup();
+
             setState(() {});
+            //itemGroupDialog(context);
           },
-          child: const Icon(MaterialSymbols.add),
         ),
       ),
     );
