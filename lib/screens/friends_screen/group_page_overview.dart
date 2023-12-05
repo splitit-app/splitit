@@ -13,7 +13,8 @@ class GroupPageOverview extends StatelessWidget {
           centerTitle: true,
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context); // Pops the Route, returns back to the previous page.
+              Navigator.pop(
+                  context); // Pops the Route, returns back to the previous page.
             },
             icon: const Icon(Symbols.arrow_back),
             iconSize: 30.0,
@@ -40,22 +41,21 @@ class GroupPageOverview extends StatelessWidget {
                     textAlign: TextAlign.right,
                   ),
                 ),
-                // Displays Friend Total
+                // // // Displays Friend Total
                 Container(
-                  height: 25.0,
-                  width: 65.0,
+                  width: 24.0,
                   decoration: BoxDecoration(
-                    // color: Colors.blueAccent,
+                    color: Colors.green[800],
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center, // Centering Text
+                    mainAxisAlignment:
+                        MainAxisAlignment.center, // Centering Text
                     children: [
                       Text(
                         "0",
                         style: TextStyle(
-                          // color: Colors.white, 
-                          fontWeight: FontWeight.w500),
+                            color: Colors.white, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
