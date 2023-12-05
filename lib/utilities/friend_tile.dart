@@ -62,7 +62,16 @@ class FriendTile extends StatelessWidget {
           // All Actions:
           children: [
             SlidableAction(
-              onPressed: ((context) {}),
+              onPressed: ((context) {                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        content: const Text('These are imaginary friends lol ☠️'),
+                        action: SnackBarAction(
+                          label: 'cry',
+                          onPressed: () {},
+                        ),
+                      ),
+                    );}),
               backgroundColor: const Color(0xFF2B82D4),
               foregroundColor: Colors.white,
               // First Tile have border-edges, the remainder have none.

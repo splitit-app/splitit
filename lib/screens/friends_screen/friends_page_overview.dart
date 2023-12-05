@@ -47,7 +47,7 @@ class FriendsPageOverview extends StatelessWidget {
                   // Search Bar:
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 12),
+                        horizontal: 16.0, vertical: 24),
                     child: SearchBar(
                       elevation: const MaterialStatePropertyAll(2),
                       controller: _searchBarController,
@@ -60,7 +60,7 @@ class FriendsPageOverview extends StatelessWidget {
                         ),
                       ],
                       padding: const MaterialStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 15.0)),
+                          EdgeInsets.symmetric(horizontal: 16.0)),
                     ),
                   ),
 
@@ -68,10 +68,10 @@ class FriendsPageOverview extends StatelessWidget {
                   const Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.0 ,vertical: 8),
                         child: Text(
                           "Recent Victims",
-                          style: TextStyle(fontSize: 20.0),
+                          style: TextStyle(fontSize: 22.0),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -79,7 +79,7 @@ class FriendsPageOverview extends StatelessWidget {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
+                        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
                     child: SizedBox(
                       height: 80,
                       child: ListView.builder(
@@ -89,7 +89,7 @@ class FriendsPageOverview extends StatelessWidget {
                         itemCount: userData.nonRegisteredFriends.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 4.0),
                             child: Row(
                               children: [
                                 Column(
@@ -138,7 +138,7 @@ class FriendsPageOverview extends StatelessWidget {
                           children: [
                             const Text(
                               "Friends",
-                              style: TextStyle(fontSize: 20.0),
+                              style: TextStyle(fontSize: 22.0),
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(width: 10),

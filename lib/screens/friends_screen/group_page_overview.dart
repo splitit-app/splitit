@@ -17,13 +17,13 @@ class GroupPageOverview extends StatelessWidget {
                   context); // Pops the Route, returns back to the previous page.
             },
             icon: const Icon(Symbols.arrow_back),
-            iconSize: 30.0,
+            iconSize: 24.0,
           ),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Symbols.settings),
-              iconSize: 30.0,
+              icon: const Icon(Icons.settings),
+              iconSize: 24.0,
             ),
           ],
         ),
