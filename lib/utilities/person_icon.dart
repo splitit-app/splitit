@@ -21,20 +21,20 @@ class PersonIcon extends StatelessWidget {
         color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
         shape: BoxShape.circle,
 
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 3,
-            color: Colors.black38,
-            offset: Offset(0, 2),
-            spreadRadius: 1,
-          ),
-        ],
+        // boxShadow: const [
+        //   BoxShadow(
+        //     blurRadius: 3,
+        //     color: Colors.black38,
+        //     offset: Offset(0, 2),
+        //     spreadRadius: 1,
+        //   ),
+        // ],
       ),
       child: Center(
-        child: Text(
-          profile.name.isEmpty ? '?' : profile.name[0],
-          style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
+          child: Text(
+            profile.name.isEmpty ? '?' : profile.name[0],
+            style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
       ),
     );
   }

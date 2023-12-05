@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -35,15 +36,15 @@ class FriendsPage extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
               title: const Text("People"),
               centerTitle: true,
-              leading: IconButton(
-                color: Theme.of(context).colorScheme.onSurface,
-                icon: const Icon(Symbols.notifications),
-                onPressed: () {},
-              ),
+              // leading: IconButton(
+              //   color: Theme.of(context).colorScheme.onSurfaceVariant,
+              //   icon: const Icon(MaterialSymbols.notifications),
+              //   onPressed: () {},
+              // ),
               actions: [
                 IconButton(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  icon: const Icon(Symbols.settings),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  icon: const Icon(Icons.notifications),
                   onPressed: () {},
                 ),
               ],
@@ -54,7 +55,7 @@ class FriendsPage extends StatelessWidget {
                 children: [
                   // Search Bar:
                   Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: SearchBar(
                       controller: _searchBarController,
                       hintText: "Search friends & groups",
@@ -100,7 +101,7 @@ class FriendsPage extends StatelessWidget {
 
                         // Profile List Row in PageView Format
                         SizedBox(
-                          height: 300,
+                          height: 260,
                           child: PageView.builder(
                               // PageView Builder
                               scrollDirection: Axis.horizontal,
@@ -110,7 +111,7 @@ class FriendsPage extends StatelessWidget {
                               itemBuilder: (context, index) =>
                                   FriendsPageView(startingIndex: index * 6)),
                         ),
-                        const SizedBox(height: 5.0),
+                        const SizedBox(height: 6.0),
                         // Animated Page indicator for the PageView (package: https://pub.dev/packages/smooth_page_indicator)
                         SmoothPageIndicator(
                           controller: _controller,

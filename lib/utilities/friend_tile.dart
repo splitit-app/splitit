@@ -26,6 +26,7 @@ class FriendTile extends StatelessWidget {
                 // Snackbar Message on action:
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
+                    behavior: SnackBarBehavior.floating,
                     content: const Text('You\'ve abandoned your friend!'),
                     action: SnackBarAction(
                       label: 'Adios',
@@ -74,7 +75,7 @@ class FriendTile extends StatelessWidget {
             title: Text(profile.name),
             subtitle: const Text("Subtitles Subtitles Subtitles"),
             leading: PersonIcon(profile: profile),
-            trailing: const Icon(Symbols.drag_handle),
+            //trailing: const Icon(Symbols.drag_handle),
           ),
         ));
   }

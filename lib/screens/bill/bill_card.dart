@@ -113,27 +113,30 @@ class BillCard extends StatelessWidget {
 
               //People
               IntrinsicHeight(
-                child: Row(
-                  children: [
-                    PersonIcon(profile: billData.payer!),
-                    VerticalDivider(
-                      thickness: 2.0,
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    RowSuper(
-                      innerDistance: -10.0,
-                      children: billData.primarySplits
-                          .sublist(0, min(billData.primarySplits.length, maxPersonIconCount))
-                          .map((profile) => PersonIcon(profile: profile))
-                          .toList(),
-                    ),
-                    billData.primarySplits.length > maxPersonIconCount
-                        ? const Padding(
-                            padding: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.keyboard_control),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Row(
+                    children: [
+                      PersonIcon(profile: billData.payer!),
+                      VerticalDivider(
+                        thickness: 2.0,
+                        color: Theme.of(context).dividerColor,
+                      ),
+                      RowSuper(
+                        innerDistance: -10.0,
+                        children: billData.primarySplits
+                            .sublist(0, min(billData.primarySplits.length, maxPersonIconCount))
+                            .map((profile) => PersonIcon(profile: profile))
+                            .toList(),
+                      ),
+                      billData.primarySplits.length > maxPersonIconCount
+                          ? const Padding(
+                              padding: EdgeInsets.only(left: 5),
+                              child: Icon(Icons.keyboard_control),
+                            )
+                          : const SizedBox.shrink(),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 6),
@@ -141,13 +144,16 @@ class BillCard extends StatelessWidget {
               // Bill Row (Total, Settled, and Pending Amounts)
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  "Overview",
-                  style: TextStyle(
-                    // color: textColors,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 4),
+                  child: Text(
+                    "Overview",
+                    style: TextStyle(
+                      // color: textColors,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
@@ -174,7 +180,7 @@ class BillCard extends StatelessWidget {
                           ),
                           Text(
                             NumberFormat.currency(
-                              symbol: '\$',
+                              symbol: '\$ ',
                               decimalDigits: 2,
                             ).format(billData.totalSpent),
                             style: TextStyle(
@@ -195,7 +201,7 @@ class BillCard extends StatelessWidget {
                           ),
                           Text(
                             NumberFormat.currency(
-                              symbol: '\$',
+                              symbol: '\$ ',
                               decimalDigits: 2,
                             ).format(5.45),
                             style: const TextStyle(
@@ -223,7 +229,7 @@ class BillCard extends StatelessWidget {
 
                             // The bill total subtracted by the amount resolved. Currently the settled amount is hardcoded.
                             NumberFormat.currency(
-                              symbol: '\$',
+                              symbol: '\$ ',
                               decimalDigits: 2,
                             ).format(billData.totalSpent - 5.45),
 

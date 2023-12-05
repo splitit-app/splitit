@@ -112,7 +112,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Something"),
+                                Text("Innovation champion in digital disruption"),
                                 Text("Yeah"),
                               ],
                             ),
@@ -120,7 +120,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15.0),
+                    const SizedBox(height: 30.0),
 
                     // Quick Start Buttons:
                     const Row(
@@ -136,35 +136,37 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Add Friend Home Button:
-                        Column(
-                          children: [
-                            Material(
-                                child: Ink(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.primaryContainer,
-                                  borderRadius: BorderRadius.circular(18.0)),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => FriendsPageOverview()),
-                                  );
-                                },
-                                borderRadius: BorderRadius.circular(18.0),
-                                child: const Icon(Symbols.person_add, size: 45.0),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Material(
+                                  child: Ink(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).colorScheme.primaryContainer,
+                                    borderRadius: BorderRadius.circular(18.0)),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) => FriendsPageOverview()),
+                                    );
+                                  },
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  child: const Icon(Symbols.person_add, size: 45.0),
+                                ),
+                              )),
+                              const SizedBox(height: 5.0),
+                              Text(
+                                "Add Friend",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.onSurface,
+                                ),
                               ),
-                            )),
-                            const SizedBox(height: 5.0),
-                            Text(
-                              "Add Friend",
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.onSurface,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
 
                         // Group Add Home Button:
