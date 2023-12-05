@@ -363,7 +363,7 @@ class _BillInfoState extends State<BillInfo> {
                                     backgroundColor: Theme.of(context).colorScheme.primary,
                                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                                     borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(index == 0 ? 12 : 0),
+                                      //topLeft: Radius.circular(index == 0 ? 12 : 0),
                                       bottomLeft: Radius.circular(
                                           index == widget.billData.primarySplits.length - 1
                                               ? 12

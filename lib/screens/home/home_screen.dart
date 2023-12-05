@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -8,12 +9,10 @@ import '../../runtime_models/bill/bill_data.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/authentication_service.dart';
 import '../../utilities/bill_utilities/bill_cards_compact.dart';
-import '../../utilities/colors.dart';
 import '../../utilities/decorations.dart';
 import '../bill/bill_info/bill_info.dart';
 import '../bill/bill_list_screen.dart';
 import '../bill/quick_split_dialog.dart';
-import '../friends_screen/create_friend_dialog.dart';
 import '../friends_screen/friends_page.dart';
 import '../profile/profile_page.dart';
 import 'home_page.dart';
@@ -28,8 +27,8 @@ class MainHomeScreen extends StatefulWidget {
 }
 
 bool themeSwitch = false;
-IconData lightIcon = Symbols.light_mode;
-IconData darkIcon = Symbols.dark_mode;
+const IconData lightIcon = MaterialSymbols.light_mode;
+const IconData darkIcon = MaterialSymbols.dark_mode;
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
@@ -71,7 +70,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   color: Theme.of(context).colorScheme.surfaceVariant,
                 ),
                 currentAccountPicture: const CircleAvatar(
-                  //radius: 30,
                   backgroundImage: NetworkImage(
                     'https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png',
                   ),
@@ -79,11 +77,21 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 accountName: Text(userData!.publicProfile.name),
                 accountEmail: null,
               ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Symbols.settings),
-                title: const Text("Settings"),
+              TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(Symbols.settings),
+                label: const Text("Settings"),
               ),
+              SwitchListTile(
+                  thumbIcon: MaterialStateProperty.resolveWith<Icon?>((Set<MaterialState> states) {
+                    if (states.contains(MaterialState.selected)) {
+                      return const Icon(lightIcon);
+                    }
+                    return const Icon(darkIcon);
+                  }),
+                  value: true,
+                  onChanged: (value) {}),
+              Switch(value: false, onChanged: (value) {}),
               ListTile(
                 onTap: () {
                   setState(() {
@@ -96,9 +104,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               ),
               ListTile(
                 //TODO: add snackbar to notify logged out
-                onTap: () {
-                  AuthenticationService().signOut;
-                },
+                onTap: AuthenticationService().signOut,
                 leading: const Icon(Symbols.logout),
                 title: const Text("Sign Out"),
               ),
@@ -166,7 +172,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("Innovation champion in digital disruption"),
-                                Text("Yeah"),
+                                //Text("Yeah"),
                               ],
                             ),
                           ],
@@ -240,7 +246,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     quickSplitDialog(context);
                                   },
                                   borderRadius: BorderRadius.circular(12.0),
-                                  child: const Icon(Symbols.money, size: 45.0),
+                                  child: const Icon(Symbols.payments, size: 45.0),
                                 ),
                               )),
                               const SizedBox(height: 5.0),
