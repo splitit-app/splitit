@@ -115,7 +115,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         padding: const EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18.0),
-                          color: getSurfaceContainerHighest(false),
+                          color: Theme.of(context).colorScheme.primaryContainer,
                           //Theme.of(context).colorScheme.surfaceVariant
                         ),
                         child: const Column(
