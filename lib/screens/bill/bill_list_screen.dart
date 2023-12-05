@@ -47,7 +47,7 @@ class _BillListScreenState extends State<BillListScreen> {
                 bills == null
                     ? const Placeholder()
                     : ListView.separated(
-                        padding: const EdgeInsets.all(16).copyWith(bottom: 64),
+                        padding: const EdgeInsets.all(16).copyWith(bottom: 80),
                         shrinkWrap: true,
                         itemCount: bills.length,
                         itemBuilder: (context, index) => BillCard(billData: bills[index]),
