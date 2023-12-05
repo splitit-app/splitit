@@ -11,6 +11,10 @@ import '../../utilities/bill_utilities/bill_cards_compact.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/decorations.dart';
 import '../bill/bill_info/bill_info.dart';
+import '../bill/bill_list_screen.dart';
+import '../bill/quick_split_dialog.dart';
+import '../friends_screen/create_friend_dialog.dart';
+import '../friends_screen/friends_page.dart';
 import '../profile/profile_page.dart';
 import 'home_page.dart';
 
@@ -33,7 +37,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       appBar: AppBar(
         shape: appBarShape,
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: const Text("Home", style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
+        title: const Text("Home",
+            style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
         centerTitle: true,
         toolbarHeight: 64,
         elevation: 0,
@@ -61,13 +66,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 //* or use LinearProgressIndicator())
                 child: CircularProgressIndicator(
                   color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.primaryContainer,
                 ),
               ),
             )
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 24.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0, vertical: 24.0),
                 child: Column(
                   children: [
                     // Profile Icon and Welcoming Text
@@ -77,17 +84,21 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Welcome Back, ', style: TextStyle(fontSize: 25.0)),
+                            const Text('Welcome Back, ',
+                                style: TextStyle(fontSize: 25.0)),
                             Text('${userData.publicProfile.name}!',
-                                style:
-                                    const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
+                                style: const TextStyle(
+                                    fontSize: 25.0,
+                                    fontWeight: FontWeight.w500)),
                           ],
                         ),
                         //const SizedBox(24),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
                         GestureDetector(
-                          onTap: () => Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const ProfilePage())),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProfilePage())),
                           child: const CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -112,7 +123,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Innovation champion in digital disruption"),
+                                Text(
+                                    "Innovation champion in digital disruption"),
                                 Text("Yeah"),
                               ],
                             ),
@@ -128,7 +140,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Quick Start",
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold)),
                       ],
                     ),
                     const SizedBox(height: 24),
@@ -144,16 +157,17 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.primaryContainer,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primaryContainer,
                                     borderRadius: BorderRadius.circular(18.0)),
                                 child: InkWell(
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => FriendsPageOverview()),
-                                    );
+                                    createFriendDialog(context);
                                   },
                                   borderRadius: BorderRadius.circular(18.0),
-                                  child: const Icon(Symbols.person_add, size: 45.0),
+                                  child: const Icon(Symbols.person_add,
+                                      size: 45.0),
                                 ),
                               )),
                               const SizedBox(height: 5.0),
@@ -162,7 +176,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ],
@@ -179,10 +194,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.secondaryContainer,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondaryContainer,
                                     borderRadius: BorderRadius.circular(25.0)),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    quickSplitDialog(context);
+                                  },
                                   borderRadius: BorderRadius.circular(25.0),
                                   child: const Icon(Symbols.money, size: 45.0),
                                 ),
@@ -193,7 +212,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ],
@@ -210,12 +230,20 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .tertiaryContainer,
                                     borderRadius: BorderRadius.circular(25.0)),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FriendsPage(),
+                                    ),
+                                  ),
                                   borderRadius: BorderRadius.circular(25.0),
-                                  child: const Icon(Symbols.group_add, size: 45.0),
+                                  child:
+                                      const Icon(Symbols.group_add, size: 45.0),
                                 ),
                               )),
                               const SizedBox(height: 5.0),
@@ -224,7 +252,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ],
@@ -241,12 +270,17 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                       children: [
                         const Text(
                           "Recent Transactions",
-                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
                         ),
                         TextButton(
                           onPressed: () {
                             setState(() {
-                              context.read<RootForm>().currentPageId = 1;
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const BillListScreen()),
+                              );
                             });
                             print(context.read<RootForm>().currentPageId);
                           },
@@ -263,20 +297,24 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 child: Text('seems empty here'),
                               )
                             : ListView.separated(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: min(bills.length, 5),
-                                itemBuilder: (context, index) => BillCardsCompact(
+                                itemBuilder: (context, index) =>
+                                    BillCardsCompact(
                                   billData: bills[index],
                                   onTap: () => Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => BillInfo(billData: bills[index]),
+                                      builder: (context) =>
+                                          BillInfo(billData: bills[index]),
                                     ),
                                   ),
                                 ),
-                                separatorBuilder: (context, index) => const SizedBox(height: 10),
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(height: 10),
                               )
                   ],
                 ),

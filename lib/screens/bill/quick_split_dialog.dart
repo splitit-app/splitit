@@ -34,6 +34,7 @@ void quickSplitDialog(BuildContext context) => showDialog(
                           const Text("provide split information"),
                           const SizedBox(height: 20),
                           TextFormField(
+                            autofocus: true,
                             controller: quickSplitForm.nameFieldController,
                             decoration: textFieldDecoration_border.copyWith(
                               labelText: "Name",

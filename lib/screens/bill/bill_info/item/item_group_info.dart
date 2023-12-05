@@ -154,7 +154,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                   children: [
                     const Text("People",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-                    ElevatedButton(
+                    TextButton(
                         onPressed: () async {
                           final friendInvolvementChecklistForm = FriendInvolvementChecklistForm(
                             friendInvolvements: {
