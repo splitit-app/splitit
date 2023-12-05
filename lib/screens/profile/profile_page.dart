@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: const Text("Profile Mock-Up",style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
+        title: const Text("My Profile",style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
         centerTitle: true,
       ),
         body: ListView(
@@ -29,9 +29,9 @@ class ProfilePage extends StatelessWidget {
   Widget buildContent() => const Column(
     children: [
       SizedBox(height: 10.0),
-      Text("Tester"),
+      Text("Max J. Tsai", style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
       SizedBox(height: 10.0),
-      Text("About me Page, all about me and only me!"),
+      Text("Innovation champion in digital disruption | Proven leadership in the development and realization of emergence of Digital Transformation strategies", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal), textAlign: TextAlign.center,),
     ],
     );
 
@@ -64,6 +64,7 @@ class ProfilePage extends StatelessWidget {
         radius: profileHeight / 2.0,
         backgroundColor: Colors.grey,
         backgroundImage: const NetworkImage(
-            "https://i.kym-cdn.com/entries/icons/facebook/000/045/324/cover19.jpg"),
+               "https://i.kym-cdn.com/entries/icons/facebook/000/045/324/cover19.jpg"),
+            // "https://media.licdn.com/dms/image/D5603AQE44yJ6jXdDVQ/profile-displayphoto-shrink_400_400/0/1696912315664?e=1702512000&v=beta&t=K2Zxdgjrz8Zi9NzNQsKko85z0P4r0CxhUr4GpG9nwyU"),
       );
 }
