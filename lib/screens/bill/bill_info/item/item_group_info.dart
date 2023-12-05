@@ -5,11 +5,11 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/bill_data.dart';
 import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/item.dart';
 import '../../../../runtime_models/bill/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../runtime_models/user/public_profile.dart';
@@ -17,8 +17,8 @@ import '../../../../utilities/decorations.dart';
 import '../../../../utilities/fields.dart';
 import '../../../../utilities/person_icon.dart';
 import '../bill_form.dart';
-import 'friend_involvement_checklist.dart';
 import 'edit_friend_split_dialog.dart';
+import 'friend_involvement_checklist.dart';
 import 'friend_involvement_checklist_form.dart';
 
 class ItemGroupInfo extends StatefulWidget {
@@ -70,8 +70,9 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                       await context.read<BillForm>().removeItemGroup(widget.itemGroup as ItemGroup);
                       if (mounted) {
                         Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(behavior:SnackBarBehavior.floating, content: Text("Item Group Deleted")));
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text("Item Group Deleted")));
                       }
                     },
                     icon: const Icon(MaterialSymbols.delete),
@@ -155,31 +156,32 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     const Text("People",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                     TextButton(
-                        onPressed: () async {
-                          final friendInvolvementChecklistForm = FriendInvolvementChecklistForm(
-                            friendInvolvements: {
-                              for (var profile in sourcePrimarySplits)
-                                profile: widget.itemGroup.primarySplits.contains(profile)
-                            },
-                          );
+                      onPressed: () async {
+                        final friendInvolvementChecklistForm = FriendInvolvementChecklistForm(
+                          friendInvolvements: {
+                            for (var profile in sourcePrimarySplits)
+                              profile: widget.itemGroup.primarySplits.contains(profile)
+                          },
+                        );
 
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (context) => FriendInvolvementChecklist(
-                              friendInvolvementChecklistForm: friendInvolvementChecklistForm,
-                            ),
-                          );
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (context) => FriendInvolvementChecklist(
+                            friendInvolvementChecklistForm: friendInvolvementChecklistForm,
+                          ),
+                        );
 
-                          widget.itemGroup.primarySplits = friendInvolvementChecklistForm
-                              .friendInvolvements.entries
-                              .where((entry) => entry.value)
-                              .map((entry) => entry.key)
-                              .toList();
+                        widget.itemGroup.primarySplits = friendInvolvementChecklistForm
+                            .friendInvolvements.entries
+                            .where((entry) => entry.value)
+                            .map((entry) => entry.key)
+                            .toList();
 
-                          setState(() {});
-                        },
-                        child: const Text('Edit'))
+                        setState(() {});
+                      },
+                      child: const Text('Edit'),
+                    )
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -304,12 +306,28 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 const SizedBox(height: 24),
 
                 // Item Container
-                const Text("Items", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("Items",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                    TextButton(
+                      onPressed: () async {
+                        final items = List.of(widget.itemGroup.items);
+                        items.add(Item(taxableStatusList: []));
+                        widget.itemGroup.items = items;
+
+                        setState(() {});
+                      },
+                      child: const Text('Add'),
+                    )
+                  ],
+                ),
                 const SizedBox(height: 8),
                 Container(
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                       color: Theme.of(context).colorScheme.surfaceVariant),
                   child: ListView.separated(
                     shrinkWrap: true,
@@ -319,74 +337,56 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                     itemBuilder: (context, index) {
                       final item = widget.itemGroup.items[index];
 
-                      return StatefulBuilder(
-                        builder: (context, setState) => Slidable(
-                          closeOnScroll: false,
-                          startActionPane: ActionPane(
-                            motion: const BehindMotion(),
-                            extentRatio: 0.2,
-                            children: [
-                              SlidableAction(
-                                onPressed: ((context) {}),
-                                backgroundColor: Theme.of(context).colorScheme.primary,
-                                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(index == 0 ? 25 : 0),
-                                  bottomLeft: Radius.circular(
-                                      index == widget.itemGroup.items.length - 1 ? 25 : 0),
+                      return ListTile(
+                        onTap: () async {
+                          await editItemDialog(item);
+                          setState(() {});
+                        },
+                        leading: Text('${index + 1}.'),
+                        title: Row(children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item.name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                icon: MaterialSymbols.check,
-                              ),
-                            ],
-                          ),
-
-                          // * editable tile here (notes for me)
-
-                          // Actual Items
-                          child: GestureDetector(
-                            onLongPress: () {
-                              itemNameDialog();
-                            },
-                            child: ListTile(
-                              leading: Text('${index + 1}.'),
-                              title: Row(children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        item.name,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text(
-                                        '\$${item.value}',
-                                        style: const TextStyle(fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  '\$${item.value}',
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                IconButton(
-                                  onPressed: () {
-                                    //TODO: save
-                                    item.quantity--;
-                                    setState(() {});
-                                  },
-                                  icon: const Icon(MaterialSymbols.remove),
-                                ),
-                                Center(child: Text(item.quantity.toString())),
-                                IconButton(
-                                  onPressed: () {
-                                    //TODO: save
-                                    item.quantity++;
-                                    setState(() {});
-                                  },
-                                  icon: const Icon(MaterialSymbols.add),
-                                ),
-                              ]),
+                              ],
                             ),
                           ),
-                        ),
+                          IconButton(
+                            onPressed: () {
+                              //TODO: save
+                              if (widget.itemGroup.items.length == 1 && item.quantity == 1) {
+                                return;
+                              }
+
+                              item.quantity--;
+                              if (item.quantity <= 0) {
+                                final items = List.of(widget.itemGroup.items);
+                                items.remove(item);
+                                widget.itemGroup.items = items;
+                              }
+                              setState(() {});
+                            },
+                            icon: const Icon(MaterialSymbols.remove),
+                          ),
+                          Center(child: Text(item.quantity.toString())),
+                          IconButton(
+                            onPressed: () {
+                              //TODO: save
+                              item.quantity++;
+                              setState(() {});
+                            },
+                            icon: const Icon(MaterialSymbols.add),
+                          ),
+                        ]),
                       );
                     },
                     separatorBuilder: (context, index) =>
@@ -424,35 +424,56 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
     );
   }
 
-  Future<void> itemNameDialog() => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          icon: const Icon(MaterialSymbols.description_filled),
-          title: const Text("Rename Item"),
-          content: TextFormField(
-            //! add controller for ren
-            // controller:
-            decoration: textFieldDecoration_border.copyWith(
-              labelText: "Item Group Name",
-              suffixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(MaterialSymbols.close),
+  Future<void> editItemDialog(Item item) {
+    final nameController = TextEditingController(text: item.name);
+    final valueController = TextEditingController(text: item.value.toStringAsFixed(2));
+    final quantityController = TextEditingController(text: item.quantity.toString());
+
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        icon: const Icon(MaterialSymbols.description_filled),
+        title: const Text("Edit Item"),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: nameController,
+                decoration: textFieldDecoration_border.copyWith(labelText: "Name"),
               ),
-            ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: valueController,
+                decoration: textFieldDecoration_border.copyWith(labelText: "Value"),
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: quantityController,
+                decoration: textFieldDecoration_border.copyWith(labelText: "Quantity"),
+                keyboardType: TextInputType.number,
+              ),
+            ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Cancel"),
-            ),
-            OutlinedButton(
-              onPressed: () {
-                // item.name
-                if (context.mounted) Navigator.of(context).pop();
-              },
-              child: const Text("Ok"),
-            ),
-          ],
         ),
-      );
+        actions: [
+          OutlinedButton(
+            onPressed: () {
+              item.name = nameController.text;
+
+              final value = double.tryParse(valueController.text);
+              if (value != null) item.value = value;
+
+              final quantity = int.tryParse(quantityController.text);
+              if (quantity != null) item.quantity = quantity;
+
+              if (context.mounted) Navigator.of(context).pop();
+            },
+            child: const Text("Ok"),
+          ),
+        ],
+      ),
+    );
+  }
 }

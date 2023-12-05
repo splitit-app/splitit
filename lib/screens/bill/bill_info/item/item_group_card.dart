@@ -72,7 +72,7 @@ class ItemGroupCard extends StatelessWidget {
                     Text('${itemGroup.items.length} item(s)'),
                     const SizedBox(height: 15.0),
                     Text(
-                      '\$ ${itemGroup.value}',
+                      '\$ ${itemGroup.value.toStringAsFixed(2)}',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

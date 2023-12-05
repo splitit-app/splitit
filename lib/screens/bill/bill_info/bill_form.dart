@@ -38,12 +38,6 @@ class BillForm {
     }
   }
 
-  Future<void> bruh() async {
-    final BillData billData = read();
-
-    read<BillDataRepository>().pushBillData(billData);
-  }
-
   Future<void> removeItemGroup(ItemGroup itemGroup) async {
     final BillData billData = read();
 
