@@ -46,7 +46,8 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
   @override
   Widget build(BuildContext context) {
     // _itemGroupName.text = 'Item Group';
-    _itemGroupName.text = widget.itemGroup.name;
+    _itemGroupName.text =
+        widget.itemGroup.name.isNotEmpty ? widget.itemGroup.name : widget.itemGroup.items[0].name;
 
     itemController.text = widget.itemGroup.splitRule.label;
 
@@ -60,7 +61,11 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
       child: Scaffold(
         appBar: AppBar(
           shape: appBarShape,
-          title: Text(_itemGroupName.text),
+          title: Text(
+            widget.itemGroup.name.isNotEmpty
+                ? widget.itemGroup.name
+                : widget.itemGroup.items[0].name,
+          ),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
           actions: [
@@ -91,6 +96,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                   Expanded(
                     flex: 2,
                     child: TextFormField(
+                      enabled: !widget.isEverythingElseItemGroup,
                       controller: _itemGroupName,
                       style: const TextStyle(fontWeight: FontWeight.w500),
                       // style: const TextStyle(
@@ -100,13 +106,15 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                       }),
                       onTapOutside: (event) {
                         _isTextFormEnabled = false;
+                        widget.itemGroup.name = _itemGroupName.text;
                         FocusScope.of(context).unfocus();
                       },
-                      // onEditingComplete: () {
-                      //   _isEnable = false;
-                      // },
+                      onFieldSubmitted: (value) {
+                        _isTextFormEnabled = false;
+                        widget.itemGroup.name = _itemGroupName.text;
+                      },
                       decoration: InputDecoration(
-                        labelText: _isTextFormEnabled ? "Item Group Name" : "",
+                        labelText: _isTextFormEnabled ? "Name" : "",
                         //hintText: "Item Group 1",
                         border: _isTextFormEnabled ? const OutlineInputBorder() : InputBorder.none,
                       ),
@@ -402,7 +410,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      '\$ ${widget.itemGroup.value}',
+                      '\$ ${widget.itemGroup.value.toStringAsFixed(2)}',
                       style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -439,20 +447,26 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
-                controller: nameController,
                 decoration: textFieldDecoration_border.copyWith(labelText: "Name"),
+                controller: nameController,
+                onTap: () => nameController.selection =
+                    TextSelection(baseOffset: 0, extentOffset: nameController.text.length),
               ),
               const SizedBox(height: 16),
               TextFormField(
-                controller: valueController,
                 decoration: textFieldDecoration_border.copyWith(labelText: "Value"),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                controller: valueController,
+                onTap: () => valueController.selection =
+                    TextSelection(baseOffset: 0, extentOffset: valueController.text.length),
               ),
               const SizedBox(height: 16),
               TextFormField(
-                controller: quantityController,
                 decoration: textFieldDecoration_border.copyWith(labelText: "Quantity"),
                 keyboardType: TextInputType.number,
+                controller: quantityController,
+                onTap: () => quantityController.selection =
+                    TextSelection(baseOffset: 0, extentOffset: quantityController.text.length),
               ),
             ],
           ),

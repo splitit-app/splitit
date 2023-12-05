@@ -35,7 +35,6 @@ class _ItemListScreenState extends State<ItemListScreen> {
                 itemBuilder: (context, index) {
                   final currentItemGroup =
                       billData.itemGroups[billData.itemGroups.length - 1 - index] as IItemGroup;
-                  currentItemGroup.name = "New Item";
 
                   return ItemGroupCard(
                     itemGroup: currentItemGroup,
