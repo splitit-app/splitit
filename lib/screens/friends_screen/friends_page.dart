@@ -45,7 +45,18 @@ class FriendsPage extends StatelessWidget {
                 IconButton(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                   icon: const Icon(Icons.notifications),
-                  onPressed: () {},
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        content: const Text('Ring Ring Bitch'),
+                        action: SnackBarAction(
+                          label: 'Snooze',
+                          onPressed: () {},
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -55,7 +66,8 @@ class FriendsPage extends StatelessWidget {
                 children: [
                   // Search Bar:
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 24.0),
                     child: SearchBar(
                       elevation: const MaterialStatePropertyAll(2),
                       controller: _searchBarController,
@@ -68,13 +80,13 @@ class FriendsPage extends StatelessWidget {
                         ),
                       ],
                       padding: const MaterialStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 15.0)),
+                          EdgeInsets.symmetric(horizontal: 16.0)),
                     ),
                   ),
 
                   // Contains Friend Profiles
                   Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -83,13 +95,16 @@ class FriendsPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("Friends", style: TextStyle(fontSize: 24.0)),
+                            const Text("Friends",
+                                style: TextStyle(fontSize: 24.0)),
                             IconButton(
                                 onPressed: () {
                                   // Pushes the FriendsPageOverview onto the Route Stack
                                   Navigator.of(context).push(
                                     // Navigates the FriendsPageOverview Page
-                                    MaterialPageRoute(builder: (context) => FriendsPageOverview()),
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            FriendsPageOverview()),
                                   );
                                 },
                                 icon: const Icon(
@@ -102,15 +117,20 @@ class FriendsPage extends StatelessWidget {
 
                         // Profile List Row in PageView Format
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: SizedBox(
                             height: 260,
                             child: PageView.builder(
                                 // PageView Builder
                                 scrollDirection: Axis.horizontal,
-                                controller: _controller, // Sets the controller for the Page View
+                                controller:
+                                    _controller, // Sets the controller for the Page View
                                 // itemCount: ((_names.length / 6).ceil()),
-                                itemCount: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
+                                itemCount:
+                                    (max(userData.nonRegisteredFriends.length,
+                                                1) /
+                                            6)
+                                        .ceil(),
                                 itemBuilder: (context, index) =>
                                     FriendsPageView(startingIndex: index * 6)),
                           ),
@@ -121,8 +141,13 @@ class FriendsPage extends StatelessWidget {
                           controller: _controller,
                           // Set the number of Pages in the PageView
                           // count: ((_names.length / 6).ceil()), // Determines the page count by taking the number of elements in the list, divided by the number displayed in each page and rounds up.
-                          count: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-                          effect: const WormEffect(dotHeight: 8, dotWidth: 8, activeDotColor: Colors.blueGrey),
+                          count:
+                              (max(userData.nonRegisteredFriends.length, 1) / 6)
+                                  .ceil(),
+                          effect: const WormEffect(
+                              dotHeight: 8,
+                              dotWidth: 8,
+                              activeDotColor: Colors.blueGrey),
                         ),
                       ],
                     ),
@@ -139,7 +164,8 @@ class FriendsPage extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text("Groups", style: TextStyle(fontSize: 24.0)),
+                              const Text("Groups",
+                                  style: TextStyle(fontSize: 24.0)),
                               IconButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -165,11 +191,13 @@ class FriendsPage extends StatelessWidget {
                               Expanded(
                                 //To inform of the maximum available horizontal size for the ListView
                                 child: SizedBox(
-                                  height: 200.0, // To set the height for the ListView
+                                  height:
+                                      200.0, // To set the height for the ListView
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                    itemCount:5,
-                                    itemBuilder: (BuildContext context, int index) {
+                                    itemCount: 5,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
                                       return const Row(
                                         children: [
                                           GroupContainer(),

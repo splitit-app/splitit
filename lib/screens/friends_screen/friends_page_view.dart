@@ -84,7 +84,7 @@ class FriendsPageView extends StatelessWidget {
                 SizedBox(
                   width: 125.0,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(top: 8.0),
                     child: Text(friends.values.elementAt(startingIndex + index).name,
                         style: const TextStyle(fontSize: 16.0),  
                         overflow: TextOverflow.ellipsis,
