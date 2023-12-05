@@ -21,8 +21,27 @@ void main() async {
   runApp(const SplitItApp());
 }
 
-class SplitItApp extends StatelessWidget {
+class SplitItApp extends StatefulWidget {
   const SplitItApp({super.key});
+
+  @override
+  State<SplitItApp> createState() => _SplitItAppState();
+}
+
+class _SplitItAppState extends State<SplitItApp> {
+  final lightTheme = ThemeData(
+    colorSchemeSeed: const Color.fromRGBO(38, 182, 69, 1),
+    useMaterial3: true,
+    brightness: Brightness.light,
+  );
+
+  final darkTheme = ThemeData(
+    colorSchemeSeed: const Color.fromRGBO(38, 182, 69, 1),
+    useMaterial3: true,
+    brightness: Brightness.dark,
+  );
+
+  ThemeMode themeMode = ThemeMode.light;
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +73,9 @@ class SplitItApp extends StatelessWidget {
               child: MaterialApp(
                 title: 'SplitIt',
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                  colorSchemeSeed: const Color.fromRGBO(38, 182, 69, 1),
-                  useMaterial3: true,
-                  brightness: Brightness.dark,
-                ),
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: themeMode,
                 home: const AuthenticationSwitcher(),
               ),
             );
@@ -66,5 +83,9 @@ class SplitItApp extends StatelessWidget {
         );
       },
     );
+  }
+
+  void changeTheme(ThemeMode themeMode) {
+    setState(() => this.themeMode = themeMode);
   }
 }

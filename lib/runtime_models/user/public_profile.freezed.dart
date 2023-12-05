@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PublicProfile _$PublicProfileFromJson(Map<String, dynamic> json) {
-  return _PublicProfile.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PublicProfile {
   String get uid => throw _privateConstructorUsedError;
@@ -27,7 +23,6 @@ mixin _$PublicProfile {
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PublicProfileCopyWith<PublicProfile> get copyWith =>
       throw _privateConstructorUsedError;
@@ -137,13 +132,10 @@ class __$$PublicProfileImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$PublicProfileImpl extends _PublicProfile {
   _$PublicProfileImpl({required this.uid, this.createdBy, required this.name})
       : super._();
-
-  factory _$PublicProfileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PublicProfileImplFromJson(json);
 
   @override
   String uid;
@@ -162,13 +154,6 @@ class _$PublicProfileImpl extends _PublicProfile {
   @pragma('vm:prefer-inline')
   _$$PublicProfileImplCopyWith<_$PublicProfileImpl> get copyWith =>
       __$$PublicProfileImplCopyWithImpl<_$PublicProfileImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PublicProfileImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _PublicProfile extends PublicProfile {
@@ -177,9 +162,6 @@ abstract class _PublicProfile extends PublicProfile {
       PublicProfile? createdBy,
       required String name}) = _$PublicProfileImpl;
   _PublicProfile._() : super._();
-
-  factory _PublicProfile.fromJson(Map<String, dynamic> json) =
-      _$PublicProfileImpl.fromJson;
 
   @override
   String get uid;

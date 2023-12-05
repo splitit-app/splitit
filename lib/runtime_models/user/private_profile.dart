@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../net_models/user/private_profile_dto.dart';
+
 part 'private_profile.freezed.dart';
 
-@freezed
+@unfreezed
 class PrivateProfile with _$PrivateProfile {
   factory PrivateProfile({
-    required ThemeData themeData,
+    required ThemeMode themeMode,
   }) = _PrivateProfile;
+
+  PrivateProfile._();
+
+  factory PrivateProfile.fromDataTransferObj(PrivateProfileDTO publicProfileDTO) => PrivateProfile(
+        themeMode: publicProfileDTO.themeMode,
+      );
+
+  PrivateProfileDTO get toDataTransferObj => PrivateProfileDTO(
+        themeMode: themeMode,
+      );
 }

@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PrivateProfile {
-  ThemeData get themeData => throw _privateConstructorUsedError;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
+  set themeMode(ThemeMode value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PrivateProfileCopyWith<PrivateProfile> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $PrivateProfileCopyWith<$Res> {
           PrivateProfile value, $Res Function(PrivateProfile) then) =
       _$PrivateProfileCopyWithImpl<$Res, PrivateProfile>;
   @useResult
-  $Res call({ThemeData themeData});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -45,13 +46,13 @@ class _$PrivateProfileCopyWithImpl<$Res, $Val extends PrivateProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeData = null,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
-      themeData: null == themeData
-          ? _value.themeData
-          : themeData // ignore: cast_nullable_to_non_nullable
-              as ThemeData,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ) as $Val);
   }
 }
@@ -64,7 +65,7 @@ abstract class _$$PrivateProfileImplCopyWith<$Res>
       __$$PrivateProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeData themeData});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -78,41 +79,29 @@ class __$$PrivateProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeData = null,
+    Object? themeMode = null,
   }) {
     return _then(_$PrivateProfileImpl(
-      themeData: null == themeData
-          ? _value.themeData
-          : themeData // ignore: cast_nullable_to_non_nullable
-              as ThemeData,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
 
 /// @nodoc
 
-class _$PrivateProfileImpl implements _PrivateProfile {
-  _$PrivateProfileImpl({required this.themeData});
+class _$PrivateProfileImpl extends _PrivateProfile {
+  _$PrivateProfileImpl({required this.themeMode}) : super._();
 
   @override
-  final ThemeData themeData;
+  ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'PrivateProfile(themeData: $themeData)';
+    return 'PrivateProfile(themeMode: $themeMode)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PrivateProfileImpl &&
-            (identical(other.themeData, themeData) ||
-                other.themeData == themeData));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, themeData);
 
   @JsonKey(ignore: true)
   @override
@@ -122,12 +111,14 @@ class _$PrivateProfileImpl implements _PrivateProfile {
           this, _$identity);
 }
 
-abstract class _PrivateProfile implements PrivateProfile {
-  factory _PrivateProfile({required final ThemeData themeData}) =
+abstract class _PrivateProfile extends PrivateProfile {
+  factory _PrivateProfile({required ThemeMode themeMode}) =
       _$PrivateProfileImpl;
+  _PrivateProfile._() : super._();
 
   @override
-  ThemeData get themeData;
+  ThemeMode get themeMode;
+  set themeMode(ThemeMode value);
   @override
   @JsonKey(ignore: true)
   _$$PrivateProfileImplCopyWith<_$PrivateProfileImpl> get copyWith =>

@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../net_models/user/public_profile_dto.dart';
 
 part 'public_profile.freezed.dart';
-part 'public_profile.g.dart';
 
 @unfreezed
 class PublicProfile with _$PublicProfile {
@@ -21,8 +20,6 @@ class PublicProfile with _$PublicProfile {
         createdBy: createdBy,
         name: publicProfileDTO.name,
       );
-
-  factory PublicProfile.fromJson(Map<String, dynamic> json) => _$PublicProfileFromJson(json);
 
   PublicProfile._();
 

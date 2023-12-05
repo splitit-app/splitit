@@ -43,7 +43,7 @@ class RegistrationForm {
     await read<UserDataRepository>().pushUserData(UserData(
       uid: user.uid,
       publicProfile: PublicProfile(uid: user.uid, name: username),
-      privateProfile: PrivateProfile(themeData: ThemeData.light()),
+      privateProfile: PrivateProfile(themeMode: ThemeMode.light),
       registeredFriends: List.empty(),
       nonRegisteredFriends: {},
     ));
