@@ -13,10 +13,10 @@ class PrivateProfile with _$PrivateProfile {
 
   PrivateProfile._();
 
-  factory PrivateProfile.fromDataTransferObj(PrivateProfileDTO publicProfileDTO) => PrivateProfile(
-        themeMode: publicProfileDTO.themeMode == 'ThemeMode.light'
+  factory PrivateProfile.fromDataTransferObj(PrivateProfileDTO privateProfileDTO) => PrivateProfile(
+        themeMode: privateProfileDTO.themeMode == 'ThemeMode.light'
             ? ThemeMode.light
-            : publicProfileDTO.themeMode == 'ThemeMode.dark'
+            : privateProfileDTO.themeMode == 'ThemeMode.dark'
                 ? ThemeMode.dark
                 : ThemeMode.system,
       );

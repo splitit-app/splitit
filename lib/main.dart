@@ -18,17 +18,12 @@ void main() async {
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   //runApp(const MockUpPage());
-  runApp(const SplitItApp());
+  runApp(SplitItApp());
 }
 
-class SplitItApp extends StatefulWidget {
-  const SplitItApp({super.key});
+class SplitItApp extends StatelessWidget {
+  SplitItApp({super.key});
 
-  @override
-  State<SplitItApp> createState() => _SplitItAppState();
-}
-
-class _SplitItAppState extends State<SplitItApp> {
   final lightTheme = ThemeData(
     colorSchemeSeed: const Color.fromRGBO(38, 182, 69, 1),
     useMaterial3: true,

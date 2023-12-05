@@ -26,7 +26,7 @@ class UserData with _$UserData {
     return UserData(
       uid: uid,
       publicProfile: publicProfile,
-      privateProfile: PrivateProfile(themeMode: ThemeMode.light),
+      privateProfile: PrivateProfile.fromDataTransferObj(userDataDTO.privateProfile),
       registeredFriends: List.empty(),
       nonRegisteredFriends: {
         for (var profile in userDataDTO.nonRegisteredFriends)
