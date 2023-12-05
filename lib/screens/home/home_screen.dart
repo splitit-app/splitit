@@ -31,7 +31,6 @@ bool themeSwitch = false;
 IconData lightIcon = Symbols.light_mode;
 IconData darkIcon = Symbols.dark_mode;
 
-
 class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -59,28 +58,26 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           //     child: const Text('Log out'),
           //   ),
           // )
-
         ],
       ),
-      
       drawer: SizedBox(
         width: MediaQuery.of(context).size.width * 0.5, // 50% of screen occupied
         child: Drawer(
           shape: const RoundedRectangleBorder(),
           child: Column(
             children: [
-              DrawerHeader(
+              UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceVariant,
                 ),
-                child: const ListTile(
-                  title: Text(
-                    "SplitIt",
-                    style: TextStyle(
-                      fontSize: 25.0,
-                    ),
+                currentAccountPicture: const CircleAvatar(
+                  //radius: 30,
+                  backgroundImage: NetworkImage(
+                    'https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png',
                   ),
                 ),
+                accountName: Text(userData!.publicProfile.name),
+                accountEmail: null,
               ),
               ListTile(
                 onTap: () {},
@@ -99,17 +96,16 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               ),
               ListTile(
                 //TODO: add snackbar to notify logged out
-                  onTap: (){
-                    AuthenticationService().signOut;
-                  },
-                  leading: const Icon(Symbols.logout),
-                  title: const Text("Sign Out"),
-                ),
+                onTap: () {
+                  AuthenticationService().signOut;
+                },
+                leading: const Icon(Symbols.logout),
+                title: const Text("Sign Out"),
+              ),
             ],
           ),
         ),
       ),
-
       body: userData == null
           // ? const Placeholder()
           ? Center(
@@ -206,7 +202,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => FriendsPageOverview()),
+                                      MaterialPageRoute(
+                                          builder: (context) => FriendsPageOverview()),
                                     );
                                   },
                                   borderRadius: BorderRadius.circular(12.0),
@@ -312,9 +309,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                             setState(() {
                               context.read<RootForm>().currentPageId = 1;
                               Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const BillListScreen()),
+                                MaterialPageRoute(builder: (context) => const BillListScreen()),
                               );
                             });
                             print(context.read<RootForm>().currentPageId);

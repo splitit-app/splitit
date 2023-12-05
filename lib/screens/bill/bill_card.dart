@@ -176,7 +176,7 @@ class BillCard extends StatelessWidget {
                         children: [
                           const Text(
                             "Total",
-                            style: TextStyle(color: Color(0xFF56585A)),
+                            // style: TextStyle(color: Color(0xFF56585A)),
                           ),
                           Text(
                             NumberFormat.currency(
@@ -197,15 +197,15 @@ class BillCard extends StatelessWidget {
                         children: [
                           const Text(
                             "Settled",
-                            style: TextStyle(color: Color(0xFF56585A)),
+                            // style: TextStyle(color: Color(0xFF56585A)),
                           ),
                           Text(
                             NumberFormat.currency(
                               symbol: '\$ ',
                               decimalDigits: 2,
-                            ).format(5.45),
-                            style: const TextStyle(
-                                color: Color(0xFF3E992A), fontWeight: FontWeight.w500),
+                            ).format(0.00),
+                            style:  TextStyle(
+                                color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
@@ -222,7 +222,7 @@ class BillCard extends StatelessWidget {
                         children: [
                           const Text(
                             "Pending",
-                            style: TextStyle(color: Color(0xFF56585A)),
+                            // style: TextStyle(color: Color(0xFF56585A)),
                           ),
                           Text(
                             // "\$100.00",
@@ -231,10 +231,10 @@ class BillCard extends StatelessWidget {
                             NumberFormat.currency(
                               symbol: '\$',
                               decimalDigits: 2,
-                            ).format(billData.totalSpent - 5.45),
+                            ).format(billData.totalSpent),
 
-                            style: const TextStyle(
-                              color: Color(0xFFA11919),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.error,
                               //fontSize: 16.0,
                               fontWeight: FontWeight.bold,
                             ),
