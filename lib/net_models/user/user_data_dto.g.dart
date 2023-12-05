@@ -10,6 +10,8 @@ _$UserDataDTOImpl _$$UserDataDTOImplFromJson(Map<String, dynamic> json) =>
     _$UserDataDTOImpl(
       publicProfile: PublicProfileDTO.fromJson(
           json['publicProfile'] as Map<String, dynamic>),
+      privateProfile: PrivateProfileDTO.fromJson(
+          json['privateProfile'] as Map<String, dynamic>),
       registeredFriendUids: (json['registeredFriendUids'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -22,6 +24,7 @@ _$UserDataDTOImpl _$$UserDataDTOImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$UserDataDTOImplToJson(_$UserDataDTOImpl instance) =>
     <String, dynamic>{
       'publicProfile': instance.publicProfile.toJson(),
+      'privateProfile': instance.privateProfile.toJson(),
       'registeredFriendUids': instance.registeredFriendUids,
       'nonRegisteredFriends':
           instance.nonRegisteredFriends.map((e) => e.toJson()).toList(),

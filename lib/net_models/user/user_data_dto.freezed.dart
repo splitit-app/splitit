@@ -21,6 +21,7 @@ UserDataDTO _$UserDataDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserDataDTO {
   PublicProfileDTO get publicProfile => throw _privateConstructorUsedError;
+  PrivateProfileDTO get privateProfile => throw _privateConstructorUsedError;
   List<String> get registeredFriendUids => throw _privateConstructorUsedError;
   List<PublicProfileDTO> get nonRegisteredFriends =>
       throw _privateConstructorUsedError;
@@ -40,11 +41,13 @@ abstract class $UserDataDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {PublicProfileDTO publicProfile,
+      PrivateProfileDTO privateProfile,
       List<String> registeredFriendUids,
       List<PublicProfileDTO> nonRegisteredFriends,
       DateTime lastUpdatedSession});
 
   $PublicProfileDTOCopyWith<$Res> get publicProfile;
+  $PrivateProfileDTOCopyWith<$Res> get privateProfile;
 }
 
 /// @nodoc
@@ -61,6 +64,7 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
   @override
   $Res call({
     Object? publicProfile = null,
+    Object? privateProfile = null,
     Object? registeredFriendUids = null,
     Object? nonRegisteredFriends = null,
     Object? lastUpdatedSession = null,
@@ -70,6 +74,10 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
           ? _value.publicProfile
           : publicProfile // ignore: cast_nullable_to_non_nullable
               as PublicProfileDTO,
+      privateProfile: null == privateProfile
+          ? _value.privateProfile
+          : privateProfile // ignore: cast_nullable_to_non_nullable
+              as PrivateProfileDTO,
       registeredFriendUids: null == registeredFriendUids
           ? _value.registeredFriendUids
           : registeredFriendUids // ignore: cast_nullable_to_non_nullable
@@ -92,6 +100,14 @@ class _$UserDataDTOCopyWithImpl<$Res, $Val extends UserDataDTO>
       return _then(_value.copyWith(publicProfile: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PrivateProfileDTOCopyWith<$Res> get privateProfile {
+    return $PrivateProfileDTOCopyWith<$Res>(_value.privateProfile, (value) {
+      return _then(_value.copyWith(privateProfile: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -104,12 +120,15 @@ abstract class _$$UserDataDTOImplCopyWith<$Res>
   @useResult
   $Res call(
       {PublicProfileDTO publicProfile,
+      PrivateProfileDTO privateProfile,
       List<String> registeredFriendUids,
       List<PublicProfileDTO> nonRegisteredFriends,
       DateTime lastUpdatedSession});
 
   @override
   $PublicProfileDTOCopyWith<$Res> get publicProfile;
+  @override
+  $PrivateProfileDTOCopyWith<$Res> get privateProfile;
 }
 
 /// @nodoc
@@ -124,6 +143,7 @@ class __$$UserDataDTOImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? publicProfile = null,
+    Object? privateProfile = null,
     Object? registeredFriendUids = null,
     Object? nonRegisteredFriends = null,
     Object? lastUpdatedSession = null,
@@ -133,6 +153,10 @@ class __$$UserDataDTOImplCopyWithImpl<$Res>
           ? _value.publicProfile
           : publicProfile // ignore: cast_nullable_to_non_nullable
               as PublicProfileDTO,
+      privateProfile: null == privateProfile
+          ? _value.privateProfile
+          : privateProfile // ignore: cast_nullable_to_non_nullable
+              as PrivateProfileDTO,
       registeredFriendUids: null == registeredFriendUids
           ? _value._registeredFriendUids
           : registeredFriendUids // ignore: cast_nullable_to_non_nullable
@@ -155,6 +179,7 @@ class __$$UserDataDTOImplCopyWithImpl<$Res>
 class _$UserDataDTOImpl implements _UserDataDTO {
   _$UserDataDTOImpl(
       {required this.publicProfile,
+      required this.privateProfile,
       required final List<String> registeredFriendUids,
       required final List<PublicProfileDTO> nonRegisteredFriends,
       required this.lastUpdatedSession})
@@ -166,6 +191,8 @@ class _$UserDataDTOImpl implements _UserDataDTO {
 
   @override
   final PublicProfileDTO publicProfile;
+  @override
+  final PrivateProfileDTO privateProfile;
   final List<String> _registeredFriendUids;
   @override
   List<String> get registeredFriendUids {
@@ -189,7 +216,7 @@ class _$UserDataDTOImpl implements _UserDataDTO {
 
   @override
   String toString() {
-    return 'UserDataDTO(publicProfile: $publicProfile, registeredFriendUids: $registeredFriendUids, nonRegisteredFriends: $nonRegisteredFriends, lastUpdatedSession: $lastUpdatedSession)';
+    return 'UserDataDTO(publicProfile: $publicProfile, privateProfile: $privateProfile, registeredFriendUids: $registeredFriendUids, nonRegisteredFriends: $nonRegisteredFriends, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @override
@@ -199,6 +226,8 @@ class _$UserDataDTOImpl implements _UserDataDTO {
             other is _$UserDataDTOImpl &&
             (identical(other.publicProfile, publicProfile) ||
                 other.publicProfile == publicProfile) &&
+            (identical(other.privateProfile, privateProfile) ||
+                other.privateProfile == privateProfile) &&
             const DeepCollectionEquality()
                 .equals(other._registeredFriendUids, _registeredFriendUids) &&
             const DeepCollectionEquality()
@@ -212,6 +241,7 @@ class _$UserDataDTOImpl implements _UserDataDTO {
   int get hashCode => Object.hash(
       runtimeType,
       publicProfile,
+      privateProfile,
       const DeepCollectionEquality().hash(_registeredFriendUids),
       const DeepCollectionEquality().hash(_nonRegisteredFriends),
       lastUpdatedSession);
@@ -233,6 +263,7 @@ class _$UserDataDTOImpl implements _UserDataDTO {
 abstract class _UserDataDTO implements UserDataDTO {
   factory _UserDataDTO(
       {required final PublicProfileDTO publicProfile,
+      required final PrivateProfileDTO privateProfile,
       required final List<String> registeredFriendUids,
       required final List<PublicProfileDTO> nonRegisteredFriends,
       required final DateTime lastUpdatedSession}) = _$UserDataDTOImpl;
@@ -242,6 +273,8 @@ abstract class _UserDataDTO implements UserDataDTO {
 
   @override
   PublicProfileDTO get publicProfile;
+  @override
+  PrivateProfileDTO get privateProfile;
   @override
   List<String> get registeredFriendUids;
   @override

@@ -9,17 +9,11 @@ part of 'private_profile_dto.dart';
 _$PrivateProfileDTOImpl _$$PrivateProfileDTOImplFromJson(
         Map<String, dynamic> json) =>
     _$PrivateProfileDTOImpl(
-      themeMode: $enumDecode(_$ThemeModeEnumMap, json['themeMode']),
+      themeMode: json['themeMode'] as String,
     );
 
 Map<String, dynamic> _$$PrivateProfileDTOImplToJson(
         _$PrivateProfileDTOImpl instance) =>
     <String, dynamic>{
-      'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
+      'themeMode': instance.themeMode,
     };
-
-const _$ThemeModeEnumMap = {
-  ThemeMode.system: 'system',
-  ThemeMode.light: 'light',
-  ThemeMode.dark: 'dark',
-};

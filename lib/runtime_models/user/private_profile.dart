@@ -14,10 +14,14 @@ class PrivateProfile with _$PrivateProfile {
   PrivateProfile._();
 
   factory PrivateProfile.fromDataTransferObj(PrivateProfileDTO publicProfileDTO) => PrivateProfile(
-        themeMode: publicProfileDTO.themeMode,
+        themeMode: publicProfileDTO.themeMode == 'ThemeMode.light'
+            ? ThemeMode.light
+            : publicProfileDTO.themeMode == 'ThemeMode.dark'
+                ? ThemeMode.dark
+                : ThemeMode.system,
       );
 
   PrivateProfileDTO get toDataTransferObj => PrivateProfileDTO(
-        themeMode: themeMode,
+        themeMode: themeMode.toString(),
       );
 }

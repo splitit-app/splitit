@@ -41,8 +41,6 @@ class _SplitItAppState extends State<SplitItApp> {
     brightness: Brightness.dark,
   );
 
-  ThemeMode themeMode = ThemeMode.light;
-
   @override
   Widget build(BuildContext context) {
     final authenticationService = AuthenticationService();
@@ -62,7 +60,7 @@ class _SplitItAppState extends State<SplitItApp> {
             StreamProvider.value(value: userDataRepository.userDataStream, initialData: null),
           ],
           builder: (context, child) {
-            context.watch<UserData?>();
+            final userData = context.watch<UserData?>();
             final billDataRepository = BillDataRepository(read: context.read);
 
             return MultiProvider(
@@ -75,7 +73,7 @@ class _SplitItAppState extends State<SplitItApp> {
                 debugShowCheckedModeBanner: false,
                 theme: lightTheme,
                 darkTheme: darkTheme,
-                themeMode: themeMode,
+                themeMode: userData == null ? ThemeMode.system : userData.privateProfile.themeMode,
                 home: const AuthenticationSwitcher(),
               ),
             );
@@ -83,9 +81,5 @@ class _SplitItAppState extends State<SplitItApp> {
         );
       },
     );
-  }
-
-  void changeTheme(ThemeMode themeMode) {
-    setState(() => this.themeMode = themeMode);
   }
 }

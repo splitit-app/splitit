@@ -40,6 +40,7 @@ class UserData with _$UserData {
 
   UserDataDTO get toDataTransferObj => UserDataDTO(
         publicProfile: publicProfile.toDataTransferObj,
+        privateProfile: privateProfile.toDataTransferObj,
         registeredFriendUids: registeredFriends
             .where((friend) => friend.isRegistered)
             .map((friend) => friend.uid)

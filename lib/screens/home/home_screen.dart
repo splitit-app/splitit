@@ -59,74 +59,61 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           // )
         ],
       ),
-      drawer: userData == null
-          // ? const Placeholder()
-          ? Center(
-              child: Transform.scale(
-                scale: 5.0,
-                //* or use LinearProgressIndicator())
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      drawer: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.5, // 50% of screen occupied
+        child: Drawer(
+          shape: const RoundedRectangleBorder(),
+          child: Column(
+            children: [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
                 ),
-              ),
-            )
-          : SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5, // 50% of screen occupied
-              child: Drawer(
-                shape: const RoundedRectangleBorder(),
-                child: Column(
-                  children: [
-                    UserAccountsDrawerHeader(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceVariant,
-                      ),
-                      currentAccountPicture: const CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          'https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png',
-                        ),
-                      ),
-                      accountName: Text(userData.publicProfile.name),
-                      accountEmail: null,
-                    ),
-                    ListTile(
-                      onTap: () {},
-                      leading: const Icon(Symbols.settings),
-                      title: const Text("Settings"),
-                    ),
-                    SwitchListTile(
-                        thumbIcon:
-                            MaterialStateProperty.resolveWith<Icon?>((Set<MaterialState> states) {
-                          if (states.contains(MaterialState.selected)) {
-                            return const Icon(lightIcon);
-                          }
-                          return const Icon(darkIcon);
-                        }),
-                        value: true,
-                        onChanged: (value) {}),
-                    Switch(value: false, onChanged: (value) {}),
-                    ListTile(
-                      onTap: () {
-                        setState(() {
-                          themeSwitch = !themeSwitch;
-                          // SplitItApp.of(context)
-                          //     .changeTheme(themeSwitch ? ThemeMode.light : ThemeMode.dark);
-                        });
-                      },
-                      // leading: const Icon(Symbols.contrast),
-                      leading: Icon(themeSwitch ? lightIcon : darkIcon),
-                      title: Text(themeSwitch ? "Light Theme" : "Dark Theme"),
-                    ),
-                    ListTile(
-                      //TODO: add snackbar to notify logged out
-                      onTap: AuthenticationService().signOut,
-                      leading: const Icon(Symbols.logout),
-                      title: const Text("Sign Out"),
-                    ),
-                  ],
+                currentAccountPicture: const CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    'https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png',
+                  ),
                 ),
+                accountName: userData == null ? null : Text(userData.publicProfile.name),
+                accountEmail: null,
               ),
-            ),
+              ListTile(
+                onTap: () {},
+                leading: const Icon(Symbols.settings),
+                title: const Text("Settings"),
+              ),
+              SwitchListTile(
+                  thumbIcon: MaterialStateProperty.resolveWith<Icon?>((Set<MaterialState> states) {
+                    if (states.contains(MaterialState.selected)) {
+                      return const Icon(lightIcon);
+                    }
+                    return const Icon(darkIcon);
+                  }),
+                  value: true,
+                  onChanged: (value) {}),
+              Switch(value: false, onChanged: (value) {}),
+              ListTile(
+                onTap: () {
+                  setState(() {
+                    themeSwitch = !themeSwitch;
+                    // SplitItApp.of(context)
+                    //     .changeTheme(themeSwitch ? ThemeMode.light : ThemeMode.dark);
+                  });
+                },
+                // leading: const Icon(Symbols.contrast),
+                leading: Icon(themeSwitch ? lightIcon : darkIcon),
+                title: Text(themeSwitch ? "Light Theme" : "Dark Theme"),
+              ),
+              ListTile(
+                //TODO: add snackbar to notify logged out
+                onTap: AuthenticationService().signOut,
+                leading: const Icon(Symbols.logout),
+                title: const Text("Sign Out"),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: userData == null
           // ? const Placeholder()
           ? Center(

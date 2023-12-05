@@ -20,7 +20,7 @@ PrivateProfileDTO _$PrivateProfileDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PrivateProfileDTO {
-  ThemeMode get themeMode => throw _privateConstructorUsedError;
+  String get themeMode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $PrivateProfileDTOCopyWith<$Res> {
           PrivateProfileDTO value, $Res Function(PrivateProfileDTO) then) =
       _$PrivateProfileDTOCopyWithImpl<$Res, PrivateProfileDTO>;
   @useResult
-  $Res call({ThemeMode themeMode});
+  $Res call({String themeMode});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$PrivateProfileDTOCopyWithImpl<$Res, $Val extends PrivateProfileDTO>
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
+              as String,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$PrivateProfileDTOImplCopyWith<$Res>
       __$$PrivateProfileDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeMode themeMode});
+  $Res call({String themeMode});
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class __$$PrivateProfileDTOImplCopyWithImpl<$Res>
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
+              as String,
     ));
   }
 }
@@ -103,7 +103,7 @@ class _$PrivateProfileDTOImpl implements _PrivateProfileDTO {
       _$$PrivateProfileDTOImplFromJson(json);
 
   @override
-  final ThemeMode themeMode;
+  final String themeMode;
 
   @override
   String toString() {
@@ -139,14 +139,14 @@ class _$PrivateProfileDTOImpl implements _PrivateProfileDTO {
 }
 
 abstract class _PrivateProfileDTO implements PrivateProfileDTO {
-  factory _PrivateProfileDTO({required final ThemeMode themeMode}) =
+  factory _PrivateProfileDTO({required final String themeMode}) =
       _$PrivateProfileDTOImpl;
 
   factory _PrivateProfileDTO.fromJson(Map<String, dynamic> json) =
       _$PrivateProfileDTOImpl.fromJson;
 
   @override
-  ThemeMode get themeMode;
+  String get themeMode;
   @override
   @JsonKey(ignore: true)
   _$$PrivateProfileDTOImplCopyWith<_$PrivateProfileDTOImpl> get copyWith =>
