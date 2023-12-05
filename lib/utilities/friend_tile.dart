@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 
 import '../runtime_models/user/public_profile.dart';
+import '../runtime_models/user/user_data.dart';
+import '../services/user_data_repository.dart';
 import 'person_icon.dart';
 
 class FriendTile extends StatelessWidget {
@@ -23,6 +26,13 @@ class FriendTile extends StatelessWidget {
           children: [
             SlidableAction(
               onPressed: ((context) {
+                // (Delete) Removing Friend
+                final userData = context.read<UserData?>();
+                if (userData != null) {
+                  userData.nonRegisteredFriends.remove(profile.uid);
+                  context.read<UserDataRepository>().pushUserData(userData);
+                }
+
                 // Snackbar Message on action:
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -30,9 +40,7 @@ class FriendTile extends StatelessWidget {
                     content: const Text('You\'ve abandoned your friend!'),
                     action: SnackBarAction(
                       label: 'Adios',
-                      onPressed: () {
-                        // (Delete) Removing Friend
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 );
@@ -68,10 +76,9 @@ class FriendTile extends StatelessWidget {
         ),
         child: Container(
           decoration: const BoxDecoration(
-            //color: Color(0xFFF1EFEF),
-          ),
+              //color: Color(0xFFF1EFEF),
+              ),
           child: ListTile(
-            
             title: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(profile.name),
