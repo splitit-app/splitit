@@ -127,7 +127,7 @@ class PeopleInvolved extends StatelessWidget {
         children: [
           // Search Bar:
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
             child: SearchBar(
               controller: _searchBarController,
               hintText: "Search friends & groups",
@@ -139,13 +139,13 @@ class PeopleInvolved extends StatelessWidget {
                 ),
               ],
               padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 15.0)),
+                  EdgeInsets.symmetric(horizontal: 16.0)),
             ),
           ),
 
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondaryContainer,
@@ -154,8 +154,8 @@ class PeopleInvolved extends StatelessWidget {
                 child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 5.0,
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 12.0,
                     ),
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -216,93 +216,100 @@ class _BillInfoState extends State<BillInfo> {
                 // People involved in the bill
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("People",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500))),
+                    child: Row(
+                      children: [
+                        Text("People",
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                            //TODO: Add Text button, replace the pen icon
+                      ],
+                    )),
 
-                ExpansionTileCard(
-                  trailing: InkWell(
-                      onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        // builder: (context) => PeopleInvolved()));
-                        Navigator.of(context).push(_createRoute());
-                      },
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: const Icon(Symbols.edit, size: 30.0)),
-                  onExpansionChanged: (isExpanded) {
-                    setState(() => onDisplay = isExpanded ? const OpenTitle() : const CloseTitle());
-                  },
-                  title: onDisplay,
-                  shadowColor: Theme.of(context).colorScheme.surface,
-                  elevation: 0.0,
-                  key: cardA,
-                  baseColor: Theme.of(context).colorScheme.secondaryContainer,
-                  expandedColor: Theme.of(context).colorScheme.surfaceVariant,
-                  borderRadius: const BorderRadius.all(Radius.circular(25.0)),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Primary Split",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 10.0),
-                          Container(
-                            height: 75.0,
-                            //padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                              //! Change Colors if needed
-                              //color: Theme.of(context).colorScheme.secondaryContainer,
-                            ),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: CustomScrollView(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                physics: const NeverScrollableScrollPhysics(),
-                                slivers: [
-                                  //Primary Splits
-                                  SliverList.builder(
-                                    itemCount: min(widget.billData.primarySplits.length, 5),
-                                    itemBuilder: (context, index) =>
-                                        PersonIcon(profile: widget.billData.primarySplits[index]),
-                                  ),
-                                  SliverToBoxAdapter(
-                                    child: widget.billData.primarySplits.length > 5
-                                        ? Padding(
-                                            padding: const EdgeInsets.only(left: 10),
-                                            child: Center(
-                                              child: Text(
-                                                  '+ ${widget.billData.primarySplits.length - 5}'),
-                                            ),
-                                          )
-                                        : const SizedBox.shrink(),
-                                  ),
-                                ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: ExpansionTileCard(
+                    trailing: InkWell(
+                        onTap: () {
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          // builder: (context) => PeopleInvolved()));
+                          Navigator.of(context).push(_createRoute());
+                        },
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: const Icon(Symbols.edit, size: 30.0)),
+                    onExpansionChanged: (isExpanded) {
+                      setState(() => onDisplay = isExpanded ? const OpenTitle() : const CloseTitle());
+                    },
+                    title: onDisplay,
+                    shadowColor: Theme.of(context).colorScheme.surface,
+                    elevation: 0.0,
+                    key: cardA,
+                    baseColor: Theme.of(context).colorScheme.secondaryContainer,
+                    expandedColor: Theme.of(context).colorScheme.surfaceVariant,
+                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal:16.0, vertical: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Primary Split",
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                            Container(
+                              height: 75.0,
+                              //padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                                //! Change Colors if needed
+                                //color: Theme.of(context).colorScheme.secondaryContainer,
                               ),
-                            ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     RowSuper(
-                            //       innerDistance: -10.0,
-                            //       children: [
-                            //         PersonIcon(profile: _dummyProfile),
-                            //         PersonIcon(profile: _dummyProfile),
-                            //         PersonIcon(profile: _dummyProfile),
-                            //         PersonIcon(profile: _dummyProfile),
-                            //         const SizedBox(width: 5.0),
-                            //       ],
-                            //     ),
-                            //     const Text("+ 999 others"),
-                            //   ],
-                            // ),
-                          )
-                        ],
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: CustomScrollView(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  slivers: [
+                                    //Primary Splits
+                                    SliverList.builder(
+                                      itemCount: min(widget.billData.primarySplits.length, 5),
+                                      itemBuilder: (context, index) =>
+                                          PersonIcon(profile: widget.billData.primarySplits[index]),
+                                    ),
+                                    SliverToBoxAdapter(
+                                      child: widget.billData.primarySplits.length > 5
+                                          ? Padding(
+                                              padding: const EdgeInsets.only(left: 10),
+                                              child: Center(
+                                                child: Text(
+                                                    '+ ${widget.billData.primarySplits.length - 5}'),
+                                              ),
+                                            )
+                                          : const SizedBox.shrink(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //   children: [
+                              //     RowSuper(
+                              //       innerDistance: -10.0,
+                              //       children: [
+                              //         PersonIcon(profile: _dummyProfile),
+                              //         PersonIcon(profile: _dummyProfile),
+                              //         PersonIcon(profile: _dummyProfile),
+                              //         PersonIcon(profile: _dummyProfile),
+                              //         const SizedBox(width: 5.0),
+                              //       ],
+                              //     ),
+                              //     const Text("+ 999 others"),
+                              //   ],
+                              // ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 15.0),
 
@@ -315,7 +322,7 @@ class _BillInfoState extends State<BillInfo> {
                     const SizedBox(height: 10.0),
                     ExpansionTileCard(
                       initiallyExpanded: true,
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      //borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       baseColor: Theme.of(context).colorScheme.secondaryContainer,
                       expandedColor: Theme.of(context).colorScheme.surfaceVariant,
                       elevation: 0,
@@ -356,10 +363,10 @@ class _BillInfoState extends State<BillInfo> {
                                     backgroundColor: Theme.of(context).colorScheme.primary,
                                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                                     borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(index == 0 ? 25 : 0),
+                                      topLeft: Radius.circular(index == 0 ? 12 : 0),
                                       bottomLeft: Radius.circular(
                                           index == widget.billData.primarySplits.length - 1
-                                              ? 25
+                                              ? 12
                                               : 0),
                                     ),
                                     icon: Symbols.check,
@@ -421,7 +428,7 @@ class _BillInfoState extends State<BillInfo> {
                     setState(() {});
                   },
                   style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
                   child: const Text('Modify Split'),
                 ),

@@ -18,7 +18,7 @@ class FriendInvolvementChecklist extends StatelessWidget {
           AppBar(
             title: const Text('Select individuals:'),
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
           ),
           Expanded(
             child: ListView.builder(

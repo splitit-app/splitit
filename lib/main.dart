@@ -57,7 +57,7 @@ class SplitItApp extends StatelessWidget {
                 theme: ThemeData(
                   colorSchemeSeed: const Color.fromRGBO(38, 182, 69, 1),
                   useMaterial3: true,
-                  brightness: Brightness.dark
+                  brightness: Brightness.light
                   
                 ),
                 home: const AuthenticationSwitcher(),

@@ -49,7 +49,7 @@ class FriendTile extends StatelessWidget {
               foregroundColor: Colors.white,
               // First Tile have border-edges, the remainder have none.
               borderRadius: index == 0
-                  ? const BorderRadius.only(topLeft: Radius.circular(25.0))
+                  ? const BorderRadius.only(topLeft: Radius.circular(12.0))
                   : const BorderRadius.horizontal(left: Radius.circular(0.0)),
               icon: Symbols.delete,
               label: "Abandon",
@@ -67,7 +67,7 @@ class FriendTile extends StatelessWidget {
               foregroundColor: Colors.white,
               // First Tile have border-edges, the remainder have none.
               borderRadius: index == 0
-                  ? const BorderRadius.only(topRight: Radius.circular(25.0))
+                  ? const BorderRadius.only(topRight: Radius.circular(12.0))
                   : const BorderRadius.horizontal(right: Radius.circular(0.0)),
               icon: Symbols.chat,
               label: "Chat",

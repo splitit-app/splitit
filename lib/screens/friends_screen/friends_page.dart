@@ -57,6 +57,7 @@ class FriendsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SearchBar(
+                      elevation: const MaterialStatePropertyAll(2),
                       controller: _searchBarController,
                       hintText: "Search friends & groups",
                       leading: const Icon(Symbols.menu),
@@ -100,25 +101,28 @@ class FriendsPage extends StatelessWidget {
                         ),
 
                         // Profile List Row in PageView Format
-                        SizedBox(
-                          height: 260,
-                          child: PageView.builder(
-                              // PageView Builder
-                              scrollDirection: Axis.horizontal,
-                              controller: _controller, // Sets the controller for the Page View
-                              // itemCount: ((_names.length / 6).ceil()),
-                              itemCount: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-                              itemBuilder: (context, index) =>
-                                  FriendsPageView(startingIndex: index * 6)),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: SizedBox(
+                            height: 260,
+                            child: PageView.builder(
+                                // PageView Builder
+                                scrollDirection: Axis.horizontal,
+                                controller: _controller, // Sets the controller for the Page View
+                                // itemCount: ((_names.length / 6).ceil()),
+                                itemCount: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
+                                itemBuilder: (context, index) =>
+                                    FriendsPageView(startingIndex: index * 6)),
+                          ),
                         ),
-                        const SizedBox(height: 6.0),
+                        //const SizedBox(height: 6.0),
                         // Animated Page indicator for the PageView (package: https://pub.dev/packages/smooth_page_indicator)
                         SmoothPageIndicator(
                           controller: _controller,
                           // Set the number of Pages in the PageView
                           // count: ((_names.length / 6).ceil()), // Determines the page count by taking the number of elements in the list, divided by the number displayed in each page and rounds up.
                           count: (max(userData.nonRegisteredFriends.length, 1) / 6).ceil(),
-                          effect: expandingDotsEffect,
+                          effect: const WormEffect(dotHeight: 8, dotWidth: 8, activeDotColor: Colors.blueGrey),
                         ),
                       ],
                     ),
@@ -161,10 +165,10 @@ class FriendsPage extends StatelessWidget {
                               Expanded(
                                 //To inform of the maximum available horizontal size for the ListView
                                 child: SizedBox(
-                                  height: 150.0, // To set the height for the ListView
+                                  height: 200.0, // To set the height for the ListView
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: 4,
+                                    itemCount:5,
                                     itemBuilder: (BuildContext context, int index) {
                                       return const Row(
                                         children: [

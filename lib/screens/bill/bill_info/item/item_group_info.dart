@@ -186,7 +186,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 ExpansionTileCard(
                   //TODO: Design advice required here
                   //onExpansionChanged: (isExpanded) => setState(() => expandPeople = isExpanded),
-                  borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                   baseColor: Theme.of(context).colorScheme.secondaryContainer,
                   expandedColor: Theme.of(context).colorScheme.surfaceVariant,
                   elevation: 0,
@@ -232,7 +232,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                                 borderRadius: BorderRadius.only(
                                   //topLeft: Radius.circular(index == 0 ? 25 : 0),
                                   bottomLeft: Radius.circular(
-                                      index == widget.itemGroup.primarySplits.length - 1 ? 25 : 0),
+                                      index == widget.itemGroup.primarySplits.length - 1 ? 12 : 0),
                                 ),
                                 icon: MaterialSymbols.check,
                               ),

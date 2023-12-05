@@ -26,10 +26,10 @@ class ItemGroupCard extends StatelessWidget {
       color: isEverythingElseItemGroup
           ? Theme.of(context).colorScheme.secondaryContainer
           : Theme.of(context).colorScheme.surfaceVariant,
-      borderRadius: BorderRadius.circular(25.0),
+      borderRadius: BorderRadius.circular(12.0),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(12.0),
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Column(

@@ -7,18 +7,18 @@ class GroupContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // One Group Box Container
-      width: 175,
-      height: 125,
+      width: 200,
+      height: 150,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 4,
-            color: Colors.black45,
-            offset: Offset(0, 2),
-          )
-        ],
-        borderRadius: BorderRadius.circular(15),
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        // boxShadow: const [
+        //   BoxShadow(
+        //     blurRadius: 4,
+        //     color: Colors.black45,
+        //     offset: Offset(0, 2),
+        //   )
+        // ],
+        borderRadius: BorderRadius.circular(12),
       ),
 
       // Container Information
@@ -36,9 +36,11 @@ class GroupContainer extends StatelessWidget {
             ),
           ),
           const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("3 People", style: TextStyle(fontSize: 14.0)),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text("3 People", style: TextStyle(fontSize: 14.0)),
+              ),
             ],
           ),
 
@@ -46,60 +48,62 @@ class GroupContainer extends StatelessWidget {
           Flexible(
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Using a Stack Structure to allow for overlaps of the Profile Icons within the Container
-                SizedBox(
-                  width: 150,
-                  child: Stack(
-                    children: [
-                      Align(
-                        // Far Left Profile
-                        alignment: const AlignmentDirectional(-0.90, 0.00),
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFFB8E8E),
-                            shape: BoxShape.circle,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: 150,
+                    child: Stack(
+                      children: [
+                        Align(
+                          // Far Left Profile
+                          alignment: const AlignmentDirectional(-0.90, 0.00),
+                          child: Container(
+                            width: 45,
+                            height: 45,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFFB8E8E),
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-0.30, 0.00),
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF7AC3F9),
-                            shape: BoxShape.circle,
+                        Align(
+                          alignment: const AlignmentDirectional(-0.30, 0.00),
+                          child: Container(
+                            width: 45,
+                            height: 45,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF7AC3F9),
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(0.30, 0.00),
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFEECC88),
-                            shape: BoxShape.circle,
+                        Align(
+                          alignment: const AlignmentDirectional(0.30, 0.00),
+                          child: Container(
+                            width: 45,
+                            height: 45,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFEECC88),
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
-                      ),
-                      // Far Right Profile
-                      Align(
-                        alignment: const AlignmentDirectional(0.90, 0.00),
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF888BEE),
-                            shape: BoxShape.circle,
+                        // Far Right Profile
+                        Align(
+                          alignment: const AlignmentDirectional(0.90, 0.00),
+                          child: Container(
+                            width: 45,
+                            height: 45,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF888BEE),
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

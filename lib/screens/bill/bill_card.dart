@@ -21,7 +21,7 @@ class BillCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Theme.of(context).colorScheme.surfaceVariant,
-      borderRadius: BorderRadius.circular(25.0),
+      borderRadius: BorderRadius.circular(12.0),
       // boxShadow: const [
       //   BoxShadow(
       //     blurRadius: 4,
@@ -33,7 +33,7 @@ class BillCard extends StatelessWidget {
       child: InkWell(
         onTap: () => Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => BillInfo(billData: billData))),
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(8.0),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -163,7 +163,7 @@ class BillCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   // color: const Color(0xFFCFCFCF),
                   color: Theme.of(context).colorScheme.onSecondary,
-                  borderRadius: BorderRadius.circular(15.0),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),

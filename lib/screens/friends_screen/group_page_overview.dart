@@ -30,7 +30,7 @@ class GroupPageOverview extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 20.0),
             Row(
               children: [
                 const Padding(

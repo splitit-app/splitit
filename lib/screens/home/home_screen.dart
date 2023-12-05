@@ -44,7 +44,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         title: const Text("Home", style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
         centerTitle: true,
-        toolbarHeight: 64,
         elevation: 0,
         // leading: IconButton(
         //   onPressed: () {},
@@ -99,6 +98,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 title: Text(themeSwitch ? "Light Theme" : "Dark Theme"),
               ),
               ListTile(
+                //TODO: add snackbar to notify logged out
                   onTap: (){
                     AuthenticationService().signOut;
                   },
@@ -160,7 +160,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         height: 50,
                         padding: const EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18.0),
+                          borderRadius: BorderRadius.circular(12.0),
                           color: Theme.of(context).colorScheme.primaryContainer,
                           //Theme.of(context).colorScheme.surfaceVariant
                         ),
@@ -202,14 +202,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.primaryContainer,
-                                    borderRadius: BorderRadius.circular(18.0)),
+                                    borderRadius: BorderRadius.circular(12.0)),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(builder: (context) => FriendsPageOverview()),
                                     );
                                   },
-                                  borderRadius: BorderRadius.circular(18.0),
+                                  borderRadius: BorderRadius.circular(12.0),
                                   child: const Icon(Symbols.person_add, size: 45.0),
                                 ),
                               )),
@@ -237,12 +237,12 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.secondaryContainer,
-                                    borderRadius: BorderRadius.circular(25.0)),
+                                    borderRadius: BorderRadius.circular(12.0)),
                                 child: InkWell(
                                   onTap: () {
                                     quickSplitDialog(context);
                                   },
-                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderRadius: BorderRadius.circular(12.0),
                                   child: const Icon(Symbols.money, size: 45.0),
                                 ),
                               )),
@@ -270,7 +270,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.tertiaryContainer,
-                                    borderRadius: BorderRadius.circular(25.0)),
+                                    borderRadius: BorderRadius.circular(12.0)),
                                 child: InkWell(
                                   onTap: () => Navigator.push(
                                     context,
@@ -278,7 +278,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                       builder: (context) => FriendsPage(),
                                     ),
                                   ),
-                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderRadius: BorderRadius.circular(12.0),
                                   child: const Icon(Symbols.group_add, size: 45.0),
                                 ),
                               )),

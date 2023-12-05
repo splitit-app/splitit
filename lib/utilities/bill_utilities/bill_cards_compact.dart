@@ -13,10 +13,10 @@ class BillCardsCompact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Theme.of(context).colorScheme.surfaceVariant,
-      borderRadius: BorderRadius.circular(25.0),
+      borderRadius: BorderRadius.circular(8.0),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(8.0),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
