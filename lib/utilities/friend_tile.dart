@@ -72,8 +72,11 @@ class FriendTile extends StatelessWidget {
           ),
           child: ListTile(
             
-            title: Text(profile.name),
-            subtitle: const Text("Subtitles Subtitles Subtitles"),
+            title: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: Text(profile.name),
+            ),
+            //subtitle: const Text(""),
             leading: PersonIcon(profile: profile),
             //trailing: const Icon(Symbols.drag_handle),
           ),

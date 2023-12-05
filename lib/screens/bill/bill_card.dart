@@ -229,7 +229,7 @@ class BillCard extends StatelessWidget {
 
                             // The bill total subtracted by the amount resolved. Currently the settled amount is hardcoded.
                             NumberFormat.currency(
-                              symbol: '\$ ',
+                              symbol: '\$',
                               decimalDigits: 2,
                             ).format(billData.totalSpent - 5.45),
 

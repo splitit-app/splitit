@@ -71,7 +71,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                       if (mounted) {
                         Navigator.of(context).pop();
                         ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(content: Text("Item Group Deleted")));
+                            .showSnackBar(const SnackBar(behavior:SnackBarBehavior.floating, content: Text("Item Group Deleted")));
                       }
                     },
                     icon: const Icon(MaterialSymbols.delete),
