@@ -385,8 +385,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ? const Placeholder()
                         : bills.isEmpty
                             ? const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 24),
-                                child: Text('seems empty here'),
+                                padding: EdgeInsets.symmetric(vertical: 120),
+                                child: Text('Seems empty here', style: TextStyle(fontSize: 22.0)),
                               )
                             : ListView.separated(
                                 padding:

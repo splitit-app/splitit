@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../utilities/group_container.dart';
+
 class GroupPageOverview extends StatelessWidget {
   const GroupPageOverview({super.key});
 
@@ -30,7 +32,50 @@ class GroupPageOverview extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            const SizedBox(height: 20.0),
+            // Group Scroll
+            const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                  child: Text(
+                    "Most Active Groups",
+                    style: TextStyle(fontSize: 22.0),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+              ],
+            ),
+
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+              child: SizedBox(
+                height: 200.0,
+                child: ListView.builder(
+                  clipBehavior: Clip.antiAlias,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      child: Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GroupContainer(),
+                            ],
+                          ),
+                          SizedBox(width: 25.0),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            const Divider(),
+            const SizedBox(height: 10.0),
             Row(
               children: [
                 const Padding(
@@ -62,6 +107,20 @@ class GroupPageOverview extends StatelessWidget {
                 ),
               ],
             ),
+
+            // GridView.builder(
+            //   shrinkWrap: true,
+            //   physics: const NeverScrollableScrollPhysics(),
+            //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            //   itemCount: 4,
+            //   itemBuilder: (context, index) => const Column(
+            //     children: [
+            //       GroupContainer(),
+            //       SizedBox(width: 15.0),
+            //     ],
+            //   ),
+            // ),
+            
           ],
         )));
   }
