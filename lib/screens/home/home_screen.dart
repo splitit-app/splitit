@@ -332,11 +332,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         TextButton(
                           onPressed: () {
                             setState(() {
-                              context.read<RootForm>().currentPageId = 1;
+                              //context.read<RootForm>().currentPageId = 1;
+                            });
                               Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => const BillListScreen()),
                               );
-                            });
                             print(context.read<RootForm>().currentPageId);
                           },
                           child: const Text("See All"),
