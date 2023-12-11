@@ -44,8 +44,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       appBar: AppBar(
         shape: appBarShape,
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: const Text("Home",
-            style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
+        title: const Text("Home", style: TextStyle(fontWeight: FontWeight.w400, height: 28)),
         centerTitle: true,
         elevation: 0,
         // leading: IconButton(
@@ -64,87 +63,82 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           // )
         ],
       ),
-      drawer: SizedBox(
-        width:
-            MediaQuery.of(context).size.width * 0.5, // 50% of screen occupied
-        child: Drawer(
-          shape: const RoundedRectangleBorder(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+      drawer: Drawer(
+        width: MediaQuery.of(context).size.width * 0.6,
+        shape: const RoundedRectangleBorder(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceVariant,
+              ),
+              currentAccountPicture: const CircleAvatar(
+                backgroundImage: NetworkImage(
+                  'https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png',
                 ),
-                currentAccountPicture: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://d1.awsstatic.com/MaxTsai.c5d516fa5ed7f7171553e9e2df1585e77ab88f87.png',
-                  ),
-                ),
-                accountName:
-                    userData == null ? null : Text(userData.publicProfile.name),
-                accountEmail: null,
               ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Symbols.settings),
-                title: const Text("Settings"),
-              ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text('Theme'),
-              ),
-              // SwitchListTile(
-              //   value: true,
-              //   onChanged: (bool? value) {
-              //     setState(() {
-              //       value = value;
-              //     });
-              //   },
-              //   title: const Text('System Default'),
-              // ),
+              accountName: userData == null ? null : Text(userData.publicProfile.name),
+              accountEmail: null,
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(Symbols.settings),
+              title: const Text("Settings"),
+            ),
+            const Divider(),
+            const Padding(
+              padding: EdgeInsets.only(left: 12.0),
+              child: Text('Theme'),
+            ),
+            // SwitchListTile(
+            //   value: true,
+            //   onChanged: (bool? value) {
+            //     setState(() {
+            //       value = value;
+            //     });
+            //   },
+            //   title: const Text('System Default'),
+            // ),
 
-              SwitchListTile(
-                thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
-                  (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.selected)) {
-                      return const Icon(darkIcon);
-                    }
-                    return const Icon(lightIcon);
-                  },
-                ),
-                value: userData == null
-                    ? false
-                    : switch (userData.privateProfile.themeMode) {
-                        ThemeMode.light => false,
-                        ThemeMode.dark => true,
-                        _ => false
-                      },
-                onChanged: (bool? value) {
-                  if (userData == null) return;
-
-                  userData.privateProfile.themeMode =
-                      value! ? ThemeMode.dark : ThemeMode.light;
-                  context.read<UserDataRepository>().pushUserData(userData);
+            SwitchListTile(
+              thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+                (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.selected)) {
+                    return const Icon(darkIcon);
+                  }
+                  return const Icon(lightIcon);
                 },
-                title: const Text('Theme'),
-                secondary: const Icon(Icons.contrast),
               ),
+              value: userData == null
+                  ? false
+                  : switch (userData.privateProfile.themeMode) {
+                      ThemeMode.light => false,
+                      ThemeMode.dark => true,
+                      _ => false
+                    },
+              onChanged: (bool? value) {
+                if (userData == null) return;
 
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text('Account'),
-              ),
-              ListTile(
-                //TODO: add snackbar to notify logged out
-                onTap: AuthenticationService().signOut,
-                leading: const Icon(Symbols.logout),
-                title: const Text("Sign Out"),
-              ),
-            ],
-          ),
+                userData.privateProfile.themeMode = value! ? ThemeMode.dark : ThemeMode.light;
+                context.read<UserDataRepository>().pushUserData(userData);
+              },
+              title: const Text('Theme', maxLines: 1, overflow: TextOverflow.fade),
+              secondary: const Icon(Icons.contrast),
+            ),
+
+            const Divider(),
+            const Padding(
+              padding: EdgeInsets.only(left: 12.0),
+              child: Text('Account'),
+            ),
+            ListTile(
+              //TODO: add snackbar to notify logged out
+              onTap: AuthenticationService().signOut,
+              leading: const Icon(Symbols.logout),
+              title: const Text("Sign Out"),
+            ),
+          ],
         ),
       ),
       body: userData == null
@@ -155,15 +149,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 //* or use LinearProgressIndicator())
                 child: CircularProgressIndicator(
                   color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.primaryContainer,
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                 ),
               ),
             )
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0, vertical: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 24.0),
                 child: Column(
                   children: [
                     // Profile Icon and Welcoming Text
@@ -173,21 +165,17 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Welcome Back, ',
-                                style: TextStyle(fontSize: 25.0)),
+                            const Text('Welcome Back, ', style: TextStyle(fontSize: 25.0)),
                             Text('${userData.publicProfile.name} !',
-                                style: const TextStyle(
-                                    fontSize: 25.0,
-                                    fontWeight: FontWeight.w500)),
+                                style:
+                                    const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
                           ],
                         ),
                         //const SizedBox(24),
                         // ? Make Profile Icon clickable to direct to Profile Page (Notes for Myself)
                         GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ProfilePage())),
+                          onTap: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const ProfilePage())),
                           child: const CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -212,8 +200,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                    "Innovation champion in digital disruption"),
+                                Text("Innovation champion in digital disruption"),
                                 //Text("Yeah"),
                               ],
                             ),
@@ -230,8 +217,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Quick Start",
-                            style: TextStyle(
-                                fontSize: 22.0, fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold)),
                       ],
                     ),
                     const SizedBox(height: 24),
@@ -247,17 +233,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primaryContainer,
+                                    color: Theme.of(context).colorScheme.primaryContainer,
                                     borderRadius: BorderRadius.circular(12.0)),
                                 child: InkWell(
                                   onTap: () {
                                     createFriendDialog(context);
                                   },
                                   borderRadius: BorderRadius.circular(12.0),
-                                  child: const Icon(Symbols.person_add,
-                                      size: 45.0),
+                                  child: const Icon(Symbols.person_add, size: 45.0),
                                 ),
                               )),
                               const SizedBox(height: 5.0),
@@ -266,8 +249,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface,
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ],
@@ -284,17 +266,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondaryContainer,
+                                    color: Theme.of(context).colorScheme.secondaryContainer,
                                     borderRadius: BorderRadius.circular(12.0)),
                                 child: InkWell(
                                   onTap: () {
                                     quickSplitDialog(context);
                                   },
                                   borderRadius: BorderRadius.circular(12.0),
-                                  child:
-                                      const Icon(Symbols.payments, size: 45.0),
+                                  child: const Icon(Symbols.payments, size: 45.0),
                                 ),
                               )),
                               const SizedBox(height: 5.0),
@@ -303,8 +282,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface,
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ],
@@ -321,9 +299,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .tertiaryContainer,
+                                    color: Theme.of(context).colorScheme.tertiaryContainer,
                                     borderRadius: BorderRadius.circular(12.0)),
                                 child: InkWell(
                                   onTap: () => Navigator.push(
@@ -333,8 +309,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     ),
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
-                                  child:
-                                      const Icon(Symbols.group_add, size: 45.0),
+                                  child: const Icon(Symbols.group_add, size: 45.0),
                                 ),
                               )),
                               const SizedBox(height: 5.0),
@@ -343,8 +318,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface,
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ],
@@ -361,19 +335,16 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                       children: [
                         const Text(
                           "Recent Transactions",
-                          style: TextStyle(
-                              fontSize: 22.0, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
                         ),
                         TextButton(
                           onPressed: () {
                             setState(() {
                               //context.read<RootForm>().currentPageId = 1;
                             });
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const BillListScreen()),
-                              );
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => const BillListScreen()),
+                            );
                             print(context.read<RootForm>().currentPageId);
                           },
                           child: const Text("See All"),
@@ -389,24 +360,20 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 child: Text('Seems empty here', style: TextStyle(fontSize: 22.0)),
                               )
                             : ListView.separated(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
+                                padding: const EdgeInsets.symmetric(vertical: 10),
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: min(bills.length, 5),
-                                itemBuilder: (context, index) =>
-                                    BillCardsCompact(
+                                itemBuilder: (context, index) => BillCardsCompact(
                                   billData: bills[index],
                                   onTap: () => Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          BillInfo(billData: bills[index]),
+                                      builder: (context) => BillInfo(billData: bills[index]),
                                     ),
                                   ),
                                 ),
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(height: 10),
+                                separatorBuilder: (context, index) => const SizedBox(height: 10),
                               )
                   ],
                 ),

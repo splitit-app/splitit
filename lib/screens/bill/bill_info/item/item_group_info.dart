@@ -105,11 +105,15 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                         _isTextFormEnabled = true;
                       }),
                       onTapOutside: (event) {
+                        if (!_isTextFormEnabled) return;
+
                         _isTextFormEnabled = false;
                         widget.itemGroup.name = _itemGroupName.text;
                         FocusScope.of(context).unfocus();
                       },
                       onFieldSubmitted: (value) {
+                        if (!_isTextFormEnabled) return;
+
                         _isTextFormEnabled = false;
                         widget.itemGroup.name = _itemGroupName.text;
                       },
@@ -447,26 +451,44 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
-                decoration: textFieldDecoration_border.copyWith(labelText: "Name"),
+                decoration: textFieldDecoration_border.copyWith(
+                  labelText: "Name",
+                  suffixIcon: IconButton(
+                    onPressed: () => nameController.text = '',
+                    icon: const Icon(MaterialSymbols.cancel),
+                  ),
+                ),
                 controller: nameController,
-                onTap: () => nameController.selection =
-                    TextSelection(baseOffset: 0, extentOffset: nameController.text.length),
+                // onTap: () => nameController.selection =
+                //     TextSelection(baseOffset: 0, extentOffset: nameController.text.length),
               ),
               const SizedBox(height: 16),
               TextFormField(
-                decoration: textFieldDecoration_border.copyWith(labelText: "Value"),
+                decoration: textFieldDecoration_border.copyWith(
+                  labelText: "Value",
+                  suffixIcon: IconButton(
+                    onPressed: () => nameController.text = '',
+                    icon: const Icon(MaterialSymbols.cancel),
+                  ),
+                ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 controller: valueController,
-                onTap: () => valueController.selection =
-                    TextSelection(baseOffset: 0, extentOffset: valueController.text.length),
+                // onTap: () => valueController.selection =
+                //     TextSelection(baseOffset: 0, extentOffset: valueController.text.length),
               ),
               const SizedBox(height: 16),
               TextFormField(
-                decoration: textFieldDecoration_border.copyWith(labelText: "Quantity"),
+                decoration: textFieldDecoration_border.copyWith(
+                  labelText: "Quantity",
+                  suffixIcon: IconButton(
+                    onPressed: () => nameController.text = '',
+                    icon: const Icon(MaterialSymbols.cancel),
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 controller: quantityController,
-                onTap: () => quantityController.selection =
-                    TextSelection(baseOffset: 0, extentOffset: quantityController.text.length),
+                // onTap: () => quantityController.selection =
+                //     TextSelection(baseOffset: 0, extentOffset: quantityController.text.length),
               ),
             ],
           ),
@@ -474,7 +496,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
         actions: [
           OutlinedButton(
             onPressed: () {
-              item.name = nameController.text;
+              if (nameController.text.isNotEmpty) item.name = nameController.text;
 
               final value = double.tryParse(valueController.text);
               if (value != null) item.value = value;
