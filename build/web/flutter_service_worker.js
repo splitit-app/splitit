@@ -3,7 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "2edb2acf056804dc33fa97ba0ae040f9",
+const RESOURCES = {"404.html": "0a27a4163254fc8fce870c8cc3a3f94f",
+"assets/AssetManifest.bin": "2edb2acf056804dc33fa97ba0ae040f9",
 "assets/AssetManifest.bin.json": "183ddf8a309d51a29c4ed0f9bce06699",
 "assets/AssetManifest.json": "c668a836419b68a44b4497f5a7858733",
 "assets/assets/login_screen/splitit_logo.png": "2378c79615ba63e70863cfd5aaaa6656",
@@ -30,8 +31,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "2edb2acf056804dc33fa97ba0ae040f9
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "1efbc89754cbfa52823359c76218db59",
-"/": "1efbc89754cbfa52823359c76218db59",
+"index.html": "2745757bace64a57a21729c4af8362fa",
+"/": "2745757bace64a57a21729c4af8362fa",
 "main.dart.js": "e6044384360e0f7ae82b539a904af78c",
 "manifest.json": "b7accdadfef2cb867a201882c8705a60",
 "version.json": "a6a5f4f2eb2148c937c946c5ad4aab26"};
