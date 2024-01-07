@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import '../../runtime_models/user/public_profile.dart';
 import '../../runtime_models/user/user_data.dart';
 import '../../services/bill_data_repository.dart';
-import '../../utilities/scroll_animations.dart';
 
 class QuickSplitForm {
   final Locator read;
-  final pageController = PageController();
+  // final pageController = PageController();
+  int currentPageId = 0;
 
   final nameFieldController = TextEditingController();
   final dateFieldController = TextEditingController();
@@ -57,7 +57,7 @@ class QuickSplitForm {
 
   Future<void> submitBillInfo() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    await pageController.animateToPageWithDefaults(1);
+    // await pageController.animateToPageWithDefaults(1);
     //if (context.mounted) Navigator.of(context).pop();
     //TODO: validate
   }

@@ -467,7 +467,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 decoration: textFieldDecoration_border.copyWith(
                   labelText: "Value",
                   suffixIcon: IconButton(
-                    onPressed: () => nameController.text = '',
+                    onPressed: () => valueController.text = '',
                     icon: const Icon(MaterialSymbols.cancel),
                   ),
                 ),
@@ -481,7 +481,7 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                 decoration: textFieldDecoration_border.copyWith(
                   labelText: "Quantity",
                   suffixIcon: IconButton(
-                    onPressed: () => nameController.text = '',
+                    onPressed: () => quantityController.text = '',
                     icon: const Icon(MaterialSymbols.cancel),
                   ),
                 ),

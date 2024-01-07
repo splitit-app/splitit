@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,15 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAnZWRaRVzMLcz9s4TkTqcDQsd69qZyXhI',
+    appId: '1:734087056867:web:12b2e3ebdce8605b3a64d6',
+    messagingSenderId: '734087056867',
+    projectId: 'splitit-b166b',
+    authDomain: 'splitit-b166b.firebaseapp.com',
+    storageBucket: 'splitit-b166b.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDgFoNIm2dinTkbua0AM_EFnf-d7oThxbA',
     appId: '1:734087056867:android:46ae06459eb8ea273a64d6',
@@ -63,6 +66,17 @@ class DefaultFirebaseOptions {
     messagingSenderId: '734087056867',
     projectId: 'splitit-b166b',
     storageBucket: 'splitit-b166b.appspot.com',
+    iosClientId: '734087056867-nnv9sre08s1tba66t0jhpf0bg20m4r87.apps.googleusercontent.com',
     iosBundleId: 'com.example.projectBs',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDA6Ks-zUDs9NJAdtOW2WmENZ74kXoufHY',
+    appId: '1:734087056867:ios:818cf30e3ef8dfa53a64d6',
+    messagingSenderId: '734087056867',
+    projectId: 'splitit-b166b',
+    storageBucket: 'splitit-b166b.appspot.com',
+    iosClientId: '734087056867-f26pame5cce68sa8ubu18036bogk8t0t.apps.googleusercontent.com',
+    iosBundleId: 'com.example.projectBs.RunnerTests',
   );
 }
