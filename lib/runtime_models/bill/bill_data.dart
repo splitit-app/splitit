@@ -3,8 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../net_models/bill/bill_data_dto.dart';
 import '../user/public_profile.dart';
 import '../user/user_data.dart';
-import 'everything_else_item_group.dart';
-import 'item_group.dart';
+import 'item/everything_else_item_group.dart';
+import 'item/item_group.dart';
 import 'modules/bill_module_tax.dart';
 import 'modules/bill_module_tip.dart';
 

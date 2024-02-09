@@ -1,7 +1,7 @@
-import '../../net_models/bill/item_group_dto.dart';
-import '../user/public_profile.dart';
+import '../../../net_models/bill/item_group_dto.dart';
+import '../../user/public_profile.dart';
+import '../split_rule.dart';
 import 'item.dart';
-import 'split_rule.dart';
 
 abstract class IItemGroup {
   String name = '';

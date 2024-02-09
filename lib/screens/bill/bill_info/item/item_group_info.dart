@@ -8,9 +8,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/bill_data.dart';
-import '../../../../runtime_models/bill/i_item_group.dart';
-import '../../../../runtime_models/bill/item.dart';
-import '../../../../runtime_models/bill/item_group.dart';
+import '../../../../runtime_models/bill/item/i_item_group.dart';
+import '../../../../runtime_models/bill/item/item.dart';
+import '../../../../runtime_models/bill/item/item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../runtime_models/user/public_profile.dart';
 import '../../../../utilities/decorations.dart';

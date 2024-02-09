@@ -1,5 +1,5 @@
 import 'package:project_bs/runtime_models/bill/bill_data.dart';
-import 'package:project_bs/runtime_models/bill/item_group.dart';
+import 'package:project_bs/runtime_models/bill/item/item_group.dart';
 import 'package:project_bs/runtime_models/user/public_profile.dart';
 import 'package:provider/provider.dart';
 

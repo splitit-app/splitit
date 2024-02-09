@@ -3,7 +3,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../runtime_models/bill/bill_data.dart';
-import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/item/i_item_group.dart';
 import '../bill_form.dart';
 import 'item_group_card.dart';
 import 'item_group_info.dart';

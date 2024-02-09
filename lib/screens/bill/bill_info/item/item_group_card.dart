@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/item/i_item_group.dart';
 import '../../../../utilities/person_icon.dart';
 
 class ItemGroupCard extends StatelessWidget {

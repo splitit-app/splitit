@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../net_models/bill/item_group_dto.dart';
-import '../user/public_profile.dart';
-import '../user/user_data.dart';
-import 'bill_data.dart';
+import '../../../net_models/bill/item_group_dto.dart';
+import '../../user/public_profile.dart';
+import '../../user/user_data.dart';
+import '../bill_data.dart';
+import '../split_rule.dart';
 import 'i_item_group.dart';
 import 'item.dart';
-import 'split_rule.dart';
 
 part 'everything_else_item_group.freezed.dart';
 

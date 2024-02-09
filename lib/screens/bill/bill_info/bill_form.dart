@@ -1,8 +1,8 @@
 import 'package:provider/provider.dart';
 
 import '../../../runtime_models/bill/bill_data.dart';
-import '../../../runtime_models/bill/item.dart';
-import '../../../runtime_models/bill/item_group.dart';
+import '../../../runtime_models/bill/item/item.dart';
+import '../../../runtime_models/bill/item/item_group.dart';
 import '../../../runtime_models/bill/split_rule.dart';
 import '../../../runtime_models/user/public_profile.dart';
 import '../../../services/bill_data_repository.dart';

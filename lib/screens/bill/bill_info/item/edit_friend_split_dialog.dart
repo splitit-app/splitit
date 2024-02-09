@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 
-import '../../../../runtime_models/bill/i_item_group.dart';
+import '../../../../runtime_models/bill/item/i_item_group.dart';
 import '../../../../runtime_models/bill/split_rule.dart';
 import '../../../../runtime_models/user/public_profile.dart';
 import '../../../../utilities/person_icon.dart';

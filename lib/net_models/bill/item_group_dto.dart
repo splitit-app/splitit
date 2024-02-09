@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../runtime_models/bill/item.dart';
+import '../../runtime_models/bill/item/item.dart';
 import '../../runtime_models/bill/split_rule.dart';
 
 part 'item_group_dto.freezed.dart';
