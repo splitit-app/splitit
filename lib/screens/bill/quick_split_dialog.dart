@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -82,7 +79,7 @@ void quickSplitDialog(BuildContext context) => showDialog(
                                     itemBuilder: (context, index) {
                                       PublicProfile profile =
                                           userData.nonRegisteredFriends.values.elementAt(index);
-                                    
+
                                       return CheckboxListTile(
                                         secondary: PersonIcon(profile: profile),
                                         title: Text(profile.name),

@@ -62,11 +62,10 @@ class RegistrationFormForUserData extends StatelessWidget {
   Widget build(BuildContext context) {
     final registrationForm = context.read<RegistrationForm>();
 
-    return WillPopScope(
-      onWillPop: () async {
-        await registrationForm.pageController.animateToPageWithDefaults(0);
-        return false;
-      },
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (isPopped) async =>
+          await registrationForm.pageController.animateToPageWithDefaults(0),
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),

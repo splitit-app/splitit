@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_bs/utilities/scroll_animations.dart';
+import '../../../utilities/scroll_animations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../runtime_models/user/private_profile.dart';

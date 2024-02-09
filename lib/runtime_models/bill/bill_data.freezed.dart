@@ -12,7 +12,7 @@ part of 'bill_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BillData {
@@ -46,8 +46,8 @@ mixin _$BillData {
       throw _privateConstructorUsedError;
   List<ItemGroup> get itemGroups => throw _privateConstructorUsedError;
   set itemGroups(List<ItemGroup> value) => throw _privateConstructorUsedError;
-  BillModule_Tax get taxModule => throw _privateConstructorUsedError;
-  set taxModule(BillModule_Tax value) => throw _privateConstructorUsedError;
+  List<Tax> get taxes => throw _privateConstructorUsedError;
+  set taxes(List<Tax> value) => throw _privateConstructorUsedError;
   BillModule_Tip get tipModule => throw _privateConstructorUsedError;
   set tipModule(BillModule_Tip value) => throw _privateConstructorUsedError;
   DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
@@ -75,13 +75,12 @@ abstract class $BillDataCopyWith<$Res> {
       Map<String, double> paymentResolveStatuses,
       EverythingElseItemGroup everythingElse,
       List<ItemGroup> itemGroups,
-      BillModule_Tax taxModule,
+      List<Tax> taxes,
       BillModule_Tip tipModule,
       DateTime lastUpdatedSession});
 
   $PublicProfileCopyWith<$Res>? get payer;
   $EverythingElseItemGroupCopyWith<$Res> get everythingElse;
-  $BillModule_TaxCopyWith<$Res> get taxModule;
   $BillModule_TipCopyWith<$Res> get tipModule;
 }
 
@@ -109,7 +108,7 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? paymentResolveStatuses = null,
     Object? everythingElse = null,
     Object? itemGroups = null,
-    Object? taxModule = null,
+    Object? taxes = null,
     Object? tipModule = null,
     Object? lastUpdatedSession = null,
   }) {
@@ -158,10 +157,10 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.itemGroups
           : itemGroups // ignore: cast_nullable_to_non_nullable
               as List<ItemGroup>,
-      taxModule: null == taxModule
-          ? _value.taxModule
-          : taxModule // ignore: cast_nullable_to_non_nullable
-              as BillModule_Tax,
+      taxes: null == taxes
+          ? _value.taxes
+          : taxes // ignore: cast_nullable_to_non_nullable
+              as List<Tax>,
       tipModule: null == tipModule
           ? _value.tipModule
           : tipModule // ignore: cast_nullable_to_non_nullable
@@ -196,14 +195,6 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
 
   @override
   @pragma('vm:prefer-inline')
-  $BillModule_TaxCopyWith<$Res> get taxModule {
-    return $BillModule_TaxCopyWith<$Res>(_value.taxModule, (value) {
-      return _then(_value.copyWith(taxModule: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $BillModule_TipCopyWith<$Res> get tipModule {
     return $BillModule_TipCopyWith<$Res>(_value.tipModule, (value) {
       return _then(_value.copyWith(tipModule: value) as $Val);
@@ -231,7 +222,7 @@ abstract class _$$BillDataImplCopyWith<$Res>
       Map<String, double> paymentResolveStatuses,
       EverythingElseItemGroup everythingElse,
       List<ItemGroup> itemGroups,
-      BillModule_Tax taxModule,
+      List<Tax> taxes,
       BillModule_Tip tipModule,
       DateTime lastUpdatedSession});
 
@@ -239,8 +230,6 @@ abstract class _$$BillDataImplCopyWith<$Res>
   $PublicProfileCopyWith<$Res>? get payer;
   @override
   $EverythingElseItemGroupCopyWith<$Res> get everythingElse;
-  @override
-  $BillModule_TaxCopyWith<$Res> get taxModule;
   @override
   $BillModule_TipCopyWith<$Res> get tipModule;
 }
@@ -267,7 +256,7 @@ class __$$BillDataImplCopyWithImpl<$Res>
     Object? paymentResolveStatuses = null,
     Object? everythingElse = null,
     Object? itemGroups = null,
-    Object? taxModule = null,
+    Object? taxes = null,
     Object? tipModule = null,
     Object? lastUpdatedSession = null,
   }) {
@@ -316,10 +305,10 @@ class __$$BillDataImplCopyWithImpl<$Res>
           ? _value.itemGroups
           : itemGroups // ignore: cast_nullable_to_non_nullable
               as List<ItemGroup>,
-      taxModule: null == taxModule
-          ? _value.taxModule
-          : taxModule // ignore: cast_nullable_to_non_nullable
-              as BillModule_Tax,
+      taxes: null == taxes
+          ? _value.taxes
+          : taxes // ignore: cast_nullable_to_non_nullable
+              as List<Tax>,
       tipModule: null == tipModule
           ? _value.tipModule
           : tipModule // ignore: cast_nullable_to_non_nullable
@@ -347,7 +336,7 @@ class _$BillDataImpl extends _BillData {
       required this.paymentResolveStatuses,
       required this.everythingElse,
       required this.itemGroups,
-      required this.taxModule,
+      required this.taxes,
       required this.tipModule,
       required this.lastUpdatedSession})
       : assert(totalSpent >= 0),
@@ -379,7 +368,7 @@ class _$BillDataImpl extends _BillData {
   @override
   List<ItemGroup> itemGroups;
   @override
-  BillModule_Tax taxModule;
+  List<Tax> taxes;
   @override
   BillModule_Tip tipModule;
   @override
@@ -387,7 +376,7 @@ class _$BillDataImpl extends _BillData {
 
   @override
   String toString() {
-    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, everythingElse: $everythingElse, itemGroups: $itemGroups, taxModule: $taxModule, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
+    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, everythingElse: $everythingElse, itemGroups: $itemGroups, taxes: $taxes, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @JsonKey(ignore: true)
@@ -410,7 +399,7 @@ abstract class _BillData extends BillData {
       required Map<String, double> paymentResolveStatuses,
       required EverythingElseItemGroup everythingElse,
       required List<ItemGroup> itemGroups,
-      required BillModule_Tax taxModule,
+      required List<Tax> taxes,
       required BillModule_Tip tipModule,
       required DateTime lastUpdatedSession}) = _$BillDataImpl;
   _BillData._() : super._();
@@ -449,8 +438,8 @@ abstract class _BillData extends BillData {
   List<ItemGroup> get itemGroups;
   set itemGroups(List<ItemGroup> value);
   @override
-  BillModule_Tax get taxModule;
-  set taxModule(BillModule_Tax value);
+  List<Tax> get taxes;
+  set taxes(List<Tax> value);
   @override
   BillModule_Tip get tipModule;
   set tipModule(BillModule_Tip value);

@@ -5,6 +5,7 @@ part 'item.g.dart';
 
 @unfreezed
 class Item with _$Item {
+  @Assert('value >= 0')
   factory Item({
     @Default('New Item') String name,
     @Default(0) double value,

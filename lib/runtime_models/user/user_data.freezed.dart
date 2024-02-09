@@ -12,7 +12,7 @@ part of 'user_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserData {
@@ -178,7 +178,7 @@ class __$$UserDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserDataImpl extends _UserData with DiagnosticableTreeMixin {
+class _$UserDataImpl extends _UserData {
   _$UserDataImpl(
       {required this.uid,
       required this.publicProfile,
@@ -199,20 +199,8 @@ class _$UserDataImpl extends _UserData with DiagnosticableTreeMixin {
   Map<String, PublicProfile> nonRegisteredFriends;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'UserData(uid: $uid, publicProfile: $publicProfile, privateProfile: $privateProfile, registeredFriends: $registeredFriends, nonRegisteredFriends: $nonRegisteredFriends)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserData'))
-      ..add(DiagnosticsProperty('uid', uid))
-      ..add(DiagnosticsProperty('publicProfile', publicProfile))
-      ..add(DiagnosticsProperty('privateProfile', privateProfile))
-      ..add(DiagnosticsProperty('registeredFriends', registeredFriends))
-      ..add(DiagnosticsProperty('nonRegisteredFriends', nonRegisteredFriends));
   }
 
   @JsonKey(ignore: true)

@@ -5,7 +5,7 @@ import '../user/public_profile.dart';
 import '../user/user_data.dart';
 import 'item/everything_else_item_group.dart';
 import 'item/item_group.dart';
-import 'modules/bill_module_tax.dart';
+import 'tax/tax.dart';
 import 'modules/bill_module_tip.dart';
 
 part 'bill_data.freezed.dart';
@@ -26,7 +26,7 @@ class BillData with _$BillData {
     //
     required EverythingElseItemGroup everythingElse,
     required List<ItemGroup> itemGroups,
-    required BillModule_Tax taxModule,
+    required List<Tax> taxes,
     required BillModule_Tip tipModule,
     required DateTime lastUpdatedSession,
   }) = _BillData;
@@ -49,7 +49,7 @@ class BillData with _$BillData {
       itemGroups: billDataDTO.itemGroups
           .map((itemGroup) => ItemGroup.fromDataTransferObj(itemGroup, userData))
           .toList(),
-      taxModule: BillModule_Tax(),
+      taxes: List.empty(),
       tipModule: BillModule_Tip(),
       lastUpdatedSession: billDataDTO.lastUpdatedSession,
     );

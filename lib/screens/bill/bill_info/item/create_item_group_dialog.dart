@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
-import 'package:project_bs/utilities/fields.dart';
-
 import 'package:provider/provider.dart';
-import '../bill_form.dart';
 
+import '../../../../utilities/fields.dart';
+import '../bill_form.dart';
 
 void itemGroupDialog(BuildContext context) {
   final billForm = BillForm(read: context.read);
@@ -18,9 +17,8 @@ void itemGroupDialog(BuildContext context) {
           title: const Text("New Item Group"),
           content: Column(
             children: [
-
               TextFormField(
-                // controller: 
+                // controller:
                 decoration: textFieldDecoration_border.copyWith(
                   labelText: "Item Group Name",
                   suffixIcon: IconButton(
@@ -29,11 +27,9 @@ void itemGroupDialog(BuildContext context) {
                   ),
                 ),
               ),
-
               const Text("Split Rule"),
               const Text("People Involved"),
               const Text("Items"),
-
             ],
           ),
           actions: [

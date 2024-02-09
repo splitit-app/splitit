@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:project_bs/runtime_models/bill/bill_data.dart';
-import 'package:project_bs/runtime_models/bill/item/everything_else_item_group.dart';
-import 'package:project_bs/runtime_models/bill/modules/bill_module_tax.dart';
-import 'package:project_bs/runtime_models/bill/modules/bill_module_tip.dart';
-import 'package:project_bs/runtime_models/bill/split_rule.dart';
+import '../runtime_models/bill/bill_data.dart';
+import '../runtime_models/bill/item/everything_else_item_group.dart';
+import '../runtime_models/bill/modules/bill_module_tip.dart';
+import '../runtime_models/bill/split_rule.dart';
 
 import 'bill/bill_card.dart';
 
@@ -46,7 +45,7 @@ class PageTest extends StatelessWidget {
       splitExacts: {},
     ),
     itemGroups: List.empty(),
-    taxModule: BillModule_Tax(),
+    taxes: List.empty(),
     tipModule: BillModule_Tip(),
     lastUpdatedSession: DateTime.now(),
   );
