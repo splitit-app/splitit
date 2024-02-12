@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class _ItemListScreenState extends State<ItemListScreen> {
   Widget build(BuildContext context) {
     final BillData billData = context.watch();
     final billForm = BillForm(read: context.read);
+    final expandableFabStateKey = GlobalKey<ExpandableFabState>();
 
     return Provider.value(
       value: billForm,
@@ -90,14 +92,33 @@ class _ItemListScreenState extends State<ItemListScreen> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          label: const Text('Add'),
-          icon: const Icon(Symbols.add),
-          onPressed: () async {
-            //itemGroupDialog(context);
-            await billForm.addItemGroup();
-            setState(() {});
-          },
+        floatingActionButtonLocation: ExpandableFab.location,
+        floatingActionButton: ExpandableFab(
+          key: expandableFabStateKey,
+          distance: 56,
+          overlayStyle: ExpandableFabOverlayStyle(color: const Color(0xBB000000)),
+          type: ExpandableFabType.up,
+          children: [
+            ElevatedButton.icon(
+              onPressed: () async {
+                await billForm.addItemGroup();
+                setState(() {});
+
+                final state = expandableFabStateKey.currentState;
+                if (state != null && state.isOpen) state.toggle();
+              },
+              label: const Text('Add Item Group'),
+              icon: const Icon(Symbols.shapes),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                final state = expandableFabStateKey.currentState;
+                if (state != null && state.isOpen) state.toggle();
+              },
+              label: const Text('Add Item'),
+              icon: const Icon(Symbols.shapes),
+            ),
+          ],
         ),
       ),
     );

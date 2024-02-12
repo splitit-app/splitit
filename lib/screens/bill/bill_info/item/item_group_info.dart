@@ -37,7 +37,7 @@ class ItemGroupInfo extends StatefulWidget {
 class _ItemGroupInfoState extends State<ItemGroupInfo> {
   final TextEditingController _itemGroupName = TextEditingController();
   bool _isTextFormEnabled = false;
-  // bool _isDropDownEnabled = false;
+  bool _isDropDownEnabled = false;
 
   final TextEditingController itemController = TextEditingController();
   bool expandPeople = false;
@@ -132,20 +132,20 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                   DropdownMenu(
                     width: 160,
                     controller: itemController,
-                    //requestFocusOnTap: true,
                     leadingIcon: widget.itemGroup.splitRule.icon,
                     label: const Text('Split Rule'),
                     textStyle: const TextStyle(fontSize: 16),
 
                     inputDecorationTheme: const InputDecorationTheme(
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.all(8),
+                      // contentPadding: EdgeInsets.all(8),
                       // border: _isDropDownEnabled ? const OutlineInputBorder() : InputBorder.none,
                     ),
                     menuStyle:
                         const MenuStyle(padding: MaterialStatePropertyAll(EdgeInsets.all(8))),
                     onSelected: (splitRule) {
                       widget.itemGroup.splitRule = splitRule!;
+
                       setState(() {});
                     },
                     dropdownMenuEntries: SplitRule.values
@@ -375,9 +375,9 @@ class _ItemGroupInfoState extends State<ItemGroupInfo> {
                           IconButton(
                             onPressed: () {
                               //TODO: save
-                              if (widget.itemGroup.items.length == 1 && item.quantity == 1) {
-                                return;
-                              }
+                              if (!widget.isEverythingElseItemGroup &&
+                                  widget.itemGroup.items.length == 1 &&
+                                  item.quantity == 1) return;
 
                               item.quantity--;
                               if (item.quantity <= 0) {
