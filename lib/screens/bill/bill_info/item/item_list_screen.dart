@@ -65,33 +65,49 @@ class _ItemListScreenState extends State<ItemListScreen> {
             SliverPadding(
               padding: const EdgeInsets.all(8).copyWith(bottom: 80),
               sliver: SliverToBoxAdapter(
-                child: ItemGroupCard(
-                  itemGroup: billData.everythingElse as IItemGroup,
-                  isEverythingElseItemGroup: true,
-                  onTap: () {
-                    final BillForm billForm = context.read();
+                child: Column(
+                  children: [
+                    ItemGroupCard(
+                      itemGroup: billData.everythingElse as IItemGroup,
+                      isEverythingElseItemGroup: true,
+                      onTap: () {
+                        final BillForm billForm = context.read();
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MultiProvider(
-                          providers: [
-                            Provider.value(value: billData),
-                            Provider.value(value: billForm),
-                          ],
-                          builder: (context, child) => ItemGroupInfo(
-                            itemGroup: billData.everythingElse as IItemGroup,
-                            isEverythingElseItemGroup: true,
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MultiProvider(
+                              providers: [
+                                Provider.value(value: billData),
+                                Provider.value(value: billForm),
+                              ],
+                              builder: (context, child) => ItemGroupInfo(
+                                itemGroup: billData.everythingElse as IItemGroup,
+                                isEverythingElseItemGroup: true,
+                              ),
+                            ),
                           ),
-                        ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Subtotal
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Subtotal: \$ ${billData.totalSpent.toStringAsFixed(2)}',
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ),
             ),
           ],
         ),
+
+        // FAB
         floatingActionButtonLocation: ExpandableFab.location,
         floatingActionButton: ExpandableFab(
           key: expandableFabStateKey,

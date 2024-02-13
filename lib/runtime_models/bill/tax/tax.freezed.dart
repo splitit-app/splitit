@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Tax {
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
   set value(double value) => throw _privateConstructorUsedError;
   bool get includedInTotal => throw _privateConstructorUsedError;
@@ -30,7 +32,7 @@ abstract class $TaxCopyWith<$Res> {
   factory $TaxCopyWith(Tax value, $Res Function(Tax) then) =
       _$TaxCopyWithImpl<$Res, Tax>;
   @useResult
-  $Res call({double value, bool includedInTotal});
+  $Res call({String name, double value, bool includedInTotal});
 }
 
 /// @nodoc
@@ -45,10 +47,15 @@ class _$TaxCopyWithImpl<$Res, $Val extends Tax> implements $TaxCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? value = null,
     Object? includedInTotal = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -67,7 +74,7 @@ abstract class _$$TaxImplCopyWith<$Res> implements $TaxCopyWith<$Res> {
       __$$TaxImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double value, bool includedInTotal});
+  $Res call({String name, double value, bool includedInTotal});
 }
 
 /// @nodoc
@@ -79,10 +86,15 @@ class __$$TaxImplCopyWithImpl<$Res> extends _$TaxCopyWithImpl<$Res, _$TaxImpl>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? value = null,
     Object? includedInTotal = null,
   }) {
     return _then(_$TaxImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -98,8 +110,13 @@ class __$$TaxImplCopyWithImpl<$Res> extends _$TaxCopyWithImpl<$Res, _$TaxImpl>
 /// @nodoc
 
 class _$TaxImpl implements _Tax {
-  _$TaxImpl({this.value = 0, this.includedInTotal = true}) : assert(value >= 0);
+  _$TaxImpl(
+      {this.name = 'New Item', this.value = 0, this.includedInTotal = true})
+      : assert(value >= 0);
 
+  @override
+  @JsonKey()
+  String name;
   @override
   @JsonKey()
   double value;
@@ -109,7 +126,7 @@ class _$TaxImpl implements _Tax {
 
   @override
   String toString() {
-    return 'Tax(value: $value, includedInTotal: $includedInTotal)';
+    return 'Tax(name: $name, value: $value, includedInTotal: $includedInTotal)';
   }
 
   @JsonKey(ignore: true)
@@ -120,8 +137,11 @@ class _$TaxImpl implements _Tax {
 }
 
 abstract class _Tax implements Tax {
-  factory _Tax({double value, bool includedInTotal}) = _$TaxImpl;
+  factory _Tax({String name, double value, bool includedInTotal}) = _$TaxImpl;
 
+  @override
+  String get name;
+  set name(String value);
   @override
   double get value;
   set value(double value);

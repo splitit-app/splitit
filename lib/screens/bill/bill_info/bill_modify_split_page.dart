@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:provider/provider.dart';
+import 'package:splitit/screens/bill/bill_info/tax/tax_list_screen.dart';
 
 import '../../../runtime_models/bill/bill_data.dart';
 import '../../../services/bill_data_repository.dart';
@@ -17,7 +18,7 @@ class ModifySplitPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           shape: appBarShape,
-          title: const Text("Magnifier"),
+          title: const Text("Split Details"),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
           actions: [
@@ -68,7 +69,7 @@ class ModifySplitPage extends StatelessWidget {
             Expanded(
               child: TabBarView(children: [
                 ItemListScreen(),
-                Placeholder(),
+                TaxListScreen(),
                 Placeholder(),
               ]),
             ),
