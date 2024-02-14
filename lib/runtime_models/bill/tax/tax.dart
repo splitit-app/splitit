@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tax.freezed.dart';
+part 'tax.g.dart';
 
 @unfreezed
 class Tax with _$Tax {
@@ -10,4 +11,6 @@ class Tax with _$Tax {
     @Default(0) double value,
     @Default(true) bool includedInTotal,
   }) = _Tax;
+
+  factory Tax.fromJson(Map<String, dynamic> json) => _$TaxFromJson(json);
 }

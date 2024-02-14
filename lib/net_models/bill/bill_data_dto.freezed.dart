@@ -29,7 +29,9 @@ mixin _$BillDataDTO {
   Map<String, double> get paymentResolveStatuses =>
       throw _privateConstructorUsedError; //
   List<ItemGroupDTO> get itemGroups => throw _privateConstructorUsedError;
-  ItemGroupDTO get everythingElse => throw _privateConstructorUsedError; //
+  ItemGroupDTO get everythingElse =>
+      throw _privateConstructorUsedError; //required List<Tax> taxes,
+//
   DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -296,6 +298,7 @@ class _$BillDataDTOImpl implements _BillDataDTO {
 
   @override
   final ItemGroupDTO everythingElse;
+//required List<Tax> taxes,
 //
   @override
   final DateTime lastUpdatedSession;
@@ -394,7 +397,8 @@ abstract class _BillDataDTO implements BillDataDTO {
   List<ItemGroupDTO> get itemGroups;
   @override
   ItemGroupDTO get everythingElse;
-  @override //
+  @override //required List<Tax> taxes,
+//
   DateTime get lastUpdatedSession;
   @override
   @JsonKey(ignore: true)

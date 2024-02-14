@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../runtime_models/bill/tax/tax.dart';
 import 'item_group_dto.dart';
 
 part 'bill_data_dto.freezed.dart';
@@ -21,6 +22,8 @@ class BillDataDTO with _$BillDataDTO {
     //
     required List<ItemGroupDTO> itemGroups,
     required ItemGroupDTO everythingElse,
+    //required List<Tax> taxes,
+
     //
     required DateTime lastUpdatedSession,
   }) = _BillDataDTO;

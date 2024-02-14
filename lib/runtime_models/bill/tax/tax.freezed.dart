@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Tax _$TaxFromJson(Map<String, dynamic> json) {
+  return _Tax.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Tax {
   String get name => throw _privateConstructorUsedError;
@@ -23,6 +27,7 @@ mixin _$Tax {
   bool get includedInTotal => throw _privateConstructorUsedError;
   set includedInTotal(bool value) => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TaxCopyWith<Tax> get copyWith => throw _privateConstructorUsedError;
 }
@@ -108,11 +113,14 @@ class __$$TaxImplCopyWithImpl<$Res> extends _$TaxCopyWithImpl<$Res, _$TaxImpl>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$TaxImpl implements _Tax {
   _$TaxImpl(
       {this.name = 'New Item', this.value = 0, this.includedInTotal = true})
       : assert(value >= 0);
+
+  factory _$TaxImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaxImplFromJson(json);
 
   @override
   @JsonKey()
@@ -134,10 +142,19 @@ class _$TaxImpl implements _Tax {
   @pragma('vm:prefer-inline')
   _$$TaxImplCopyWith<_$TaxImpl> get copyWith =>
       __$$TaxImplCopyWithImpl<_$TaxImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TaxImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Tax implements Tax {
   factory _Tax({String name, double value, bool includedInTotal}) = _$TaxImpl;
+
+  factory _Tax.fromJson(Map<String, dynamic> json) = _$TaxImpl.fromJson;
 
   @override
   String get name;
