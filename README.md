@@ -1,7 +1,7 @@
 # Bill_Splitting_App
 Bill Splitting App
 
-This was a project assigned in the class "CSCI 150: Introduction to Software Engineering" at CSU Fresno. If you copy our code/project without our permission we will sue you!
+This was a project assigned in the class "CSCI 150: Introduction to Software Engineering" at CSU Fresno. If you copy our code/project without our permission we will sue you! :P
 
 - Important notice
 
