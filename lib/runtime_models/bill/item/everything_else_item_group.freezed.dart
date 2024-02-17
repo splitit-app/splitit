@@ -27,9 +27,7 @@ mixin _$EverythingElseItemGroup {
   set splitRule(SplitRule value) => throw _privateConstructorUsedError;
   Map<String, double> get splitBalances => throw _privateConstructorUsedError;
   set splitBalances(Map<String, double> value) =>
-      throw _privateConstructorUsedError;
-  BillData? get billData => throw _privateConstructorUsedError;
-  set billData(BillData? value) => throw _privateConstructorUsedError; //
+      throw _privateConstructorUsedError; //
   Map<String, double> get splitPercentages =>
       throw _privateConstructorUsedError; //
   set splitPercentages(Map<String, double> value) =>
@@ -39,7 +37,10 @@ mixin _$EverythingElseItemGroup {
       throw _privateConstructorUsedError;
   Map<String, double> get splitExacts => throw _privateConstructorUsedError;
   set splitExacts(Map<String, double> value) =>
-      throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // Late Initialize Reference
+  BillData? get billData =>
+      throw _privateConstructorUsedError; // Late Initialize Reference
+  set billData(BillData? value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EverythingElseItemGroupCopyWith<EverythingElseItemGroup> get copyWith =>
@@ -58,10 +59,10 @@ abstract class $EverythingElseItemGroupCopyWith<$Res> {
       List<Item> items,
       SplitRule splitRule,
       Map<String, double> splitBalances,
-      BillData? billData,
       Map<String, double> splitPercentages,
       Map<String, double> splitShares,
-      Map<String, double> splitExacts});
+      Map<String, double> splitExacts,
+      BillData? billData});
 
   $BillDataCopyWith<$Res>? get billData;
 }
@@ -85,10 +86,10 @@ class _$EverythingElseItemGroupCopyWithImpl<$Res,
     Object? items = null,
     Object? splitRule = null,
     Object? splitBalances = null,
-    Object? billData = freezed,
     Object? splitPercentages = null,
     Object? splitShares = null,
     Object? splitExacts = null,
+    Object? billData = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -111,10 +112,6 @@ class _$EverythingElseItemGroupCopyWithImpl<$Res,
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
-      billData: freezed == billData
-          ? _value.billData
-          : billData // ignore: cast_nullable_to_non_nullable
-              as BillData?,
       splitPercentages: null == splitPercentages
           ? _value.splitPercentages
           : splitPercentages // ignore: cast_nullable_to_non_nullable
@@ -127,6 +124,10 @@ class _$EverythingElseItemGroupCopyWithImpl<$Res,
           ? _value.splitExacts
           : splitExacts // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
+      billData: freezed == billData
+          ? _value.billData
+          : billData // ignore: cast_nullable_to_non_nullable
+              as BillData?,
     ) as $Val);
   }
 
@@ -158,10 +159,10 @@ abstract class _$$EverythingElseItemGroupImplCopyWith<$Res>
       List<Item> items,
       SplitRule splitRule,
       Map<String, double> splitBalances,
-      BillData? billData,
       Map<String, double> splitPercentages,
       Map<String, double> splitShares,
-      Map<String, double> splitExacts});
+      Map<String, double> splitExacts,
+      BillData? billData});
 
   @override
   $BillDataCopyWith<$Res>? get billData;
@@ -185,10 +186,10 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
     Object? items = null,
     Object? splitRule = null,
     Object? splitBalances = null,
-    Object? billData = freezed,
     Object? splitPercentages = null,
     Object? splitShares = null,
     Object? splitExacts = null,
+    Object? billData = freezed,
   }) {
     return _then(_$EverythingElseItemGroupImpl(
       name: null == name
@@ -211,10 +212,6 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
           ? _value.splitBalances
           : splitBalances // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
-      billData: freezed == billData
-          ? _value.billData
-          : billData // ignore: cast_nullable_to_non_nullable
-              as BillData?,
       splitPercentages: null == splitPercentages
           ? _value.splitPercentages
           : splitPercentages // ignore: cast_nullable_to_non_nullable
@@ -227,6 +224,10 @@ class __$$EverythingElseItemGroupImplCopyWithImpl<$Res>
           ? _value.splitExacts
           : splitExacts // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
+      billData: freezed == billData
+          ? _value.billData
+          : billData // ignore: cast_nullable_to_non_nullable
+              as BillData?,
     ));
   }
 }
@@ -240,10 +241,10 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
       required this.items,
       required this.splitRule,
       required this.splitBalances,
-      this.billData,
       required this.splitPercentages,
       required this.splitShares,
-      required this.splitExacts})
+      required this.splitExacts,
+      this.billData})
       : super._();
 
   @override
@@ -257,8 +258,6 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
   SplitRule splitRule;
   @override
   Map<String, double> splitBalances;
-  @override
-  BillData? billData;
 //
   @override
   Map<String, double> splitPercentages;
@@ -266,10 +265,13 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
   Map<String, double> splitShares;
   @override
   Map<String, double> splitExacts;
+// Late Initialize Reference
+  @override
+  BillData? billData;
 
   @override
   String toString() {
-    return 'EverythingElseItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRule: $splitRule, splitBalances: $splitBalances, billData: $billData, splitPercentages: $splitPercentages, splitShares: $splitShares, splitExacts: $splitExacts)';
+    return 'EverythingElseItemGroup(name: $name, primarySplits: $primarySplits, items: $items, splitRule: $splitRule, splitBalances: $splitBalances, splitPercentages: $splitPercentages, splitShares: $splitShares, splitExacts: $splitExacts, billData: $billData)';
   }
 
   @JsonKey(ignore: true)
@@ -283,16 +285,15 @@ class _$EverythingElseItemGroupImpl extends _EverythingElseItemGroup {
 abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
     implements IItemGroup {
   factory _EverythingElseItemGroup(
-          {String name,
-          required List<PublicProfile> primarySplits,
-          required List<Item> items,
-          required SplitRule splitRule,
-          required Map<String, double> splitBalances,
-          BillData? billData,
-          required Map<String, double> splitPercentages,
-          required Map<String, double> splitShares,
-          required Map<String, double> splitExacts}) =
-      _$EverythingElseItemGroupImpl;
+      {String name,
+      required List<PublicProfile> primarySplits,
+      required List<Item> items,
+      required SplitRule splitRule,
+      required Map<String, double> splitBalances,
+      required Map<String, double> splitPercentages,
+      required Map<String, double> splitShares,
+      required Map<String, double> splitExacts,
+      BillData? billData}) = _$EverythingElseItemGroupImpl;
   _EverythingElseItemGroup._() : super._();
 
   @override
@@ -310,9 +311,6 @@ abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
   @override
   Map<String, double> get splitBalances;
   set splitBalances(Map<String, double> value);
-  @override
-  BillData? get billData;
-  set billData(BillData? value);
   @override //
   Map<String, double> get splitPercentages; //
   set splitPercentages(Map<String, double> value);
@@ -322,6 +320,9 @@ abstract class _EverythingElseItemGroup extends EverythingElseItemGroup
   @override
   Map<String, double> get splitExacts;
   set splitExacts(Map<String, double> value);
+  @override // Late Initialize Reference
+  BillData? get billData; // Late Initialize Reference
+  set billData(BillData? value);
   @override
   @JsonKey(ignore: true)
   _$$EverythingElseItemGroupImplCopyWith<_$EverythingElseItemGroupImpl>

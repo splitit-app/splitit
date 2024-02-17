@@ -48,8 +48,8 @@ mixin _$BillData {
   set itemGroups(List<ItemGroup> value) => throw _privateConstructorUsedError;
   List<Tax> get taxes => throw _privateConstructorUsedError;
   set taxes(List<Tax> value) => throw _privateConstructorUsedError;
-  BillModule_Tip get tipModule => throw _privateConstructorUsedError;
-  set tipModule(BillModule_Tip value) => throw _privateConstructorUsedError;
+  Tip get tip => throw _privateConstructorUsedError;
+  set tip(Tip value) => throw _privateConstructorUsedError;
   DateTime get lastUpdatedSession => throw _privateConstructorUsedError;
   set lastUpdatedSession(DateTime value) => throw _privateConstructorUsedError;
 
@@ -76,12 +76,12 @@ abstract class $BillDataCopyWith<$Res> {
       EverythingElseItemGroup everythingElse,
       List<ItemGroup> itemGroups,
       List<Tax> taxes,
-      BillModule_Tip tipModule,
+      Tip tip,
       DateTime lastUpdatedSession});
 
   $PublicProfileCopyWith<$Res>? get payer;
   $EverythingElseItemGroupCopyWith<$Res> get everythingElse;
-  $BillModule_TipCopyWith<$Res> get tipModule;
+  $TipCopyWith<$Res> get tip;
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
     Object? everythingElse = null,
     Object? itemGroups = null,
     Object? taxes = null,
-    Object? tipModule = null,
+    Object? tip = null,
     Object? lastUpdatedSession = null,
   }) {
     return _then(_value.copyWith(
@@ -161,10 +161,10 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
           ? _value.taxes
           : taxes // ignore: cast_nullable_to_non_nullable
               as List<Tax>,
-      tipModule: null == tipModule
-          ? _value.tipModule
-          : tipModule // ignore: cast_nullable_to_non_nullable
-              as BillModule_Tip,
+      tip: null == tip
+          ? _value.tip
+          : tip // ignore: cast_nullable_to_non_nullable
+              as Tip,
       lastUpdatedSession: null == lastUpdatedSession
           ? _value.lastUpdatedSession
           : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
@@ -195,9 +195,9 @@ class _$BillDataCopyWithImpl<$Res, $Val extends BillData>
 
   @override
   @pragma('vm:prefer-inline')
-  $BillModule_TipCopyWith<$Res> get tipModule {
-    return $BillModule_TipCopyWith<$Res>(_value.tipModule, (value) {
-      return _then(_value.copyWith(tipModule: value) as $Val);
+  $TipCopyWith<$Res> get tip {
+    return $TipCopyWith<$Res>(_value.tip, (value) {
+      return _then(_value.copyWith(tip: value) as $Val);
     });
   }
 }
@@ -223,7 +223,7 @@ abstract class _$$BillDataImplCopyWith<$Res>
       EverythingElseItemGroup everythingElse,
       List<ItemGroup> itemGroups,
       List<Tax> taxes,
-      BillModule_Tip tipModule,
+      Tip tip,
       DateTime lastUpdatedSession});
 
   @override
@@ -231,7 +231,7 @@ abstract class _$$BillDataImplCopyWith<$Res>
   @override
   $EverythingElseItemGroupCopyWith<$Res> get everythingElse;
   @override
-  $BillModule_TipCopyWith<$Res> get tipModule;
+  $TipCopyWith<$Res> get tip;
 }
 
 /// @nodoc
@@ -257,7 +257,7 @@ class __$$BillDataImplCopyWithImpl<$Res>
     Object? everythingElse = null,
     Object? itemGroups = null,
     Object? taxes = null,
-    Object? tipModule = null,
+    Object? tip = null,
     Object? lastUpdatedSession = null,
   }) {
     return _then(_$BillDataImpl(
@@ -309,10 +309,10 @@ class __$$BillDataImplCopyWithImpl<$Res>
           ? _value.taxes
           : taxes // ignore: cast_nullable_to_non_nullable
               as List<Tax>,
-      tipModule: null == tipModule
-          ? _value.tipModule
-          : tipModule // ignore: cast_nullable_to_non_nullable
-              as BillModule_Tip,
+      tip: null == tip
+          ? _value.tip
+          : tip // ignore: cast_nullable_to_non_nullable
+              as Tip,
       lastUpdatedSession: null == lastUpdatedSession
           ? _value.lastUpdatedSession
           : lastUpdatedSession // ignore: cast_nullable_to_non_nullable
@@ -337,7 +337,7 @@ class _$BillDataImpl extends _BillData {
       required this.everythingElse,
       required this.itemGroups,
       required this.taxes,
-      required this.tipModule,
+      required this.tip,
       required this.lastUpdatedSession})
       : assert(totalSpent >= 0),
         super._();
@@ -370,13 +370,13 @@ class _$BillDataImpl extends _BillData {
   @override
   List<Tax> taxes;
   @override
-  BillModule_Tip tipModule;
+  Tip tip;
   @override
   DateTime lastUpdatedSession;
 
   @override
   String toString() {
-    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, everythingElse: $everythingElse, itemGroups: $itemGroups, taxes: $taxes, tipModule: $tipModule, lastUpdatedSession: $lastUpdatedSession)';
+    return 'BillData(uid: $uid, dateTime: $dateTime, name: $name, totalSpent: $totalSpent, payer: $payer, primarySplits: $primarySplits, secondarySplits: $secondarySplits, splitBalances: $splitBalances, paymentResolveStatuses: $paymentResolveStatuses, everythingElse: $everythingElse, itemGroups: $itemGroups, taxes: $taxes, tip: $tip, lastUpdatedSession: $lastUpdatedSession)';
   }
 
   @JsonKey(ignore: true)
@@ -400,7 +400,7 @@ abstract class _BillData extends BillData {
       required EverythingElseItemGroup everythingElse,
       required List<ItemGroup> itemGroups,
       required List<Tax> taxes,
-      required BillModule_Tip tipModule,
+      required Tip tip,
       required DateTime lastUpdatedSession}) = _$BillDataImpl;
   _BillData._() : super._();
 
@@ -441,8 +441,8 @@ abstract class _BillData extends BillData {
   List<Tax> get taxes;
   set taxes(List<Tax> value);
   @override
-  BillModule_Tip get tipModule;
-  set tipModule(BillModule_Tip value);
+  Tip get tip;
+  set tip(Tip value);
   @override
   DateTime get lastUpdatedSession;
   set lastUpdatedSession(DateTime value);

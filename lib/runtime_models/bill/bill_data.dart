@@ -6,7 +6,7 @@ import '../user/user_data.dart';
 import 'item/everything_else_item_group.dart';
 import 'item/item_group.dart';
 import 'tax/tax.dart';
-import 'modules/bill_module_tip.dart';
+import 'tip/tip.dart';
 
 part 'bill_data.freezed.dart';
 
@@ -27,7 +27,7 @@ class BillData with _$BillData {
     required EverythingElseItemGroup everythingElse,
     required List<ItemGroup> itemGroups,
     required List<Tax> taxes,
-    required BillModule_Tip tipModule,
+    required Tip tip,
     required DateTime lastUpdatedSession,
   }) = _BillData;
 
@@ -50,11 +50,17 @@ class BillData with _$BillData {
           .map((itemGroup) => ItemGroup.fromDataTransferObj(itemGroup, userData))
           .toList(),
       taxes: List.empty(),
-      tipModule: BillModule_Tip(),
+      tip: Tip(),
       lastUpdatedSession: billDataDTO.lastUpdatedSession,
     );
 
+    // Late initialization
     billData.everythingElse.billData = billData;
+    for (Tax tax in billData.taxes) {
+      tax.billData = billData;
+    }
+    billData.tip.billData = billData;
+
     return billData;
   }
 
@@ -62,16 +68,16 @@ class BillData with _$BillData {
 
   Map<String, double> get getSplitBalances {
     Map<String, double> splitBalances = {
-      for (PublicProfile profile in [payer!] + primarySplits) profile.uid: 0
+      for (final profile in [payer!] + primarySplits) profile.uid: 0
     };
 
-    for (ItemGroup itemGroup in itemGroups) {
-      for (PublicProfile profile in itemGroup.primarySplits) {
+    for (final itemGroup in itemGroups) {
+      for (final profile in itemGroup.primarySplits) {
         splitBalances[profile.uid] =
             splitBalances[profile.uid]! + itemGroup.getSplitBalances[profile.uid]!;
       }
     }
-    for (PublicProfile profile in everythingElse.primarySplits) {
+    for (final profile in everythingElse.primarySplits) {
       splitBalances[profile.uid] =
           splitBalances[profile.uid]! + everythingElse.getSplitBalances[profile.uid]!;
     }
@@ -92,6 +98,15 @@ class BillData with _$BillData {
         lastUpdatedSession: lastUpdatedSession,
       );
 
+  void addTax(Tax tax) {
+    taxes.add(tax);
+
+    for (final itemGroup in itemGroups) {
+      for (final item in itemGroup.items) {
+        item.taxableStatusList.add(false);
+      }
+    }
+  }
 //TODO: when a new item is added, initialized its tax list with the current number of taxes
 //TODO: when a new tax is introduced, iterate through all the items and update their List<bool>
 }
