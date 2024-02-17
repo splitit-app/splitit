@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'tax.dart';
+part of 'tip.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,18 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Tax _$TaxFromJson(Map<String, dynamic> json) {
-  return _Tax.fromJson(json);
+Tip _$TipFromJson(Map<String, dynamic> json) {
+  return _Tip.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Tax {
-  String get name => throw _privateConstructorUsedError;
-  set name(String value) => throw _privateConstructorUsedError;
+mixin _$Tip {
+  bool get usePercentage => throw _privateConstructorUsedError;
+  set usePercentage(bool value) => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
   set value(double value) => throw _privateConstructorUsedError;
-  bool get includedInTotal => throw _privateConstructorUsedError;
-  set includedInTotal(bool value) =>
+  double get rate => throw _privateConstructorUsedError;
+  set rate(double value) =>
       throw _privateConstructorUsedError; // Late Initialized Reference
 // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,18 +37,18 @@ mixin _$Tax {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TaxCopyWith<Tax> get copyWith => throw _privateConstructorUsedError;
+  $TipCopyWith<Tip> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TaxCopyWith<$Res> {
-  factory $TaxCopyWith(Tax value, $Res Function(Tax) then) =
-      _$TaxCopyWithImpl<$Res, Tax>;
+abstract class $TipCopyWith<$Res> {
+  factory $TipCopyWith(Tip value, $Res Function(Tip) then) =
+      _$TipCopyWithImpl<$Res, Tip>;
   @useResult
   $Res call(
-      {String name,
+      {bool usePercentage,
       double value,
-      bool includedInTotal,
+      double rate,
       @JsonKey(includeFromJson: false, includeToJson: false)
       BillData? billData});
 
@@ -56,8 +56,8 @@ abstract class $TaxCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TaxCopyWithImpl<$Res, $Val extends Tax> implements $TaxCopyWith<$Res> {
-  _$TaxCopyWithImpl(this._value, this._then);
+class _$TipCopyWithImpl<$Res, $Val extends Tip> implements $TipCopyWith<$Res> {
+  _$TipCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -67,24 +67,24 @@ class _$TaxCopyWithImpl<$Res, $Val extends Tax> implements $TaxCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? usePercentage = null,
     Object? value = null,
-    Object? includedInTotal = null,
+    Object? rate = null,
     Object? billData = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      usePercentage: null == usePercentage
+          ? _value.usePercentage
+          : usePercentage // ignore: cast_nullable_to_non_nullable
+              as bool,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
-      includedInTotal: null == includedInTotal
-          ? _value.includedInTotal
-          : includedInTotal // ignore: cast_nullable_to_non_nullable
-              as bool,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
       billData: freezed == billData
           ? _value.billData
           : billData // ignore: cast_nullable_to_non_nullable
@@ -106,15 +106,15 @@ class _$TaxCopyWithImpl<$Res, $Val extends Tax> implements $TaxCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$TaxImplCopyWith<$Res> implements $TaxCopyWith<$Res> {
-  factory _$$TaxImplCopyWith(_$TaxImpl value, $Res Function(_$TaxImpl) then) =
-      __$$TaxImplCopyWithImpl<$Res>;
+abstract class _$$TipImplCopyWith<$Res> implements $TipCopyWith<$Res> {
+  factory _$$TipImplCopyWith(_$TipImpl value, $Res Function(_$TipImpl) then) =
+      __$$TipImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String name,
+      {bool usePercentage,
       double value,
-      bool includedInTotal,
+      double rate,
       @JsonKey(includeFromJson: false, includeToJson: false)
       BillData? billData});
 
@@ -123,32 +123,32 @@ abstract class _$$TaxImplCopyWith<$Res> implements $TaxCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$TaxImplCopyWithImpl<$Res> extends _$TaxCopyWithImpl<$Res, _$TaxImpl>
-    implements _$$TaxImplCopyWith<$Res> {
-  __$$TaxImplCopyWithImpl(_$TaxImpl _value, $Res Function(_$TaxImpl) _then)
+class __$$TipImplCopyWithImpl<$Res> extends _$TipCopyWithImpl<$Res, _$TipImpl>
+    implements _$$TipImplCopyWith<$Res> {
+  __$$TipImplCopyWithImpl(_$TipImpl _value, $Res Function(_$TipImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? usePercentage = null,
     Object? value = null,
-    Object? includedInTotal = null,
+    Object? rate = null,
     Object? billData = freezed,
   }) {
-    return _then(_$TaxImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$TipImpl(
+      usePercentage: null == usePercentage
+          ? _value.usePercentage
+          : usePercentage // ignore: cast_nullable_to_non_nullable
+              as bool,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
-      includedInTotal: null == includedInTotal
-          ? _value.includedInTotal
-          : includedInTotal // ignore: cast_nullable_to_non_nullable
-              as bool,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
       billData: freezed == billData
           ? _value.billData
           : billData // ignore: cast_nullable_to_non_nullable
@@ -159,26 +159,26 @@ class __$$TaxImplCopyWithImpl<$Res> extends _$TaxCopyWithImpl<$Res, _$TaxImpl>
 
 /// @nodoc
 @JsonSerializable()
-class _$TaxImpl implements _Tax {
-  _$TaxImpl(
-      {this.name = 'New Item',
+class _$TipImpl extends _Tip {
+  _$TipImpl(
+      {this.usePercentage = true,
       this.value = 0,
-      this.includedInTotal = true,
+      this.rate = 0,
       @JsonKey(includeFromJson: false, includeToJson: false) this.billData})
-      : assert(value >= 0);
+      : super._();
 
-  factory _$TaxImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TaxImplFromJson(json);
+  factory _$TipImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TipImplFromJson(json);
 
   @override
   @JsonKey()
-  String name;
+  bool usePercentage;
   @override
   @JsonKey()
   double value;
   @override
   @JsonKey()
-  bool includedInTotal;
+  double rate;
 // Late Initialized Reference
 // ignore: invalid_annotation_target
   @override
@@ -187,42 +187,43 @@ class _$TaxImpl implements _Tax {
 
   @override
   String toString() {
-    return 'Tax(name: $name, value: $value, includedInTotal: $includedInTotal, billData: $billData)';
+    return 'Tip(usePercentage: $usePercentage, value: $value, rate: $rate, billData: $billData)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TaxImplCopyWith<_$TaxImpl> get copyWith =>
-      __$$TaxImplCopyWithImpl<_$TaxImpl>(this, _$identity);
+  _$$TipImplCopyWith<_$TipImpl> get copyWith =>
+      __$$TipImplCopyWithImpl<_$TipImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TaxImplToJson(
+    return _$$TipImplToJson(
       this,
     );
   }
 }
 
-abstract class _Tax implements Tax {
-  factory _Tax(
-      {String name,
+abstract class _Tip extends Tip {
+  factory _Tip(
+      {bool usePercentage,
       double value,
-      bool includedInTotal,
+      double rate,
       @JsonKey(includeFromJson: false, includeToJson: false)
-      BillData? billData}) = _$TaxImpl;
+      BillData? billData}) = _$TipImpl;
+  _Tip._() : super._();
 
-  factory _Tax.fromJson(Map<String, dynamic> json) = _$TaxImpl.fromJson;
+  factory _Tip.fromJson(Map<String, dynamic> json) = _$TipImpl.fromJson;
 
   @override
-  String get name;
-  set name(String value);
+  bool get usePercentage;
+  set usePercentage(bool value);
   @override
   double get value;
   set value(double value);
   @override
-  bool get includedInTotal;
-  set includedInTotal(bool value);
+  double get rate;
+  set rate(double value);
   @override // Late Initialized Reference
 // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -232,6 +233,6 @@ abstract class _Tax implements Tax {
   set billData(BillData? value);
   @override
   @JsonKey(ignore: true)
-  _$$TaxImplCopyWith<_$TaxImpl> get copyWith =>
+  _$$TipImplCopyWith<_$TipImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

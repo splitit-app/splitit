@@ -4,6 +4,7 @@ import '../../../runtime_models/bill/bill_data.dart';
 import '../../../runtime_models/bill/item/item.dart';
 import '../../../runtime_models/bill/item/item_group.dart';
 import '../../../runtime_models/bill/split_rule.dart';
+import '../../../runtime_models/bill/tax/tax.dart';
 import '../../../runtime_models/user/public_profile.dart';
 import '../../../services/bill_data_repository.dart';
 
@@ -44,5 +45,21 @@ class BillForm {
     billData.itemGroups.remove(itemGroup);
 
     read<BillDataRepository>().pushBillData(billData);
+  }
+
+  Future<void> addTax() async {
+    final BillData billData = read();
+
+    billData.addTax(Tax(
+      name: 'New Tax',
+      value: 0,
+      includedInTotal: false,
+    ));
+
+    try {
+      read<BillDataRepository>().pushBillData(billData);
+    } catch (e) {
+      print(e);
+    }
   }
 }

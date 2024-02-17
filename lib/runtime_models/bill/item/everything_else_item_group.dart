@@ -19,11 +19,13 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
     required List<Item> items,
     required SplitRule splitRule,
     required Map<String, double> splitBalances,
-    BillData? billData,
     //
     required Map<String, double> splitPercentages,
     required Map<String, double> splitShares,
     required Map<String, double> splitExacts,
+
+    // Late Initialize Reference
+    BillData? billData,
   }) = _EverythingElseItemGroup;
 
   factory EverythingElseItemGroup.fromDataTransferObj(
@@ -75,8 +77,6 @@ class EverythingElseItemGroup with _$EverythingElseItemGroup {
         splitExacts: splitExacts,
       );
 
-  double get value => billData != null
-      ? billData!.itemGroups
-          .fold(billData!.totalSpent, (previousValue, itemGroup) => previousValue - itemGroup.value)
-      : 0;
+  double get value => billData!.itemGroups
+      .fold(billData!.totalSpent, (previousValue, itemGroup) => previousValue - itemGroup.value);
 }
